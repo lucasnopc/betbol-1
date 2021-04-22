@@ -1,0 +1,51 @@
+.bgicon-enter {
+    display: inline-block;
+    width: 29px;
+    height: 30px;
+    background-image:url('../../public/icons/enter.png');
+    background-position: 29px;
+}
+.block-bgicon-enter:hover .bgicon-enter {
+    background-position: 0px;
+}
+
+.bgicon-register {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image:url('../../public/icons/register.png');
+    background-position: 0px;
+}
+.block-bgicon-register:hover .bgicon-register {
+    background-position: 29px;
+}
+
+.bgicon-soccer {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image:url('../../public/icons/soccerball.png');
+    background-position: 0px;
+}
+.bgicon-soccer-active {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image:url('../../public/icons/soccerball.png');
+    background-position: 29px;
+}
+.bgicon-basket {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image:url('../../public/icons/basketball.png');
+    background-position: 0px;
+}
+.bgicon-basket-active {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image:url('../../public/icons/basketball.png');
+    background-position: 29px;
+}
+
