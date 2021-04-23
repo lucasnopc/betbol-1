@@ -23,7 +23,7 @@ export default function Header() {
         return <>
             {!session && <>
                 <div className="inline-block block-bgicon-enter items-center flex">
-                    <span className="bgicon-enter cursor-pointer mx-3" onClick={() => setBtnLogin(!btnLogin)}></span>
+                    <span className="bgicon-enter cursor-pointer mx-3 md:hidden" onClick={() => setBtnLogin(!btnLogin)}></span>
                     <div className={`${btnLogin ? 'inline-block' : 'hidden'}`}>
                         <form onSubmit={handleSubmit(registerUser)}>
                             <input {...register('email', { required: true })} type="email" name="email" placeholder="Insira seu E-mail" className="inline-block p-1 border-2 border-gray-200 focus:outline-none focus:border-gray-300 rounded-full" required />
