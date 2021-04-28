@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.2.0",
+    "axios": "^0.21.1",
     "mongodb": "^3.6.6",
     "next": "latest",
     "next-auth": "^3.14.7",
@@ -17,7 +19,8 @@
     "react-dom": "^17.0.1",
     "react-hook-form": "^7.1.1",
     "react-icons": "^4.2.0",
-    "react-input-mask": "^3.0.0-alpha.2"
+    "react-input-mask": "^3.0.0-alpha.2",
+    "swr": "^0.5.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.4",

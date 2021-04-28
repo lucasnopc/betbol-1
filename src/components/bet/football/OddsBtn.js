@@ -1,75 +1,95 @@
 import { FcLock } from 'react-icons/fc'
 
-export default function OddsBtn (props) {
+export default function OddsBtn(props) {
 
     const onSubmit = data => {
-        const betsOn = { 
-          bet: JSON.parse(data.target.value),
-          buttonId: data.target.id
+        const choice = data.target.id.substring(0, 7)
+        const betsOn = {
+            bet: JSON.parse(data.target.value),
+            buttonId: data.target.id,
+            checked: data.target.checked,
+            choice,
+            value:0
         }
-        if(data.target.checked == true) {
-          
-        }
-        if(props.listBetState.length == 0) {
+        if (props.listBetState.length == 0) {
             props.setListBetState([betsOn])
             return ''
         }
-        for(let i = 0; i < props.listBetState.length; i ++) {
-            if(props.listBetState[i].bet.id == betsOn.bet.id) {
+        for (let i = 0; i < props.listBetState.length; i++) {
+            if (props.listBetState[i].bet.id == betsOn.bet.id) {
                 const ListBetStateDuplicate = [...props.listBetState]
+                betsOn.value = props.listBetState[i].value
                 ListBetStateDuplicate[i] = betsOn
                 props.setListBetState(ListBetStateDuplicate)
                 return ''
-          }
+            }
         }
         props.setListBetState([...props.listBetState, betsOn])
-      }
+    }
 
 
     const game = props.game
     if (typeof game.odds == 'undefined' || typeof game.odds[0] == 'undefined') {
-      return <>
-        <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
-        <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
-        <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
-      </>
+        return <>
+            <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
+            <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
+            <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
+        </>
     } else {
-      const gameText = JSON.stringify(game)
-      return <>
-        <form>
-          <div className="inline-block">
-            <input 
-              type="radio" 
-              id={`bethome-${game.id}`} 
-              name={`bet-${game.id}`}
-              value={gameText}
-              // checked={radioisChecked('o')}
-              onChange={onSubmit}
-              className="hidden" />
-            <label className="inline-block p-2 mx-2 text-xs text-gray-700 cursor-pointer hover:bg-blue-200 label-checked:bg-blue-600 label-checked:text-white border-2 border-gray-300 font-normal rounded-md bg-white" htmlFor={`bethome-${game.id}`}>{game.odds[0].bookmakers[0].bets[0].values[0].odd}</label>
-          </div>
-          <div className="inline-block">
-            <input 
-              type="radio" 
-              id={`betdraw-${game.id}`} 
-              name={`bet-${game.id}`}
-              value={gameText}
-              onChange={onSubmit}
-              className="hidden" />
-            <label className="inline-block p-2 mx-2 text-xs text-gray-700 cursor-pointer hover:bg-blue-200 label-checked:bg-blue-600 label-checked:text-white border-2 border-gray-300 font-normal rounded-md bg-white" htmlFor={`betdraw-${game.id}`}>{game.odds[0].bookmakers[0].bets[0].values[1].odd}</label>
-          </div>
-          <div className="inline-block">
-            <input 
-              type="radio" 
-              id={`betaway-${game.id}`} 
-              name={`bet-${game.id}`} 
-              value={gameText}
-              onChange={onSubmit}
-              className="hidden" />
-            <label className="inline-block p-2 mx-2 text-xs text-gray-700 cursor-pointer hover:bg-blue-200 label-checked:bg-blue-600 label-checked:text-white border-2 border-gray-300 font-normal rounded-md bg-white" htmlFor={`betaway-${game.id}`}>{game.odds[0].bookmakers[0].bets[0].values[2].odd}</label>
-          </div>
-        </form>
-      </>
+        const gameText = JSON.stringify(game)
+        let statusChecked = [false, false, false]
+        const odds = game.odds[0].bookmakers[0].bets[0].values
+        props.listBetState.map((BetState, indice) => {
+            if (props.listBetState[indice].bet.id == game.id) {
+                switch (BetState.choice) {
+                    case "bethome":
+                        statusChecked = [true, false, false]
+                        break
+                    case "betdraw":
+                        statusChecked = [false, true, false]
+                        break
+                    case "betaway":
+                        statusChecked = [false, false, true]
+                        break
+
+                }
+            }
+        })
+        return <div className="h-full">
+                <div className="inline-block h-full">
+                    <input
+                        type="radio"
+                        id={`bethome-${game.id}`}
+                        name={`bet-${game.id}`}
+                        value={gameText}
+                        checked={statusChecked[0]}
+                        onChange={onSubmit}
+                        className="hidden" />
+                    <label className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`bethome-${game.id}`}>{odds[0].odd}</label>
+                </div>
+                <div className="inline-block h-full">
+                    <input
+                        type="radio"
+                        id={`betdraw-${game.id}`}
+                        name={`bet-${game.id}`}
+                        value={gameText}
+                        checked={statusChecked[1]}
+                        onChange={onSubmit}
+                        className="hidden" />
+                    <label className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`betdraw-${game.id}`}>{odds[1].odd}</label>
+                </div>
+                <div className="inline-block h-full">
+                    <input
+                        type="radio"
+                        id={`betaway-${game.id}`}
+                        name={`bet-${game.id}`}
+                        value={gameText}
+                        checked={statusChecked[2]}
+                        onChange={onSubmit}
+                        className="hidden" />
+                    <label className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`betaway-${game.id}`}>{odds[2].odd}</label>
+                </div>
+        </div>
     }
 
-  }
+}

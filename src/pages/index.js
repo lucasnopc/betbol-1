@@ -3,14 +3,20 @@ import Layout from '../components/layouts/home/layout'
 import { soccerfake } from '../utills/responselive'
 import SoccerLive from '../components/bet/football/live'
 import { useState, useEffect } from 'react'
+import ValorFinal from '../utills/valofFinal'
+import axios from 'axios'
+import useSWR from 'swr'
 
-export default function Home(props) {
+export default function Home() {
+
+  // const soccer_api = axios.get('/api/betApi/soccer')
+
   const [listBetState, setListBetState] = useState([])
-
+  const [getValorFinal, setValorFinal] = useState(0)
   useEffect(() => {
-      console.log('useEffects atualizado listBetState=',listBetState)
-
+    setValorFinal(ValorFinal(listBetState))
   })
+
   const soccer = soccerfake
   const ligas = []
   for (let i = 0; i < soccer.length; i++) {
@@ -47,12 +53,12 @@ export default function Home(props) {
       </Head>
 
       <Layout>
-        <SoccerLive soccer={soccer} ligas={ligas} setListBetState={setListBetState} listBetState={listBetState} />
+        <SoccerLive soccer={soccer} ligas={ligas} setListBetState={setListBetState} listBetState={listBetState} valorFinal={getValorFinal} />
       </Layout>
     </>
   )
 }
-// export async function getStaticProps(context) {
+// export async function getServerSideProps(context) {
 //   const soccer_res = await fetch(`${process.env.APISPORT}/fixtures?live=all`, 
 //   {
 //     headers: {
