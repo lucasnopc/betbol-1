@@ -35,7 +35,6 @@ export default NextAuth({
   ],
   pages: {
     verifyRequest: '/verify-request',
-    newUser: 'first-access' 
   },
   database: process.env.MONGODB_URI,
 })

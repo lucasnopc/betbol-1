@@ -1,18 +1,34 @@
 import { connectToDatabase } from '../../utills/conectdb';
-import EmailIsExists from '../../utills/emailisExist'
+import { getSession } from 'next-auth/client'
 
 export default async (req, res) => {
+  const session = await getSession({ req })
+  if (!session) res.status(400).json({ message: `unauthenticated userd` });
+
   // CREATE USER
   if (req.method === 'POST') {
+    const email = session.user.email
     const { db } = await connectToDatabase();
-    const { email, username, tel } = req.body
-    const emailisexists = EmailIsExists(email)
-    
-    if (emailisexists) {
-      res.status(409).json({ 'error': `Já existe uma conta criada com o e-mail ${email}` });
-    }
-    res.status(200).json({ 'message': `não existe conta com esse e-mail`});
-  }else {
+    const { name, lastname, tel, cpf, cep, numhouse, logradouro, bairro, localidade, uf } = req.body.data
+    const points = 30
+    const response = await db
+      .collection("users")
+      .update(
+        { email },
+        {
+          points,
+          $set:
+          {
+            user:
+            {
+              name, lastname, tel, cpf, cep, numhouse, logradouro, bairro, localidade, uf
+            }
+          }
+        }
+      )
+
+    res.status(203).json({ message: true });
+  } else {
     res.status(400).json({ message: 'Wrong request method' });
   }
 };

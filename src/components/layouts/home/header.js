@@ -3,8 +3,9 @@ import { useState } from 'react'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { useForm } from "react-hook-form"
 import { useRouter } from 'next/router'
+import { FcSettings } from 'react-icons/fc'
 
-export default function Header() {
+export default function Header(props) {
     const [session, loading] = useSession()
     const router = useRouter()
     const pageSoccer = () => {
@@ -20,8 +21,10 @@ export default function Header() {
         return false
     }
     const Profile = () => {
+        const [openSettings, setOpenSettings] = useState(false)
+        
         return <>
-            {!session && <>
+            {!session && <> 
                 <div className="inline-block block-bgicon-enter items-center flex">
                     <span className="bgicon-enter cursor-pointer mx-3 md:hidden" onClick={() => setBtnLogin(!btnLogin)}></span>
                     <div className={`${btnLogin ? 'inline-block' : 'hidden'}`}>
@@ -47,7 +50,12 @@ export default function Header() {
                 </div>
 
                 <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100 cursor-pointer">
-                    <a className="flex items-center" onClick={() => signOut()}><span className="bgicon-enter mx-3"></span><span className="font-normal text-gray-500 hidden sm:inline-block">SAIR</span></a>
+                    <FcSettings className="text-3xl ml-3" onClick={() => setOpenSettings(!openSettings)} />
+                    <div className={`${openSettings?`block` : `hidden`} border-2 border-gray-300 rounded-lg text-right absolute right-0 w-60 z-10 bg-white`} onMouseLeave={() => setOpenSettings(false)} >   
+                        <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-t-lg border-b-2 border-gray-300"><Link href="/register">Atualizar Dados</Link></div>
+                        <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-b-lg" onClick={() => signOut()}>Sair</div>
+                    </div>
+                    {/* <a className="flex items-center" ><span className="bgicon-enter mx-3"></span><span className="font-normal text-gray-500 hidden sm:inline-block">SAIR</span></a> */}
                 </div>
                 
                 </div>
@@ -72,7 +80,7 @@ export default function Header() {
             <nav id="menu-principal">
 
             </nav>
-            <div id="profile" className="mr-10 mt-2">
+            <div id="profile" className="mr-10">
                 <Profile />
             </div>
 
