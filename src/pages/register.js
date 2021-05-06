@@ -7,8 +7,10 @@ import { useState, useEffect } from 'react'
 import { getSession, } from 'next-auth/client'
 import axios from 'axios'
 import getUser from '../utills/getUser'
+import { useRouter } from 'next/router'
 
 export default function register(props) {
+  const router = useRouter()
   const [getStateRegister, setStateRegister] = useState({
     name: "",
     lastname: "",
@@ -101,7 +103,10 @@ export default function register(props) {
 
   const onSubmit = async data => {
     const sendData = await axios.post('/api/register', { data })
-    console.log(sendData)
+    if(sendData.status == 203) {
+      alert('Dados Atualizados com Sucesso')
+      router.push('/')
+    }
   }
   const FormRegister = () => {
     if (popularForm) {
