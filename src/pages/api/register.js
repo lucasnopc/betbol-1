@@ -16,9 +16,9 @@ export default async (req, res) => {
       .update(
         { email },
         {
-          points,
           $set:
           {
+            points,
             user:
             {
               name, lastname, tel, cpf, cep, numhouse, logradouro, bairro, localidade, uf
