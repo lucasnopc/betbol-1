@@ -1,9 +1,11 @@
 import { FcLock, FcSynchronize } from 'react-icons/fc'
 import Link from 'next/link'
 import GetOdds from '../../../utills/getOdds'
+import CalcValorFinal from '../../../utills/valofFinal'
 import useSWR from 'swr'
 
 export default function OddsBtn(props) {
+
     const onSubmit = data => {
 
         const choice = data.target.id.substring(0, 7)
@@ -28,11 +30,16 @@ export default function OddsBtn(props) {
             }
         }
         props.setListBetState([...props.listBetState, betsOn])
+        props.setValorFinal(CalcValorFinal(props.listBetState))
+
     }
 
 
     const game = props.game
+    // console.log(props.getTimeBet)
+    // if(type props.getTimeBet[])
     const { data, error } = useSWR(`/api/betApi/odds/${game.id}`, GetOdds(game.id))
+    if(error) {console.log(error)}
     if(!data) {
         return <>
             <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcSynchronize className="animate-spin" /></div>
@@ -40,14 +47,25 @@ export default function OddsBtn(props) {
             <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcSynchronize  className="animate-spin" /></div>
         </>
     }
-
-    if (typeof data.odds.response[0] === "undefined") { 
+    if(data.odds.results == 0) {
+        return <>
+            <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
+        </>
+    }
+    const odds = data.odds.response[0].bookmakers[0].bets[0].values
+    if (typeof data.odds.response[0] === "undefined" || odds.length < 3) { 
+        if(typeof game.index != "undefined"){
+            game.odds = 'undefined'
+            // console.log(game.index)
+            // const getTimeBetDuplicate = [...props.getTimeBet]
+            // getTimeBetDuplicate.splice(game.index, 1)
+            // props.setTimeBet(getTimeBetDuplicate)
+        }
         return <>
             <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
         </>
     }
     let statusChecked = [false, false, false]
-    const odds = data.odds.response[0].bookmakers[0].bets[0].values
     game.odds = data.odds.response[0]
     const gameText = JSON.stringify(game)
         props.listBetState.map((BetState, indice) => {
@@ -100,6 +118,6 @@ export default function OddsBtn(props) {
                         className="hidden" />
                     <label className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`betaway-${game.id}`}>{odds[2].odd}</label>
                 </div>
-                <Link href={`/sports/footbal/more-options?fixture=${game.id}`}><a className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal">+</a></Link>
+                <Link href={`/sports/footbal/more-options?fixture=${game.id}&bookmarker=${game.odds.bookmakers[0].id}`}><a className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal">+</a></Link>
         </div>
     }

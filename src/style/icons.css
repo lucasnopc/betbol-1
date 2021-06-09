@@ -49,3 +49,10 @@
     background-position: 29px;
 }
 
+.bgicon-coin {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-image:url('../../public/icons/coin.png');
+    background-position: 0px;
+}

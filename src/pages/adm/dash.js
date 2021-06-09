@@ -1,5 +1,4 @@
-import { signOut, getSession } from 'next-auth/client'
-import getUser from '../../utills/getUser'
+import { getSession } from 'next-auth/client'
 import useSWR from 'swr'
 import axios from 'axios'
 import { BsTrash } from 'react-icons/bs'
@@ -7,6 +6,7 @@ import { ConfirmDialog, IconButton } from '../../components/confirm-dialog'
 import { useState } from 'react';
 import Link from 'next/link'
 import LayoutAdmin from '../../components/layoutAdmin/layoutAdmin'
+import isAdmin from '../../utills/isAdmin'
 
 export default function dash() {
     const [confirmOpen, setConfirmOpen] = useState(false);
@@ -28,18 +28,23 @@ export default function dash() {
         const accounts = data.data.accounts
         return <>
             {accounts.map((user) => {
+                if(user.points == 0) {
+                    user.points = null
+                }
                 return (
-                        <Link href={`/adm/user/${user.email}`}> 
-                    <div className="bg-gray-100 cursor-pointer hover:bg-white flex justify-between p-2 border-2 border-gray-200 m-1 rounded-md" key={user.id}>
-                        <div>
-                            <div className="inline-block mr-3 text-gray-700">
-                                {user.email}
+                    <div id={user.email} className="flex justify-between p-2 border-2 border-gray-200 m-1 rounded-md" key={user.id}>
+                        <Link href={`/adm/user/${user.email}`}>
+                            <div className="group cursor-pointer">
+                                <div className="group-hover:font-normal inline-block mr-3 text-gray-700">
+                                    {user.email}
+                                </div>
+                                <div id="points" className="group-hover:font-normal inline-block">R$ {user.points ? user.points.toFixed(2) : `0.00`}</div>
                             </div>
-                            <div id="points" className="inline-block">R$ 0.00</div>
-                        </div>
+                        </Link>
+
                         <div id="buttons" className="mt-1">
                             <IconButton className="float-right" aria-label="delete" onClick={() => setConfirmOpen(true)}>
-                                <button className="mx-2"><BsTrash className="text-red-800 hover:text-red-400" /></button>
+                                <a className="inline-block mx-2"><BsTrash className="text-red-800 hover:text-red-400" /></a>
                             </IconButton>
                             <ConfirmDialog
                                 title="Deletar Receita?"
@@ -51,7 +56,6 @@ export default function dash() {
                                 </ConfirmDialog>
                         </div>
                     </div>
-                    </Link>
                 )
             })}
         </>
@@ -69,7 +73,7 @@ export default function dash() {
 }
 export async function getServerSideProps(context) {
     const session = await getSession(context)
-    if (!session) {
+    if(!session) {
         return {
             redirect: {
                 destination: '/',
@@ -77,8 +81,8 @@ export async function getServerSideProps(context) {
             },
         }
     }
-    const user = await getUser(session.user.email)
-    if (user.nivel != 5) {
+    const userIsdmin = await isAdmin(session.user.email)
+    if (userIsdmin == false) {
         return {
             redirect: {
                 destination: '/',
@@ -86,6 +90,7 @@ export async function getServerSideProps(context) {
             },
         }
     }
+    
     return {
         props: {},
     }

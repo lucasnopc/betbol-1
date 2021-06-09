@@ -6,25 +6,30 @@ import { useRouter } from 'next/router'
 import { FcSettings } from 'react-icons/fc'
 
 export default function Header(props) {
+    let user = ""
+    const datetoday = new Date().toISOString()
+    if (props.userString) {
+        user = JSON.parse(props.userString)
+    }
     const [session, loading] = useSession()
     const router = useRouter()
     const pageSoccer = () => {
-        if(router.asPath == '/') {
+        if (router.asPath == '/') {
             return true
         }
         return false
     }
     const pageBasket = () => {
-        if(router.asPath == '/sports/basket') {
+        if (router.asPath == '/sports/basket') {
             return true
         }
         return false
     }
     const Profile = () => {
         const [openSettings, setOpenSettings] = useState(false)
-        
+
         return <>
-            {!session && <> 
+            {!session && <>
                 <div className="inline-block block-bgicon-enter items-center flex">
                     <span className="bgicon-enter cursor-pointer mx-3 md:hidden" onClick={() => setBtnLogin(!btnLogin)}></span>
                     <div className={`${btnLogin ? 'inline-block' : 'hidden'}`}>
@@ -42,22 +47,22 @@ export default function Header(props) {
             {session && <>
                 <div className="fex items-center">
 
-                <div className="relative group inline-block block-bgicon-soccerball opacity-50 hover:opacity-100">
-                    <Link href="/"><a className="flex items-center"><span className={`${pageSoccer()?`bgicon-soccer-active`: `bgicon-soccer`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">FUTEBOL</span></a></Link>
-                </div>
-                <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100">
-                    <Link href="/sports/basket"><a className="flex items-center"><span className={`${pageBasket()?`bgicon-basket-active`: `bgicon-basket`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">BASQUETE</span></a></Link>
-                </div>
-
-                <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100 cursor-pointer">
-                    <FcSettings className="text-3xl ml-3" onClick={() => setOpenSettings(!openSettings)} />
-                    <div className={`${openSettings?`block` : `hidden`} border-2 border-gray-300 rounded-lg text-right absolute right-0 w-60 z-10 bg-white`} onMouseLeave={() => setOpenSettings(false)} >   
-                        <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-t-lg border-b-2 border-gray-300"><Link href="/register">Atualizar Dados</Link></div>
-                        <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-b-lg" onClick={() => signOut()}>Sair</div>
+                    <div className="relative group inline-block block-bgicon-soccerball opacity-50 hover:opacity-100">
+                        <Link href="/"><a className="flex items-center"><span className={`${pageSoccer() ? `bgicon-soccer-active` : `bgicon-soccer`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">FUTEBOL</span></a></Link>
                     </div>
-                    {/* <a className="flex items-center" ><span className="bgicon-enter mx-3"></span><span className="font-normal text-gray-500 hidden sm:inline-block">SAIR</span></a> */}
-                </div>
-                
+                    <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100">
+                        <Link href="/sports/basket"><a className="flex items-center"><span className={`${pageBasket() ? `bgicon-basket-active` : `bgicon-basket`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">BASQUETE</span></a></Link>
+                    </div>
+
+                    <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100 cursor-pointer">
+                        <FcSettings className="text-3xl ml-3" onClick={() => setOpenSettings(!openSettings)} />
+                        <div className={`${openSettings ? `block` : `hidden`} border-2 border-gray-300 rounded-lg text-right absolute right-0 w-60 z-10 bg-white`} onMouseLeave={() => setOpenSettings(false)} >
+                            <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-t-lg border-b-2 border-gray-300"><Link href="/register">Atualizar Dados</Link></div>
+                            <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-b-lg" onClick={() => signOut()}>Sair</div>
+                        </div>
+                        {/* <a className="flex items-center" ><span className="bgicon-enter mx-3"></span><span className="font-normal text-gray-500 hidden sm:inline-block">SAIR</span></a> */}
+                    </div>
+
                 </div>
             </>}
         </>
@@ -68,7 +73,7 @@ export default function Header(props) {
         await signIn('email', { email: data.email })
     }
 
-    return (
+    return <>
         <header className="bg-white border-b-2 border-gray-200 h-16 flex items-center justify-between">
             <div id="logo" className="mt-1 ml-10">
                 <Link href="/">
@@ -85,5 +90,15 @@ export default function Header(props) {
             </div>
 
         </header>
-    )
+        {session && <>
+        <div id="logado" className="py-1 text-sm bg-yellow-200 border-b text-yellow-600 border-yellow-400 flex justify-between px-5">
+            <span className="font-normal hidden md:inline-block">{user ? user.email: ""}</span>
+            <span>{datetoday}</span>
+            <div id="points" className="inline-block h-full items-center">
+                <span className="bgicon-coin"></span>
+                <span className="ml-2 font-normal">R$ {user ? user.points.toFixed(2) : `0.00`}</span>
+            </div>
+        </div>
+        </>}
+    </>
 }

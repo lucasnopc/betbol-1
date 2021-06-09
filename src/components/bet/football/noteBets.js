@@ -1,14 +1,18 @@
 import { CgRemove } from 'react-icons/cg'
+import CalcValorFinal from '../../../utills/valofFinal'
 
 export default function NoteBets(props) {
     const DeleteBetInList = (indice) => {
         const ListBetStateDuplicate = [...props.listBetState]
         ListBetStateDuplicate.splice(indice, 1)
         props.setListBetState(ListBetStateDuplicate)
+        const valorfinal = CalcValorFinal(props.listBetState) - props.listBetState[indice].value
+        props.setValorFinal(valorfinal)
+        console.log(props.GetValorFinal)
     }
     const ValorFinal = () => {
-        if(props.valorFinal == 0) return ""
-        return props.valorFinal
+        if(props.getValorFinal == 0) return ""
+        return props.getValorFinal
     }
     const changeInputValue = data => {
         const id = data.target.alt
@@ -20,6 +24,7 @@ export default function NoteBets(props) {
             }
         }
         props.setListBetState(ListBetStateDuplicate)
+        props.setValorFinal(CalcValorFinal(props.listBetState))
     }
     return <>
     <div className="max-w-sm border-2 rounded-lg  border-gray-200 mt-3 flex-grow ml-3">

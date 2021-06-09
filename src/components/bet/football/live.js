@@ -7,13 +7,14 @@ export default function SoccerLive(props) {
     const urlSoccerApi = '/api/betApi/soccer'
     const fetcher = async () => {
         const data = await axios.get(urlSoccerApi)
+        props.setTimeBet(data.data.soccer.response)
         return data
     }
-    const { data, error } = useSWR(urlSoccerApi, fetcher)
+    const { data, error } = useSWR(urlSoccerApi, fetcher, { refreshInterval: (1000 * 60 * 5) })
 
     if (error) return <>
         <BlockBet title="AO VIVO">
-            failed to load
+            <span className="text-center bg-yellow-300">Carregamento Falhou <button >Carregar Novamente ?</button></span>
         </BlockBet>
     </>
     if (!data) return <>
@@ -21,10 +22,10 @@ export default function SoccerLive(props) {
             loading...
         </BlockBet>
     </>
-    let soccer = data.data.soccer.response
-    soccer = soccer.filter(function (el) {
-        return el != null;
-    })
+    let soccer = props.getTimeBet
+    // soccer = soccer.filter(function (el) {
+    //     return el != null;
+    // })
     if (soccer.length == 0) {
         return <>
             <BlockBet title="AO VIVO">
@@ -33,14 +34,21 @@ export default function SoccerLive(props) {
         </>
     }
     const ligas = []
-    for (let i = 0; i < soccer.length; i++) {
+    const maxWidthSoccer = () => {
+        if(soccer.length <= 15) {
+            return soccer.length
+        }
+        return 15
+    }
+    for (let i = 0; i < maxWidthSoccer(); i++) {
         let ligaIgual = false;
         for (let j = 0; j < i; j++) {
             if (ligas[j] && soccer[i].league.id == ligas[j].liga.id) {
                 ligas[j].games.push({
                     teams: soccer[i].teams,
                     goals: soccer[i].goals,
-                    id: soccer[i].fixture.id
+                    id: soccer[i].fixture.id,
+                    index: i
                 })
                 ligaIgual = true
                 break
@@ -73,7 +81,7 @@ export default function SoccerLive(props) {
                                         <div><span className="text-xs mr-2 text-center inline-block">{game.goals.away}</span><span className="text-gray-600 font-normal text-sm inline-block">{game.teams.away.name}</span></div>
                                     </div>
                                     <div className="inline-block float-right h-full bg-white">
-                                        <OddsBtn game={game} setListBetState={props.setListBetState} listBetState={props.listBetState} />
+                                        <OddsBtn getTimeBet={props.getTimeBet} setTimeBet={props.setTimeBet} game={game} setListBetState={props.setListBetState} listBetState={props.listBetState} getValorFinal={props.getValorFinal} setValorFinal={props.setValorFinal} />
                                     </div>
 
 
