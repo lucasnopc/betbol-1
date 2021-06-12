@@ -2,7 +2,7 @@
 
 system hobbie
 
-## stack
+# stack
 Nextjs + tailwindcss + mongodb
 
 # ISSUES
