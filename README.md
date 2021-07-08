@@ -8,4 +8,6 @@ Nextjs + tailwindcss + mongodb
 # ISSUES
 1. tirar o menu lateral do layout e colocar como filho da página para poder herdar os hooks = feito
 2. ~construir a páginas internas de mais apostas~
-3. configurar a página das ligas = fazendo
+3. configurar a página das ligas
+4. colocar data nos jogos
+5. só listar ligas com odds = fazendo

@@ -6,13 +6,47 @@ import { useState, useEffect } from 'react'
 import { getSession } from 'next-auth/client'
 import getUser from '../utills/getUser.js'
 import ListMenu from '../components/layouts/home/listMenu'
+import useSWR from 'swr'
+import BlockBet from '../components/BlockBet'
+import axios from 'axios'
 
 export default function Home(props) {
 
   const [listBetState, setListBetState] = useState([])
   const [getTimeBet, setTimeBet] = useState([])
   const [getValorFinal, setValorFinal] = useState(0)
+  const [getLeague, setLeague] = useState({})
 
+  const LiveUpdate = () => {
+    const urlSoccerApi = '/api/betApi/soccer'
+    const fetcher = async () => {
+      const data = await axios.get(urlSoccerApi)
+      if(getTimeBet.length == 0) {
+        setTimeBet(data.data.soccer.response)
+      }
+      return data
+    }
+    const { data, error } = useSWR(urlSoccerApi, fetcher, { refreshInterval: (1000 * 60 * 5) })
+    if (error) {
+      console.log(error)
+      return <>
+        <span className="text-center bg-yellow-300">Carregamento Falhou <button >Carregar Novamente ?</button></span>
+      </>
+    }
+    if (!data) return <>
+        loading...
+    </>
+    if (getTimeBet.length == 0) {
+      return <>
+          <h1>No momento, não há eventos ao vivo deste esporte para mostrar.</h1>
+      </>
+    }
+    return <>
+    <BlockBet title="AO VIVO">
+        <SoccerLive data={data} getTimeBet={getTimeBet} setTimeBet={setTimeBet} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
+    </BlockBet>
+    </>
+  }
   return (
     <>
       <Head>
@@ -23,11 +57,12 @@ export default function Home(props) {
       <Layout userString={props.userString}>
         <div className="page grid grid-cols-7">
           <div className="col-span-1 mt-3 ml-3 border border-gray-200 rounded-md">
-             <ListMenu />
+            <ListMenu getLeague={getLeague} setLeague={setLeague} setTimeBet={setTimeBet} />
           </div>
           <div className="col-span-6">
             <div className="flex flex-col md:flex-row px-4 select-none">
-              <SoccerLive getTimeBet={getTimeBet} setTimeBet={setTimeBet} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
+              
+                <LiveUpdate />
               <NoteBets setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
             </div>
           </div>

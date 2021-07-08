@@ -53,7 +53,7 @@ export default function OddsBtn(props) {
         </>
     }
     const odds = data.odds.response[0].bookmakers[0].bets[0].values
-    if (typeof data.odds.response[0] === "undefined" || odds.length < 3) { 
+    if (typeof data.odds.response[0] === "undefined" || odds.length < 3) {
         if(typeof game.index != "undefined"){
             game.odds = 'undefined'
             // console.log(game.index)
