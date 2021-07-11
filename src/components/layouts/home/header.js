@@ -51,7 +51,7 @@ export default function Header(props) {
                         <Link href="/"><a className="flex items-center"><span className={`${pageSoccer() ? `bgicon-soccer-active` : `bgicon-soccer`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">FUTEBOL</span></a></Link>
                     </div>
                     <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100">
-                        <Link href="/sports/basket"><a className="flex items-center"><span className={`${pageBasket() ? `bgicon-basket-active` : `bgicon-basket`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">BASQUETE</span></a></Link>
+                        {/* <Link href="/sports/basket"><a className="flex items-center"><span className={`${pageBasket() ? `bgicon-basket-active` : `bgicon-basket`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">BASQUETE</span></a></Link> */}
                     </div>
 
                     <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100 cursor-pointer">

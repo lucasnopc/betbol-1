@@ -3,14 +3,8 @@ import { format } from 'date-fns'
 export default function SoccerLive(props) {
     let soccer = props.getTimeBet
     const ligas = []
-    const maxWidthSoccer = () => {
-        if(soccer.length <= 15) {
-            return soccer.length
-        }
-        return soccer.length
-        //proteção para não exibit 3000 jogos, precisa ser removido
-    }
-    for (let i = 0; i < maxWidthSoccer(); i++) {
+
+    for (let i = 0; i < soccer.length; i++) {
         let ligaIgual = false;
         for (let j = 0; j < i; j++) {
             // console.log('live.js:22 - soccer[i]', format(new Date(soccer[i].fixture.date), 'HH:mm'))
@@ -30,6 +24,7 @@ export default function SoccerLive(props) {
             ligas.push({
                 liga: soccer[i].league,
                 games: [{
+                    date: format(new Date(soccer[i].fixture.date), 'dd/MM/yyyy HH:mm'),
                     teams: soccer[i].teams,
                     goals: soccer[i].goals,
                     id: soccer[i].fixture.id
@@ -53,7 +48,6 @@ export default function SoccerLive(props) {
                                         <div><span className="text-xs mr-2 text-center inline-block">{game.goals.away}</span><span className="text-gray-600 font-normal text-sm inline-block">{game.teams.away.name}</span></div>
                                     </div>
                                     <div className="inline-block h-full flex-1">
-                                    {game.id}
                                         <span className="text-xs top-0">{game.date}</span>
                                     </div>
                                     <div className="inline-block h-full bg-white flex-initial">

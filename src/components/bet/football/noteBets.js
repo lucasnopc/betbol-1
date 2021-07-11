@@ -1,7 +1,24 @@
 import { CgRemove } from 'react-icons/cg'
 import CalcValorFinal from '../../../utills/valofFinal'
+import { useSession } from "next-auth/client"
 
 export default function NoteBets(props) {
+    const BtnBet = () => {
+        const [session] = useSession()
+        const startBet = () => {
+            alert('aposta concluida')
+        }
+
+        if (session) {
+          return <button onClick={() => {startBet()}} className="w-full bg-green-400 hover:bg-green-700 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal /></button>
+        }
+      
+        return <>
+        <button className="w-full bg-green-400 cursor-not-allowed font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3 disabled:opacity-50" disabled>Fazer Aposta <ValorFinal /><br /><span className="text-sm">Faça Login para finalizar a aposta</span></button>
+
+</>
+      }
+    
     const DeleteBetInList = (indice) => {
         const ListBetStateDuplicate = [...props.listBetState]
         ListBetStateDuplicate.splice(indice, 1)
@@ -69,6 +86,6 @@ export default function NoteBets(props) {
             </div>
         })}
     </div>
-<button className="w-full bg-green-400 hover:bg-green-700 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal /></button>
+   <BtnBet /> 
 </div></>
 }
