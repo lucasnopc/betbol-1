@@ -9,6 +9,7 @@ import ListMenu from '../components/layouts/home/listMenu'
 import useSWR from 'swr'
 import BlockBet from '../components/BlockBet'
 import axios from 'axios'
+import { VscLoading } from 'react-icons/vsc'
 
 export default function Home(props) {
 
@@ -22,7 +23,10 @@ export default function Home(props) {
     const fetcher = async () => {
       const data = await axios.get(urlSoccerApi)
       if (getTimeBet.length == 0) {
-        setTimeBet(data.data.soccer.response)
+        setTimeBet({
+          'select': 'AO VIVO',
+         'response': data.data.soccer.response
+        })
       }
       return data
     }
@@ -40,14 +44,15 @@ export default function Home(props) {
     </>
     if (getTimeBet.length == 0) {
       return <>
-        <BlockBet title="SEM EVENTOS">
+        <BlockBet title="CARREGANDO">
+          <VscLoading className="animate-spin" />
           <h1>No momento, não há eventos ao vivo deste esporte para mostrar.</h1>
         </BlockBet>
       </>
     }
     return <>
-      <BlockBet title="AO VIVO">
-        <SoccerLive data={data} getTimeBet={getTimeBet} setTimeBet={setTimeBet} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
+      <BlockBet title={getTimeBet.select}>
+        <SoccerLive data={data} getTimeBet={getTimeBet.response} setTimeBet={setTimeBet} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
       </BlockBet>
     </>
   }
@@ -67,7 +72,7 @@ export default function Home(props) {
             <div className="flex flex-col md:flex-row px-4 select-none">
 
               <LiveUpdate />
-              <NoteBets setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
+              <NoteBets user={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
             </div>
           </div>
         </div>

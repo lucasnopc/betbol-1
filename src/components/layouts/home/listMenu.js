@@ -32,7 +32,17 @@ export default function ListMenu(props) {
                     newLeagues.push(response_fix)
                 }
             }
-            props.setTimeBet(newLeagues)
+            if(newLeagues.length != 0){
+
+                props.setTimeBet({
+                    'select': newLeagues[0].league.country,
+                    'response': newLeagues
+                })
+            }
+            else {
+                alert(`no momento não existem jogos para serem mostrados na liga: ${league.league.name}`)
+            }
+            
         }
         let country = []
         for (let a = 0; a < leagues.length; a++) {

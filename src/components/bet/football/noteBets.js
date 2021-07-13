@@ -3,14 +3,23 @@ import CalcValorFinal from '../../../utills/valofFinal'
 import { useSession } from "next-auth/client"
 
 export default function NoteBets(props) {
-    const BtnBet = () => {
+        if(props.user) {
+            const user = JSON.parse(props.user)
+        }else {
+            const user = []
+        }
+    const BtnBet = (user) => {
         const [session] = useSession()
-        const startBet = () => {
-            alert('aposta concluida')
+        const startBet = (user) => {
+            if(user){
+                // const points = user.points
+            }else {
+                alert('Faça login para continuar')
+            }
         }
 
         if (session) {
-          return <button onClick={() => {startBet()}} className="w-full bg-green-400 hover:bg-green-700 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal /></button>
+          return <button onClick={() => {startBet(user.user)}} className="w-full bg-green-400 hover:bg-green-700 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal /></button>
         }
       
         return <>
@@ -86,6 +95,6 @@ export default function NoteBets(props) {
             </div>
         })}
     </div>
-   <BtnBet /> 
+   <BtnBet user={props.user} /> 
 </div></>
 }
