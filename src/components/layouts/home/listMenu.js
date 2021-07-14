@@ -96,34 +96,18 @@ export default function ListMenu(props) {
                 <ListCouturyAndLeagues  />
             </>
         })
-
-        // const LeaguesPerCountries = leagues.map((league) => {
-        //     console.log(league)
-
-
-
-        // const endLeague = new Date(league.seasons[0].end)
-        // const amanha = hoje.setDate(hoje.getDate() + 1)
-        // const compareDate = compareAsc(endLeague, new Date(amanha))
-        // if (compareDate == 1) {
-        //     paises.push({ "liga": league.country.name })
-        //     return <li key={league.league.id} onClick={() => ChoiceSession(league)}><span className="text-sm p-2 bg-gray-100 hover:bg-gray-200 cursor-pointer text-gray-800 block">{league.league.name}</span></li>
-        // }
-        // return <li key={league.league.id}></li>
-        // })
-        // paises = paises.filter(function (a) {
-        //     return !this[JSON.stringify(a)] && (this[JSON.stringify(a)] = true);
-        // }, Object.create(null))
         return <>{MenuCoutry}</>
     }
     return <>
         <ul>
             <li>
                 <span className="uppercase font-semibold block px-2 py-1 bg-gray-200 text-gray-800">Ligas</span>
-                <ul className="h-96 overflow-auto">
-                    <Alive />
+                <div className="max-h-32 md:max-h-60 overflow-auto">
+                <ul><Alive /></ul>
+                <ul className="">
                     <ListMenuCountry />
                 </ul>
+                </div>
             </li>
         </ul>
     </>

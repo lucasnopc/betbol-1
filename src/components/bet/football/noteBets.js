@@ -23,7 +23,9 @@ export default function NoteBets(props) {
         }
       
         return <>
-        <button className="w-full bg-green-400 cursor-not-allowed font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3 disabled:opacity-50" disabled>Fazer Aposta <ValorFinal /><br /><span className="text-sm">Faça Login para finalizar a aposta</span></button>
+        <button className="w-full bg-green-400 cursor-not-allowed font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3 disabled:opacity-50" disabled>Fazer Aposta <ValorFinal /><br />
+</button>
+        <span className="text-sm">Faça Login para finalizar a aposta</span>
 
 </>
       }
@@ -55,7 +57,7 @@ export default function NoteBets(props) {
     return <>
     <div className="max-w-sm border-2 rounded-lg  border-gray-200 mt-3 flex-grow ml-3">
     <h2 className="text-lg rounded-t-lg font-semibold text-gray-800 uppercase bg-gray-100 px-3 border-b py-1 border-gray-200">CADERNETA DE APOSTAS</h2>
-    <div className="h-96 overflow-auto">
+    <div className="h-60 overflow-auto">
         {props.listBetState.map((bet, indice) => {
             const choice = bet.choice.substr(3, 4)
             const name = () => {
@@ -94,7 +96,7 @@ export default function NoteBets(props) {
                 </div>
             </div>
         })}
+    <BtnBet user={props.user} /> 
     </div>
-   <BtnBet user={props.user} /> 
 </div></>
 }

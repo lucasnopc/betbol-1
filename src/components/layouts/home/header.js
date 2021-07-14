@@ -30,14 +30,14 @@ export default function Header(props) {
 
         return <>
             {!session && <>
-                <div className="inline-block block-bgicon-enter items-center flex">
-                    <span className="bgicon-enter cursor-pointer mx-3 md:hidden" onClick={() => setBtnLogin(!btnLogin)}></span>
-                    <div className={`${btnLogin ? 'inline-block' : 'hidden'}`}>
-                        <form onSubmit={handleSubmit(registerUser)}>
+                <div className="block-bgicon-enter items-center flex">
+                    <div className={`${btnLogin ? 'hidden md:inline-block' : 'inline-block'}`}>
+                        <form onSubmit={handleSubmit(registerUser)} className="absolute md:static z-10 bg-white top-16 right-0">
                             <input {...register('email', { required: true })} type="email" name="email" placeholder="Insira seu E-mail" className="inline-block p-1 border-2 border-gray-200 focus:outline-none focus:border-gray-300 rounded-full" required />
                             <button type="submit" className="btn mt-2 inline-block">Acessar</button>
                         </form>
                     </div>
+                    <span className="bgicon-enter cursor-pointer mx-3 md:hidden" onClick={() => setBtnLogin(!btnLogin)}></span>
                 </div>
                 {/* <div className="relative group inline-block block-bgicon-register">
                     <Link href="/register"><a><span className="bgicon-register cursor-pointer mx-3"></span></a></Link>

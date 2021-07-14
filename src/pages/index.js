@@ -25,7 +25,7 @@ export default function Home(props) {
       if (getTimeBet.length == 0) {
         setTimeBet({
           'select': 'AO VIVO',
-         'response': data.data.soccer.response
+          'response': data.data.soccer.response
         })
       }
       return data
@@ -64,16 +64,16 @@ export default function Home(props) {
       </Head>
 
       <Layout userString={props.userString}>
-        <div className="page grid grid-cols-7">
-          <div className="col-span-1 mt-3 ml-3 border border-gray-200 rounded-md">
+        <div className="page grid grid-cols-12">
+          <div className="col-span-full md:col-span-3 mt-3 mx-3 border border-gray-200 rounded-md">
             <ListMenu getLeague={getLeague} setLeague={setLeague} setTimeBet={setTimeBet} />
           </div>
-          <div className="col-span-6">
-            <div className="flex flex-col md:flex-row px-4 select-none">
+          <div className="mx-3 mt-3 md:col-span-6 col-span-full">
 
-              <LiveUpdate />
-              <NoteBets user={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
-            </div>
+            <LiveUpdate />
+          </div>
+          <div className="mx-3 md:col-span-3 col-span-full">
+            <NoteBets user={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
           </div>
         </div>
       </Layout>

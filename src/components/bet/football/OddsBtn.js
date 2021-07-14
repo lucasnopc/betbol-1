@@ -118,6 +118,6 @@ export default function OddsBtn(props) {
                         className="hidden" />
                     <label className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`betaway-${game.id}`}>{odds[2].odd}</label>
                 </div>
-                <Link href={`/sports/footbal/more-options?fixture=${game.id}&bookmarker=${game.odds.bookmakers[0].id}`}><a className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal">+</a></Link>
+                {/* <Link href={`/sports/footbal/more-options?fixture=${game.id}&bookmarker=${game.odds.bookmakers[0].id}`}><a className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" disabled>+</a></Link> */}
         </div>
     }
