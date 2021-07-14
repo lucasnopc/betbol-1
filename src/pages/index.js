@@ -73,7 +73,7 @@ export default function Home(props) {
             <LiveUpdate />
           </div>
           <div className="mx-3 md:col-span-3 col-span-full">
-            <NoteBets user={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
+            <NoteBets userString={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
           </div>
         </div>
       </Layout>

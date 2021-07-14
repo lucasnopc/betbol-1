@@ -1,33 +1,57 @@
 import { CgRemove } from 'react-icons/cg'
 import CalcValorFinal from '../../../utills/valofFinal'
 import { useSession } from "next-auth/client"
+import axios from 'axios'
 
 export default function NoteBets(props) {
-        if(props.user) {
-            const user = JSON.parse(props.user)
-        }else {
-            const user = []
-        }
+    let user = false
+    if (props.userString) {
+        user = JSON.parse(props.userString)
+    }
     const BtnBet = (user) => {
         const [session] = useSession()
         const startBet = (user) => {
             if(user){
-                // const points = user.points
+                let valorTotal = 0
+                console.log(props.listBetState)
+                props.listBetState.map((bet, indice) => {
+                    valorTotal += Number(bet.value)
+                })
+                if(valorTotal > 0 && valorTotal < user.points) {
+                    const setPoints = user.points - valorTotal
+                    axios.post('/api/betApi/toBet', {
+                        points: setPoints,
+                        email: user.email,
+                        bets: props.listBetState
+                    })
+                    .then(function (response) {
+                        alert('Aposta Realizada com sucesso!')
+                         location.reload()
+                       })
+                       .catch(function (error) {
+                         console.log(error);
+                       });
+                }else {
+                    if(valorTotal == 0){
+                        alert('Selecione as apostas e insira os valores')
+                    }
+                alert('Você não tem pontos suficientes')
+                }
             }else {
                 alert('Faça login para continuar')
             }
         }
 
-        if (session) {
-          return <button onClick={() => {startBet(user.user)}} className="w-full bg-green-400 hover:bg-green-700 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal /></button>
+        if (!session) {
+            return <>
+            <button className="w-full bg-green-400 cursor-not-allowed font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3 disabled:opacity-50" disabled>Fazer Aposta <ValorFinal /><br />
+    </button>
+            <span className="text-sm">Faça Login para finalizar a aposta</span>
+    
+    </>
         }
-      
-        return <>
-        <button className="w-full bg-green-400 cursor-not-allowed font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3 disabled:opacity-50" disabled>Fazer Aposta <ValorFinal /><br />
-</button>
-        <span className="text-sm">Faça Login para finalizar a aposta</span>
-
-</>
+        
+        return <button onClick={() => {startBet(user.user)}} className="w-full bg-green-400 hover:bg-green-700 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal /></button>
       }
     
     const DeleteBetInList = (indice) => {
@@ -54,6 +78,7 @@ export default function NoteBets(props) {
         props.setListBetState(ListBetStateDuplicate)
         props.setValorFinal(CalcValorFinal(props.listBetState))
     }
+
     return <>
     <div className="max-w-sm border-2 rounded-lg  border-gray-200 mt-3 flex-grow ml-3">
     <h2 className="text-lg rounded-t-lg font-semibold text-gray-800 uppercase bg-gray-100 px-3 border-b py-1 border-gray-200">CADERNETA DE APOSTAS</h2>
@@ -96,7 +121,7 @@ export default function NoteBets(props) {
                 </div>
             </div>
         })}
-    <BtnBet user={props.user} /> 
+    <BtnBet user={user} /> 
     </div>
 </div></>
 }
