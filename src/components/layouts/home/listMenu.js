@@ -17,7 +17,7 @@ export default function ListMenu(props) {
             const data = await axios.get('/api/betApi/leagues')
             return data
         }
-        const { data, error } = useSWR('/api/betApi/leagues', fetcher, { refreshInterval: (1000 * 60 * 5) })
+        const { data, error } = useSWR('/api/betApi/leagues', fetcher)
         if (!data) {
             return <>loading...</>
         }

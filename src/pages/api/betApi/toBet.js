@@ -7,6 +7,7 @@ export default async function toBet(req, res) {
         const points = req.body.points
         const email = req.body.email
         const bets = req.body.bets
+        const date = new Date()
         var newvalues = { $set: { points } };
         const response = await db
             .collection("users").updateOne({ email }, newvalues, async function (err, resp) {
@@ -14,6 +15,7 @@ export default async function toBet(req, res) {
                         const createBet = await db
                         .collection("bets").insertOne({
                             email,
+                            date,
                             bets
                         }, function (err, resp) {
                             console.log(err)

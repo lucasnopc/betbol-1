@@ -7,6 +7,7 @@ import useSWR from 'swr'
 export default function OddsBtn(props) {
 
     const onSubmit = data => {
+        console.log(JSON.parse(data.target.value))
 
         const choice = data.target.id.substring(0, 7)
         const betsOn = {

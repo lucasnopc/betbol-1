@@ -48,7 +48,7 @@ export default function Header(props) {
                 <div className="fex items-center">
 
                     <div className="relative group inline-block block-bgicon-soccerball opacity-50 hover:opacity-100">
-                        <Link href="/"><a className="flex items-center"><span className={`${pageSoccer() ? `bgicon-soccer-active` : `bgicon-soccer`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">FUTEBOL</span></a></Link>
+                        {/* <Link href="/"><a className="flex items-center"><span className={`${pageSoccer() ? `bgicon-soccer-active` : `bgicon-soccer`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">FUTEBOL</span></a></Link> */}
                     </div>
                     <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100">
                         {/* <Link href="/sports/basket"><a className="flex items-center"><span className={`${pageBasket() ? `bgicon-basket-active` : `bgicon-basket`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">BASQUETE</span></a></Link> */}
@@ -58,6 +58,7 @@ export default function Header(props) {
                         <FcSettings className="text-3xl ml-3" onClick={() => setOpenSettings(!openSettings)} />
                         <div className={`${openSettings ? `block` : `hidden`} border-2 border-gray-300 rounded-lg text-right absolute right-0 w-60 z-10 bg-white`} onMouseLeave={() => setOpenSettings(false)} >
                             <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-t-lg border-b-2 border-gray-300"><Link href="/register">Atualizar Dados</Link></div>
+                            <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-t-lg border-b-2 border-gray-300"><Link href="/myBetsHistory">Historico Apostas</Link></div>
                             <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-b-lg" onClick={() => signOut()}>Sair</div>
                         </div>
                         {/* <a className="flex items-center" ><span className="bgicon-enter mx-3"></span><span className="font-normal text-gray-500 hidden sm:inline-block">SAIR</span></a> */}
