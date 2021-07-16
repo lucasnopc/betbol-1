@@ -17,7 +17,7 @@ export default function Home(props) {
   const [getTimeBet, setTimeBet] = useState([])
   const [getValorFinal, setValorFinal] = useState(0)
   const [getLeague, setLeague] = useState({})
-
+  console.log('oi')
   const LiveUpdate = () => {
     const urlSoccerApi = '/api/betApi/soccer'
     const fetcher = async () => {
