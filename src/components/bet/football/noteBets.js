@@ -15,7 +15,6 @@ export default function NoteBets(props) {
         const startBet = (user) => {
             if(user){
                 let valorTotal = 0
-                console.log(props.listBetState)
                 props.listBetState.map((bet, indice) => {
                     valorTotal += Number(bet.value)
                 })
@@ -62,7 +61,6 @@ export default function NoteBets(props) {
         props.setListBetState(ListBetStateDuplicate)
         const valorfinal = CalcValorFinal(props.listBetState) - props.listBetState[indice].value
         props.setValorFinal(valorfinal)
-        console.log(props.GetValorFinal)
     }
     const ValorFinal = () => {
         if(props.getValorFinal == 0) return ""
@@ -81,7 +79,7 @@ export default function NoteBets(props) {
         props.setValorFinal(CalcValorFinal(props.listBetState))
     }
     const hiddenOrStaticToggle = () => {
-        if(!toggleNoteBets) return `hidden md:static`
+        if(!toggleNoteBets) return `hidden md:block`
         return `static`
     }
     const EmptyListBetState = () => {
@@ -93,10 +91,9 @@ export default function NoteBets(props) {
     return <>
     <div className=" bg-white fixed bottom-0 left-0 md:relative max-w-sm border-2 rounded-lg border-gray-200 mt-3 flex-grow">
     <h2 onClick={() => {
-        console.log(hiddenOrStaticToggle)
         setToggleNoteBets(!toggleNoteBets)
         }} className="block-title">CADERNETA DE APOSTAS</h2>
-    <div className={`${hiddenOrStaticToggle()} max-h-60 md:max-h-full overflow-auto md:mb-11`}>
+    <div className={`${hiddenOrStaticToggle()} w-full static max-h-60 md:max-h-full overflow-auto md:mb-11`}>
         {EmptyListBetState()}
         {props.listBetState.map((bet, indice) => {
             const choice = bet.choice.substr(3, 4)
@@ -137,6 +134,6 @@ export default function NoteBets(props) {
             </div>
         })}
     </div>
-    <div className={`${hiddenOrStaticToggle()} absolute bg-white bottom-0`}><BtnBet user={user} /></div> 
+    <div className={`${hiddenOrStaticToggle()} w-full md:absolute bg-white bottom-0`}><BtnBet user={user} /></div> 
 </div></>
 }

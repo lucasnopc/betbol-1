@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 
 export default function Footer() {
-    return <div class="grid grid-cols-4 gap-4 p-3 pt-5">
+    return <div className="grid grid-cols-4 gap-4 p-3 pt-5">
         <div>
             <h4 className="font-normal">Apostas Esportivas</h4>
             <ol className="text-gray-500">

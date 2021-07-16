@@ -74,27 +74,24 @@ export default function ListMenu(props) {
 
             }
         })
-        const MenuCoutry = country.map((c) => {
-            const ListCouturyAndLeagues = () => {
-                const [toggle, setToggle] = useState(false)
-                const classChanges = toggle ? `list-item`: `hidden` 
-                return <>
-                    {toggle}<li key={c.country.code} onClick={() => {
-                        setToggle(!toggle)
-                    }} key={c.country.code} className="group text-sm p-2 bg-gray-100  cursor-pointer text-gray-800 block"><span>{c.country.name}</span>
-                        <ul>{
-                            c.leagues.map((league) => {
-                                return <li key={league.league.id} onClick={() => ChoiceSession(league)} className={`${classChanges} hover:bg-gray-200 cursor-pointer text-xs p-2 text-blue-900`}>{league.league.name}</li>
-                            })
-                        }
-                        </ul>
-                    </li>
-                </>
-            }
-
+        const ListCouturyAndLeagues = ({c}) => {
+            const [toggle, setToggle] = useState(false)
+            const classChanges = toggle ? `list-item`: `hidden` 
             return <>
-                <ListCouturyAndLeagues  />
+                {toggle}<li key={c.country.code} onClick={() => {
+                    setToggle(!toggle)
+                }} key={c.country.code} className="group text-sm p-2 bg-gray-100  cursor-pointer text-gray-800 block"><span>{c.country.name}</span>
+                    <ul>{
+                        c.leagues.map((league) => {
+                            return <li key={league.league.id} onClick={() => ChoiceSession(league)} className={`${classChanges} hover:bg-gray-200 cursor-pointer text-xs p-2 text-blue-900`}>{league.league.name}</li>
+                        })
+                    }
+                    </ul>
+                </li>
             </>
+        }
+        const MenuCoutry = country.map((c, i) => {
+            return <ListCouturyAndLeagues c={c} key={i} />
         })
         return <>{MenuCoutry}</>
     }
