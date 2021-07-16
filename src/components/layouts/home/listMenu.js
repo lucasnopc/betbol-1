@@ -101,8 +101,8 @@ export default function ListMenu(props) {
     return <>
         <ul>
             <li>
-                <span className="uppercase font-semibold block px-2 py-1 bg-gray-200 text-gray-800">Ligas</span>
-                <div className="max-h-32 md:max-h-60 overflow-auto">
+                <h2 className="block-title">Ligas</h2>
+                <div className="max-h-32 md:max-h-screen overflow-auto">
                 <ul><Alive /></ul>
                 <ul className="">
                     <ListMenuCountry />

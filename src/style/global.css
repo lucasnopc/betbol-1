@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap');
 
+html, body, #__next {
+    height: 100%;
+}
 * {
     font-family: 'Mitr', sans-serif;
     @apply font-thin
@@ -7,4 +10,7 @@
 
 .btn {
     @apply py-1 px-5 bg-yellow-500 text-gray-100 rounded-full focus:outline-none tracking-wide font-normal hover:bg-yellow-600 shadow-lg
+}
+.block-title {
+    @apply uppercase font-medium block px-2 py-1 bg-gray-700 rounded-t-lg text-yellow-300
 }

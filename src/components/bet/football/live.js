@@ -42,15 +42,15 @@ export default function SoccerLive(props) {
                         {liga.games.map((game, index) => {
                             
                             return (
-                                <div key={index} className="bg-gray-100 rounded-md border-2 border-gray-200 mb-2 h-16 overflow-hidden flex justify-between">
-                                    <div className="inline-block flex-1">
+                                <div key={index} className="bg-gray-100 rounded-md border-2 border-gray-200 mb-2 md:h-16 overflow-hidden md:flex md:justify-between">
+                                    <div className="inline-block flex-1 p-3">
                                         <div><span className="text-xs mr-2 text-center inline-block">{game.goals.home}</span><span className="text-gray-600 font-normal text-sm inline-block">{game.teams.home.name}</span></div>
                                         <div><span className="text-xs mr-2 text-center inline-block">{game.goals.away}</span><span className="text-gray-600 font-normal text-sm inline-block">{game.teams.away.name}</span></div>
                                     </div>
                                     <div className="inline-block h-full flex-1">
                                         <span className="text-xs top-0">{game.date}</span>
                                     </div>
-                                    <div className="inline-block h-full bg-white flex-initial">
+                                    <div className="inline-block h-full w-full md:w-max text-center md:text-right bg-white flex-initial">
                                         <OddsBtn getTimeBet={props.getTimeBet} setTimeBet={props.setTimeBet} game={game} setListBetState={props.setListBetState} listBetState={props.listBetState} getValorFinal={props.getValorFinal} setValorFinal={props.setValorFinal} />
                                     </div>
 

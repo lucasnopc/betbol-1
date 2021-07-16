@@ -95,7 +95,7 @@ export default function OddsBtn(props) {
                         checked={statusChecked[0]}
                         onChange={onSubmit}
                         className="hidden" />
-                    <label className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`bethome-${game.id}`}>{odds[0].odd}</label>
+                    <label className="pt-5 px-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`bethome-${game.id}`}>{odds[0].odd}</label>
                 </div>
                 <div className="inline-block h-full">
                     <input
@@ -106,7 +106,7 @@ export default function OddsBtn(props) {
                         checked={statusChecked[1]}
                         onChange={onSubmit}
                         className="hidden" />
-                    <label className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`betdraw-${game.id}`}>{odds[1].odd}</label>
+                    <label className="pt-5 px-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`betdraw-${game.id}`}>{odds[1].odd}</label>
                 </div>
                 <div className="inline-block h-full">
                     <input
@@ -117,7 +117,7 @@ export default function OddsBtn(props) {
                         checked={statusChecked[2]}
                         onChange={onSubmit}
                         className="hidden" />
-                    <label className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`betaway-${game.id}`}>{odds[2].odd}</label>
+                    <label className="pt-5 px-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" htmlFor={`betaway-${game.id}`}>{odds[2].odd}</label>
                 </div>
                 {/* <Link href={`/sports/footbal/more-options?fixture=${game.id}&bookmarker=${game.odds.bookmakers[0].id}`}><a className="pt-5 h-full inline-block md:px-6 text-sm text-gray-700 cursor-pointer hover:bg-yellow-200 label-checked:bg-yellow-500 label-checked:text-white font-normal" disabled>+</a></Link> */}
         </div>

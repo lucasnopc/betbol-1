@@ -2,8 +2,10 @@ import { CgRemove } from 'react-icons/cg'
 import CalcValorFinal from '../../../utills/valofFinal'
 import { useSession } from "next-auth/client"
 import axios from 'axios'
+import { useState } from 'react'
 
 export default function NoteBets(props) {
+    const [toggleNoteBets, setToggleNoteBets] = useState(false)
     let user = false
     if (props.userString) {
         user = JSON.parse(props.userString)
@@ -43,12 +45,12 @@ export default function NoteBets(props) {
         }
 
         if (!session) {
-            return <>
-            <button className="w-full bg-green-400 cursor-not-allowed font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3 disabled:opacity-50" disabled>Fazer Aposta <ValorFinal /><br />
-    </button>
-            <span className="text-sm">Faça Login para finalizar a aposta</span>
+            return <div className="group relative w-full ">
+            <button className="w-full bg-green-400 cursor-not-allowed font-semibold text-md text-green-900 uppercase p-3 disabled:opacity-50" disabled>Fazer Aposta <ValorFinal /><br />
+            </button>
+            <span className="absolute text-center text-green-900 w-full bottom-0 left-0 select-none cursor-not-allowed group-hover:opacity-100 opacity-0 text-xs">Faça Login para apostar</span>
     
-    </>
+    </div>
         }
         
         return <button onClick={() => {startBet(user.user)}} className="w-full bg-green-400 hover:bg-green-700 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal /></button>
@@ -78,11 +80,24 @@ export default function NoteBets(props) {
         props.setListBetState(ListBetStateDuplicate)
         props.setValorFinal(CalcValorFinal(props.listBetState))
     }
-
+    const hiddenOrStaticToggle = () => {
+        if(!toggleNoteBets) return `hidden md:static`
+        return `static`
+    }
+    const EmptyListBetState = () => {
+        if(props.listBetState.length == 0) {
+            return <div className="w-full p-3">Caderneta de apostas vazia</div>
+        }
+        return <></>
+    }
     return <>
-    <div className="max-w-sm border-2 rounded-lg  border-gray-200 mt-3 flex-grow ml-3">
-    <h2 className="text-lg rounded-t-lg font-semibold text-gray-800 uppercase bg-gray-100 px-3 border-b py-1 border-gray-200">CADERNETA DE APOSTAS</h2>
-    <div className="h-60 overflow-auto">
+    <div className=" bg-white fixed bottom-0 left-0 md:relative max-w-sm border-2 rounded-lg border-gray-200 mt-3 flex-grow">
+    <h2 onClick={() => {
+        console.log(hiddenOrStaticToggle)
+        setToggleNoteBets(!toggleNoteBets)
+        }} className="block-title">CADERNETA DE APOSTAS</h2>
+    <div className={`${hiddenOrStaticToggle()} max-h-60 md:max-h-full overflow-auto md:mb-11`}>
+        {EmptyListBetState()}
         {props.listBetState.map((bet, indice) => {
             const choice = bet.choice.substr(3, 4)
             const name = () => {
@@ -121,7 +136,7 @@ export default function NoteBets(props) {
                 </div>
             </div>
         })}
-    <BtnBet user={user} /> 
     </div>
+    <div className={`${hiddenOrStaticToggle()} absolute bg-white bottom-0`}><BtnBet user={user} /></div> 
 </div></>
 }
