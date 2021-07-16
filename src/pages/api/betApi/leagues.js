@@ -10,6 +10,7 @@ export default async function Leagues(req, res) {
                 method: 'GET'
             })
         const leagues = await leaguesQuery.json()
+        if(!leagues) res.status(300).json({error:   'error'})
         const leaguesWithOdds = leagues.response.filter((league) => {
             if( league.seasons[0].coverage.odds == true ) {
                 return true
