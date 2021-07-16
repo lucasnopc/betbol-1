@@ -18,6 +18,7 @@ export default function ListMenu(props) {
             return data
         }
         const { data, error } = useSWR('/api/betApi/leagues', fetcher)
+        if(error) console.log('listMenu - error swr ', error)
         if (!data) {
             return <>loading...</>
         }
