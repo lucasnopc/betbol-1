@@ -23,6 +23,7 @@ export default function ListMenu(props) {
             return <>loading...</>
         }
         const leagues = data.data.legues
+        console.log('listMenu - legues', leagues)
         const ChoiceSession = async (league) => {
             // props.setLeague({leagueId: league.league.id, leagueSession: league.seasons[0].year})
             const data = await axios.get(`/api/betApi/fix-to-league?league=${league.league.id}&season=${league.seasons[0].year}`)
