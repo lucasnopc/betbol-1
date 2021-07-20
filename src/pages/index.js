@@ -17,7 +17,6 @@ export default function Home(props) {
   const [getTimeBet, setTimeBet] = useState([])
   const [getValorFinal, setValorFinal] = useState(0)
   const [getLeague, setLeague] = useState({})
-  console.log('oi')
   const LiveUpdate = () => {
     const urlSoccerApi = '/api/betApi/soccer'
     const fetcher = async () => {
@@ -51,7 +50,7 @@ export default function Home(props) {
       </>
     }
     return <>
-      <BlockBet title={getTimeBet.select}>
+      <BlockBet title={getTimeBet.select} id="live">
         <SoccerLive data={data} getTimeBet={getTimeBet.response} setTimeBet={setTimeBet} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
       </BlockBet>
     </>
@@ -69,7 +68,6 @@ export default function Home(props) {
             <ListMenu getLeague={getLeague} setLeague={setLeague} setTimeBet={setTimeBet} />
           </div>
           <div className="mx-3 mt-3 md:col-span-6 col-span-full">
-
             <LiveUpdate />
           </div>
           <div className="mx-3 md:col-span-3 col-span-full">

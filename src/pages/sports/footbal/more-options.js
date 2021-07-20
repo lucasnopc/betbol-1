@@ -27,13 +27,12 @@ export default function MoreOptions(props) {
 
   const fixture = data.res_fixture.response[0]
   return <>
-    <Layout>
-      <div className="page grid grid-cols-7">
-        <div className="col-span-1 mt-3 ml-3 border border-gray-200 rounded-md">
-          <ListMenu />
-        </div>
-        <div className="col-span-6">
-          <div className="flex flex-col md:flex-row px-4 select-none">
+   <Layout userString={props.userString}>
+        <div className="page grid grid-cols-12">
+          <div className="col-span-full md:col-span-3 mt-3 mx-3 border border-gray-200 rounded-md">
+            <ListMenu getLeague={getLeague} setLeague={setLeague} setTimeBet={setTimeBet} />
+          </div>
+          <div className="mx-3 mt-3 md:col-span-6 col-span-full">
 
             <div id="infoLiga">
               <div id="liga">
@@ -49,11 +48,11 @@ export default function MoreOptions(props) {
               </div>
             </div>
 
-            {/* <SoccerLive getTimeBet={getTimeBet} setTimeBet={setTimeBet} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
-            <NoteBets setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} /> */}
+            </div>
+          <div className="mx-3 md:col-span-3 col-span-full">
+            <NoteBets userString={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
           </div>
         </div>
-      </div>
-    </Layout>
-  </>
+      </Layout>
+      </>
 }

@@ -5,7 +5,7 @@ html, body, #__next {
 }
 * {
     font-family: 'Mitr', sans-serif;
-    @apply font-thin
+    @apply font-thin select-none;
 }
 
 .btn {
