@@ -1,7 +1,10 @@
 {
-  "name": "with-tailwindcss",
-  "version": "0.1.0",
-  "private": true,
+  "name": "betbol",
+  "version": "1.0.0",
+  "main": "./src/pages/index.js",
+  "repository": "https://github.com/Lucasalmeida-ux/betbol.git",
+  "author": "Lucasalmeida-ux <lucas@w3mind.com.br>",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
