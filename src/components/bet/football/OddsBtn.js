@@ -146,14 +146,14 @@ export default function OddsBtn(props) {
                         <span className="bg-blue-100 w-full block font-medium p-3">
                             {bet.name}
                         </span>
-                        <ul>
+                        <div className="flex flex-wrap p-3">
                             {bet.values.map((val, i) => {
-                                return <li key={i} className="bg-blue-50 my-4 rounded-lg mx-1 border-2 border-blue-200">
+                                return <div key={i} className="bg-blue-50 my-4 rounded-lg mx-1 border-2 border-blue-200 flex-auto p-3">
                                     <span>{val.odd}</span><br />
                                     <span>{val.value}</span>
-                                </li>
+                                </div>
                             })}
-                        </ul>
+                        </div>
                     </li>
                 })}</ul>
             </div>
