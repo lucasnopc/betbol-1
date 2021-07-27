@@ -71,7 +71,7 @@ export default function NoteBets(props) {
         const ListBetStateDuplicate = [...props.listBetState]
 
         for(let i = 0; i < ListBetStateDuplicate.length; i++) {
-            if(ListBetStateDuplicate[i].bet.id == id) {
+            if(ListBetStateDuplicate[i].game.id == id) {
                 ListBetStateDuplicate[i].value = data.target.value
             }
         }
@@ -96,37 +96,32 @@ export default function NoteBets(props) {
     <div className={`${hiddenOrStaticToggle()} w-full static max-h-60 md:max-h-full overflow-auto md:mb-11`}>
         {EmptyListBetState()}
         {props.listBetState.map((bet, indice) => {
-            const choice = bet.choice.substr(3, 4)
-            const name = () => {
-                if (choice == 'draw') return 'Empate'
-                return bet.bet.teams[choice].name
-            }
-            const OddNumber = (choice) => {
-                const choiceValues = bet.bet.odds.bookmakers[0].bets[0].values
-                if (choice == 'home') return choiceValues[0].odd                           
-                if (choice == 'draw') return choiceValues[1].odd                           
-                if (choice == 'away') return choiceValues[2].odd                     
-            }
+            const choice = bet.odd.value
+            // const name = () => {
+            //     if (choice == 'Draw') return 'Empate'
+            //     return bet.bet.teams[choice].name
+            // }
+            const oddNumber = bet.odd.odd
             const RetornosPotenciais = () => {
                 if(bet.value > 0) {
                     
                     return<>
-                    <span className="text-xs w-10">Retornos Potenciais: R$ {Math.floor(bet.value * OddNumber(choice))}</span>
+                    <span className="text-xs w-10">Retornos Potenciais: R$ {Math.floor(bet.value * oddNumber)}</span>
                 </>
                 }
                 return ""
             }
-            return <div key={indice} className="p-2 bg-yellow-50 border-b-2 border-yellow-500 flex">
-                <div className="inline-block w-1/2">
+            return <div key={indice} className="p-2 bg-yellow-50 border-b-2 border-yellow-500 flex flex-col">
+                <div className="inline-block">
                     <span onClick={() => DeleteBetInList(indice)}><CgRemove className="inline-block text-xs text-gray-500 hover:text-red-600 cursor-pointer mr-2" /></span>
-                    <div className="inline-block"><span className=" inline-block line-clamp-1 text-sm font-normal w-20 overflow-hidden overflow-ellipsis">{name()} </span><span className="text-xs p-1 rounded-md font-normal text-blue-800 inline-block">{OddNumber(choice)}</span></div>
-                    <div className="ml-5 text-xs">{bet.bet.teams['home'].name} vs {bet.bet.teams['away'].name}</div>
+                    <div className="inline-block"><span className=" inline-block line-clamp-1 text-sm font-normal w-20 overflow-hidden overflow-ellipsis">{bet.odd.value} </span><span className="text-xs p-1 rounded-md font-normal text-blue-800 inline-block">{oddNumber}</span></div>
+                    <div className="ml-5 text-xs">{bet.game.teams['home'].name} vs {bet.game.teams['away'].name}</div>
                 </div>
-                <div className="inline-block w-1/2">
+                <div className="inline-block">
                    <div className="border border-gray-200">
                             <form onChange={changeInputValue} className="bg-white inline-block">
                                 <span className="text-sm text-green-800 pl-1">R$</span> 
-                                <input type="number" className="w-10/12 focus:outline-none float-right" alt={bet.bet.id} /> 
+                                <input type="number" className="w-10/12 focus:outline-none float-right" alt={bet.game.id} /> 
                             </form>
                    </div>
                         <RetornosPotenciais />

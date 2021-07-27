@@ -14,3 +14,9 @@ html, body, #__next {
 .block-title {
     @apply uppercase font-medium block px-2 py-1 bg-gray-700 rounded-t-lg text-yellow-300
 }
+.odds-btn {
+    @apply bg-gray-200 text-xs px-4 cursor-pointer hover:bg-yellow-500 align-middle h-full block
+}
+.odds-btn span{
+    @apply font-normal text-gray-700 align-middle block
+}
