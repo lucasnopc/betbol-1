@@ -16,10 +16,11 @@ export default function OddsBtn(props) {
         window.scrollTo(0, 0);
         live.scrollTo(0, 0);
     }
-    const addOddInListBetState = ({ odd, game }) => {
+    const addOddInListBetState = ({ odd, game, odds }) => {
         const betsOn = {
             odd,
-            game
+            game,
+            odds
         }
         if (props.listBetState.length == 0) {
             props.setListBetState([betsOn])
@@ -43,7 +44,13 @@ export default function OddsBtn(props) {
 
     const game = props.game
     const { data, error } = useSWR(`/api/betApi/odds/${game.id}`, GetOdds(game.id))
-    if (error) { console.log(error) }
+    if (error) { console.log(error) 
+        return <>
+            <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"> error</div>
+            <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"> error</div>
+            <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"> error</div>
+        </>
+    }
     if (!data) {
         return <>
             <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcSynchronize className="animate-spin" /></div>
@@ -56,7 +63,7 @@ export default function OddsBtn(props) {
             <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
         </>
     }
-    const odds = data.odds.response[0].bookmakers[0].bets[0].values
+    const odds = data.odds.response[0].bookmakers[0].bets[0]
     if (typeof data.odds.response[0] === "undefined" || odds.length < 3) {
         if (typeof game.index != "undefined") {
             game.odds = 'undefined'
@@ -94,11 +101,10 @@ export default function OddsBtn(props) {
     })
     const inputsOdds = (game, odds) => {
         const gameText = JSON.stringify(game)
-        // console.log('game odds', game.odds.bookmakers[0].bets[0])
         return <>
-            {odds.map((odd, i) => {
+            {odds.values.map((odd, i) => {
                 return <div key={i} className="flex-1">
-                    <button onClick={() => { addOddInListBetState({ odd, game }) }} className="odds-btn">
+                    <button onClick={() => { addOddInListBetState({ odd, game, odds }) }} className="odds-btn">
                         <span>{odd.odd}</span>
                         <span>{odd.value}</span>
                     </button>
