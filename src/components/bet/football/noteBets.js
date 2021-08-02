@@ -102,7 +102,7 @@ export default function NoteBets(props) {
                     //     return bet.bet.teams[choice].name
                     // }
                     const oddNumber = bet.odd.odd
-                    const RetornosPotenciais = () => {
+                    const RetornosPotenciais = (bet, oddNumber) => {
                         if (bet.value > 0) {
 
                             return <>
@@ -111,6 +111,7 @@ export default function NoteBets(props) {
                         }
                         return ""
                     }
+                    console.log(bet)
                     return <div key={indice} className="p-2 bg-yellow-50 border-b-2 border-yellow-500 flex flex-col">
                         <div className="inline-block">
                             <div className="flex flex-col">
@@ -120,7 +121,9 @@ export default function NoteBets(props) {
                                 </span>
                                 <div className="flex-1">
                                     <span className="bg-yellow-200 mx-2 rounded-md font-normal text-yellow-600">{oddNumber}</span>
-                                    <span className=" text-gray-500 inline-block text-sm font-normal">{bet.odds.name} / {bet.odd.value} </span>
+                                    {
+                                        bet.odds ? <span className=" text-gray-500 inline-block text-sm font-normal">{bet.odds.name} / {bet.odd.value} </span> : <></>
+                                    }
                                 </div>
                             </div>
                             <div className="ml-5 text-xs">{bet.game.teams['home'].name} <span className="text-lg font-normal">vs</span> {bet.game.teams['away'].name}</div>
@@ -132,7 +135,7 @@ export default function NoteBets(props) {
                                     <input type="number" className="w-10/12 focus:outline-none float-right" alt={bet.game.id} />
                                 </form>
                             </div>
-                            <RetornosPotenciais />
+                            <RetornosPotenciais bet={bet} oddNumber={oddNumber}  />
                         </div>
                     </div>
                 })}

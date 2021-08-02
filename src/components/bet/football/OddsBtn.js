@@ -1,21 +1,15 @@
 import { FcLock, FcSynchronize } from 'react-icons/fc'
 import { useEffect, useState } from 'react'
 import GetOdds from '../../../utills/getOdds'
+import ChangeOverflowLive from '../../../utills/changeOverflowLive'
 import CalcValorFinal from '../../../utills/valofFinal'
+import Translate from '../../../utills/translate'
 import useSWR from 'swr'
+
 
 export default function OddsBtn(props) {
     const [moreOptions, setMoreOptions] = useState(false)
-    const changeOverflowLive = () => {
-        const live = document.querySelector(`#live`);
-        if (moreOptions) {
-            live.style.overflow = "auto"
-        } else {
-            live.style.overflow = "hidden"
-        }
-        window.scrollTo(0, 0);
-        live.scrollTo(0, 0);
-    }
+
     const addOddInListBetState = ({ odd, game, odds }) => {
         const betsOn = {
             odd,
@@ -64,13 +58,9 @@ export default function OddsBtn(props) {
         </>
     }
     const odds = data.odds.response[0].bookmakers[0].bets[0]
-    if (typeof data.odds.response[0] === "undefined" || odds.length < 3) {
+    if (typeof data.odds.response[0] === "undefined") {
         if (typeof game.index != "undefined") {
             game.odds = 'undefined'
-            // console.log(game.index)
-            // const getTimeBetDuplicate = [...props.getTimeBet]
-            // getTimeBetDuplicate.splice(game.index, 1)
-            // props.setTimeBet(getTimeBetDuplicate)
         }
         return <>
             <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
@@ -103,6 +93,7 @@ export default function OddsBtn(props) {
         const gameText = JSON.stringify(game)
         return <>
             {odds.values.map((odd, i) => {
+                odd.value = Translate(odd.value)
                 return <div key={i} className="flex-1">
                     <button onClick={() => { addOddInListBetState({ odd, game, odds }) }} className="odds-btn">
                         <span>{odd.odd}</span>
@@ -117,7 +108,7 @@ export default function OddsBtn(props) {
         <div className="flex-1">
             <button onClick={() => {
                 setMoreOptions(!moreOptions)
-                changeOverflowLive()
+                ChangeOverflowLive(moreOptions)
             }} className="odds-btn mr-0">
                 <span>MAIS</span>
                 <span>{othersOdds}</span>
@@ -127,16 +118,17 @@ export default function OddsBtn(props) {
             <div className={`absolute w-full text-center`}>
                 <span onClick={() => {
                     setMoreOptions(!moreOptions)
-                    changeOverflowLive()
+                    ChangeOverflowLive(moreOptions)
                 }} className="text-left block p-3 hover:font-medium cursor-pointer text-gray-700">  Voltar </span>
                 {game.odds.league.country}: {game.teams.home.name} x {game.teams.away.name}
                 <ul>{game.odds.bookmakers[0].bets.map((bet, i) => {
                     return <li key={i}>
                         <span className="bg-blue-100 w-full block font-medium p-3">
-                            {bet.name}
+                            {Translate(bet.name)}
                         </span>
                         <div className="flex flex-wrap p-3">
                             {bet.values.map((odd, i) => {
+                                odd.value = Translate(odd.value)
                                 return <button onClick={() => { addOddInListBetState({ odd, game })} } key={i} className="hover:bg-yellow-200 bg-blue-50 my-4 rounded-lg mx-1 border-2 border-blue-200 flex-auto p-3">
                                     <span>{odd.odd}</span><br />
                                     <span>{odd.value}</span>

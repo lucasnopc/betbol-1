@@ -3,13 +3,13 @@ export default async function odds(req, res) {
         // const { id, book } = req.query
         const rotas = {...req.query}
         const [id, book] = rotas.params
-        const link = () => {
+        const link = (book) => {
             if(!book) { 
                 return `${process.env.APISPORT}/odds?fixture=${id}`
             }
             return `${process.env.APISPORT}/odds?fixture=${id}&bookmaker=${book}`
         }
-        const odds_res = await fetch(link(), 
+        const odds_res = await fetch(link(book), 
             {
                 headers: {
                     'Content-Type': 'application/json',
