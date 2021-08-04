@@ -18,7 +18,7 @@ export default async function toBet(req, res) {
                             date,
                             bets
                         }, function (err, resp) {
-                            console.log('toBet.js:21 ERROR: ', err)
+                            console.log('toBet.js:21 ERROR: ', err, resp)
                         })
                     }
                     res.status(200).json(

@@ -3,6 +3,7 @@ import CalcValorFinal from '../../../utills/valofFinal'
 import { useSession } from "next-auth/client"
 import axios from 'axios'
 import { useState } from 'react'
+import { HtmlEmailSendBet , TextEmailSendBet } from '../../../utills/htmlEmailSendBet'
 
 export default function NoteBets(props) {
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
@@ -12,6 +13,8 @@ export default function NoteBets(props) {
     }
     const BtnBet = (user) => {
         const [session] = useSession()
+
+
         const startBet = (user) => {
             if (user) {
                 let valorTotal = 0
@@ -26,8 +29,18 @@ export default function NoteBets(props) {
                         bets: props.listBetState
                     })
                         .then(function (response) {
-                            alert('Aposta Realizada com sucesso!')
-                            location.reload()
+                            axios.post('api/email/send', {
+                                subject: `Betbol - Aposta Realizada`,
+                                html: HtmlEmailSendBet({ listBet: props.listBetState }),
+                            })
+                                .then(function (response) {
+                                    alert('Aposta Realizada com sucesso!')
+                                    location.reload()
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -111,7 +124,6 @@ export default function NoteBets(props) {
                         }
                         return ""
                     }
-                    console.log(bet)
                     return <div key={indice} className="p-2 bg-yellow-50 border-b-2 border-yellow-500 flex flex-col">
                         <div className="inline-block">
                             <div className="flex flex-col">
@@ -135,7 +147,7 @@ export default function NoteBets(props) {
                                     <input type="number" className="w-10/12 focus:outline-none float-right" alt={bet.game.id} />
                                 </form>
                             </div>
-                            <RetornosPotenciais bet={bet} oddNumber={oddNumber}  />
+                            <RetornosPotenciais bet={bet} oddNumber={oddNumber} />
                         </div>
                     </div>
                 })}

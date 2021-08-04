@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import isAdmin from '../../../utills/isAdmin'
 import axios from 'axios'
 import { useForm } from "react-hook-form";
+import ListBetsHistory from '../../../components/user/listBetsHistory'
 
 export default function user(props) {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -73,9 +74,7 @@ export default function user(props) {
                 <button onClick={CleanPoints} className="border border-red-500 p-2 bg-red-600 hover:bg-red-400 hover:shadow-md font-normal text-white rounded-md"><SiCashapp className="inline-block mr-2" />Zerar Pontos</button>
                 <div id="apostas-user" className="bg-gray-100 p-3 border border-gray-200 rounded-md">
                     <h3 className="uppercase font-normal ">Apostas do usuário</h3>
-                    <ul>
-                        <li className=""><span>Jogo</span> <span>Valor</span> <span>Status: Ganhou</span> <span>Premio</span></li>
-                    </ul>
+                    <ListBetsHistory email={user.email} />
                 </div>
             </main>
         </LayoutAdmin>
