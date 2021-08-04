@@ -4,6 +4,7 @@ import { useSession } from "next-auth/client"
 import axios from 'axios'
 import { useState } from 'react'
 import { HtmlEmailSendBet , TextEmailSendBet } from '../../../utills/htmlEmailSendBet'
+import Translate  from '../../../utills/translate'
 
 export default function NoteBets(props) {
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
@@ -134,7 +135,7 @@ export default function NoteBets(props) {
                                 <div className="flex-1">
                                     <span className="bg-yellow-200 mx-2 rounded-md font-normal text-yellow-600">{oddNumber}</span>
                                     {
-                                        bet.odds ? <span className=" text-gray-500 inline-block text-sm font-normal">{bet.odds.name} / {bet.odd.value} </span> : <></>
+                                        bet.odds ? <span className=" text-gray-500 inline-block text-sm font-normal">{Translate(bet.odds.name)} - <span className="text-blue-800">{bet.odd.value}</span> </span> : <></>
                                     }
                                 </div>
                             </div>

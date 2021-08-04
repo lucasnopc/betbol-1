@@ -11,6 +11,7 @@ export default function OddsBtn(props) {
     const [moreOptions, setMoreOptions] = useState(false)
 
     const addOddInListBetState = ({ odd, game, odds }) => {
+        console.log(odds)
         const betsOn = {
             odd,
             game,
@@ -38,7 +39,8 @@ export default function OddsBtn(props) {
 
     const game = props.game
     const { data, error } = useSWR(`/api/betApi/odds/${game.id}`, GetOdds(game.id))
-    if (error) { console.log(error) 
+    if (error) {
+        console.log(error)
         return <>
             <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"> error</div>
             <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"> error</div>
@@ -57,7 +59,7 @@ export default function OddsBtn(props) {
             <div className="inline-block p-2 mx-2 text-md text-gray-700 cursor-not-allowed border-2 border-gray-300 font-normal rounded-md bg-white"><FcLock /></div>
         </>
     }
-    const odds = data.odds.response[0].bookmakers[0].bets[0]
+    const odds = data.odds.response[0].bookmakers[0]
     if (typeof data.odds.response[0] === "undefined") {
         if (typeof game.index != "undefined") {
             game.odds = 'undefined'
@@ -89,13 +91,13 @@ export default function OddsBtn(props) {
     game.odds.bookmakers[0].bets.map((bet, i) => {
         othersOdds = othersOdds + bet.values.length
     })
-    const inputsOdds = (game, odds) => {
+    const inputsOdds = (game, odds, classes) => {
         const gameText = JSON.stringify(game)
         return <>
             {odds.values.map((odd, i) => {
                 odd.value = Translate(odd.value)
-                return <div key={i} className="flex-1">
-                    <button onClick={() => { addOddInListBetState({ odd, game, odds }) }} className="odds-btn">
+                return <div key={i} className={`flex-1 ${classes}`}>
+                    <button onClick={() => { addOddInListBetState({ odd, game, odds }) }} className="odds-btn w-full">
                         <span>{odd.odd}</span>
                         <span>{odd.value}</span>
                     </button>
@@ -104,7 +106,7 @@ export default function OddsBtn(props) {
         </>
     }
     return <div className="h-full flex">
-        {inputsOdds(game, odds)}
+        {inputsOdds(game, odds.bets[0])}
         <div className="flex-1">
             <button onClick={() => {
                 setMoreOptions(!moreOptions)
@@ -114,29 +116,37 @@ export default function OddsBtn(props) {
                 <span>{othersOdds}</span>
             </button>
         </div>
-        <div className={`${moreOptions ? `block` : `hidden`} absolute top-0 left-0 block w-full h-full bg-white overflow-auto`}>
+        <div className={`${moreOptions ? `block` : `hidden`} bg-white absolute top-0 left-0 block w-full h-full  overflow-auto`}>
             <div className={`absolute w-full text-center`}>
+                <div className="bg-gray-800 text-white">
+
                 <span onClick={() => {
                     setMoreOptions(!moreOptions)
                     ChangeOverflowLive(moreOptions)
-                }} className="text-left block p-3 hover:font-medium cursor-pointer text-gray-700">  Voltar </span>
+                }} className="text-left p-3 hover:font-medium cursor-pointer">  Voltar </span>
                 {game.odds.league.country}: {game.teams.home.name} x {game.teams.away.name}
-                <ul>{game.odds.bookmakers[0].bets.map((bet, i) => {
-                    return <li key={i}>
-                        <span className="bg-blue-100 w-full block font-medium p-3">
-                            {Translate(bet.name)}
-                        </span>
-                        <div className="flex flex-wrap p-3">
+                    </div>
+                <ul>
+                    {game.odds.bookmakers[0].bets.map((bet, i) => {
+                        //treicho de código lento, verificar e otimizar
+                        return <li key={i} className="border p-2 m-2 bg-gray-100 rounded-md">
+                            <span className="w-full block font-medium p-3">
+                                {Translate(bet.name)}
+                            </span>
+                            <div className="flex flex-wrap">
+                                {inputsOdds(game, bet, "p-2")}
+                            </div>
+                            {/* <div className="flex flex-wrap p-3">
                             {bet.values.map((odd, i) => {
                                 odd.value = Translate(odd.value)
-                                return <button onClick={() => { addOddInListBetState({ odd, game })} } key={i} className="hover:bg-yellow-200 bg-blue-50 my-4 rounded-lg mx-1 border-2 border-blue-200 flex-auto p-3">
+                                return <button onClick={() => { addOddInListBetState({ odd, game, odds: bet }) }} key={i} className="hover:bg-yellow-200 bg-blue-50 my-4 rounded-lg mx-1 border-2 border-blue-200 flex-auto p-3">
                                     <span>{odd.odd}</span><br />
                                     <span>{odd.value}</span>
                                 </button>
                             })}
-                        </div>
-                    </li>
-                })}</ul>
+                        </div> */}
+                        </li>
+                    })}</ul>
             </div>
         </div>
     </div>

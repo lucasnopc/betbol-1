@@ -34,27 +34,7 @@ export default function ListBetsHistory (props) {
         <tbody>
             {
                 r.bets.map((b, i) => {
-                    const oddsNumberChoice = () => {
-                        switch (b.choice) {
-                            case "betaway":
-                                return (b.bet.odds.bookmakers[0].bets[0].values[2].odd)
-                            case "bethome":
-                                return (b.bet.odds.bookmakers[0].bets[0].values[0].odd)
-                            case "betdraw":
-                                return (b.bet.odds.bookmakers[0].bets[0].values[1].odd)
-                        }
-                    }
-                    const choice = (r, b) => {
-                        switch (b.choice) {
-                            case "betaway":
-                                return (b.bet.teams.away.name)
-                            case "bethome":
-                                return (b.bet.teams.home.name)
-                            case "betdraw":
-                                return (`Empate ${b.bet.teams.home.name} X ${b.bet.teams.away.name}`)
-                        }
-                    }
-                    console.log(b)
+                    console.log(b.odds)
                     return <tr key={i}>
                         <td className="p-2 border-2 border-gray-200">{b.game.teams.home.name} X {b.game.teams.away.name}</td>
                         <td className="p-2 border-2 border-gray-200">{Translate(b.odds.name)} - {b.odd.value}</td>
