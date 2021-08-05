@@ -11,7 +11,6 @@ export default function OddsBtn(props) {
     const [moreOptions, setMoreOptions] = useState(false)
 
     const addOddInListBetState = ({ odd, game, odds }) => {
-        console.log(odds)
         const betsOn = {
             odd,
             game,
@@ -21,18 +20,19 @@ export default function OddsBtn(props) {
             props.setListBetState([betsOn])
             return ''
         }
-        // console.log(props.listBetState)
-        // for (let i = 0; i < props.listBetState.length; i++) {
-        //     if (props.listBetState[i].bet.id == betsOn.bet.id) {
-        //         const ListBetStateDuplicate = [...props.listBetState]
-        //         betsOn.value = props.listBetState[i].value
-        //         ListBetStateDuplicate[i] = betsOn
-        //         props.setListBetState(ListBetStateDuplicate)
-        //         return ''
-        //     }
-        // }
-        props.setListBetState([...props.listBetState, betsOn])
-        props.setValorFinal(CalcValorFinal(props.listBetState))
+        console.log(props.listBetState)
+        for (let i = 0; i < props.listBetState.length; i++) {
+            if (props.listBetState[i].odd.odd == betsOn.odd.odd && props.listBetState[i].game.id == betsOn.game.id) {
+                        // const ListBetStateDuplicate = [...props.listBetState]
+                        // betsOn.value = props.listBetState[i].value
+                        // ListBetStateDuplicate[i] = betsOn
+                        // props.setListBetState(ListBetStateDuplicate)
+                            alert('você já adicionou esta chance na caderneta de apostas')
+                        return
+                    }
+                }
+                props.setListBetState([...props.listBetState, betsOn])
+                props.setValorFinal(CalcValorFinal(props.listBetState))
 
     }
 

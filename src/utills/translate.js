@@ -2,22 +2,22 @@ export default function Translate(p) {
     if(typeof p == "string") {
         //titles
         if(p.match(/Home\/Draw/)) return p.replace('Home/Draw', 'Casa / Empate')
-        if(p.match(/Home\/Away/)) return p.replace('Home/Away', 'Casa / Longe')
+        if(p.match(/Home\/Away/)) return p.replace('Home/Away', 'Casa / Fora')
         if(p.match(/Home\/home/)) return p.replace('Home/home', 'Casa / Casa')
         if(p.match(/Home\/yes/)) return p.replace('Home/yes', 'Casa / Sim')
         if(p.match(/Home\/no/)) return p.replace('Home/no', 'Casa / Não')
 
         if(p.match(/Draw\/Draw/)) return p.replace('Draw/Draw', 'Empate / Empate')
-        if(p.match(/Draw\/Away/)) return p.replace('Draw/Away', 'Empate / Longe')
+        if(p.match(/Draw\/Away/)) return p.replace('Draw/Away', 'Empate / Fora')
         if(p.match(/Draw\/home/)) return p.replace('Draw/home', 'Empate / Casa')
         if(p.match(/Draw\/yes/)) return p.replace('Draw/yes', 'Empate / Sim')
         if(p.match(/Draw\/no/)) return p.replace('Draw/no', 'Empate / Não')
         
-        if(p.match(/Away\/Draw/)) return p.replace('Away/Draw', 'Longe / Empate')
-        if(p.match(/Away\/Away/)) return p.replace('Away/Away', 'Longe / Longe')
-        if(p.match(/Away\/home/)) return p.replace('Away/home', 'Longe / Casa')
-        if(p.match(/Away\/yes/)) return p.replace('Away/yes', 'Longe / Sim')
-        if(p.match(/Away\/no/)) return p.replace('Away/no', 'Longe / Não')
+        if(p.match(/Away\/Draw/)) return p.replace('Away/Draw', 'Fora / Empate')
+        if(p.match(/Away\/Away/)) return p.replace('Away/Away', 'Fora / Fora')
+        if(p.match(/Away\/home/)) return p.replace('Away/home', 'Fora / Casa')
+        if(p.match(/Away\/yes/)) return p.replace('Away/yes', 'Fora / Sim')
+        if(p.match(/Away\/no/)) return p.replace('Away/no', 'Fora / Não')
 
         if(p.match(/Match Winner/)) return p.replace('Match Winner', 'Vencedor da Partida')
         if(p.match(/Away Team Score a Goal/)) return p.replace('Away Team Score a Goal', 'Equipe ausente marca um gol')
@@ -36,7 +36,7 @@ export default function Translate(p) {
         if(p.match(/Home Team Score a Goal/)) return p.replace('Home Team Score a Goal', 'Home Team Score a Goal')
         if(p.match(/Highest Scoring Half/)) return p.replace('Highest Scoring Half', 'Metade de pontuação mais alta')
         if(p.match(/Total - Home/)) return p.replace('Total - Home', 'Total - Casa')
-        if(p.match(/Total - Away/)) return p.replace('Total - Away', 'Total - Longe')
+        if(p.match(/Total - Away/)) return p.replace('Total - Away', 'Total - Fora')
         if(p.match(/Double/)) return p.replace('Double', 'Duplo')
         
         //odds
