@@ -1,7 +1,6 @@
 export default async function Fixture(req, res) {
     if(req.method == "GET") {
         const { league, season } = req.query
-        console.log(league, season)
         const fixture = await fetch(`${process.env.APISPORT}/fixtures?league=${league}&season=${season}`, 
         {
             headers: {

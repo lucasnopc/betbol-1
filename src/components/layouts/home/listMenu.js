@@ -1,113 +1,37 @@
 import axios from 'axios'
 import useSWR from 'swr'
-import { useState } from 'react'
-import { compareDateFuture } from '../../../utills/compareDate'
+import { useStore } from '../../../context/store'
 
 export default function ListMenu(props) {
-    const hoje = new Date()
-    const Alive = () => {
-        const aliveChoice = () => {
-            props.setTimeBet([])
+    const { setChoiceForMenu, choiceForMenu } = useStore()
+    const getLeagues = async (country) => {
+        if(country == `live`) {
+            const choice = {choiceForMenu: `live` }
+            setChoiceForMenu(`live`, choice)
+            return ``
         }
-        return <li key="Alive" onClick={() => aliveChoice()} className={`hover:bg-green-100 cursor-pointer text-xs p-2 text-green-600 font-bold`}>AO VIVO</li>
-    }
-    const ListMenuCountry = () => {
-
-        const fetcher = async () => {
-            const data = await axios.get('/api/betApi/leagues')
-            return data
+        const urlMenuSearchLeachesForCountry = `/api/menu/searchLeaguesForCountry?query=${country}`
+            const data = await axios.get(urlMenuSearchLeachesForCountry)
+            const leagues = await data.data
+            setChoiceForMenu(country, leagues)
+            return ``
         }
-        const { data, error } = useSWR('/api/betApi/leagues', fetcher)
-        if(error) console.log('listMenu - error swr ', error)
-        if (!data) {
-            return <>loading...</>
-        }
-        const leagues = data.data.legues
-        // console.log('listMenu - legues', leagues)
-        const ChoiceSession = async (league) => {
-            // props.setLeague({leagueId: league.league.id, leagueSession: league.seasons[0].year})
-            const data = await axios.get(`/api/betApi/fix-to-league?league=${league.league.id}&season=${league.seasons[0].year}`)
-            let newLeagues = []
-            for (let fix in data.data.res_fixture.response) {
-                const response_fix = data.data.res_fixture.response[fix]
-                if (compareDateFuture(response_fix.fixture.date)) {
-                    newLeagues.push(response_fix)
-                }
-            }
-            if(newLeagues.length != 0){
-
-                props.setTimeBet({
-                    'select': newLeagues[0].league.country,
-                    'response': newLeagues
-                })
-            }
-            else {
-                alert(`no momento não existem jogos para serem mostrados na liga: ${league.league.name}`)
-            }
-            
-        }
-        let country = []
-        for (let a = 0; a < leagues.length; a++) {
-            let sameCountry = false
-            for (let b = 0; b < a; b++) {
-                if (country[b] && leagues[a].country.code == country[b].country.code) {
-                    country[b].leagues.push({
-                        league: leagues[a].league,
-                        seasons: leagues[a].seasons
-                    })
-                    sameCountry = true
-                    break
-                }
-            }
-            if (!sameCountry) {
-                country.push({
-                    country: leagues[a].country,
-                    leagues: [{
-                        league: leagues[a].league,
-                        seasons: leagues[a].seasons
-                    }]
-                })
-            }
-        }
-        const countryReOrg = country.map((c, i) => {
-            if(c.country.code == 'BR') {
-                country.splice(i)
-                country.unshift(c)
-
-            }
-        })
-        const ListCouturyAndLeagues = ({c}) => {
-            const [toggle, setToggle] = useState(false)
-            const classChanges = toggle ? `list-item`: `hidden` 
-            return <>
-                {toggle}<li key={c.country.code} onClick={() => {
-                    setToggle(!toggle)
-                }} key={c.country.code} className="group text-sm p-2 bg-gray-100  cursor-pointer text-gray-800 block"><span>{c.country.name}</span>
-                    <ul>{
-                        c.leagues.map((league) => {
-                            return <li key={league.league.id} onClick={() => ChoiceSession(league)} className={`${classChanges} hover:bg-gray-200 cursor-pointer text-xs p-2 text-blue-900`}>{league.league.name}</li>
-                        })
-                    }
-                    </ul>
-                </li>
-            </>
-        }
-        const MenuCoutry = country.map((c, i) => {
-            return <ListCouturyAndLeagues c={c} key={i} />
-        })
-        return <>{MenuCoutry}</>
-    }
     return <>
+        <h1 className="block-title">Menu</h1>
         <ul>
-            <li>
-                <h2 className="block-title">Ligas</h2>
-                <div className="max-h-32 md:max-h-screen overflow-auto">
-                <ul><Alive /></ul>
-                <ul className="">
-                    <ListMenuCountry />
-                </ul>
-                </div>
+            <li onClick={() => { getLeagues(`live`) }}  className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">
+                AO VIVO
             </li>
+            <li onClick={() => { getLeagues(`BR`) }} className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">
+                BRASIL
+            </li>
+            <li onClick={() => { getLeagues(`world`) }}  className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">
+                INTERNACIONAL
+            </li>
+            <li onClick={() => { getLeagues(`US`) }}  className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">
+                AMERICANO
+            </li>
+            {/* <li  onClick={() => { ChangeLeagues() }}  className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">OUTROS</li> */}
         </ul>
     </>
 }

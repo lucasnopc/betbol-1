@@ -34,7 +34,6 @@ export default function ListBetsHistory (props) {
         <tbody>
             {
                 r.bets.map((b, i) => {
-                    console.log(b.odds)
                     return <tr key={i}>
                         <td className="p-2 border-2 border-gray-200">{b.game.teams.home.name} X {b.game.teams.away.name}</td>
                         <td className="p-2 border-2 border-gray-200">{Translate(b.odds.name)} - {b.odd.value}</td>

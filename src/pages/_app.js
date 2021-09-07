@@ -1,4 +1,5 @@
 import { Provider } from 'next-auth/client'
+import { StoreProvider } from '../context/store'
 import NProgress from 'nprogress'
 import Router from 'next/router'
 
@@ -15,9 +16,11 @@ Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
   return (
-  <Provider session={pageProps.session}>
-     <Component {...pageProps} />
-  </Provider>
+    <Provider session={pageProps.session}>
+      <StoreProvider>
+        <Component {...pageProps} />
+      </StoreProvider>
+    </Provider>
   )
 }
 

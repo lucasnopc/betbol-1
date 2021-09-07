@@ -5,9 +5,10 @@ import ChangeOverflowLive from '../../../utills/changeOverflowLive'
 import CalcValorFinal from '../../../utills/valofFinal'
 import Translate from '../../../utills/translate'
 import useSWR from 'swr'
-
+import { useStore } from '../../../context/store'
 
 export default function OddsBtn(props) {
+    const { addListBetState, listBet } = useStore()
     const [moreOptions, setMoreOptions] = useState(false)
 
     const addOddInListBetState = ({ odd, game, odds }) => {
@@ -17,21 +18,17 @@ export default function OddsBtn(props) {
             odds
         }
         if (props.listBetState.length == 0) {
-            props.setListBetState([betsOn])
+            addListBetState(betsOn)
             return ''
         }
-        console.log(props.listBetState)
         for (let i = 0; i < props.listBetState.length; i++) {
             if (props.listBetState[i].odd.odd == betsOn.odd.odd && props.listBetState[i].game.id == betsOn.game.id) {
-                        // const ListBetStateDuplicate = [...props.listBetState]
-                        // betsOn.value = props.listBetState[i].value
-                        // ListBetStateDuplicate[i] = betsOn
-                        // props.setListBetState(ListBetStateDuplicate)
                             alert('você já adicionou esta chance na caderneta de apostas')
                         return
                     }
                 }
                 props.setListBetState([...props.listBetState, betsOn])
+                addListBetState(betsOn)
                 props.setValorFinal(CalcValorFinal(props.listBetState))
 
     }

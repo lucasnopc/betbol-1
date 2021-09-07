@@ -33,13 +33,11 @@ export default function user(props) {
         const morePoints = data.morePoints
         const email = user.email
         const points = Number(firstPoints) + Number(morePoints)
-        console.log(data)
         axios.post('/api/adm/updatePoints', {
             points,
             email
           })
           .then(function (response) {
-            console.log(response);
             alert('pontos Alterados!')
             location.reload()
           })
