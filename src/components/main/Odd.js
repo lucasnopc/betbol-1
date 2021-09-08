@@ -15,7 +15,7 @@ export default function Odd (props) {
         }
     }
     fetchOdds()
-    })
+    },[])
     const bets = props.bets
     let values = null
     

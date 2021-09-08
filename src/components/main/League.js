@@ -9,9 +9,13 @@ import SelectOddsBets from './SelectOddsBets'
 import { useStore } from '../../context/store'
 
 export default function League(props) {
-    const [toggle, setToggle] = useState(false)
+    const { setFixToLeaguesInChoiceForMenu, setToggle, choiceForMenu } = useStore()
     const [bets, setBets] = useState(1)
-    const { setFixToLeaguesInChoiceForMenu, choiceForMenu } = useStore()
+    const [toggle, setToggleState] = useState(false)
+
+    useEffect(() => {
+        setToggle(props.idLeague, toggle)
+    }, [toggle])
 
     const ToggleIcon = () => {
         if (toggle) return <BiDownArrow className="inline-block mr-2" />
@@ -19,13 +23,13 @@ export default function League(props) {
     }
 
     const ToggleContent = () => {
-        if (toggle) {
-            let response = {}
-            if (props.league) {
+
+        let response = {}
+        if (props.league) {
+            if (props.league.toggle) {
                 const leagueId = props.league.league.id
                 const seasonYear = props.league.seasons[0].year
                 const urlFixToLeague = `/api/betApi/fix-to-league?league=${leagueId}&season=${seasonYear}`
-                console.log(choiceForMenu)
                 const fetcher = async () => {
                     const data = await axios.get(urlFixToLeague)
                     const fix = await data.data
@@ -58,36 +62,36 @@ export default function League(props) {
                     }
                     response = data
                 }
-            } else if (props.live) {
-                console.log('live ', props.live)
-                response = props.live.fix
             }
-
-            if (response.length == 0) {
-                return <div className="p-2 bg-yellow-400"><h3 className="text-gray-700 font-normal">Esta Liga não tem jogos para os pŕoximos dias!</h3></div>
-            }
-            return <>
-                <SelectOddsBets setBets={setBets} bets={bets} />
-                <div className="p-2">
-                    {response.map((res, i) => {
-                        return <Fix key={i} fix={res} bets={bets} />
-
-                    })}
-                </div>
-            </>
-        } else {
-            return <></>
+        } else if (props.live) {
+            response = props.live.fix
         }
-    }
+        if (response.length == 0) {
+            return <div className="p-2 bg-yellow-400"><h3 className="text-gray-700 font-normal">Esta Liga não tem jogos para os pŕoximos dias!</h3></div>
+        }
+        return <>
+            <SelectOddsBets setBets={setBets} bets={bets} />
+            <div className="p-2">
+                {response && response.length > 0 && response.map((res, i) => {
+                    return <Fix key={i} fix={res} bets={bets} />
 
+                })}
+            </div>
+        </>
+    }
     return <div className="shadow-sm hover:shadow-md">
-        <h3 onClick={() => setToggle(!toggle)} className="font-normal p-2 text-gray-700 text-sm cursor-pointer hover:text-gray-400">
+        <h3 onClick={() => setToggleState(!toggle)} className="font-normal p-2 text-gray-700 text-sm cursor-pointer hover:text-gray-400">
             <ToggleIcon />
             {props.league && props.league.league.name}
             {!props.league && `AO VIVO`}
 
         </h3>
-        <ToggleContent />
+        {props.league && props.league.toggle &&
+            <ToggleContent />
+        }
+        {props.live &&
+            <ToggleContent />
+        }
 
     </div>
 }
