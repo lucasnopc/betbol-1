@@ -11,9 +11,8 @@ import { useStore } from '../../context/store'
 export default function League(props) {
     const [toggle, setToggle] = useState(false)
     const [bets, setBets] = useState(1)
-    const { setFixToLeaguesInChoiceForMenu } = useStore()
+    const { setFixToLeaguesInChoiceForMenu, choiceForMenu } = useStore()
 
-    // useEffect(() =>{console.log(bets)}, [bets])
     const ToggleIcon = () => {
         if (toggle) return <BiDownArrow className="inline-block mr-2" />
         return <BiRightArrow className="inline-block mr-2" />
@@ -27,28 +26,37 @@ export default function League(props) {
             const fetcher = async () => {
                 const data = await axios.get(urlFixToLeague)
                 const fix = await data.data
-                //colocar fix no league context
                 const res_filter = fix.res_fixture.response.filter((res) => {
                     const date = new Date(res.fixture.date)
+                    const today = new Date()
+                    const fiveDaysInFuture = new Date()
+                    fiveDaysInFuture.setDate(fiveDaysInFuture.getDate() + 5)
                     const compareifDateIsFuture = compareAsc(date, new Date())
-                    if (compareifDateIsFuture >= 0) {
+                    const compareIfDateIsFiveDaysInFuture = compareAsc(date, fiveDaysInFuture)
+                    if (compareifDateIsFuture >= 0 && compareIfDateIsFiveDaysInFuture <= 0 ) {
                         return true
                     } else {
                         return false
-    
+
                     }
                 })
-                if (res_filter.length > 0) setFixToLeaguesInChoiceForMenu(fix, props.idLeague)
-                return fix
+                if (res_filter.length > 0) setFixToLeaguesInChoiceForMenu(res_filter, props.idLeague)
+                return res_filter
             }
-            const { data, error } = useSWR(urlFixToLeague, fetcher)
-            if (error) console.log(error)
-            if (!data) {
-                return <>
-                    <ImSpinner />
-                </>
+            let response = {}
+            if (props.league.fix) {
+               response = props.league.fix
+            } else {
+                const { data, error } = useSWR(urlFixToLeague, fetcher)
+                if (error) console.log(error)
+                if (!data) {
+                    return <>
+                        <ImSpinner />
+                    </>
+                }
+                response = data
             }
-            const response = data.res_fixture.response
+
             if (response.length == 0) {
                 return <>Esta Liga não tem jogos para os pŕoximos dias!</>
             }

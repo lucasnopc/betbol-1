@@ -7,7 +7,7 @@ export default function Odd (props) {
 
     const id = props.fixId
     useEffect(() => {
-        const fetchOdds = async () => {
+        const fetchOdds = async () => { 
         const data = await axios.get(`/api/betApi/odds/${id}`)
         const odd = await data.data
         if(odd && odd.odds.results > 0) {
@@ -15,11 +15,20 @@ export default function Odd (props) {
         }
     }
     fetchOdds()
-    },[])
+    })
     const bets = props.bets
+    let values = null
+    
+    if(odds){
+        values = odds.odds.response[0].bookmakers[0].bets[0].values
+    }
     return <>
-    <div className="">
-      <Button oddNumber={`5.00`} />
+    <div className="float-right">
+        {values && 
+           values.map((val, i) => {
+            return <Button key={i} oddNumber={val.odd} />
+           })
+        }
     </div>
     </>
 }

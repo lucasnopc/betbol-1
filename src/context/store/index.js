@@ -11,7 +11,20 @@ export const StoreProvider = ({ children }) => {
     const [choiceForMenu, setChoice] = useState(storeInitial)
 
     const setFixToLeaguesInChoiceForMenu = (fix, i) => {
-        console.log(choiceForMenu.leagues, fix.res_fixture.results)
+        const leagues = choiceForMenu.leagues
+        const newLeague = {
+            ...leagues[i],
+            fix
+        }
+        leagues[i] = newLeague
+        if(fix.results > 0) {
+            const new_sessionInChoice = {
+                ...choiceForMenu, 
+                leagues
+            }
+            setChoice(new_sessionInChoice)
+        }
+        console.log('fim ', choiceForMenu)
     }
 
     const setChoiceForMenu = (code, leagues) => {
