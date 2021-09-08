@@ -28,6 +28,7 @@ export const StoreProvider = ({ children }) => {
     }
 
     const setChoiceForMenu = (code, leagues) => {
+        console.log(leagues)
         const choice = {
             choiceForMenu: code
         }
@@ -37,7 +38,13 @@ export const StoreProvider = ({ children }) => {
                 return league.seasons[0].coverage.odds == true
             })
             choice.leagues = leaguesFiltered
+        }if(leagues.soccer) {
+            choice.live = {
+               fix: leagues.soccer.response,
+               seasons: {}
+            }
         }
+        console.log('set choice com => ', choice)
         setChoice(choice)
     }
 

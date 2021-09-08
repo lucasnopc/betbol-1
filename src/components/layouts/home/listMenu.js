@@ -1,13 +1,18 @@
 import axios from 'axios'
 import useSWR from 'swr'
 import { useStore } from '../../../context/store'
+import { fetchAlive } from '../../../utills/fetchAlive'
 
 export default function ListMenu(props) {
     const { setChoiceForMenu, choiceForMenu } = useStore()
     const getLeagues = async (country) => {
         if(country == `live`) {
-            const choice = {choiceForMenu: `live` }
-            setChoiceForMenu(`live`, choice)
+            const fetcherAlive = async () => {
+                const fetch = await fetchAlive()
+                setChoiceForMenu(`ALIVE`, fetch)   
+            }
+            fetcherAlive()
+    
             return ``
         }
         const urlMenuSearchLeachesForCountry = `/api/menu/searchLeaguesForCountry?query=${country}`

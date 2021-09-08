@@ -29,6 +29,9 @@ export default function Odd (props) {
             return <Button key={i} oddNumber={val.odd} />
            })
         }
+        {!values && 
+             <span className="text-gray-500">Odds indisponíveis para este jogo</span>
+        }
     </div>
     </>
 }

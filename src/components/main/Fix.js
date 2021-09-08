@@ -4,7 +4,7 @@ import Odd from './Odd'
 export default function Fix(props) {
     const fix = props.fix
     return <>
-        <div className="grid grid-cols-12 gap-4 border-t border-gray-200">
+        <div className="grid grid-cols-12 gap-4 border-t border-gray-200 hover:bg-blue-50">
             <div className="col-start-1 col-span-1"><FixDate fix={fix} /></div>
             <div className="col-start-2 col-span-4">
                 {fix.teams.home.name} <br />
