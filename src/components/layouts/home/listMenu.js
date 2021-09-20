@@ -21,22 +21,22 @@ export default function ListMenu(props) {
             setChoiceForMenu(country, leagues)
             return ``
         }
-    return <>
+    return <div className="bg-white shadow-md">
         <h1 className="block-title">Menu</h1>
         <ul>
-            <li onClick={() => { getLeagues(`live`) }}  className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">
+            <li onClick={() => { getLeagues(`live`) }}  className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
                 AO VIVO
             </li>
-            <li onClick={() => { getLeagues(`BR`) }} className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">
+            <li onClick={() => { getLeagues(`BR`) }} className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
                 BRASIL
             </li>
-            <li onClick={() => { getLeagues(`world`) }}  className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">
+            <li onClick={() => { getLeagues(`world`) }}  className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
                 INTERNACIONAL
             </li>
-            <li onClick={() => { getLeagues(`US`) }}  className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">
+            <li onClick={() => { getLeagues(`US`) }}  className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
                 AMERICANO
             </li>
             {/* <li  onClick={() => { ChangeLeagues() }}  className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">OUTROS</li> */}
         </ul>
-    </>
+    </div>
 }

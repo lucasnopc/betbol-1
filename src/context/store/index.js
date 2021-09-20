@@ -44,7 +44,6 @@ export const StoreProvider = ({ children }) => {
     }
 
     const setChoiceForMenu = (code, leagues) => {
-        console.log(leagues)
         const choice = {
             choiceForMenu: code
         }
@@ -68,7 +67,6 @@ export const StoreProvider = ({ children }) => {
             ...listBet,
             value
         }
-        console.log('new value ', newValue)
         setListBet(newValue)
     }
 

@@ -16,11 +16,11 @@ Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider session={pageProps.session}>
-      <StoreProvider>
+    <StoreProvider>
+      <Provider session={pageProps.session}>
         <Component {...pageProps} />
-      </StoreProvider>
-    </Provider>
+      </Provider>
+    </StoreProvider>
   )
 }
 

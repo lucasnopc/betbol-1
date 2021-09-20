@@ -23,7 +23,6 @@ export default function League(props) {
     }
 
     const ToggleContent = () => {
-
         let response = {}
         if (props.league) {
             if (props.league.toggle) {

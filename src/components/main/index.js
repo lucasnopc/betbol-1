@@ -15,7 +15,7 @@ export default function Main() {
         }
         fetcherAlive()
     }, [])
-    return <>
+    return <div className="bg-white">
         {/* <Alive /> */}
         {choiceForMenu.live &&
                 <League live={choiceForMenu.live} />
@@ -25,5 +25,5 @@ export default function Main() {
                 <League league={league} idLeague={i} />
             </div>
         })}
-    </>
+    </div>
 }
