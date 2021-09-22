@@ -22,7 +22,7 @@ export default function ListMenu(props) {
             return ``
         }
     return <div className="bg-white shadow-md">
-        <h1 className="block-title">Menu</h1>
+        <h1 className="block-title">DESTAQUES</h1>
         <ul>
             <li onClick={() => { getLeagues(`live`) }}  className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
                 AO VIVO

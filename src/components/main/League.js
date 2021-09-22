@@ -78,8 +78,8 @@ export default function League(props) {
             </div>
         </>
     }
-    return <div className="shadow-sm hover:shadow-md">
-        <h3 onClick={() => setToggleState(!toggle)} className="font-normal p-2 text-gray-700 text-sm cursor-pointer hover:text-gray-400">
+    return <div className="shadow-sm hover:shadow-md p-2 mb-2 bg-white">
+        <h3 onClick={() => setToggleState(!toggle)} className="font-normal p-2 text-gray-500 text-sm cursor-pointer hover:text-gray-900">
             <ToggleIcon />
             {props.league && props.league.league.name}
             {!props.league && `AO VIVO`}

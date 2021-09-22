@@ -42,6 +42,21 @@ export const StoreProvider = ({ children }) => {
         }
         
     }
+    const setoddinChoiceforMenu = (idLeague, valueToggle) => {
+        let leagues = choiceForMenu.leagues
+        if(idLeague) {
+            const newLeague = {
+                ...leagues[idLeague],
+                toggle: valueToggle
+            }
+            leagues[idLeague] = newLeague
+            setChoice({
+                ...choiceForMenu,
+                leagues
+            })
+        }
+        
+    }
 
     const setChoiceForMenu = (code, leagues) => {
         const choice = {
@@ -76,7 +91,8 @@ export const StoreProvider = ({ children }) => {
         setChoiceForMenu,
         addListBetState,
         setToggle,
-        setFixToLeaguesInChoiceForMenu
+        setFixToLeaguesInChoiceForMenu,
+        setoddinChoiceforMenu
     }
 
     return <>

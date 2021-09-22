@@ -15,7 +15,7 @@ export default function Main() {
         }
         fetcherAlive()
     }, [])
-    return <div className="bg-white">
+    return <div className="">
         {/* <Alive /> */}
         {choiceForMenu.live &&
                 <League live={choiceForMenu.live} />
