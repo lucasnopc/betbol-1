@@ -23,10 +23,10 @@ export default function League(props) {
     }
 
     const ToggleContent = () => {
+        const leagueId = props.league ? props.league.league.id : null
         let response = {}
         if (props.league) {
             if (props.league.toggle) {
-                const leagueId = props.league.league.id
                 const seasonYear = props.league.seasons[0].year
                 const urlFixToLeague = `/api/betApi/fix-to-league?league=${leagueId}&season=${seasonYear}`
                 const fetcher = async () => {
@@ -72,7 +72,7 @@ export default function League(props) {
             <SelectOddsBets setBets={setBets} bets={bets} />
             <div className="p-2">
                 {response && response.length > 0 && response.map((res, i) => {
-                    return <Fix key={i} fix={res} bets={bets} />
+                    return <Fix leagueId={leagueId} key={i} chave={i} fix={res} bets={bets} />
 
                 })}
             </div>

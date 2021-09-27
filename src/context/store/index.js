@@ -10,6 +10,14 @@ export const StoreProvider = ({ children }) => {
     const [listBet, setListBet] = useState({})
     const [choiceForMenu, setChoice] = useState(storeInitial)
 
+    const LiveOrLeague = () => {
+        if(choiceForMenu.choiceForMenu == `ALIVE`) {
+            return choiceForMenu.live.fix
+        }else {
+            return choiceForMenu.leagues
+        }
+    }
+
     const setFixToLeaguesInChoiceForMenu = (fix, i) => {
         const leagues = choiceForMenu.leagues
         const newLeague = {
@@ -42,18 +50,23 @@ export const StoreProvider = ({ children }) => {
         }
         
     }
-    const setoddinChoiceforMenu = (idLeague, valueToggle) => {
-        let leagues = choiceForMenu.leagues
-        if(idLeague) {
-            const newLeague = {
-                ...leagues[idLeague],
-                toggle: valueToggle
+    const setoddinChoiceforMenu = (idFix, odds, leagueId) => {
+        if(idFix) {
+            const fix = LiveOrLeague()
+            const newFix = {
+                ...fix[idFix],
+                odds
             }
-            leagues[idLeague] = newLeague
-            setChoice({
-                ...choiceForMenu,
-                leagues
-            })
+            const selectleagueorlive = choiceForMenu.live ? {live:choiceForMenu.live} : {leagues:choiceForMenu.leagues}
+            const replace = {
+                    ...choiceForMenu,
+                }
+                if(choiceForMenu.leagues) {
+                    replace.leagues[leagueId] = newFix
+                }if(choiceForMenu.live) {
+                    replace.live.fix[idFix] = newFix
+                }
+            // setChoice(replace)
         }
         
     }

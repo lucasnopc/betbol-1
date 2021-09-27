@@ -14,7 +14,7 @@ export default function Fix(props) {
                 {fix.score.fulltime.home && fix.score.fulltime.home} <br />
                 {fix.score.fulltime.away && fix.score.fulltime.away}
             </div>
-            <div className="col-start-7 col-span-6"><Odd bets={props.bets} fixId={fix.fixture.id} /></div>
+            <div className="col-start-7 col-span-6"><Odd leagueId={props.leagueId} chave={props.chave} bets={props.bets} fixId={fix.fixture.id} /></div>
         </div>
     </>
 }
