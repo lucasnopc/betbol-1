@@ -29,15 +29,14 @@ export default function Odd(props) {
     // }, [choiceForMenu])
 
     const bets = props.bets
-    let values = odd.odds ? odd.odds.response[0].bookmakers[0].bets[0].values: []
-    console.log('values ', values)
+    let values = odd.odds ? odd.odds.response[0].bookmakers[0].bets[bets].values: []
     return <>
 
         <div className="float-right">
             {values &&
                 values.map((val, i) => {
-                    console.log(val)
-                    return <Button key={i} oddNumber={val.odd} />
+                    console.log('val ', val)
+                    return <Button key={i} oddNumber={val.odd} val={val} />
                 })
             }
             {!values &&
