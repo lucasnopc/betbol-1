@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useCallback, useContext, useState } from 'react'
 
 const storeInitial = {
     choiceForMenu: `live`
@@ -50,7 +50,7 @@ export const StoreProvider = ({ children }) => {
         }
         
     }
-    const setoddinChoiceforMenu = (idFix, odds, leagueId) => {
+    const setoddinChoiceforMenu = useCallback((idFix, odds, leagueId) => {
         if(idFix) {
             const fix = LiveOrLeague()
             const newFix = {
@@ -69,7 +69,7 @@ export const StoreProvider = ({ children }) => {
             // setChoice(replace)
         }
         
-    }
+    }, [choiceForMenu])
 
     const setChoiceForMenu = (code, leagues) => {
         const choice = {

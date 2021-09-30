@@ -9,7 +9,7 @@ import SelectOddsBets from './SelectOddsBets'
 import { useStore } from '../../context/store'
 
 export default function League(props) {
-    const { setFixToLeaguesInChoiceForMenu, setToggle, choiceForMenu } = useStore()
+    const { setFixToLeaguesInChoiceForMenu, setToggle } = useStore()
     const [bets, setBets] = useState(1)
     const [toggle, setToggleState] = useState(false)
 
@@ -72,7 +72,7 @@ export default function League(props) {
             <SelectOddsBets setBets={setBets} bets={bets} />
             <div className="p-2">
                 {response && response.length > 0 && response.map((res, i) => {
-                    return <Fix leagueId={leagueId} key={i} chave={i} fix={res} bets={bets} />
+                    return <Fix leagueId={leagueId} key={res.fixture.id} chave={i} fix={res} bets={bets} />
 
                 })}
             </div>

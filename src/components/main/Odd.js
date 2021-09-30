@@ -8,18 +8,30 @@ export default function Odd(props) {
     const id = props.fixId
     const { setoddinChoiceforMenu, choiceForMenu } = useStore()
     const [odd, setOdd] = useState([])
-
-    useEffect(() => {
-        const fetchOdds = async (id) => {
-            const data = await axios.get(`/api/betApi/odds/${id}`)
-            const getOdd = await data.data
-            if (getOdd && getOdd.odds.results > 0) {
-                setoddinChoiceforMenu(props.chave, getOdd, props.leagueId ? props.leagueId : props.chave)
-                setOdd(getOdd)
-            }
+    const odd2 = () => {
+        if(choiceForMenu.live) {
+            return choiceForMenu.live.fix
+        }else {
+            return choiceForMenu.leagues
         }
-        fetchOdds(id)
-    }, [])
+    }
+    useEffect(() => {
+        if(!odd2()[props.chave].odds) {
+
+            const fetchOdds = async (id) => {
+                const data = await axios.get(`/api/betApi/odds/${id}`)
+                const getOdd = await data.data
+                if (getOdd && getOdd.odds.results > 0) {
+                    setoddinChoiceforMenu(props.chave, getOdd, props.leagueId ? props.leagueId : props.chave)
+                    setOdd(getOdd)
+                }
+            }
+            fetchOdds(id)
+        }else {
+            setOdd(odd2().live.fix[props.chave].odds)
+        }
+        },[]
+    )
     // useEffect(() => {
     //     const liveOrLeague = choiceForMenu.live ? choiceForMenu.live.fix : choiceForMenu.leagues.leagues
     //     const leagueIdOrChave = props.leagueId ? props.leagueId : props.chave
@@ -29,14 +41,17 @@ export default function Odd(props) {
     // }, [choiceForMenu])
 
     const bets = props.bets
-    let values = odd.odds ? odd.odds.response[0].bookmakers[0].bets[bets].values: []
+    let values = []
+    if(odd.odds) {
+        let oddsBets = odd.odds ? odd.odds.response[0].bookmakers[0].bets[bets]: []
+        values = oddsBets.values ? oddsBets.values : []
+    }
     return <>
 
         <div className="float-right">
             {values &&
                 values.map((val, i) => {
-                    console.log('val ', val)
-                    return <Button key={i} oddNumber={val.odd} val={val} />
+                    return <Button key={i} odNumber={val.odd} val={val} />
                 })
             }
             {!values &&
