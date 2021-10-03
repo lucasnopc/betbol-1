@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { BiDownArrow, BiRightArrow } from 'react-icons/bi'
+import { BiDownArrow, BiExitFullscreen, BiRightArrow } from 'react-icons/bi'
 import { ImSpinner } from 'react-icons/im'
 import useSWR from 'swr'
 import compareAsc from 'date-fns/compareAsc'
@@ -72,7 +72,33 @@ export default function League(props) {
             <SelectOddsBets setBets={setBets} bets={bets} />
             <div className="p-2">
                 {response && response.length > 0 && response.map((res, i) => {
-                    return <Fix leagueId={leagueId} key={res.fixture.id} chave={i} fix={res} bets={bets} />
+                    const classFixHiddenOrNot = (res, bets) => {
+                        let classes = ``
+                        if(res.odds) {
+                            const bookmakersList = res.odds.odds.response[0].bookmakers
+                            const book10bet = bookmakersList.find((books) => {
+                                return books.id == 1
+                            })
+                            if(!book10bet) {
+                                // console.log(`book10bet não existe por isso este fix é hiddden`)
+                                classes = `hidden`
+                                return classes
+                            }
+                            const betChoice = book10bet.bets.find((betI) => {
+                                return betI.id == bets
+                            })
+                            if(!betChoice) {
+                                // console.log(`betChoice não existe por isso este fix é hiddden`)
+                                classes = `hidden`
+                                return classes
+                            }
+                            if(betChoice) {
+                                console.log(betChoice)
+                            }
+                        }
+                        return classes
+                    }
+                    return <div key={res.fixture.id} className={classFixHiddenOrNot(res, bets)}><Fix leagueId={leagueId} chave={i} fix={res} bets={bets} /></div>
 
                 })}
             </div>
@@ -85,10 +111,7 @@ export default function League(props) {
             {!props.league && `AO VIVO`}
 
         </h3>
-        {props.league && props.league.toggle &&
-            <ToggleContent />
-        }
-        {props.live &&
+        {props.league && props.league.toggle || props.live &&
             <ToggleContent />
         }
 

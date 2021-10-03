@@ -28,7 +28,7 @@ export default function Odd(props) {
             }
             fetchOdds(id)
         }else {
-            setOdd(odd2().live.fix[props.chave].odds)
+            setOdd(odd2()[props.chave].odds)
         }
         },[]
     )
@@ -43,19 +43,34 @@ export default function Odd(props) {
     const bets = props.bets
     let values = []
     if(odd.odds) {
-        let oddsBets = odd.odds ? odd.odds.response[0].bookmakers[0].bets[bets]: []
-        values = oddsBets.values ? oddsBets.values : []
+        let oddsBets2 = (odd, bets) => {
+           const betItem = odd.odds.response[0].bookmakers[0].bets.find((bet, i) => {
+               return bets ==  bet.id
+            })
+            if(betItem) {
+                return betItem
+            }else {
+                return []
+            }
+        }
+        values = oddsBets2(odd, bets).values ? oddsBets2(odd, bets).values : []
+    }
+    if(values.length > 3 ){
+        // console.log('values', values)
+    }
+    if(values.length == 0 ) {
+        return <span className="text-gray-500 float-right">Odds indisponíveis</span>
     }
     return <>
 
         <div className="float-right">
-            {values &&
+            {values.length <= 3 &&
                 values.map((val, i) => {
                     return <Button key={i} odNumber={val.odd} val={val} />
                 })
             }
-            {!values &&
-                <span className="text-gray-500">Odds indisponíveis para este jogo</span>
+            {values.length > 3  &&
+                <span className="text-gray-500">mais de 3</span>
             }
         </div>
     </>

@@ -64,7 +64,7 @@ export default function Home(props) {
       </Head>
 
       <Layout userString={props.userString}>
-        <div className="page grid grid-cols-12">
+        <div className="page grid grid-cols-12 bg-gray-100">
           <div className="col-span-full md:col-span-2 mt-3 mx-3">
             <ListMenu getLeague={getLeague} setLeague={setLeague} setTimeBet={setTimeBet} />
           </div>
