@@ -14,6 +14,7 @@ export default function League(props) {
     const [toggle, setToggleState] = useState(false)
 
     useEffect(() => {
+        console.log('set toogle')
         setToggle(props.idLeague, toggle)
     }, [toggle])
 

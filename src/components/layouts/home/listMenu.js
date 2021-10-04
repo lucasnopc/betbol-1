@@ -1,40 +1,24 @@
-import axios from 'axios'
-import useSWR from 'swr'
 import { useStore } from '../../../context/store'
-import { fetchAlive } from '../../../utills/fetchAlive'
+import getLeagues from '../../../utills/getLeagues'
+import Link from 'next/link'
 
 export default function ListMenu(props) {
-    const { setChoiceForMenu, choiceForMenu } = useStore()
-    const getLeagues = async (country) => {
-        if(country == `live`) {
-            const fetcherAlive = async () => {
-                const fetch = await fetchAlive()
-                setChoiceForMenu(`ALIVE`, fetch)   
-            }
-            fetcherAlive()
-    
-            return ``
-        }
-        const urlMenuSearchLeachesForCountry = `/api/menu/searchLeaguesForCountry?query=${country}`
-            const data = await axios.get(urlMenuSearchLeachesForCountry)
-            const leagues = await data.data
-            setChoiceForMenu(country, leagues)
-            return ``
-        }
+
     return <div className="bg-white shadow-md">
         <h1 className="block-title">DESTAQUES</h1>
         <ul>
-            <li onClick={() => { getLeagues(`live`) }}  className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
-                AO VIVO
+            <li className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
+            <Link href="/"> AO VIVO</Link>
             </li>
-            <li onClick={() => { getLeagues(`BR`) }} className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
-                BRASIL
+            <li className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
+                <Link href="/country/BR"> BRASIL</Link>
             </li>
-            <li onClick={() => { getLeagues(`world`) }}  className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
-                INTERNACIONAL
+            <li className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
+            <Link href="/country/world"> INTERNACIONAL</Link> 
             </li>
-            <li onClick={() => { getLeagues(`US`) }}  className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
-                AMERICANO
+            <li className="p-1 font-normal hover:bg-gray-200  cursor-pointer">
+            <Link href="/country/US"> AMERICANO</Link> 
+                
             </li>
             {/* <li  onClick={() => { ChangeLeagues() }}  className="p-1 font-normal bg-gray-100 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">OUTROS</li> */}
         </ul>

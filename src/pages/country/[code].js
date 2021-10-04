@@ -1,30 +1,35 @@
 import Head from 'next/head'
-import Layout from '../components/layouts/home/layout'
-import SoccerLive from '../components/bet/football/live'
-import NoteBets from '../components/bet/football/noteBets'
+import Layout from '../../components/layouts/home/layout'
+import NoteBets from '../../components/bet/football/noteBets'
 import { useEffect, useState } from 'react'
 import { getSession } from 'next-auth/client'
-import getUser from '../utills/getUser.js'
-import ListMenu from '../components/layouts/home/listMenu'
-import Main from '../components/main'
-import { useStore } from '../context/store'
-import { fetchAlive } from '../utills/fetchAlive'
+import getUser from '../../utills/getUser.js'
+import ListMenu from '../../components/layouts/home/listMenu'
+import Main from '../../components/main'
+import { useRouter } from 'next/router'
+import getLeagues from '../../utills/getLeagues'
+import { useStore } from '../../context/store'
+import axios from 'axios'
 
 export default function Home(props) {
 
   const [listBetState, setListBetState] = useState([])
-  const [getTimeBet, setTimeBet] = useState([])
   const [getValorFinal, setValorFinal] = useState(0)
   const [getLeague, setLeague] = useState({})
   const { setChoiceForMenu } = useStore()
 
-  useEffect(() => {
-    const fetcherAlive = async () => {
-        const fetch = await fetchAlive()
-        setChoiceForMenu(`ALIVE`, fetch)
+  const router = useRouter()
+  const { code } = router.query
+  
+  useEffect(()=>{
+    const menu = async (region) => {
+        const urlMenuSearchLeachesForCountry = `/api/menu/searchLeaguesForCountry?query=${region}`
+        const data = await axios.get(urlMenuSearchLeachesForCountry)
+        const leagues = await data.data
+        setChoiceForMenu(region, leagues)
     }
-    fetcherAlive()
-}, [])
+    menu( code )
+  },[code])
 
   return (
     <>
@@ -36,10 +41,9 @@ export default function Home(props) {
       <Layout userString={props.userString}>
         <div className="page grid grid-cols-12 bg-gray-100">
           <div className="col-span-full md:col-span-2 mt-3 mx-3">
-            <ListMenu getLeague={getLeague} setLeague={setLeague} setTimeBet={setTimeBet} />
+            <ListMenu getLeague={getLeague} setLeague={setLeague} />
           </div>
           <div className="mx-3 mt-3 md:col-span-7 col-span-full">
-            {/* <LiveUpdate /> */}
             <Main />
           </div>
           <div className="mx-3 md:col-span-3 col-span-full">
