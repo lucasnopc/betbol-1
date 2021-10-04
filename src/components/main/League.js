@@ -24,45 +24,45 @@ export default function League(props) {
     }
 
     const ToggleContent = () => {
+        console.log('cheguei aqui')
         const leagueId = props.league ? props.league.league.id : null
         let response = {}
         if (props.league) {
-            if (props.league.toggle) {
-                const seasonYear = props.league.seasons[0].year
-                const urlFixToLeague = `/api/betApi/fix-to-league?league=${leagueId}&season=${seasonYear}`
-                const fetcher = async () => {
-                    const data = await axios.get(urlFixToLeague)
-                    const fix = await data.data
-                    const res_filter = fix.res_fixture.response.filter((res) => {
-                        const date = new Date(res.fixture.date)
-                        const today = new Date()
-                        const fiveDaysInFuture = new Date()
-                        fiveDaysInFuture.setDate(fiveDaysInFuture.getDate() + 5)
-                        const compareifDateIsFuture = compareAsc(date, new Date())
-                        const compareIfDateIsFiveDaysInFuture = compareAsc(date, fiveDaysInFuture)
-                        if (compareifDateIsFuture >= 0 && compareIfDateIsFiveDaysInFuture <= 0) {
-                            return true
-                        } else {
-                            return false
+            const seasonYear = props.league.seasons[0].year
+            const urlFixToLeague = `/api/betApi/fix-to-league?league=${leagueId}&season=${seasonYear}`
+            const fetcher = async () => {
+                const data = await axios.get(urlFixToLeague)
+                const fix = await data.data
+                const res_filter = fix.res_fixture.response.filter((res) => {
+                    const date = new Date(res.fixture.date)
+                    const today = new Date()
+                    const fiveDaysInFuture = new Date()
+                    fiveDaysInFuture.setDate(fiveDaysInFuture.getDate() + 5)
+                    const compareifDateIsFuture = compareAsc(date, new Date())
+                    const compareIfDateIsFiveDaysInFuture = compareAsc(date, fiveDaysInFuture)
+                    if (compareifDateIsFuture >= 0 && compareIfDateIsFiveDaysInFuture <= 0) {
+                        return true
+                    } else {
+                        return false
 
-                        }
-                    })
-                    if (res_filter.length > 0) setFixToLeaguesInChoiceForMenu(res_filter, props.idLeague)
-                    return res_filter
-                }
-                if (props.league.fix) {
-                    response = props.league.fix
-                } else {
-                    const { data, error } = useSWR(urlFixToLeague, fetcher)
-                    if (error) console.log(error)
-                    if (!data) {
-                        return <>
-                            <ImSpinner />
-                        </>
                     }
-                    response = data
-                }
+                })
+                if (res_filter.length > 0) setFixToLeaguesInChoiceForMenu(res_filter, props.idLeague)
+                return res_filter
             }
+            if (props.league.fix) {
+                response = props.league.fix
+            } else {
+                const { data, error } = useSWR(urlFixToLeague, fetcher)
+                if (error) console.log(error)
+                if (!data) {
+                    return <>
+                        <ImSpinner />
+                    </>
+                }
+                response = data
+            }
+
         } else if (props.live) {
             response = props.live.fix
         }
@@ -75,12 +75,12 @@ export default function League(props) {
                 {response && response.length > 0 && response.map((res, i) => {
                     const classFixHiddenOrNot = (res, bets) => {
                         let classes = ``
-                        if(res.odds) {
+                        if (res.odds) {
                             const bookmakersList = res.odds.odds.response[0].bookmakers
                             const book10bet = bookmakersList.find((books) => {
                                 return books.id == 1
                             })
-                            if(!book10bet) {
+                            if (!book10bet) {
                                 // console.log(`book10bet não existe por isso este fix é hiddden`)
                                 classes = `hidden`
                                 return classes
@@ -88,12 +88,12 @@ export default function League(props) {
                             const betChoice = book10bet.bets.find((betI) => {
                                 return betI.id == bets
                             })
-                            if(!betChoice) {
+                            if (!betChoice) {
                                 // console.log(`betChoice não existe por isso este fix é hiddden`)
                                 classes = `hidden`
                                 return classes
                             }
-                            if(betChoice) {
+                            if (betChoice) {
                                 console.log(betChoice)
                             }
                         }
@@ -112,7 +112,10 @@ export default function League(props) {
             {!props.league && `AO VIVO`}
 
         </h3>
-        {props.league && props.league.toggle || props.live &&
+        {props.league && props.league.toggle &&
+            <ToggleContent />
+        }
+        {props.live &&
             <ToggleContent />
         }
 
