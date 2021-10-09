@@ -5,7 +5,7 @@ html, body, #__next {
 }
 * {
     font-family: 'Mitr', sans-serif;
-    @apply font-thin select-none;
+    @apply font-light select-none;
 }
 
 .btn {
@@ -19,4 +19,7 @@ html, body, #__next {
 }
 .odds-btn span{
     @apply font-normal text-blue-600 align-middle block
+}
+.page-title {
+    @apply p-2 font-medium
 }

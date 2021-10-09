@@ -69,13 +69,17 @@ export default function League(props) {
             return <div className="p-2 bg-yellow-400"><h3 className="text-gray-700 font-normal">Esta Liga não tem jogos para os pŕoximos dias!</h3></div>
         }
         return <>
-            <SelectOddsBets setBets={setBets} bets={bets} />
-            <div className="p-2">
-                {response && response.length > 0 && response.map((res, i) => {
-                    return <Fix leagueId={leagueId} key={res.fixture.id} chave={i} fix={res} bets={bets} />
+                    {props.league.toggle &&
+                        <SelectOddsBets setBets={setBets} bets={bets} />
+                    }
+            {response && response.length > 0 && response.map((res, i) => {
+                return <>
+                    <div className="p-2">
+                        <Fix leagueId={leagueId} key={res.fixture.id} chave={i} fix={res} bets={bets} />
 
-                })}
-            </div>
+                    </div>
+                </>
+            })}
         </>
     }
     return <div className="shadow-sm hover:shadow-md p-2 mb-2 bg-white">
@@ -85,7 +89,7 @@ export default function League(props) {
             {!props.league && `AO VIVO`}
 
         </h3>
-        {props.league && props.league.toggle &&
+        {props.league &&
             <ToggleContent />
         }
         {props.live &&

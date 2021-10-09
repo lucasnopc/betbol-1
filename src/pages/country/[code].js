@@ -1,0 +1,69 @@
+import Head from 'next/head'
+import Layout from '../../components/layouts/home/layout'
+import NoteBets from '../../components/bet/football/noteBets'
+import { useEffect, useState } from 'react'
+import ListMenu from '../../components/layouts/home/listMenu'
+import serverSidePropsClient from '../../utills/serverSitePropsClient'
+import { useRouter } from 'next/router'
+import axios from 'axios'
+import Image from 'next/image'
+import Link from 'next/link'
+
+export default function CodePage(props) {
+
+  const [listBetState, setListBetState] = useState([])
+  const [getValorFinal, setValorFinal] = useState(0)
+  const [getLeague, setLeague] = useState({})
+  const router = useRouter()
+  const [leagues, setLeagues] = useState([])
+  const { code, name } = router.query
+
+
+  useEffect(() => {
+    const getLeagueForCountry = async (country) => {
+      const urlMenuSearchLeachesForCountry = `/api/menu/searchLeaguesForCountry?query=${country}`
+      const data = await axios.get(urlMenuSearchLeachesForCountry)
+      const leaguesData = await data.data
+      setLeagues(leaguesData.leagues)
+    }
+    getLeagueForCountry(code)
+  }, [code])
+  return (
+    <>
+      <Head>
+        <title>Betbol - Futebol</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <Layout userString={props.userString}>
+        <div className="page grid grid-cols-12">
+          <div className="col-span-full md:col-span-2 mt-3 mx-3">
+            <ListMenu getLeague={getLeague} setLeague={setLeague} />
+          </div>
+          <div className="mx-3 mt-3 md:col-span-7 col-span-full">
+            <h2 className="page-title">{name}</h2>
+            {leagues.map((lea) => {
+              return <div key={lea.league.id} className="flex align-middle shadow-sm hover:shadow-md p-2 mb-2 bg-white cursor-pointer uppercase font-light text-gray-600 hover:text-gray-800">
+                <Link href={{
+                  pathname: `/league/${lea.league.id}`,
+                  query: { year: lea.seasons[0].year, name: lea.league.name },
+                }}>
+                  <a><Image src={lea.league.logo} width="30" height="30" className="p-1" />
+                    <span className="px-4">{lea.league.name}</span>
+                  </a>
+                </Link>
+              </div>
+            })}
+          </div>
+          <div className="mx-3 md:col-span-3 col-span-full">
+            <NoteBets userString={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
+          </div>
+        </div>
+      </Layout>
+    </>
+  )
+}
+export async function getServerSideProps(context) {
+  const ret = serverSidePropsClient(context)
+  return ret
+}

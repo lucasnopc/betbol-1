@@ -2,53 +2,44 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import useSWR from "swr"
 import { useStore } from "../../context/store"
+import useFetch from "../../utills/useFetch"
 import Button from "./Button"
 
 export default function Odd(props) {
+    let odd = {}
     const id = props.fixId
-    const { setoddinChoiceforMenu, choiceForMenu } = useStore()
-    const [odd, setOdd] = useState([])
-    const odd2 = () => {
-        if(choiceForMenu.live) {
-            return choiceForMenu.live.fix
-        }else {
-            return choiceForMenu.leagues
-        }
-    }
-    useEffect(() => {
-        if(!odd2()[props.chave].odds) {
-
-            const fetchOdds = async (id) => {
-                const data = await axios.get(`/api/betApi/odds/${id}`)
-                const getOdd = await data.data
-                if (getOdd && getOdd.odds.results > 0) {
-                    setoddinChoiceforMenu(props.chave, getOdd, props.leagueId ? props.leagueId : props.chave)
-                    setOdd(getOdd)
-                }
-            }
-            fetchOdds(id)
-        }else {
-            setOdd(odd2().live.fix[props.chave].odds)
-        }
-        },[]
-    )
-    // useEffect(() => {
-    //     const liveOrLeague = choiceForMenu.live ? choiceForMenu.live.fix : choiceForMenu.leagues.leagues
-    //     const leagueIdOrChave = props.leagueId ? props.leagueId : props.chave
-    //     console.log('cheguei aqui', liveOrLeague[leagueIdOrChave])
-    //     const odds = liveOrLeague[leagueIdOrChave].odds ? liveOrLeague[leagueIdOrChave].odds.odds.response[0].bookmakers[0].bets[0].values : null
-    //     setOdd(odds)
-    // }, [choiceForMenu])
-
+    // const [odd, setOdd] = useState([])
+    //         const fetchOdds = async (id) => {
+    //             const data = await axios.get(`/api/betApi/odds/${id}`)
+    //             const getOdd = await data.data
+    //             if (getOdd && getOdd.odds.results > 0) {
+    //                 setOdd(getOdd)
+    //             }
+    //         }
+    //         const { data, error } = useSWR(`/api/betApi/odds/${id}`, fetchOdds(id), )
+    //         if(error) console.log('erro ao buscar odds ', error)
+    //         if(!data) {
+    //             return <>Carregando...</>
+    //         }
+    const { data, error } = useFetch(`/api/betApi/odds/${id}`)
+    if (error) console.log(error)
+    if (!data) <p> Carregando...</p>
+    if (data) odd = data
     const bets = props.bets
     let values = []
-    if(odd.odds) {
-        let oddsBets = odd.odds ? odd.odds.response[0].bookmakers[0].bets[bets]: []
-        values = oddsBets.values ? oddsBets.values : []
+    if (odd.hasOwnProperty(`odds`)) {
+        if (odd.odds.results > 0) {
+
+            let oddsBets = odd.odds ? odd.odds.response[0].bookmakers[0].bets[bets] : []
+            values = oddsBets.values ? oddsBets.values : []
+        }
     }
     return <>
 
         <div className="float-right">
+            {!data &&
+                <>Carregando...</>
+            }
             {values &&
                 values.map((val, i) => {
                     return <Button key={i} odNumber={val.odd} val={val} />

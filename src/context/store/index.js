@@ -18,6 +18,25 @@ export const StoreProvider = ({ children }) => {
         }
     }
 
+    const setChoiceForMenu = (code, leagues) => {
+        const choice = {
+            choiceForMenu: code
+        }
+        
+        if(leagues.leagues) {
+            const leaguesFiltered = leagues.leagues.filter((league) => {
+                return league.seasons[0].coverage.odds == true
+            })
+            choice.leagues = leaguesFiltered
+        }if(leagues.soccer) {
+            choice.live = {
+               fix: leagues.soccer.response,
+               seasons: {}
+            }
+        }
+        setChoice(choice)
+    }
+
     const setFixToLeaguesInChoiceForMenu = (fix, i) => {
         const leagues = choiceForMenu.leagues
         const newLeague = {
@@ -37,7 +56,7 @@ export const StoreProvider = ({ children }) => {
 
     const setToggle = (idLeague, valueToggle) => {
         let leagues = choiceForMenu.leagues
-        if(idLeague) {
+        if(idLeague || idLeague == 0) {
             const newLeague = {
                 ...leagues[idLeague],
                 toggle: valueToggle
@@ -70,25 +89,6 @@ export const StoreProvider = ({ children }) => {
         }
         
     }, [choiceForMenu])
-
-    const setChoiceForMenu = (code, leagues) => {
-        const choice = {
-            choiceForMenu: code
-        }
-        
-        if(leagues.leagues) {
-            const leaguesFiltered = leagues.leagues.filter((league) => {
-                return league.seasons[0].coverage.odds == true
-            })
-            choice.leagues = leaguesFiltered
-        }if(leagues.soccer) {
-            choice.live = {
-               fix: leagues.soccer.response,
-               seasons: {}
-            }
-        }
-        setChoice(choice)
-    }
 
     const addListBetState = (value) => {
         const newValue = {
