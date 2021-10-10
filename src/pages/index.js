@@ -7,7 +7,6 @@ import serverSidePropsClient from '../utills/serverSitePropsClient'
 import { useStore } from '../context/store'
 import { fetchAlive } from '../utills/fetchAlive'
 import SelectOddsBets from '../components/main/SelectOddsBets'
-import Link from 'next/link'
 import Fix from '../components/main/Fix'
 
 export default function Home(props) {
@@ -17,8 +16,8 @@ export default function Home(props) {
   const [getLeague, setLeague] = useState({})
   const [live, setLive] = useState([])
   const [bets, setBets] = useState(2)
+  const { setFixState, fix } = useStore()
 
-  const { setChoiceForMenu } = useStore()
   useEffect(() => {
     const fetcherAlive = async () => {
       const fetch = await fetchAlive()
@@ -26,6 +25,9 @@ export default function Home(props) {
     }
     fetcherAlive()
   }, [])
+  useEffect(()=>{
+    setFixState(live)
+  },[live])
   return (
     <>
       <Head>
@@ -42,11 +44,7 @@ export default function Home(props) {
             <h2 className="page-title">Ao vivo</h2>
             <SelectOddsBets setBets={setBets} bets={bets} />
             {live && live.map(f => {
-              return <Link key={f.fixture.id} href="/">
-                <a>
-                  <Fix fix={f} bets={bets} />
-                </a>
-              </Link>
+              return <Fix key={f.fixture.id} fix={f} bets={bets} />
             })}
           </div>
           <div className="mx-3 md:col-span-3 col-span-full">

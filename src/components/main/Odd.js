@@ -1,9 +1,11 @@
 import useFetch from "../../utills/useFetch"
 import Button from "./Button"
+import { ImEyeBlocked } from 'react-icons/im'
 
 export default function Odd(props) {
+
     let odd = {}
-    const id = props.fixId
+    const id = props.fixId.fixture.id
 
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     if (error) console.log(error)
@@ -14,17 +16,19 @@ export default function Odd(props) {
     if (odd.hasOwnProperty(`odds`)) {
         if (odd.odds.results > 0) {
 
-            const oddsBets = (bets) => {
-                const book =  odd.odds.response[0].bookmakers.find((book) => {
-                    return book.id == 1
-                })
-                const bet = book ? book.bets : null
+            const book =  odd.odds.response[0].bookmakers.find((book) => {
+                return book.id == 1
+            })
+            const bet = book ? book.bets : null
+
+
+            const oddsBets = (bets, bet) => {
                 const values = bet ? bet.find(val => {
                     return val.id == bets 
                 }) : null
-                return values
+                return {...values, bets}
             }
-            values = oddsBets(bets) ? oddsBets(bets).values : []
+            values = oddsBets(bets, bet) ? oddsBets(bets, bet).values : []
         }
     }
     return <>
@@ -35,11 +39,13 @@ export default function Odd(props) {
             }
             {values &&
                 values.map((val, i) => {
-                    return <Button key={i} odNumber={val.odd} val={val} />
+                    return <Button key={i} val={val} fixId={props.fixId} />
                 })
             }
-            {!values &&
-                <span className="text-gray-500">Odds indisponíveis para este jogo</span>
+            {!values || values.length == 0 &&
+                <span className="text-gray-500 text-xl bg-white shadow-sm block mt-1 p-2 cursor-not-allowed">
+                    <ImEyeBlocked  />
+                </span>
             }
         </div>
     </>
