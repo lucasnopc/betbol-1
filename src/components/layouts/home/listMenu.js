@@ -8,13 +8,22 @@ export default function ListMenu(props) {
     const [countries, setCountries] = useState([])
     useEffect(() => {
         const getCountries = async () => {
-            const urlGetCountries = `/api/getCountryes`
-            const data = await axios.get(urlGetCountries)
-            const countriesData = await data.data
-            setCountries(countriesData.countries)
+            const countriesLocal = JSON.parse(localStorage.getItem('betbol@countries'))
+            if(countriesLocal) {
+                setCountries(countriesLocal)
+            }else {
+                console.log('cheguei aqui')
+                const urlGetCountries = `/api/getCountryes`
+                const data = await axios.get(urlGetCountries)
+                const countriesData = await data.data
+                setCountries(countriesData.countries)
+            }
         }
         getCountries()
     }, [])
+    useEffect(() => {
+        localStorage.setItem('betbol@countries', JSON.stringify(countries))
+    }, [countries])
     return <div className="bg-white shadow-md">
         <h1 className="block-title">DESTAQUES</h1>
         <ul className="max-h-80 overflow-auto">

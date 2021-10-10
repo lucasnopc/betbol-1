@@ -14,7 +14,7 @@ import useFetch from '../../utills/useFetch'
 
 export default function LeaguePage(props) {
 
-    const [bets, setBets] = useState(2)
+    const [bets, setBets] = useState(1)
     const [listBetState, setListBetState] = useState([])
     const [getValorFinal, setValorFinal] = useState(0)
     const [getLeague, setLeague] = useState({})

@@ -1,26 +1,10 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import useSWR from "swr"
-import { useStore } from "../../context/store"
 import useFetch from "../../utills/useFetch"
 import Button from "./Button"
 
 export default function Odd(props) {
     let odd = {}
     const id = props.fixId
-    // const [odd, setOdd] = useState([])
-    //         const fetchOdds = async (id) => {
-    //             const data = await axios.get(`/api/betApi/odds/${id}`)
-    //             const getOdd = await data.data
-    //             if (getOdd && getOdd.odds.results > 0) {
-    //                 setOdd(getOdd)
-    //             }
-    //         }
-    //         const { data, error } = useSWR(`/api/betApi/odds/${id}`, fetchOdds(id), )
-    //         if(error) console.log('erro ao buscar odds ', error)
-    //         if(!data) {
-    //             return <>Carregando...</>
-    //         }
+
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     if (error) console.log(error)
     if (!data) <p> Carregando...</p>
@@ -30,8 +14,17 @@ export default function Odd(props) {
     if (odd.hasOwnProperty(`odds`)) {
         if (odd.odds.results > 0) {
 
-            let oddsBets = odd.odds ? odd.odds.response[0].bookmakers[0].bets[bets] : []
-            values = oddsBets.values ? oddsBets.values : []
+            const oddsBets = (bets) => {
+                const book =  odd.odds.response[0].bookmakers.find((book) => {
+                    return book.id == 1
+                })
+                const bet = book ? book.bets : null
+                const values = bet ? bet.find(val => {
+                    return val.id == bets 
+                }) : null
+                return values
+            }
+            values = oddsBets(bets) ? oddsBets(bets).values : []
         }
     }
     return <>
