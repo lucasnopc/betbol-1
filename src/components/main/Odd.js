@@ -32,7 +32,6 @@ export default function Odd(props) {
         }
     }
     return <>
-
         <div className="float-right">
             {!data &&
                 <>Carregando...</>
@@ -43,7 +42,7 @@ export default function Odd(props) {
                 })
             }
             {!values || values.length == 0 &&
-                <span className="text-gray-500 text-xl bg-white shadow-sm block mt-1 p-2 cursor-not-allowed">
+                <span className="text-gray-500 text-xl opacity-25 bg-white shadow-sm block mt-1 p-2 cursor-not-allowed">
                     <ImEyeBlocked  />
                 </span>
             }

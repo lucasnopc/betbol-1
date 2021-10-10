@@ -75,7 +75,17 @@ export default function Header(props) {
     }
 
     return <>
-        <header className="bg-white border-b-2 border-gray-200 h-20 flex items-center justify-between">
+    {session && <>
+        <div id="logado" className="py-1 text-sm bg-gray-600 border-b text-gray-200 shadow-md flex justify-between px-5">
+            <span className="font-normal hidden md:inline-block">{user ? user.email: ""}</span>
+            <span>{datetoday}</span>
+            <div id="points" className="inline-block h-full items-center">
+                <span className="bgicon-coin"></span>
+                <span className="ml-2 font-normal">R$ {user ? user.points.toFixed(2) : `0.00`}</span>
+            </div>
+        </div>
+        </>}
+        <header className="bg-white border-b border-gray-200 shadow-2xl h-20 flex items-center justify-between">
             <div id="logo" className="mt-1 ml-10">
                 <Link href="/">
                     <a>
@@ -91,15 +101,6 @@ export default function Header(props) {
             </div>
 
         </header>
-        {session && <>
-        <div id="logado" className="py-1 text-sm bg-yellow-200 border-b text-yellow-600 border-yellow-400 flex justify-between px-5">
-            <span className="font-normal hidden md:inline-block">{user ? user.email: ""}</span>
-            <span>{datetoday}</span>
-            <div id="points" className="inline-block h-full items-center">
-                <span className="bgicon-coin"></span>
-                <span className="ml-2 font-normal">R$ {user ? user.points.toFixed(2) : `0.00`}</span>
-            </div>
-        </div>
-        </>}
+        
     </>
 }
