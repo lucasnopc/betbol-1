@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { BiDownArrow, BiRightArrow } from 'react-icons/bi'
+import { BiDownArrow, BiExitFullscreen, BiRightArrow } from 'react-icons/bi'
 import { ImSpinner } from 'react-icons/im'
 import useSWR from 'swr'
 import compareAsc from 'date-fns/compareAsc'
@@ -14,6 +14,7 @@ export default function League(props) {
     const [toggle, setToggleState] = useState(false)
 
     useEffect(() => {
+        console.log('set toogle')
         setToggle(props.idLeague, toggle)
     }, [toggle])
 
@@ -23,45 +24,45 @@ export default function League(props) {
     }
 
     const ToggleContent = () => {
+        console.log('cheguei aqui')
         const leagueId = props.league ? props.league.league.id : null
         let response = {}
         if (props.league) {
-            if (props.league.toggle) {
-                const seasonYear = props.league.seasons[0].year
-                const urlFixToLeague = `/api/betApi/fix-to-league?league=${leagueId}&season=${seasonYear}`
-                const fetcher = async () => {
-                    const data = await axios.get(urlFixToLeague)
-                    const fix = await data.data
-                    const res_filter = fix.res_fixture.response.filter((res) => {
-                        const date = new Date(res.fixture.date)
-                        const today = new Date()
-                        const fiveDaysInFuture = new Date()
-                        fiveDaysInFuture.setDate(fiveDaysInFuture.getDate() + 5)
-                        const compareifDateIsFuture = compareAsc(date, new Date())
-                        const compareIfDateIsFiveDaysInFuture = compareAsc(date, fiveDaysInFuture)
-                        if (compareifDateIsFuture >= 0 && compareIfDateIsFiveDaysInFuture <= 0) {
-                            return true
-                        } else {
-                            return false
+            const seasonYear = props.league.seasons[0].year
+            const urlFixToLeague = `/api/betApi/fix-to-league?league=${leagueId}&season=${seasonYear}`
+            const fetcher = async () => {
+                const data = await axios.get(urlFixToLeague)
+                const fix = await data.data
+                const res_filter = fix.res_fixture.response.filter((res) => {
+                    const date = new Date(res.fixture.date)
+                    const today = new Date()
+                    const fiveDaysInFuture = new Date()
+                    fiveDaysInFuture.setDate(fiveDaysInFuture.getDate() + 5)
+                    const compareifDateIsFuture = compareAsc(date, new Date())
+                    const compareIfDateIsFiveDaysInFuture = compareAsc(date, fiveDaysInFuture)
+                    if (compareifDateIsFuture >= 0 && compareIfDateIsFiveDaysInFuture <= 0) {
+                        return true
+                    } else {
+                        return false
 
-                        }
-                    })
-                    if (res_filter.length > 0) setFixToLeaguesInChoiceForMenu(res_filter, props.idLeague)
-                    return res_filter
-                }
-                if (props.league.fix) {
-                    response = props.league.fix
-                } else {
-                    const { data, error } = useSWR(urlFixToLeague, fetcher)
-                    if (error) console.log(error)
-                    if (!data) {
-                        return <>
-                            <ImSpinner />
-                        </>
                     }
-                    response = data
-                }
+                })
+                if (res_filter.length > 0) setFixToLeaguesInChoiceForMenu(res_filter, props.idLeague)
+                return res_filter
             }
+            if (props.league.fix) {
+                response = props.league.fix
+            } else {
+                const { data, error } = useSWR(urlFixToLeague, fetcher)
+                if (error) console.log(error)
+                if (!data) {
+                    return <>
+                        <ImSpinner />
+                    </>
+                }
+                response = data
+            }
+
         } else if (props.live) {
             response = props.live.fix
         }

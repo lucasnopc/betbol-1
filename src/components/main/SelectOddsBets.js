@@ -6,7 +6,7 @@ export default function SelectOddsBets(props) {
                 props.setBets(change.target.value)
             }}>
                 {oddBets.map((bet, i) => {
-                    return <option className="text-gray-500 uppercase text-normal" key={i} value={bet.id}>{bet.name}</option>
+                    return <option className="text-gray-500 uppercase text-normal" key={bet.id} value={bet.id}>{bet.name}</option>
                 })}
             </select>
         </div>
