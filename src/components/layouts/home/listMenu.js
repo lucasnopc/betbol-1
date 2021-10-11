@@ -9,7 +9,7 @@ export default function ListMenu(props) {
     useEffect(() => {
         const getCountries = async () => {
             const countriesLocal = JSON.parse(localStorage.getItem('betbol@countries'))
-            if(countriesLocal.lengthv > 0) {
+            if(countriesLocal.length > 0) {
                 setCountries(countriesLocal)
             }else {
                 const urlGetCountries = `/api/getCountryes`
