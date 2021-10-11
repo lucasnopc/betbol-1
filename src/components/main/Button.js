@@ -13,28 +13,9 @@ export default function Button(props) {
                 return n.fix.fixture.id == props.fixId.fixture.id
             })
             if(existequalFix.length > 0) {
-                console.log(`existe igual`)
             }else {
                 setGoBetsInNote(val, fix)
             }
-            // idsFixesNote.map(n => {
-            //     if (n.fix.fixture.id != props.fixId.fixture.id) {
-            //         console.log(n.fix.fixture.id != props.fixId.fixture.id, n.fix.fixture.id, props.fixId.fixture.id)
-            //         setGoBetsInNote(val, fix)
-            //     }
-            // })
-
-
-            // for (let n of note) {
-            //     console.log(n.fix.fixture.id, props.fixId.fixture.id)
-            //     if (n.fix.fixture.id != props.fixId.fixture.id) {
-            //         console.log('não existe aposta nesse jogo, apostando...')
-            //         setGoBetsInNote(val, fix)
-            //     } else {
-            //         console.log('já existe aposta nesse jogo, não pode ser feita a aposta')
-            //         return 
-            //     }
-            // }
         } else {
             setGoBetsInNote(val, fix)
         }
