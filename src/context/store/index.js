@@ -9,15 +9,18 @@ export const StoreProvider = ({ children }) => {
     const [fix, setFix] = useState([])
 
     const setGoBetsInNote = (bet, fix) => {
+        console.log('adicionando note')
         const newNote = {...bet, fix}
-        console.log('new note', newNote)
-        // const existOddFix = note.map(n => {
-        //     if(fix.fixture.id == n.fix.fixture.id) {
-        //         console.log('mesmo jogo')
-        //     }
-        // })
         setNote([...note, newNote])
     }
+    const removeBetsInNote = (i) => {
+        const newNote = note
+        newNote.splice(i, 1)
+        console.log(newNote, note)
+        
+        // setNote([...note, newNote])
+    }
+
     const setFixState = (fix) => {
         setFix(fix)
     }
@@ -26,6 +29,7 @@ export const StoreProvider = ({ children }) => {
         note,
         fix,
         setGoBetsInNote,
+        removeBetsInNote,
         setFixState
     }
 

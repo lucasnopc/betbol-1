@@ -7,17 +7,35 @@ export default function Button(props) {
     const { setGoBetsInNote, note } = useStore()
 
     const betGo = (val, fix) => {
+        
         if (note.length > 0) {
-            for (let n of note) {
-                console.log(n)
-                if (n.fix.fixture.id != props.fixId.fixture.id) {
-                    console.log('não existe aposta nesse jogo, apostando...')
-                    setGoBetsInNote(val, fix)
-                } else {
-                    console.log('já existe aposta nesse jogo, não pode ser feita a aposta')
-                }
+            const existequalFix = note.filter(n => {
+                return n.fix.fixture.id == props.fixId.fixture.id
+            })
+            if(existequalFix.length > 0) {
+                console.log(`existe igual`)
+            }else {
+                setGoBetsInNote(val, fix)
             }
-        }else {
+            // idsFixesNote.map(n => {
+            //     if (n.fix.fixture.id != props.fixId.fixture.id) {
+            //         console.log(n.fix.fixture.id != props.fixId.fixture.id, n.fix.fixture.id, props.fixId.fixture.id)
+            //         setGoBetsInNote(val, fix)
+            //     }
+            // })
+
+
+            // for (let n of note) {
+            //     console.log(n.fix.fixture.id, props.fixId.fixture.id)
+            //     if (n.fix.fixture.id != props.fixId.fixture.id) {
+            //         console.log('não existe aposta nesse jogo, apostando...')
+            //         setGoBetsInNote(val, fix)
+            //     } else {
+            //         console.log('já existe aposta nesse jogo, não pode ser feita a aposta')
+            //         return 
+            //     }
+            // }
+        } else {
             setGoBetsInNote(val, fix)
         }
 

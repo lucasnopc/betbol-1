@@ -9,19 +9,9 @@ import { useStore } from '../../../context/store'
 import { oddBets } from '../../../utills/oddBets'
 
 export default function NoteBets(props) {
-    const { note, fix } = useStore()
+    const { note, removeBetsInNote } = useStore()
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
 
-    useEffect(() => {
-        if (note.length > 0) {
-            // note.map((noteBet, i) => {
-            //     const iFix = fix.filter(f => {
-            //         return f.fixture.id == noteBet.id
-            //     })
-            //     note[i].fix = iFix[0]
-            // })
-        }
-    }, [note])
     let user = false
     if (props.userString) {
         user = JSON.parse(props.userString)
@@ -83,13 +73,6 @@ export default function NoteBets(props) {
         return <button onClick={() => { startBet(user.user) }} className="w-full bg-green-400 hover:bg-green-700 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal /></button>
     }
 
-    const DeleteBetInList = (indice) => {
-        const ListBetStateDuplicate = [...note]
-        ListBetStateDuplicate.splice(indice, 1)
-        props.setListBetState(ListBetStateDuplicate)
-        const valorfinal = CalcValorFinal(note) - note[indice].value
-        props.setValorFinal(valorfinal)
-    }
     const ValorFinal = () => {
         if (props.getValorFinal == 0) return ""
         return props.getValorFinal
@@ -141,7 +124,7 @@ export default function NoteBets(props) {
                     return <div key={indice} className="p-2 bg-gray-50 border-b border-yellow-500 flex flex-col">
                         <div className="inline-block">
                             <div className="flex flex-col">
-                                <span className="flex-1 inline-block text-sm font-normal" onClick={() => DeleteBetInList(indice)}>
+                                <span className="flex-1 inline-block text-sm font-normal" onClick={() => removeBetsInNote(indice)}>
                                     <CgRemove className="inline-block text-xs text-gray-500 hover:text-red-600 cursor-pointer mr-2" />
                                     {bet.fix.league.country}/{bet.fix.league.name}
                                 </span>
