@@ -4,10 +4,23 @@ import Translate from "../../utills/translate"
 
 export default function Button(props) {
     const [toggle, setToggle] = useState(false)
-    const { setGoBetsInNote } = useStore()
+    const { setGoBetsInNote, note } = useStore()
 
     const betGo = (val, fix) => {
-        setGoBetsInNote(val, fix)
+        if (note.length > 0) {
+            for (let n of note) {
+                console.log(n)
+                if (n.fix.fixture.id != props.fixId.fixture.id) {
+                    console.log('não existe aposta nesse jogo, apostando...')
+                    setGoBetsInNote(val, fix)
+                } else {
+                    console.log('já existe aposta nesse jogo, não pode ser feita a aposta')
+                }
+            }
+        }else {
+            setGoBetsInNote(val, fix)
+        }
+
     }
     return <div className="group inline-block relative">
         <button onClick={() => betGo(props.val, props.fixId)} className={`${toggle ? `bg-yellow-400 hover:bg-yellow-500` : `bg-gray-100 hover:bg-gray-200`}  p-3 m-1 font-normal text-gray-700 cursor-pointer rounded-sm active:outline-none focus:outline-none`}>

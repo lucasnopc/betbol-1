@@ -125,7 +125,6 @@ export default function NoteBets(props) {
             <div className={`${hiddenOrStaticToggle(toggleNoteBets)} w-full static max-h-60 md:max-h-full overflow-auto`}>
                 {EmptyListBetState()}
                 {note.map((bet, indice) => {
-                console.log(bet)
 
                     const choice = bet.odd.value
                     const oddNumber = bet.odd.odd
@@ -138,7 +137,6 @@ export default function NoteBets(props) {
                         }
                         return ""
                     }
-                    console.log(bet)
 
                     return <div key={indice} className="p-2 bg-gray-50 border-b border-yellow-500 flex flex-col">
                         <div className="inline-block">

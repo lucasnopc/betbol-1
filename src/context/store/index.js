@@ -10,6 +10,12 @@ export const StoreProvider = ({ children }) => {
 
     const setGoBetsInNote = (bet, fix) => {
         const newNote = {...bet, fix}
+        console.log('new note', newNote)
+        // const existOddFix = note.map(n => {
+        //     if(fix.fixture.id == n.fix.fixture.id) {
+        //         console.log('mesmo jogo')
+        //     }
+        // })
         setNote([...note, newNote])
     }
     const setFixState = (fix) => {
