@@ -1,16 +1,26 @@
 import { CgRemove } from 'react-icons/cg'
-import CalcValorFinal from '../../../utills/valofFinal'
 import { useSession } from "next-auth/client"
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { HtmlEmailSendBet, TextEmailSendBet } from '../../../utills/htmlEmailSendBet'
 import Translate from '../../../utills/translate'
 import { useStore } from '../../../context/store'
-import { oddBets } from '../../../utills/oddBets'
 
 export default function NoteBets(props) {
     const { note, removeBetsInNote } = useStore()
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
+    const [vf, setVf] = useState([])
+    
+    useEffect(()=>{
+
+    },[note])
+
+    const removedItem = (indice, vf, bet) => {
+        const newVf = [...vf]
+        newVf.splice(indice, 1)
+        setVf(newVf)
+        removeBetsInNote(indice)
+    }
 
     let user = false
     if (props.userString) {
@@ -70,24 +80,56 @@ export default function NoteBets(props) {
             </div>
         }
 
-        return <button onClick={() => { startBet(user.user) }} className="w-full bg-green-400 hover:bg-green-700 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal /></button>
+        return <button onClick={() => { startBet(user.user) }} className="w-full bg-green-500 hover:bg-green-400 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal vf={vf} /> </button>
     }
-
-    const ValorFinal = () => {
-        if (props.getValorFinal == 0) return ""
-        return props.getValorFinal
-    }
-    const changeInputValue = data => {
-        const id = data.target.alt
-        const ListBetStateDuplicate = [...note]
-
-        for (let i = 0; i < ListBetStateDuplicate.length; i++) {
-            if (ListBetStateDuplicate[i].game.id == id) {
-                ListBetStateDuplicate[i].value = data.target.value
+    const ValorFinal = (vf) => {
+        if(vf.vf) {
+            if(vf.vf.length > 0) {
+                const valorTotal = vf.vf.reduce((preVf, v) => preVf + Number(v.value), 0)
+                return valorTotal
             }
         }
-        props.setListBetState(ListBetStateDuplicate)
-        props.setValorFinal(CalcValorFinal(note))
+        return ``
+    }
+    const changeInputValue = (change) => {
+        const value = change.obj.target.value
+        const idBet = change.value
+        const newVf = [...vf]
+
+        const valorUnicoVF = { id: idBet, value: value }
+
+        if (newVf.length == 0) {
+            newVf.push(valorUnicoVF)
+            setVf(newVf)
+        } else {
+            const indiceIfValueExist = newVf.find((r, i) => {
+                if (r.id == idBet) {
+                    newVf[i] = valorUnicoVF
+                    setVf(newVf)
+                    return true
+                } else {
+                    return false
+                }
+            })
+            if (!indiceIfValueExist) {
+                newVf.push(valorUnicoVF)
+                setVf(newVf)
+            }
+        }
+
+
+        // newVf.map((i, indice) => {
+        //     if (id == i.id) {
+        //         console.log("ids iguais só altera", indice, { id, value })
+        //         newVf[indice] = { id, value }
+        //     } else {
+        //         newVf.push({ id, value })
+        //         console.log("ids diferentes", indice)
+        //     }
+        // })
+        // }
+
+
     }
     const hiddenOrStaticToggle = (toggleNoteBets) => {
         if (!toggleNoteBets) return `hidden md:block`
@@ -124,29 +166,30 @@ export default function NoteBets(props) {
                     return <div key={indice} className="p-2 bg-gray-50 border-b border-yellow-500 flex flex-col">
                         <div className="inline-block">
                             <div className="flex flex-col">
-                                <span className="flex-1 inline-block text-sm font-normal" onClick={() => removeBetsInNote(indice)}>
+                                <span className="flex-1 inline-block text-sm font-normal" onClick={() => {removedItem(indice, vf, bet)}}>
                                     <CgRemove className="inline-block text-xs text-gray-500 hover:text-red-600 cursor-pointer mr-2" />
-                                    {bet.fix.league.country}/{bet.fix.league.name}
+                                    <div className="inline-block">{bet.fix.teams['home'].name} <span className="font-normal">vs</span> {bet.fix.teams['away'].name}</div>
+
                                 </span>
+                                <span className="text-sm">{bet.fix.league.country}/{bet.fix.league.name}</span>
                                 <div className="flex-1">
                                     <span className="bg-yellow-200 mx-2 rounded-md font-normal text-yellow-600">{oddNumber}</span>
-                                     <span className=" text-gray-500 inline-block text-sm font-normal">{Translate(bet.odd)} - <span className="text-blue-800">{bet.value}</span> </span>
+                                    <span className=" text-gray-500 inline-block text-sm font-normal">{bet.odd} - <span className="text-blue-800">{Translate(bet.value)}</span> </span>
                                 </div>
                             </div>
-                            <div className="ml-5 text-xs">{bet.fix.teams['home'].name} <span className="text-lg font-normal">vs</span> {bet.fix.teams['away'].name}</div>
                         </div>
                         <div className="inline-block">
                             <div className="border border-gray-200">
-                                <form onChange={changeInputValue} className="bg-white inline-block w-full">
+                                <form className="bg-white inline-block w-full">
                                     <span className="text-sm text-green-800 pl-1 w-2/12">R$</span>
-                                    <input type="number" className="w-10/12 focus:outline-none float-right" alt={bet.fix.id} />
+                                    <input onChange={r => changeInputValue({ obj: r, value: bet.fix.fixture.id })} type="number" className="w-10/12 focus:outline-none float-right" alt={bet.fix.id} />
                                 </form>
                             </div>
                             <RetornosPotenciais bet={bet} oddNumber={oddNumber} />
                         </div>
                     </div>
                 })}
-            <div className={`block bg-white bottom-0`}><BtnBet user={user} /></div>
+                <div className={`block bg-white bottom-0`}><BtnBet user={user} /></div>
             </div>
         </div>
     </>

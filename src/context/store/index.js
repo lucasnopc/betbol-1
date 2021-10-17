@@ -15,7 +15,6 @@ export const StoreProvider = ({ children }) => {
     const removeBetsInNote = (i) => {
         const newNote = [...note]
         newNote.splice(i, 1)
-        console.log(newNote, note)
         
         setNote(newNote)
     }
