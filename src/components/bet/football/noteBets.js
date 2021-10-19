@@ -10,21 +10,27 @@ export default function NoteBets(props) {
     const { note, removeBetsInNote } = useStore()
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
     const [vf, setVf] = useState([])
-    
+    let user = false
+    if (props.userString) {
+        user = JSON.parse(props.userString)
+    }
     useEffect(()=>{
 
     },[note])
 
     const removedItem = (indice, vf, bet) => {
         const newVf = [...vf]
-        newVf.splice(indice, 1)
-        setVf(newVf)
+        console.log('bet', bet.fix.fixture.id, newVf)
+        if(newVf.length > 0) {
+            const indexElement = newVf.findIndex((element) => {
+                return element.id === bet.fix.fixture.id
+            })
+            if(indexElement >= 0) {
+                newVf.splice(indexElement, 1)
+                setVf(newVf)
+            }
+        }
         removeBetsInNote(indice)
-    }
-
-    let user = false
-    if (props.userString) {
-        user = JSON.parse(props.userString)
     }
     const BtnBet = (user) => {
         const [session] = useSession()
