@@ -68,22 +68,6 @@ export default function OddsBtn(props) {
     let statusChecked = [false, false, false]
     game.odds = data.odds.response[0]
     const gameText = JSON.stringify(game)
-    // props.listBetState.map((BetState, indice) => {
-    //     if (props.listBetState[indice].bet.id == game.id) {
-    //         switch (BetState.choice) {
-    //             case "home":
-    //                 statusChecked = [true, false, false]
-    //                 break
-    //             case "draw":
-    //                 statusChecked = [false, true, false]
-    //                 break
-    //             case "away":
-    //                 statusChecked = [false, false, true]
-    //                 break
-
-    //         }
-    //     }
-    // })
     let othersOdds = 0
     game.odds.bookmakers[0].bets.map((bet, i) => {
         othersOdds = othersOdds + bet.values.length

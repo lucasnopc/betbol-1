@@ -8,14 +8,22 @@ export const StoreProvider = ({ children }) => {
     const [note, setNote] = useState([])
     const [fix, setFix] = useState([])
 
-    const setGoBetsInNote = (bet, fix) => {
-        const newNote = {...bet, fix}
+    const setGoBetsInNote = (bet) => {
+        const newNote = {...bet}
         setNote([...note, newNote])
     }
     const removeBetsInNote = (i) => {
         const newNote = [...note]
         newNote.splice(i, 1)
         
+        setNote(newNote)
+    }
+
+    const changeVf = (i) => {
+        const thisNote = note[i.idNote]
+        const indexNote = i.idNote
+        const newNote = [...note]
+        newNote[indexNote].choice.valor = i 
         setNote(newNote)
     }
 
@@ -28,7 +36,8 @@ export const StoreProvider = ({ children }) => {
         fix,
         setGoBetsInNote,
         removeBetsInNote,
-        setFixState
+        setFixState,
+        changeVf
     }
 
     return <>

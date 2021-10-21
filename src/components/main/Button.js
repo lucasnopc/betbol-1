@@ -5,8 +5,16 @@ import Translate from "../../utills/translate"
 export default function Button(props) {
     const [toggle, setToggle] = useState(false)
     const { setGoBetsInNote, note } = useStore()
+    const bets = props.bets
 
     const betGo = (val, fix) => {
+        const bet = {
+            fix,
+            choice: {
+                ...val,
+                betsChoice: bets
+            }
+        }
         
         if (note.length > 0) {
             const existequalFix = note.filter(n => {
@@ -14,10 +22,10 @@ export default function Button(props) {
             })
             if(existequalFix.length > 0) {
             }else {
-                setGoBetsInNote(val, fix)
+                setGoBetsInNote(bet)
             }
         } else {
-            setGoBetsInNote(val, fix)
+            setGoBetsInNote(bet)
         }
 
     }

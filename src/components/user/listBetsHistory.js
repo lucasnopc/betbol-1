@@ -2,6 +2,7 @@ import useSWR from 'swr'
 import axios from 'axios'
 import { format } from 'date-fns'
 import Translate from '../../utills/translate'
+import { oddBets } from '../../utills/oddBets'
 
 export default function ListBetsHistory (props) {
     const urlBetsHistoryApi = `/api/user/betsHistory?email=${props.email}`
@@ -34,12 +35,17 @@ export default function ListBetsHistory (props) {
         <tbody>
             {
                 r.bets.map((b, i) => {
+                    const betName = (oddBets) => {
+                        const oddBet = oddBets.find(x => x.id == b.choice.betsChoice)
+                        return oddBet
+                    }
+                    console.log(b.choice.valor.value)
                     return <tr key={i}>
-                        <td className="p-2 border-2 border-gray-200">{b.game.teams.home.name} X {b.game.teams.away.name}</td>
-                        <td className="p-2 border-2 border-gray-200">{Translate(b.odds.name)} - {b.odd.value}</td>
-                        <td className="p-2 border-2 border-gray-200">{b.odd.odd}</td>
-                        <td className="p-2 border-2 border-gray-200">{b.value}</td>
-                        <td className="p-2 border-2 border-gray-200">R$ {Math.floor(b.value * b.odd.odd)}</td>
+                         <td className="p-2 border-2 border-gray-200">{b.fix.teams.home.name} X {b.fix.teams.away.name}</td>
+                        <td className="p-2 border-2 border-gray-200"><span className="bg-gray-200 p-1" >{Translate(betName(oddBets).name)}</span> - {Translate(b.choice.value)}</td>
+                        <td className="p-2 border-2 border-gray-200">{b.choice.odd}</td>
+                        <td className="p-2 border-2 border-gray-200">R$ {b.choice.valor.value}</td>
+                       <td className="p-2 border-2 border-gray-200">R$ {b.choice.valor.value * b.choice.odd}</td>
                     </tr>
                 })
             }

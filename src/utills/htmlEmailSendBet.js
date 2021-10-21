@@ -28,9 +28,9 @@ export function HtmlEmailSendBet({ listBet }) {
         ${listBet.map((bet, i) => {
           
             return `<tr><td>
-            <b>Data:</b> ${bet.game.date} <br /> 
-            <b>Valor:</b> R$ ${bet.value} X Odd:${bet.odd.odd}<br />
-            <b>Retornos Potenciais:</b> R$ ${Math.floor(bet.value * bet.odd.odd)}
+            <b>Data:</b> ${new Date()} <br /> 
+            <b>Valor:</b> R$ ${bet.choice.valor.value} X Odd:${bet.choice.odd}<br />
+            <b>Retornos Potenciais:</b> R$ ${bet.choice.valor.value * bet.choice.odd}
             </td> </tr>
             `
         })}

@@ -38,7 +38,7 @@ export default function Odd(props) {
             }
             {values &&
                 values.map((val, i) => {
-                    return <Button key={i} val={val} fixId={props.fixId} />
+                    return <Button key={i} val={val} fixId={props.fixId} bets={props.bets} />
                 })
             }
             {!values || values.length == 0 &&
