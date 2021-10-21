@@ -25,9 +25,9 @@ export default function Home(props) {
     }
     fetcherAlive()
   }, [])
-  useEffect(()=>{
+  useEffect(() => {
     setFixState(live)
-  },[live])
+  }, [live])
   return (
     <>
       <Head>
@@ -40,12 +40,14 @@ export default function Home(props) {
           <div className="col-span-full md:col-span-2 mt-3 mx-3">
             <ListMenu getLeague={getLeague} setLeague={setLeague} />
           </div>
-          <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md p-3">
-            <h2 className="page-title">Ao vivo</h2>
+          <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
+            <h2 className="page-title">AO VIVO</h2>
             <SelectOddsBets setBets={setBets} bets={bets} />
-            {live && live.map(f => {
-              return <Fix key={f.fixture.id} fix={f} bets={bets} />
-            })}
+            <div className="max-h-52 md:max-h-64 overflow-auto">
+              {live && live.map(f => {
+                return <Fix key={f.fixture.id} fix={f} bets={bets} />
+              })}
+            </div>
           </div>
           <div className="mx-3 md:col-span-3 col-span-full">
             <NoteBets userString={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />

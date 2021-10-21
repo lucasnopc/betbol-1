@@ -32,13 +32,15 @@ export default function Odd(props) {
         }
     }
     return <>
-        <div className="float-right">
+        <div className="md:float-right flex flex-wrap md:flex-none">
             {!data &&
                 <>Carregando...</>
             }
             {values &&
                 values.map((val, i) => {
-                    return <Button key={i} val={val} fixId={props.fixId} bets={props.bets} />
+                    return <div className="flex-1 m-1">
+                        <Button key={i} val={val} fixId={props.fixId} bets={props.bets} />
+                    </div>
                 })
             }
             {!values || values.length == 0 &&
