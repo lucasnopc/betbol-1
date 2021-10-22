@@ -69,10 +69,10 @@ export default function NoteBets(props) {
         return <></>
     }
     return <>
-        <div className=" bg-white fixed bottom-0 left-0 md:relative max-w-sm shadow-md border-gray-200 mt-3 flex-grow">
+        <div className=" bg-white w-full fixed bottom-0 left-0 md:relative max-w-sm shadow-md border-gray-200 mt-3 flex-grow">
             <h2 onClick={() => {
                 setToggleNoteBets(!toggleNoteBets)
-            }} className="block-title">CADERNETA DE APOSTAS</h2>
+            }} className="font-normal p-2 text-gray-100 text-center md:text-gray-900 bg-gray-800 md:bg-gray-50 border-b border-gray-200">CADERNETA DE APOSTAS</h2>
 
             <div className={`${hiddenOrStaticToggle(toggleNoteBets)} w-full static max-h-60 md:max-h-full overflow-auto`}>
                 {EmptyListBetState()}
