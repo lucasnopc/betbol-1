@@ -8,6 +8,10 @@ export default function NoteBets(props) {
     const { note, removeBetsInNote, changeVf } = useStore()
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
     const [vf, setVf] = useState([])
+
+    useEffect(() => {
+        setToggleNoteBets(true)
+    }, [note])
     let user = false
     if (props.userString) {
         user = JSON.parse(props.userString)
@@ -72,7 +76,10 @@ export default function NoteBets(props) {
         <div className=" bg-white w-full fixed bottom-0 left-0 md:relative max-w-sm shadow-md border-gray-200 mt-3 flex-grow">
             <h2 onClick={() => {
                 setToggleNoteBets(!toggleNoteBets)
-            }} className="font-normal p-2 text-gray-100 text-center md:text-gray-900 bg-gray-800 md:bg-gray-50 border-b border-gray-200">CADERNETA DE APOSTAS</h2>
+            }} className="relative font-normal p-2 text-gray-100 text-center md:text-gray-900 bg-gray-800 md:bg-gray-50 border-b border-gray-200">
+                CADERNETA DE APOSTAS
+                <span className="absolute right-5 font-bold">{toggleNoteBets ? `-` : `+`}</span>
+            </h2>
 
             <div className={`${hiddenOrStaticToggle(toggleNoteBets)} w-full static max-h-60 md:max-h-full overflow-auto`}>
                 {EmptyListBetState()}
@@ -109,9 +116,9 @@ export default function NoteBets(props) {
                             <div className="border border-gray-200">
                                 <form className="bg-white inline-block w-full">
                                     <span className="text-sm text-green-800 pl-1 w-2/12">R$</span>
-                                    <input onChange={(r)=> {
+                                    <input onChange={(r) => {
                                         changeInputValue({ obj: r, value: bet.fix.fixture.id, idNote: indice })
-                                        }} type="number" className="w-10/12 focus:outline-none float-right" alt={bet.fix.id} min="0" />
+                                    }} type="number" className="w-10/12 focus:outline-none float-right" alt={bet.fix.id} min="0" />
                                 </form>
                             </div>
                             <RetornosPotenciais bet={bet} oddNumber={oddNumber} />
