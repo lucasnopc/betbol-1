@@ -22,9 +22,9 @@ export default async function SetPay(req, res) {
       ],
       back_urls:
       {
-        "success": `${process.env.NEXTAUTH_URL}/feedback`,
-        "failure": `${process.env.NEXTAUTH_URL}/feedback`,
-        "pending": `${process.env.NEXTAUTH_URL}/feedback`,
+        "success": `${process.env.NEXTAUTH_URL}/feedback?status=success`,
+        "failure": `${process.env.NEXTAUTH_URL}/feedback?status=failure`,
+        "pending": `${process.env.NEXTAUTH_URL}/feedback?status=pending`,
       }
     };
 
@@ -34,13 +34,12 @@ export default async function SetPay(req, res) {
           const resp = await db.collection("payment").insertOne({
               email,
               id: response.body.id,
-              points: 10
+              points: Number(req.body.quantity)
             }, function (err, resp) {
               if (resp) {
                 console.log(resp)
                 res.json({
                   id: response.body.id,
-                  resp
                 })
               }
             })

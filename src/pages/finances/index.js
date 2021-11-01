@@ -61,7 +61,11 @@ export default function Finances(props) {
               id: preference.id
             }
           })
-          checkout.open()
+          checkout.render({
+            container: '#paym',
+            label: 'Pay'
+        });
+          // checkout.open()
         }
       })
   }
