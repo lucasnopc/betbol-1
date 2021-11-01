@@ -118,7 +118,7 @@ export default function NoteBets(props) {
                                     <span className="text-sm text-green-800 pl-1 w-2/12">R$</span>
                                     <input onChange={(r) => {
                                         changeInputValue({ obj: r, value: bet.fix.fixture.id, idNote: indice })
-                                    }} type="number" className="w-10/12 focus:outline-none float-right" alt={bet.fix.id} min="0" />
+                                    }} type="number" className="w-10/12 focus:outline-none float-right" alt={bet.fix.id} min="0" max="2000" step="10" />
                                 </form>
                             </div>
                             <RetornosPotenciais bet={bet} oddNumber={oddNumber} />

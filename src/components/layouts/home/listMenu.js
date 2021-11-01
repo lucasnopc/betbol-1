@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
+import Select from 'react-select'
 
 import { useEffect, useState } from 'react'
 
@@ -10,8 +11,10 @@ export default function ListMenu(props) {
     useEffect(() => {
         const getCountries = async () => {
             const countriesLocal = JSON.parse(localStorage.getItem('betbol@countries'))
-            if (countriesLocal.length > 0) {
-                setCountries(countriesLocal)
+            if (countriesLocal) {
+                if (countriesLocal.length > 0) {
+                    setCountries(countriesLocal)
+                }
             } else {
                 const urlGetCountries = `/api/getCountryes`
                 const data = await axios.get(urlGetCountries)
@@ -24,6 +27,7 @@ export default function ListMenu(props) {
     useEffect(() => {
         localStorage.setItem('betbol@countries', JSON.stringify(countries))
     }, [countries])
+    console.log(countries)
     return <div className="bg-white shadow-md">
         <h1 onClick={e => setToggle(!toggle)} className="block-title">MENU</h1>
         <ul className={`${toggle ? `block` : `hidden md:block`} max-h-32 md:max-h-80 overflow-auto`}>
@@ -48,6 +52,7 @@ export default function ListMenu(props) {
                     </a>
                 </Link>
             </li>
+
             {countries && countries.map((coun => {
                 return <li key={coun.name}>
                     {coun.code &&

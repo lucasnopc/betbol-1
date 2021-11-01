@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { useForm } from "react-hook-form"
 import { useRouter } from 'next/router'
 import { FcSettings } from 'react-icons/fc'
+import { ImSpinner } from 'react-icons/im'
 
 export default function Header(props) {
     let user = ""
@@ -27,14 +28,13 @@ export default function Header(props) {
     }
     const Profile = () => {
         const [openSettings, setOpenSettings] = useState(false)
-
         return <>
             {!session && <>
                 <div className="block-bgicon-enter items-center flex">
                     <div className={`${btnLogin ? 'hidden md:inline-block' : 'inline-block'}`}>
                         <form onSubmit={handleSubmit(registerUser)} className="absolute md:static z-10 bg-white top-16 right-0">
                             <input {...register('email', { required: true })} type="email" name="email" placeholder="Insira seu E-mail" className="inline-block p-1.5 border-2 border-gray-500 focus:outline-none focus:border-black" required />
-                            <button type="submit" className="btn mt-2 inline-block">Acessar</button>
+                            <button disabled={isSubmitting} type="submit" className="btn mt-2 inline-block"><ImSpinner className={`${isSubmitting ? `inline-block` : `hidden`} animate-spin`} /> Acessar</button>
                         </form>
                     </div>
                     <span className="bgicon-enter cursor-pointer mx-3 md:hidden" onClick={() => setBtnLogin(!btnLogin)}></span>
@@ -56,10 +56,11 @@ export default function Header(props) {
 
                     <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100 cursor-pointer">
                         <FcSettings className="text-3xl ml-3" onClick={() => setOpenSettings(!openSettings)} />
-                        <div className={`${openSettings ? `block` : `hidden`} border-2 border-gray-300 rounded-lg text-right absolute right-0 w-60 z-10 bg-white`} onMouseLeave={() => setOpenSettings(false)} >
-                            <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-t-lg border-b-2 border-gray-300"><Link href="/register">Atualizar Dados</Link></div>
-                            <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-t-lg border-b-2 border-gray-300"><Link href="/myBetsHistory">Historico Apostas</Link></div>
-                            <div className="p-2 hover:bg-gray-400 font-normal text-gray-800 hover:text-white rounded-b-lg" onClick={() => signOut()}>Sair</div>
+                        <div className={`${openSettings ? `block` : `hidden`} border border-gray-300 text-right absolute right-0 w-60 z-10 bg-white`} onMouseLeave={() => setOpenSettings(false)} >
+                            <div><Link href="/register"><a className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white border-b border-gray-300 block">Atualizar Dados</a></Link></div>
+                            <div><Link href="/finances"><a className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white border-b border-gray-300 block">Financeiro</a></Link></div>
+                            <div><Link href="/myBetsHistory"><a className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white border-b border-gray-300 block">Historico Apostas</a></Link></div>
+                            <div className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white" onClick={() => signOut()}>Sair</div>
                         </div>
                         {/* <a className="flex items-center" ><span className="bgicon-enter mx-3"></span><span className="font-normal text-gray-500 hidden sm:inline-block">SAIR</span></a> */}
                     </div>
@@ -68,7 +69,8 @@ export default function Header(props) {
             </>}
         </>
     }
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState } = useForm();
+    const { isSubmitting } = formState
     const [btnLogin, setBtnLogin] = useState(true)
     const registerUser = async data => {
         await signIn('email', { email: data.email })
