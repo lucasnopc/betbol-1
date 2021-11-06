@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../components/layouts/home/layout'
+import { MdEmail } from 'react-icons/md'
 
 export default function VerifyRequest() {
     return (
@@ -9,13 +9,15 @@ export default function VerifyRequest() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <div className="w-screen h-screen bg-register">
-                <Layout>
-                    <div className="max-w-lg mx-auto text-gray-800 shadow-2xl bg-white p-3 md:p-5 rounded-md mt-5 md:mt-28">
-                        <h1 className="text-center text-3xl font-normal">Lhe enviamos um e-mail com o seu acesso.</h1>
-                        <p className="text-center font-normal">Procure por betbol na sua caixa de entrada</p>
+            <div className="w-screen h-screen bg-register grid grid-cols-3">
+
+                <div className="col-start-2">
+                    <div className=" bg-white mt-20 p-3 rounded-sm shadow-2xl text-center">
+                        <MdEmail className="inline-block text-7xl text-gray-600" />
+                        <h1 className="text-center text-3xl font-bold text-gray-700">Um e-mail de acesso foi enviado.</h1>
+                        <p className="text-center text-sm font-normal">Procure por betbol na sua caixa de entrada</p>
                     </div>
-                </Layout>
+                </div>
             </div>
         </>
     )

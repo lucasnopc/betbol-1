@@ -59,13 +59,9 @@ export default function Finances(props) {
           const checkout = mercadopago.checkout({
             preference: {
               id: preference.id
-            }
+            },
+            autoOpen: true,
           })
-          checkout.render({
-            container: '#paym',
-            label: 'Pay'
-        });
-          // checkout.open()
         }
       })
   }

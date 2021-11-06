@@ -6,7 +6,7 @@ export default async function SetPay(req, res) {
   let { db } = await connectToDatabase()
   const session = await getSession({ req })
   const email = session.user.email
-
+  const today = new Date()
   if (req.method == "POST") {
 
     mercadopago.configure({
@@ -32,23 +32,23 @@ export default async function SetPay(req, res) {
       .then(async function (response) {
         if (response.body.id) {
           const resp = await db.collection("payment").insertOne({
-              email,
-              id: response.body.id,
-              points: Number(req.body.quantity)
-            }, function (err, resp) {
-              if (resp) {
-                console.log(resp)
-                res.json({
-                  id: response.body.id,
-                })
-              }
-            })
+            date: today,
+            email,
+            id: response.body.id,
+            points: Number(req.body.quantity)
+          }, function (err, resp) {
+            if (resp) {
+              res.status(200).json({
+                id: response.body.id,
+              })
+            }
+          })
         }
-        res.json({
-          id: resp.body.id
+        res.status(200).json({
+          id: response.body.id
         })
       }).catch(function (error) {
-        console.log(error);
+        console.log(`error 52 mp`, error);
       });
   }
 }
