@@ -22,9 +22,9 @@ export default async function SetPay(req, res) {
       ],
       back_urls:
       {
-        "success": `${process.env.NEXTAUTH_URL}/feedback?status=success`,
-        "failure": `${process.env.NEXTAUTH_URL}/feedback?status=failure`,
-        "pending": `${process.env.NEXTAUTH_URL}/feedback?status=pending`,
+        "success": `${process.env.NEXTAUTH_URL}/api/mp/feedback`,
+        "failure": `${process.env.NEXTAUTH_URL}/api/mp/feedback`,
+        "pending": `${process.env.NEXTAUTH_URL}/api/mp/feedback`,
       }
     };
 
