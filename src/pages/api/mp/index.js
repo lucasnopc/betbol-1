@@ -31,12 +31,13 @@ export default async function SetPay(req, res) {
     mercadopago.preferences.create(preference)
       .then(async function (response) {
         if (response.body.id) {
-          const resp = await db.collection("payment").insertOne({
+          await db.collection("payment").insertOne({
             date: today,
             email,
             id: response.body.id,
             points: Number(req.body.quantity)
           }, function (err, resp) {
+            if(err) console.log('err, ', err)
             if (resp) {
               res.status(200).json({
                 id: response.body.id,
@@ -44,9 +45,9 @@ export default async function SetPay(req, res) {
             }
           })
         }
-        res.status(200).json({
-          id: response.body.id
-        })
+        // res.status(200).json({
+        //   id: response.body.id
+        // })
       }).catch(function (error) {
         console.log(`error 52 mp`, error);
       });
