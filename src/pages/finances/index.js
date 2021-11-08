@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import ListMenu from '../../components/layouts/home/listMenu'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
+import AllPays from './allpays'
 
 export default function Finances(props) {
   const [listBetState, setListBetState] = useState([])
@@ -87,7 +88,10 @@ export default function Finances(props) {
                 R$ <input type="number" name="valorDeposit" className="border border-gray-300 active:outline-none outline-none text-2xl w-28 text-green-800" min="0" /><br />
                 <input type="submit" className="cursor-pointer mt-5 bg-green-500 hover:bg-green-400 p-2 text-sm font-semibold text-green-900" value="APLICAR" />
               </form>
-              <div id="paym"></div>
+              <div id="paym">
+                Todos pagamentos
+                <AllPays />
+              </div>
 
             </div>
           </div>

@@ -30,7 +30,6 @@ export default async function SetPay(req, res) {
 
     mercadopago.preferences.create(preference)
       .then(async function (response) {
-        console.log('response ', response)
         if (response.body.id) {
           await db.collection("payment").insertOne({
             date: today,
