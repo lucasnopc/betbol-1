@@ -85,12 +85,12 @@ export default function Finances(props) {
             <span className="p-2">Defina o valor do seu depósito a partir de <b>R$10,00</b></span>
             <div className="p-2">
               <form onSubmit={e => deposit(e)}>
-                R$ <input type="number" name="valorDeposit" className="border border-gray-300 active:outline-none outline-none text-2xl w-28 text-green-800" min="0" /><br />
-                <input type="submit" className="cursor-pointer mt-5 bg-green-500 hover:bg-green-400 p-2 text-sm font-semibold text-green-900" value="APLICAR" />
+                R$ <input type="number" name="valorDeposit" step="10" className="border border-gray-300 active:outline-none outline-none text-2xl w-28 text-green-800" min="0" />
+                <input type="submit" className="inline-block cursor-pointer transform -translate-y-0.5 bg-yellow-500 hover:bg-yellow-400 p-2 text-sm font-semibold text-white ml-1" value="APLICAR" />
               </form>
               <div id="paym">
                 Todos pagamentos
-                <AllPays />
+                <AllPays user={user} />
               </div>
 
             </div>

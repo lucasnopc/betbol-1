@@ -1,12 +1,12 @@
 import { connectToDatabase } from '../../../utills/conectdb';
 
 export default async function feedback(req, res) {
-    //     console.log(req.query)
+    const pay = req.query.preference_id ? req.query : req.body
     const { db } = await connectToDatabase()
-    
+        console.log(pay)
     if (req.method = "POST") {
-        const values = { $set: { values: req.query } };
-    await db.collection("payment").updateOne({id: req.query.preference_id}, values, function (err, resp) {
+        const values = { $set: { values: pay } };
+    await db.collection("payment").updateOne({id: pay.preference_id}, values, function (err, resp) {
         if (err) console.log(err)
         res.status(200).json(
             {

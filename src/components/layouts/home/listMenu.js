@@ -27,7 +27,6 @@ export default function ListMenu(props) {
     useEffect(() => {
         localStorage.setItem('betbol@countries', JSON.stringify(countries))
     }, [countries])
-    console.log(countries)
     return <div className="bg-white shadow-md">
         <h1 onClick={e => setToggle(!toggle)} className="block-title">MENU</h1>
         <ul className={`${toggle ? `block` : `hidden md:block`} max-h-32 md:max-h-80 overflow-auto`}>

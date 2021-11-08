@@ -83,7 +83,7 @@ export default function Header(props) {
             <span>{datetoday}</span>
             <div id="points" className="inline-block h-full items-center">
                 <span className="bgicon-coin"></span>
-                <span className="ml-2 font-normal">R$ {user ? user.points.toFixed(2) : `0.00`}</span>
+                <span className="ml-2 font-normal">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
             </div>
         </div>
         </>}

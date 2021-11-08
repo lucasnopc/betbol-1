@@ -6,16 +6,32 @@ import ListMenu from '../../components/layouts/home/listMenu'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
 import { useMercadopago } from 'react-sdk-mercadopago';
+import axios from 'axios'
 
 
-export default function Finances(props) {
+export default function Feedback(props) {
   const [listBetState, setListBetState] = useState([])
   const [getValorFinal, setValorFinal] = useState(0)
   const [getLeague, setLeague] = useState({})
   const router = useRouter()
   const query = router.query
-  const user = JSON.parse(props.userString)
-    console.log(query)
+
+  useEffect(() => {
+    const setStatus = async (query) => {
+      await axios.post('/api/mp/feedback', query )
+      .then(function (response) {
+        console.log("cheguei aqui", response)
+        router.push('/finances')
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+    setStatus(query)
+  }, [])
+
+
+
   return (
     <>
       <Head>
