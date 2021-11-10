@@ -41,8 +41,10 @@ export default function Home(props) {
             <ListMenu getLeague={getLeague} setLeague={setLeague} />
           </div>
           <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
-            <h2 className="page-title">AO VIVO</h2>
-            <SelectOddsBets setBets={setBets} bets={bets} />
+            <div>
+              <h2 className="page-title inline-block">Futebol</h2>
+              <SelectOddsBets setBets={setBets} bets={bets} />
+            </div>
             <div className="overflow-auto">
               {live && live.map(f => {
                 return <Fix key={f.fixture.id} fix={f} bets={bets} />

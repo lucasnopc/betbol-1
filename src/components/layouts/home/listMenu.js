@@ -2,7 +2,7 @@ import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
 import Select from 'react-select'
-
+import { BiFootball } from 'react-icons/bi'
 import { useEffect, useState } from 'react'
 
 export default function ListMenu(props) {
@@ -33,9 +33,9 @@ export default function ListMenu(props) {
             <li >
                 <Link className="inline-block" href="/">
                     <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-yellow-600 hover:text-yellow-600 cursor-pointer w-full block">
-                        <span className="animate-ping inline-block rounded-full h-1 w-1 bg-green-700 mr-2 mb-1"></span>
-
-                        AO VIVO
+                        {/* <span className="animate-ping inline-block rounded-full h-1 w-1 bg-green-700 mr-2 mb-1"></span> */}
+                        <BiFootball className="inline-block" />
+                       <span className="block mt-1"> Futebol</span>
                     </a>
                 </Link>
             </li>

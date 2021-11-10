@@ -87,7 +87,7 @@ export default function Header(props) {
             </div>
         </div>
         </>}
-        <header className="bg-white border-b border-gray-200 shadow-2xl h-20 flex items-center justify-between">
+        <header className="bg-white border-b border-gray-200 shadow-xl h-20 flex items-center justify-between">
             <div id="logo" className="mt-1 ml-10">
                 <Link href="/">
                     <a>
