@@ -3,6 +3,7 @@ import axios from 'axios'
 import { format } from 'date-fns'
 import Translate from '../../utills/translate'
 import { oddBets } from '../../utills/oddBets'
+import { FcSynchronize } from 'react-icons/fc'
 
 export default function ListBetsHistory (props) {
     const urlBetsHistoryApi = `/api/user/betsHistory?email=${props.email}`
@@ -14,7 +15,7 @@ export default function ListBetsHistory (props) {
     if (error) console.log(error)
     if (!data) {
         return <>
-            Carregando ...
+            <FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" />
         </>
     }
     const historyBets = data.data.betHistory

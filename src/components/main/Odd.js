@@ -1,6 +1,7 @@
 import useFetch from "../../utills/useFetch"
 import Button from "./Button"
 import { ImEyeBlocked } from 'react-icons/im'
+import { FcSynchronize } from "react-icons/fc"
 
 export default function Odd(props) {
 
@@ -9,7 +10,7 @@ export default function Odd(props) {
 
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     if (error) console.log(error)
-    if (!data) <p> Carregando...</p>
+    if (!data) <p> <FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></p>
     if (data) odd = data.odd[0]
     const bets = props.bets
     let values = []

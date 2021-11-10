@@ -11,6 +11,8 @@ export default function ListMenu(props) {
     const [toggle, setToggle] = useState(false)
     const [leagues, setLeagues] = useState(false)
     const router = useRouter()
+    const [loading, setLoading] = useState(false)
+
 
     useEffect(() => {
         const getCountries = async () => {
@@ -49,14 +51,16 @@ export default function ListMenu(props) {
     const optionsLeagues = false
 
     const changeSelectCountry = async (e) => {
+        setLoading(true)
         const urlMenuSearchLeachesForCountry = `/api/menu/searchLeaguesForCountry?query=${e.value}`
         const data = await axios.get(urlMenuSearchLeachesForCountry)
         const leaguesData = await data.data
+        setLoading(false)
         setLeagues(leaguesData)
     }
     const SelectLeague = e => {
         const [loading, setLoading] = useState(false)
-        const [message, setMesage] = useState(``)
+        const [message, setMesage] = useState(false)
         if (leagues) {
             const changeSelectLeague = async (e) => {
                 setLoading(true)
@@ -67,7 +71,7 @@ export default function ListMenu(props) {
                     router.push(`/league/${e.value.id}?year=${e.value.year}&name=${e.value.name}`)
                 } else {
                     setLoading(false)
-                    setMesage(`${e.value.name} Não há jogos para esta semana`)
+                    setMesage(`Não há jogos esta semana em ${e.value.name}`)
                 }
 
             }
@@ -81,7 +85,7 @@ export default function ListMenu(props) {
             return <div className="mt-1">
                 <Select options={optionsLeagues} instanceId="2" placeholder="Filtre por Liga" onChange={e => changeSelectLeague(e)} />
                 {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></div>}
-                {message}
+                {message && <div className="text-xs bg-red-400 border border-red-600 p-1 mt-1 text-white font-bold">{message}</div>}
             </div>
         }
         return ""
@@ -101,7 +105,8 @@ export default function ListMenu(props) {
         </ul>
         <div className="p-2">
             <Select options={options} instanceId="1" placeholder="Filtre por país" onChange={e => changeSelectCountry(e)} />
-            <SelectLeague />
+            {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></div>}
+            {!loading && <SelectLeague /> }
         </div>
     </div>
 }

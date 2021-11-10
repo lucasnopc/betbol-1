@@ -9,6 +9,7 @@ import SelectOddsBets from '../../components/main/SelectOddsBets'
 import useFetch from '../../utills/useFetch'
 import { useEffect, useState } from 'react'
 import { useStore } from '../../context/store'
+import { FcSynchronize } from 'react-icons/fc'
 
 export default function LeaguePage(props) {
 
@@ -30,6 +31,7 @@ export default function LeaguePage(props) {
     if (error) console.log(error)
     if (data) {
         fix = data.res_filter
+        console.log(fix)
     }
     return (
         <>
@@ -45,11 +47,11 @@ export default function LeaguePage(props) {
                     </div>
                     <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white p-3">
                         <div>
-                            <h2 className="page-title inline-block">Futebol</h2>
+                            <h2 className="page-title inline-block">{name}</h2>
                             <SelectOddsBets setBets={setBets} bets={bets} />
                         </div>
                         {!data &&
-                            <>Carregando...</>
+                            <><FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></>
                         }
                         {fix.length == 0 &&
                             <span className="p-3 bg-yellow-100 block">Não há jogos disponíeis</span>
