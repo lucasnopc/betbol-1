@@ -19,7 +19,6 @@ export default function Odd(props) {
         const bet = book ? book.bets : null
         
         const oddsBets = (bets, bet) => {
-                console.log(bets, bet)
                 const values = bet ? bet.find(val => {
                     return val.id == bets 
                 }) : null

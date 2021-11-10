@@ -22,7 +22,7 @@ export default function LeaguePage(props) {
     const { data, error } = useFetch(`/api/betApi/fix-to-league?league=${id}&season=${year}`)
 
     useEffect(() => {
-        if(data){
+        if (data) {
             setFixState(data.res_filter)
         }
     }, [data])
@@ -44,8 +44,10 @@ export default function LeaguePage(props) {
                         <ListMenu getLeague={getLeague} setLeague={setLeague} />
                     </div>
                     <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white p-3">
-                        <h2 className="page-title">{name}</h2>
-                        <SelectOddsBets setBets={setBets} bets={bets} />
+                        <div>
+                            <h2 className="page-title inline-block">Futebol</h2>
+                            <SelectOddsBets setBets={setBets} bets={bets} />
+                        </div>
                         {!data &&
                             <>Carregando...</>
                         }
