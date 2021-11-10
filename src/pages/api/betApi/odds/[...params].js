@@ -5,7 +5,7 @@ export default async function odds(req, res) {
         const [id, book] = rotas.params
         const link = (book) => {
             if(!book) { 
-                return `${process.env.APISPORT}/odds?fixture=${id}`
+                return `${process.env.APISPORT}/odds?fixture=${id}&bookmaker=6`
             }
             return `${process.env.APISPORT}/odds?fixture=${id}&bookmaker=${book}`
         }
@@ -18,6 +18,6 @@ export default async function odds(req, res) {
                 method: 'GET'
             })
             const odds = await odds_res.json()
-            res.status(200).json({ odds })
+            res.status(200).json({odd: odds.response})
         }
     }

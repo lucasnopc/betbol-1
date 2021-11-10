@@ -15,7 +15,7 @@ export default function Home(props) {
   const [getValorFinal, setValorFinal] = useState(0)
   const [getLeague, setLeague] = useState({})
   const [live, setLive] = useState([])
-  const [bets, setBets] = useState(2)
+  const [bets, setBets] = useState(1)
   const { setFixState, fix } = useStore()
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function Home(props) {
           <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
             <h2 className="page-title">AO VIVO</h2>
             <SelectOddsBets setBets={setBets} bets={bets} />
-            <div className="max-h-52 md:max-h-64 overflow-auto">
+            <div className="overflow-auto">
               {live && live.map(f => {
                 return <Fix key={f.fixture.id} fix={f} bets={bets} />
               })}

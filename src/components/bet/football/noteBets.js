@@ -3,15 +3,18 @@ import { useEffect, useState } from 'react'
 import Translate from '../../../utills/translate'
 import { useStore } from '../../../context/store'
 import BtnBet from './noteBetsBtn'
+import { oddBets } from '../../../utills/oddBets'
 
 export default function NoteBets(props) {
     const { note, removeBetsInNote, changeVf } = useStore()
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
     const [vf, setVf] = useState([])
-
+    const [retornoPotencial, setRetornoPotencial] = useState()
     useEffect(() => {
         setToggleNoteBets(true)
+        retornosPotenciais(note, vf, setRetornoPotencial)
     }, [note])
+
     let user = false
     if (props.userString) {
         user = JSON.parse(props.userString)
@@ -19,7 +22,6 @@ export default function NoteBets(props) {
 
     const removedItem = (indice, vf, bet) => {
         const newVf = [...vf]
-        console.log('bet', bet.fix.fixture.id, newVf)
         if (newVf.length > 0) {
             const indexElement = newVf.findIndex((element) => {
                 return element.id === bet.fix.fixture.id
@@ -34,33 +36,8 @@ export default function NoteBets(props) {
 
     const changeInputValue = (change) => {
         const value = change.obj.target.value
-        const idBet = change.value
-        const idNote = change.idNote
-        const newVf = [...vf]
-
-        const valorUnicoVF = { id: idBet, value: value, idNote }
-
-        if (newVf.length == 0) {
-            newVf.push(valorUnicoVF)
-            setVf(newVf)
-            changeVf(valorUnicoVF)
-        } else {
-            const indiceIfValueExist = newVf.find((r, i) => {
-                if (r.id == idBet) {
-                    newVf[i] = valorUnicoVF
-                    setVf(newVf)
-                    changeVf(valorUnicoVF)
-
-                    return true
-                } else {
-                    return false
-                }
-            })
-            if (!indiceIfValueExist) {
-                newVf.push(valorUnicoVF)
-                setVf(newVf)
-            }
-        }
+        change.setVf(value)
+        retornosPotenciais(change.note, value, setRetornoPotencial)
     }
     const hiddenOrStaticToggle = (toggleNoteBets) => {
         if (!toggleNoteBets) return `hidden md:block`
@@ -72,60 +49,59 @@ export default function NoteBets(props) {
         }
         return <></>
     }
+
+    const retornosPotenciais = (note, vf, setRetornoPotencial) => {
+        if (note.length != 0 && vf != 0) {
+            const singleValue = vf / note.length
+            const response = note.map((n, i) => {
+                return Number(n.choice.odd) * singleValue
+            }).reduce((total, n) => total + n)
+            setRetornoPotencial(response.toFixed(2))
+            console.log(retornoPotencial, typeof response)
+        } else {
+            setRetornoPotencial(0)
+        }
+    }
+
     return <>
         <div className=" bg-white w-full fixed bottom-0 left-0 md:relative max-w-sm shadow-md border-gray-200 mt-3 flex-grow">
             <h2 onClick={() => {
                 setToggleNoteBets(!toggleNoteBets)
             }} className="relative font-normal p-2 text-gray-100 text-center md:text-gray-900 bg-gray-800 md:bg-gray-50 border-b border-gray-200">
                 CADERNETA DE APOSTAS
-                <span className="absolute right-5 font-bold">{toggleNoteBets ? `-` : `+`}</span>
+                <span className="md:hidden absolute right-5 font-bold">{toggleNoteBets ? `-` : `+`}</span>
             </h2>
 
             <div className={`${hiddenOrStaticToggle(toggleNoteBets)} w-full static max-h-60 md:max-h-full overflow-auto`}>
                 {EmptyListBetState()}
                 {note.map((bet, indice) => {
-                    console.log('bet noteBets ', bet)
-                    const choice = bet.choice.value
                     const oddNumber = bet.choice.odd
-                    const RetornosPotenciais = (bet, oddNumber) => {
-                        if (bet.value > 0) {
-
-                            return <>
-                                <span className="text-xs w-10">Retornos Potenciais: R$ {Math.floor(bet.value * oddNumber)}</span>
-                            </>
-                        }
-                        return ""
-                    }
-
-                    return <div key={bet.fix.fixture.id} className="p-2 bg-gray-50 border-b border-yellow-500 flex flex-col">
-                        <div className="inline-block">
-                            <div className="flex flex-col">
-                                <span className="flex-1 inline-block text-sm font-normal" onClick={() => { removedItem(indice, vf, bet) }}>
-                                    <CgRemove className="inline-block text-xs text-gray-500 hover:text-red-600 cursor-pointer mr-2" />
-                                    <div className="inline-block">{bet.fix.teams['home'].name} <span className="font-normal">vs</span> {bet.fix.teams['away'].name}</div>
-
-                                </span>
-                                <span className="text-sm">{bet.fix.league.country}/{bet.fix.league.name}</span>
-                                <div className="flex-1">
-                                    <span className="bg-yellow-200 mx-2 rounded-md font-normal text-yellow-600">{oddNumber}</span>
-                                    <span className=" text-gray-500 inline-block text-sm font-normal">{bet.odd} - <span className="text-blue-800">{Translate(bet.value)}</span> </span>
-                                </div>
-                            </div>
+                    const nameBets =  oddBets.find(n => {
+                        return n.id == bet.choice.betsChoice
+                    })
+                    return <div key={bet.fix.fixture.id} className="relative p-2 border-b border-yellow-500 flex flex-col">
+                        <div className="absolute right-0" onClick={() => { removedItem(indice, vf, bet) }}>
+                            <span className="inline-block mr-2 font-bold text-gray-600">{oddNumber}</span>
+                            <CgRemove className="inline-block text-xs text-gray-500 hover:text-red-600 cursor-pointer mr-2" />
                         </div>
-                        <div className="inline-block">
-                            <div className="border border-gray-200">
-                                <form className="bg-white inline-block w-full">
-                                    <span className="text-sm text-green-800 pl-1 w-2/12">R$</span>
-                                    <input onChange={(r) => {
-                                        changeInputValue({ obj: r, value: bet.fix.fixture.id, idNote: indice })
-                                    }} type="number" className="w-10/12 focus:outline-none float-right" alt={bet.fix.id} min="0" max="2000" step="10" />
-                                </form>
-                            </div>
-                            <RetornosPotenciais bet={bet} oddNumber={oddNumber} />
+                        <span className="inline-block text-sm font-bold" >
+                            <span className="block"> {bet.fix.teams['home'].name} </span> <span className="block">{bet.fix.teams['away'].name}</span>
+                        </span>
+                        <div className="">
+                            <span className=" text-gray-500 inline-block text-sm font-normal"><span className="text-blue-800">{nameBets.name}</span> </span>
                         </div>
                     </div>
+
                 })}
-                <div className={`block bg-white bottom-0`}><BtnBet vf={vf} user={user} /></div>
+                <div className="block p-1 border-t border-gray-300 bg-green-100">
+                    <form className="inline-block w-full">
+                        <span className="text-sm text-green-800 pl-1 w-2/12">R$</span>
+                        <input onChange={(r) => {
+                            changeInputValue({ obj: r, setVf: setVf, note })
+                        }} type="number" className="w-10/12 focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" />
+                    </form>
+                </div>
+                <div className={`block bg-white bottom-0`}><BtnBet vf={vf} user={user} retornoPotencial={retornoPotencial} /></div>
             </div>
         </div>
     </>

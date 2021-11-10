@@ -11,26 +11,22 @@ export default function BtnBet(props) {
     const ValorFinal = (vf) => {
         if(vf.vf) {
             if(vf.vf.length > 0) {
-                const valorTotal = vf.vf.reduce((preVf, v) => preVf + Number(v.value), 0)
-                return valorTotal
+                return `R$ ${vf.vf}`
             }
         }
         return ``
     }
 
     const startBet = (user, valores) => {
-        console.log('valores ', valores)
         if (user) {
-            let valorTotal = valores.reduce((total, v) => {
-                return total + Number(v.value)
-            }, 0)
+            let valorTotal = valores
 
             if (valorTotal > 0 && valorTotal < user.points) {
-                const setPoints = user.points - valorTotal
                 axios.post('/api/betApi/toBet', {
-                    points: setPoints,
+                    points: user.points,
                     email: user.email,
-                    bets: note
+                    bets: note,
+                    value: valorTotal
                 })
                     .then(function (response) {
                         axios.post('api/email/send', {
@@ -69,5 +65,5 @@ export default function BtnBet(props) {
         </div>
     }
 
-    return <button onClick={() => { startBet(props.user, props.vf) }} className="w-full bg-green-500 hover:bg-green-400 cursor-pointer font-semibold text-md text-green-900 hover:text-green-100 uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /> </button>
+    return <button onClick={() => { startBet(props.user, props.vf) }} className="w-full bg-green-500 hover:bg-green-400 cursor-pointer font-semibold text-md text-green-900 uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-900">Potencial Retorno: {props.retornoPotencial}</span> </button>
 }

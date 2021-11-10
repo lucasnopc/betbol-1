@@ -4,25 +4,22 @@ import { ImEyeBlocked } from 'react-icons/im'
 
 export default function Odd(props) {
 
-    let odd = {}
+    let odd = false
     const id = props.fixId.fixture.id
 
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     if (error) console.log(error)
     if (!data) <p> Carregando...</p>
-    if (data) odd = data
+    if (data) odd = data.odd[0]
     const bets = props.bets
     let values = []
-    if (odd.hasOwnProperty(`odds`)) {
-        if (odd.odds.results > 0) {
-
-            const book =  odd.odds.response[0].bookmakers.find((book) => {
-                return book.id == 1
-            })
-            const bet = book ? book.bets : null
-
-
-            const oddsBets = (bets, bet) => {
+    if (odd) {
+        
+        const book =  odd.bookmakers[0]
+        const bet = book ? book.bets : null
+        
+        const oddsBets = (bets, bet) => {
+                console.log(bets, bet)
                 const values = bet ? bet.find(val => {
                     return val.id == bets 
                 }) : null
@@ -30,7 +27,6 @@ export default function Odd(props) {
             }
             values = oddsBets(bets, bet) ? oddsBets(bets, bet).values : []
         }
-    }
     return <>
         <div className="md:float-right flex flex-wrap md:flex-none">
             {!data &&
@@ -39,7 +35,7 @@ export default function Odd(props) {
             {values &&
                 values.map((val, i) => {
                     return <div key={val.value} className="flex-1 m-1">
-                        <Button key={i} val={val} fixId={props.fixId} bets={props.bets} />
+                        <Button key={i} val={val} fixId={props.fixId} bets={bets} />
                     </div>
                 })
             }
