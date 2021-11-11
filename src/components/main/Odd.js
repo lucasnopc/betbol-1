@@ -30,7 +30,7 @@ export default function Odd(props) {
     return <>
         <div className="md:float-right flex flex-wrap md:flex-none">
             {!data &&
-                <>Carregando...</>
+                <><FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></>
             }
             {values &&
                 values.map((val, i) => {

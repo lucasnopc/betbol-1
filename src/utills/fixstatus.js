@@ -1,0 +1,21 @@
+export default fixStatus = [
+    {"TBD": "T não definido"},
+    {"NS": "Não Iniciado"},
+    {"1H": "1ºT"},
+    {"HT": "Intervalo"},
+    {"2H": "2ºT"},
+    {"ET": "Prolongamento"},
+    {"Q": "Penalidade em andamento"},
+    {"FT": "Partida terminada"},
+    {"AET": "Partida terminada após prolongamento"},
+    {"PEN": "Partida terminada após pênalti"},
+    {"BT": "T.Pausa"},
+    {"SUSP": "Suspenso"},
+    {"INT": "Interrompido"},
+    {"PST": "Adiado"},
+    {"CANC": "Cancelado"},
+    {"ABD": "Abandonado"},
+    {"AWD": "Perda Técnica"},
+    {"WO": "Vitória Fácil"},
+    {"LIVE": "Ao vivo"}
+]

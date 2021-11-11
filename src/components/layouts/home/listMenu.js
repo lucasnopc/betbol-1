@@ -17,11 +17,9 @@ export default function ListMenu(props) {
     useEffect(() => {
         const getCountries = async () => {
             const countriesLocal = JSON.parse(localStorage.getItem('betbol@countries'))
-            if (countriesLocal) {
                 if (countriesLocal.length > 0) {
                     setCountries(countriesLocal)
-                }
-            } else {
+                } else {
                 const urlGetCountries = `/api/getCountryes`
                 const data = await axios.get(urlGetCountries)
                 const countriesData = await data.data
