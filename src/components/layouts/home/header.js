@@ -5,10 +5,13 @@ import { useForm } from "react-hook-form"
 import { useRouter } from 'next/router'
 import { FcSettings } from 'react-icons/fc'
 import { ImSpinner } from 'react-icons/im'
+import { format } from "date-fns"
+
 
 export default function Header(props) {
     let user = ""
-    const datetoday = new Date().toISOString()
+    const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const datetoday = `${format(new Date(), `dd.MM.yy`)} - ${tzid}`
     if (props.userString) {
         user = JSON.parse(props.userString)
     }
@@ -79,11 +82,11 @@ export default function Header(props) {
     return <>
     {session && <>
         <div id="logado" className="py-1 text-sm bg-gray-600 border-b text-gray-200 shadow-md flex justify-between px-5">
-            <span className="font-normal hidden md:inline-block">{user ? user.email: ""}</span>
-            <span>{datetoday}</span>
+            <span className="font-medium hidden md:inline-block">{user ? user.email: ""}</span>
+        <span className="font-medium">{datetoday}</span>
             <div id="points" className="inline-block h-full items-center">
                 <span className="bgicon-coin"></span>
-                <span className="ml-2 font-normal">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
+                <span className="ml-2 font-medium">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
             </div>
         </div>
         </>}
