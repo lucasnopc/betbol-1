@@ -11,6 +11,9 @@ export default function NoteBets(props) {
     const [vf, setVf] = useState([])
     const [retornoPotencial, setRetornoPotencial] = useState()
     useEffect(() => {
+        if(note.length != 0 ) {
+            setToggleNoteBets(true)
+        }
         retornosPotenciais(note, vf, setRetornoPotencial)
     }, [note])
 
