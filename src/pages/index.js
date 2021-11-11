@@ -21,6 +21,7 @@ export default function Home(props) {
   useEffect(() => {
     const fetcherAlive = async () => {
       const fetch = await fetchAlive()
+      console.log(fetch.soccer.response)
       setLive(fetch.soccer.response)
     }
     fetcherAlive()
