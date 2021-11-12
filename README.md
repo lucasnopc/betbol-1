@@ -7,7 +7,7 @@ Nextjs + tailwindcss + mongodb
 ## Criando sessão de pagamento
 - mostrar ligas nos fix
 - fazer filtro de data para jogos da semana
-- login social google
+- login social google // travado porque não tem registro de nível superior
 - Load nas apostas
 - modal de confirmação
 - fazer página de cada fix e mostrar o link quando tiver muitos odds

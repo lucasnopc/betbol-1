@@ -43,4 +43,15 @@ export default NextAuth({
     verifyRequest: '/verify-request',
   },
   database: process.env.MONGODB_URI,
+  callbacks: {
+    async jwt(token, account) {
+      if(account?.accessToken) {
+        token.accessToken = account.accessToken
+      }
+      return token
+    },
+    // redirect: async (url, _baseUrl) => {
+    //     if(url === `/`)
+    // }
+  }
 })
