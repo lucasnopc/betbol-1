@@ -56,7 +56,6 @@ export default function Finances(props) {
       })
       .then(function (preference) {
         if (mercadopago) {
-          console.log('preference ', preference, mercadopago)
           const checkout = mercadopago.checkout({
             preference: {
               id: preference.id

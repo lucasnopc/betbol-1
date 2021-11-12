@@ -59,7 +59,6 @@ export default function NoteBets(props) {
                 return Number(n.choice.odd) * singleValue
             }).reduce((total, n) => total + n)
             setRetornoPotencial(response.toFixed(2))
-            console.log(retornoPotencial, typeof response)
         } else {
             setRetornoPotencial(0)
         }
@@ -83,6 +82,7 @@ export default function NoteBets(props) {
                     })
                     return <div key={bet.fix.fixture.id} className="relative p-2 border-b border-yellow-500 flex flex-col">
                         <div className="absolute right-0" onClick={() => { removedItem(indice, vf, bet) }}>
+                            <span className="inline-block mr-2 font-normal uppercase text-sm text-gray-600">{Translate(bet.choice.value)}</span>
                             <span className="inline-block mr-2 font-bold text-gray-600">{oddNumber}</span>
                             <CgRemove className="inline-block text-xs text-gray-500 hover:text-red-600 cursor-pointer mr-2" />
                         </div>

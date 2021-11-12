@@ -3,34 +3,52 @@ import { format } from 'date-fns'
 import { MdOutlineSchedule, MdMonetizationOn, MdDangerous, MdDoneOutline } from 'react-icons/md'
 import axios from 'axios'
 import { FcSynchronize } from 'react-icons/fc'
+import { useEffect } from 'react'
 
 export default function AllPays(props) {
-    const url = `/api/payments/getpayments`
+    let mercadopago = null
+    useEffect(() => {
+        let { MercadoPago } = window
+        mercadopago = new MercadoPago(`TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9`, {
+          locale: 'pt-BR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+        });
+      }, [])
+
+      const url = `/api/payments/getpayments`
     const { data, error } = useFetch(url)
     if (error) return `ERROR`
     if (!data) return <div className="text-center flex items-center">
         <FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" />
     </div>
-    console.log('payments ', data)
     const payments = data.payments
+
 
     const receiverPoints = async (pay, e) => {
         await axios.post('/api/payments/received', { pay, points: props.user.points })
             .then(function (response) {
-                console.log('diabeiss ?')
                 location.reload()
             })
     }
-
+    const finishPay = (pay, e) => {
+        if (mercadopago) {
+            const checkout = mercadopago.checkout({
+              preference: {
+                id: pay.id
+              },
+              autoOpen: true,
+            })
+          }
+    }
+    const status = (value) => {
+        if (value) {
+            if (value.status = `approved`) return true
+            return false
+        }
+    }
     return <>
         {payments.reverse().map(pay => {
             const date = format(new Date(pay.date), 'dd.MM.yy')
-            const status = (value) => {
-                if (value) {
-                    if (value.status = `approved`) return true
-                    return false
-                }
-            }
+            console.log(pay)
             return <div className="bg-gray-100 p-2 shadow-sm my-1 grid grid-cols-4" key={pay.id}>
                 <div className=""><MdOutlineSchedule className="inline-block" /> {date}</div>
                 <div className=""><MdMonetizationOn className="inline-block" /> R${pay.points.toFixed(2)}</div>
@@ -40,6 +58,7 @@ export default function AllPays(props) {
                     {pay.received && <span className="float-right uppercase font-semibold text-sm text-white bg-gray-300 p-1 cursor-not-allowed">
                         Recebido
                     </span>}
+                    {!pay.values && <button onClick={e => finishPay(pay, e)} className="float-right uppercase font-semibold text-sm text-white bg-green-500 hover:bg-green-400 p-1">Finalizar Pagamento</button>}
                 </div>
             </div>
         })}

@@ -3,7 +3,6 @@ import { useStore } from "../../context/store"
 import Translate from "../../utills/translate"
 
 export default function Button(props) {
-    const [toggle, setToggle] = useState(false)
     const [checked, setChecked] = useState(false)
     const { setGoBetsInNote, removeBetsInNote, note } = useStore()
 
@@ -12,7 +11,7 @@ export default function Button(props) {
         const fix = note.find(item => {
             if (item.fix.fixture.id == props.fixId.fixture.id) {
                 if (item.choice.betsChoice == props.bets) {
-                    if (props.val.odd == item.choice.odd) {
+                    if (props.val.odd == item.choice.odd && item.choice.value == props.val.value) {
                         return true
                     } else {
                     }
