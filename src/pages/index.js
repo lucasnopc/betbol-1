@@ -21,7 +21,6 @@ export default function Home(props) {
   useEffect(() => {
     const fetcherAlive = async () => {
       const fetch = await fetchAlive()
-      console.log(fetch.soccer.response)
       setLive(fetch.soccer.response)
     }
     fetcherAlive()
@@ -29,6 +28,25 @@ export default function Home(props) {
   useEffect(() => {
     setFixState(live)
   }, [live])
+
+  const ligas = []
+  for (let i = 0; i < live.length; i++) {
+    let ligaIgual = false;
+    for (let j = 0; j < i; j++) {
+      if (ligas[j] && live[i].league.id == ligas[j].liga.id) {
+        ligas[j].fix.push(live[i])
+        ligaIgual = true
+        break
+      }
+    }
+    if (!ligaIgual) {
+      ligas.push({
+        liga: live[i].league,
+        fix: [live[i]]
+      })
+    }
+  }
+  console.log(ligas)
   return (
     <>
       <Head>
@@ -47,8 +65,15 @@ export default function Home(props) {
               <SelectOddsBets setBets={setBets} bets={bets} />
             </div>
             <div className="overflow-auto">
-              {live && live.map(f => {
-                return <Fix key={f.fixture.id} fix={f} bets={bets} />
+              {ligas.length > 0 && ligas.map(l => {
+                  
+                return <div>
+                  <span className="block text-sm bg-gray-600 text-white font-semibold p-0.5">{l.liga.country} | {l.liga.name} </span>
+                  {l.fix.map((f, i) => {
+                    return <Fix key={f.fixture.id} fix={f} bets={bets} />
+                  })}
+                </div>
+
               })}
             </div>
           </div>

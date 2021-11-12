@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 
 export default function Footer() {
+    const fullYear = new Date().getFullYear()
     return <><div className="hidden md:grid grid-cols-4 gap-4 p-3 pt-5">
         <div>
             <h4 className="font-normal">Apostas Esportivas</h4>
@@ -31,6 +32,6 @@ export default function Footer() {
             </ol>
         </div>
     </div>
-        <div className="p-2 bg-white text-center font-semibold text-gray-400 text-sm pb-10 md:pb-0">© {new Date().getFullYear} - Betbol.io / Todos os direitos reservados.</div>
+        <div className="p-2 bg-white text-center font-semibold text-gray-400 text-sm pb-10 md:pb-0">© {fullYear} - Betbol.io / Todos os direitos reservados.</div>
     </>
 }
