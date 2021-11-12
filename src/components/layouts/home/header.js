@@ -12,50 +12,34 @@ export default function Header(props) {
     let user = ""
     const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const datetoday = `${format(new Date(), `dd.MM.yy`)} - ${tzid}`
+    const [session, loading] = useSession()
+    const router = useRouter()
+    const { register, handleSubmit, formState } = useForm();
+    const { isSubmitting } = formState
+    const [btnLogin, setBtnLogin] = useState(true)
+    const registerUser = async data => {
+        await signIn('email', { email: data.email })
+    }
     if (props.userString) {
         user = JSON.parse(props.userString)
     }
-    const [session, loading] = useSession()
-    const router = useRouter()
-    const pageSoccer = () => {
-        if (router.asPath == '/') {
-            return true
-        }
-        return false
-    }
-    const pageBasket = () => {
-        if (router.asPath == '/sports/basket') {
-            return true
-        }
-        return false
-    }
+
     const Profile = () => {
         const [openSettings, setOpenSettings] = useState(false)
         return <>
             {!session && <>
                 <div className="block-bgicon-enter items-center flex">
                     <div className={`${btnLogin ? 'hidden md:inline-block' : 'inline-block'}`}>
-                        <form onSubmit={handleSubmit(registerUser)} className="absolute md:static z-10 bg-white top-16 right-0">
-                            <input {...register('email', { required: true })} type="email" name="email" placeholder="Insira seu E-mail" className="inline-block p-1.5 border-2 border-gray-500 focus:outline-none focus:border-black" required />
-                            <button disabled={isSubmitting} type="submit" className="btn mt-2 inline-block"><ImSpinner className={`${isSubmitting ? `inline-block` : `hidden`} animate-spin`} /> Acessar</button>
+                        <form onSubmit={handleSubmit(registerUser)} className="absolute md:static z-10 bg-white top-10 right-0 p-2 grid grid-cols-12">
+                            <div className="col-start-1 col-span-8"><input {...register('email', { required: true })} type="email" name="email" placeholder="Insira seu E-mail" className="inline-block p-1.5 border-2 border-gray-500 focus:outline-none focus:border-black float-right" required /></div>
+                           <div className="col-start-9 col-span-4"> <button disabled={isSubmitting} type="submit" className="btn inline-block"><ImSpinner className={`${isSubmitting ? `inline-block` : `hidden`} animate-spin`} /> Acessar</button></div>
                         </form>
                     </div>
-                    <span className="bgicon-enter cursor-pointer mx-3 md:hidden" onClick={() => setBtnLogin(!btnLogin)}></span>
+                    <span className="cursor-pointer bg-yellow-500 p-1 uppercase font-medium text-white text-sm md:hidden mt-1" onClick={() => setBtnLogin(!btnLogin)}>Entrar</span>
                 </div>
-                {/* <div className="relative group inline-block block-bgicon-register">
-                    <Link href="/register"><a><span className="bgicon-register cursor-pointer mx-3"></span></a></Link>
-                    <div className=" text-gray-600 rounded-md p-1 border bg-gray-100 border-gray-200 top-8 -left-5 absolute hidden group-hover:inline-block">CADASTRAR</div>
-                </div> */}
             </>}
             {session && <>
                 <div className="fex items-center">
-
-                    <div className="relative group inline-block block-bgicon-soccerball opacity-50 hover:opacity-100">
-                        {/* <Link href="/"><a className="flex items-center"><span className={`${pageSoccer() ? `bgicon-soccer-active` : `bgicon-soccer`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">FUTEBOL</span></a></Link> */}
-                    </div>
-                    <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100">
-                        {/* <Link href="/sports/basket"><a className="flex items-center"><span className={`${pageBasket() ? `bgicon-basket-active` : `bgicon-basket`} cursor-pointer mx-3`}></span> <span className="font-normal text-gray-500 hidden sm:inline-block">BASQUETE</span></a></Link> */}
-                    </div>
 
                     <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100 cursor-pointer">
                         <FcSettings className="text-3xl ml-3" onClick={() => setOpenSettings(!openSettings)} />
@@ -65,19 +49,13 @@ export default function Header(props) {
                             <div><Link href="/myBetsHistory"><a className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white border-b border-gray-300 block">Historico Apostas</a></Link></div>
                             <div className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white" onClick={() => signOut()}>Sair</div>
                         </div>
-                        {/* <a className="flex items-center" ><span className="bgicon-enter mx-3"></span><span className="font-normal text-gray-500 hidden sm:inline-block">SAIR</span></a> */}
                     </div>
 
                 </div>
             </>}
         </>
     }
-    const { register, handleSubmit, formState } = useForm();
-    const { isSubmitting } = formState
-    const [btnLogin, setBtnLogin] = useState(true)
-    const registerUser = async data => {
-        await signIn('email', { email: data.email })
-    }
+
 
     return <>
     {session && <>
@@ -90,7 +68,7 @@ export default function Header(props) {
             </div>
         </div>
         </>}
-        <header className="bg-white border-b border-gray-200 shadow-xl h-20 flex items-center justify-between">
+        <header className="bg-white border-b border-gray-200 shadow-xl px-1 pb-1.5 flex items-center justify-between">
             <div id="logo" className="mt-1 ml-10">
                 <Link href="/">
                     <a>
