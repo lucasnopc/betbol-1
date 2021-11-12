@@ -31,8 +31,8 @@ export default function Header(props) {
                 <div className="block-bgicon-enter items-center flex">
                     <div className={`${btnLogin ? 'hidden md:inline-block' : 'inline-block'}`}>
                         <form onSubmit={handleSubmit(registerUser)} className="absolute md:static z-10 bg-white top-10 right-0 p-2 grid grid-cols-12">
-                            <div className="col-start-1 col-span-8"><input {...register('email', { required: true })} type="email" name="email" placeholder="Insira seu E-mail" className="inline-block p-1.5 border-2 border-gray-500 focus:outline-none focus:border-black float-right" required /></div>
-                           <div className="col-start-9 col-span-4"> <button disabled={isSubmitting} type="submit" className="btn inline-block"><ImSpinner className={`${isSubmitting ? `inline-block` : `hidden`} animate-spin`} /> Acessar</button></div>
+                            <div className="col-start-1 col-span-8"><input {...register('email', { required: true })} type="email" name="email" placeholder="Insira seu E-mail" className="inline-block p-1.5 focus:outline-none bg-gray-200 h-10 float-right" required /></div>
+                           <div className="col-start-9 col-span-4"> <button disabled={isSubmitting} type="submit" className="btn inline-block h-10"><ImSpinner className={`${isSubmitting ? `inline-block` : `hidden`} animate-spin`} /> Acessar</button></div>
                         </form>
                     </div>
                     <span className="cursor-pointer bg-yellow-500 p-1 uppercase font-medium text-white text-sm md:hidden mt-1" onClick={() => setBtnLogin(!btnLogin)}>Entrar</span>

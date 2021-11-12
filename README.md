@@ -5,6 +5,7 @@ Nextjs + tailwindcss + mongodb
 
 # ISSUES
 ## Criando sessão de pagamento
-- Colocar data no banco de dados payment 
+- mostrar ligas nos fix
+- fazer filtro de data para jogos da semana
 
 >>>>>>> a7abde8f995f30e977a263868a13caae84556da8
