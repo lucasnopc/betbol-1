@@ -14,7 +14,6 @@ export default async function received(req, res) {
             "points": points,
             "email": email
         }
-        console.log(dataPost)
         await axios.post(`${process.env.NEXTAUTH_URL}/api/adm/updatePoints`, dataPost)
             .then(() => {
                 db.collection("payment").updateOne({ id: pay.id }, receivedValue, function (err, resp) {

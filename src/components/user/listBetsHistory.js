@@ -20,7 +20,6 @@ export default function ListBetsHistory (props) {
     }
     const historyBets = data.data.betHistory
     const historyBetsList = historyBets.map((r, i) => {
-        console.log('r ', r)
         const datePlayBet = format(new Date(r.date), 'dd/MM/yyyy HH:mm')
         return (<div className="border-2 border-gray-500 p-3 bg-white my-2" key={i}>
         <span>Aposta realizada em: {datePlayBet}</span>

@@ -5,6 +5,7 @@ import { BiFootball, BiWorld } from 'react-icons/bi'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { FcSynchronize } from 'react-icons/fc'
+import { format, isTomorrow } from 'date-fns'
 
 export default function ListMenu(props) {
     const [countries, setCountries] = useState([])
@@ -12,14 +13,17 @@ export default function ListMenu(props) {
     const [leagues, setLeagues] = useState(false)
     const router = useRouter()
     const [loading, setLoading] = useState(false)
-
+    const today = format(new Date(), 'yyyy-MM-dd')
+    let tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow = format(tomorrow, 'yyyy-MM-dd')
 
     useEffect(() => {
         const getCountries = async () => {
             const countriesLocal = JSON.parse(localStorage.getItem('betbol@countries'))
-                if (countriesLocal.length > 0) {
-                    setCountries(countriesLocal)
-                } else {
+            if (countriesLocal.length > 0) {
+                setCountries(countriesLocal)
+            } else {
                 const urlGetCountries = `/api/getCountryes`
                 const data = await axios.get(urlGetCountries)
                 const countriesData = await data.data
@@ -88,22 +92,38 @@ export default function ListMenu(props) {
         }
         return ""
     }
-
     return <div className="bg-white shadow-md">
+        <div onClick={() => setToggle(!toggle)} className="bg-gray-50 p-1">
+            <BiFootball className="inline-block" />
+            <span className="inline-block text-xs ml-2 font-bold uppercase"> Filtro de jogos</span>
+        </div>
         <ul className={`${toggle ? `block` : `hidden md:block`} max-h-32 md:max-h-80 overflow-auto`}>
             <li >
                 <Link className="inline-block" href="/">
                     <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-yellow-600 hover:text-yellow-600 cursor-pointer w-full block">
-                        <BiFootball className="inline-block" />
-                        <span className="inline-block mt-1"> Futebol</span>
+                        <span className="inline-block text-sm ml-2">Ao Vivo</span>
+                    </a>
+                </Link>
+            </li>
+            <li >
+                <Link className="inline-block" href={`/date/${today}`}>
+                    <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-yellow-600 hover:text-yellow-600 cursor-pointer w-full block">
+                        <span className="inline-block text-sm ml-2">Próximos</span>
+                    </a>
+                </Link>
+            </li>
+            <li >
+                <Link className="inline-block" href={`/date/${tomorrow}`}>
+                    <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-yellow-600 hover:text-yellow-600 cursor-pointer w-full block">
+                        <span className="inline-block text-sm ml-2">Amanhã</span>
                     </a>
                 </Link>
             </li>
         </ul>
-        <div className="p-2">
+        <div className={`${toggle ? `block` : `hidden md:block`} p-2`}>
             <Select options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
             {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></div>}
-            {!loading && <SelectLeague /> }
+            {!loading && <SelectLeague />}
         </div>
     </div>
 }

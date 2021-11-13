@@ -36,10 +36,6 @@ export default function CodePage(props) {
       </Head>
 
       <Layout userString={props.userString}>
-        <div className="page grid grid-cols-12">
-          <div className="col-span-full md:col-span-2 mt-3 mx-3">
-            <ListMenu getLeague={getLeague} setLeague={setLeague} />
-          </div>
           <div className="mx-3 mt-3 md:col-span-7 col-span-full">
             <h2 className="page-title">{name}</h2>
             {leagues.map((lea) => {
@@ -55,10 +51,6 @@ export default function CodePage(props) {
               </div>
             })}
           </div>
-          <div className="mx-3 md:col-span-3 col-span-full">
-            <NoteBets userString={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
-          </div>
-        </div>
       </Layout>
     </>
   )

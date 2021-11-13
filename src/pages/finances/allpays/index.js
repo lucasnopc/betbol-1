@@ -48,7 +48,6 @@ export default function AllPays(props) {
     return <>
         {payments.reverse().map(pay => {
             const date = format(new Date(pay.date), 'dd.MM.yy')
-            console.log(pay)
             return <div className="bg-gray-100 p-2 shadow-sm my-1 grid grid-cols-4" key={pay.id}>
                 <div className=""><MdOutlineSchedule className="inline-block" /> {date}</div>
                 <div className=""><MdMonetizationOn className="inline-block" /> R${pay.points.toFixed(2)}</div>

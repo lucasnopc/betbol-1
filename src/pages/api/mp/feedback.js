@@ -3,7 +3,6 @@ import { connectToDatabase } from '../../../utills/conectdb';
 export default async function feedback(req, res) {
     const pay = req.query.preference_id ? req.query : req.body
     const { db } = await connectToDatabase()
-        console.log(pay)
     if (req.method = "POST") {
         const values = { $set: { values: pay } };
     await db.collection("payment").updateOne({id: pay.preference_id}, values, function (err, resp) {

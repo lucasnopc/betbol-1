@@ -1,52 +1,35 @@
 import Head from 'next/head'
 import Layout from '../components/layouts/home/layout'
-import NoteBets from '../components/bet/football/noteBets'
 import { useEffect, useState } from 'react'
-import ListMenu from '../components/layouts/home/listMenu'
 import serverSidePropsClient from '../utills/serverSitePropsClient'
 import { useStore } from '../context/store'
-import { fetchAlive } from '../utills/fetchAlive'
 import SelectOddsBets from '../components/main/SelectOddsBets'
 import Fix from '../components/main/Fix'
+import useFetch from '../utills/useFetch'
+import FullLoading from '../components/fullloading'
+import fixInLeagues from '../utills/fixInLeagues'
+import Alive from '../components/main/Alive'
 
 export default function Home(props) {
 
-  const [listBetState, setListBetState] = useState([])
-  const [getValorFinal, setValorFinal] = useState(0)
-  const [getLeague, setLeague] = useState({})
   const [live, setLive] = useState([])
   const [bets, setBets] = useState(1)
   const { setFixState, fix } = useStore()
+  const { data, error } = useFetch(`/api/betApi/soccer`)
+
 
   useEffect(() => {
-    const fetcherAlive = async () => {
-      const fetch = await fetchAlive()
-      setLive(fetch.soccer.response)
-    }
-    fetcherAlive()
-  }, [])
+    if (data) setLive(data.soccer.response)
+
+  }, [data])
+
   useEffect(() => {
     setFixState(live)
   }, [live])
 
-  const ligas = []
-  for (let i = 0; i < live.length; i++) {
-    let ligaIgual = false;
-    for (let j = 0; j < i; j++) {
-      if (ligas[j] && live[i].league.id == ligas[j].liga.id) {
-        ligas[j].fix.push(live[i])
-        ligaIgual = true
-        break
-      }
-    }
-    if (!ligaIgual) {
-      ligas.push({
-        liga: live[i].league,
-        fix: [live[i]]
-      })
-    }
-  }
-  console.log(ligas)
+  if (error) return console.log(error)
+  if (!data) return <FullLoading />
+
   return (
     <>
       <Head>
@@ -55,32 +38,7 @@ export default function Home(props) {
       </Head>
 
       <Layout userString={props.userString}>
-        <div className="page grid grid-cols-12">
-          <div className="col-span-full md:col-span-2 mt-3 mx-3">
-            <ListMenu getLeague={getLeague} setLeague={setLeague} />
-          </div>
-          <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
-            <div>
-              <h2 className="page-title inline-block">Futebol</h2>
-              <SelectOddsBets setBets={setBets} bets={bets} />
-            </div>
-            <div className="overflow-auto">
-              {ligas.length > 0 && ligas.map(l => {
-                  
-                return <div>
-                  <span className="block text-sm bg-gray-600 text-white font-semibold p-0.5">{l.liga.country} | {l.liga.name} </span>
-                  {l.fix.map((f, i) => {
-                    return <Fix key={f.fixture.id} fix={f} bets={bets} />
-                  })}
-                </div>
-
-              })}
-            </div>
-          </div>
-          <div className="mx-3 md:col-span-3 col-span-full">
-            <NoteBets userString={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
-          </div>
-        </div>
+        <Alive live={live} bets={bets} setBets={setBets} />
       </Layout>
     </>
   )

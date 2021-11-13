@@ -7,7 +7,6 @@ export default async function getUser(req, res) {
         let { db } = await connectToDatabase()
         const email = req.body.email  || req.query.email
         const points = Number(req.body.points) || Number(req.query.points)
-        console.log(points)
         var newvalues = { $set: { points } };
         const response = await db
             .collection("users").updateOne({ email }, newvalues, function (err, resp) {

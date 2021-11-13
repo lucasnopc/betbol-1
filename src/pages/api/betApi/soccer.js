@@ -1,7 +1,8 @@
 export default async function Soccer(req, res) {
     
     if(req.method == "GET") {
-        const soccer_res = await fetch(`${process.env.APISPORT}/fixtures?live=all`, 
+        const url = req.query.date ? `${process.env.APISPORT}/fixtures?date=${req.query.date}&status=NS`:`${process.env.APISPORT}/fixtures?live=all`
+        const soccer_res = await fetch(url, 
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -11,7 +12,7 @@ export default async function Soccer(req, res) {
         })
         const soccer = await soccer_res.json()
         res.status(200).json({ soccer })
-        
+            // console.log('soccer_res ', soccer)
     }else {
         res.status(400).json({'message': 'method request not exist'})
     }
