@@ -1,9 +1,8 @@
 import Header from './header'
 import Footer from './footer'
 import ListMenu from './listMenu'
-import SelectOddsBets from '../../main/SelectOddsBets'
-import NoteBets from '../../bet/football/noteBets'
 import { useState } from 'react'
+import Note from './note/note'
 
 export default function Layout(props) {
     const [listBetState, setListBetState] = useState([])
@@ -22,7 +21,7 @@ export default function Layout(props) {
                     </div>
                 </div>
                 <div className="mx-3 md:col-span-3 col-span-full">
-                    <NoteBets userString={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
+                    <Note userString={props.userString} setListBetState={setListBetState} listBetState={listBetState} getValorFinal={getValorFinal} setValorFinal={setValorFinal} />
                 </div>
             </div>
         </main>

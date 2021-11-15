@@ -19,12 +19,12 @@ export default function Alive(props) {
         {ligas.length > 0 && ligas.slice(0, 10).map(l => {
             // console.log("l.fix ", l.fix)
             return <div key={l.liga.id}>
-                <span className="block text-sm bg-gray-600 text-white font-semibold p-0.5">{l.liga.country} | {l.liga.name} <MoreFix l={l} /></span>
+                <span className="block text-sm bg-gray-600 text-white font-semibold p-0.5 overflow-auto">{l.liga.country} | {l.liga.name} <MoreFix l={l} /></span>
                 {l.fix.slice(0, 3).map((f) => {
                     return <Fix key={f.fixture.id} fix={f} bets={props.bets} />
                 })}
             </div>
         })}
-        <button className="p-2 bg-gray-300 hover:bg-gray-200 w-full w-full text-gray-600 font-semibold uppercase">Carregar mais</button>
+        <button className="p-2 bg-gray-300 hover:bg-gray-200 w-full text-gray-600 font-semibold uppercase">Carregar mais</button>
     </>
 }

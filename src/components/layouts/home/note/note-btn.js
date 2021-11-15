@@ -1,9 +1,9 @@
-import { HtmlEmailSendBet, TextEmailSendBet } from '../../../utills/htmlEmailSendBet'
+import { HtmlEmailSendBet } from '../../../../utills/htmlEmailSendBet'
 import { useSession } from "next-auth/client"
 import axios from 'axios'
-import { useStore } from '../../../context/store'
+import { useStore } from '../../../../context/store'
 
-export default function BtnBet(props) {
+export default function NoteBtn(props) {
     const { note } = useStore()
 
     const [session] = useSession()

@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
-import NoteBets from '../../components/bet/football/noteBets'
-import ListMenu from '../../components/layouts/home/listMenu'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
 import Fix from '../../components/main/Fix'
@@ -14,9 +12,6 @@ import { FcSynchronize } from 'react-icons/fc'
 export default function LeaguePage(props) {
 
     const [bets, setBets] = useState(1)
-    const [listBetState, setListBetState] = useState([])
-    const [getValorFinal, setValorFinal] = useState(0)
-    const [getLeague, setLeague] = useState({})
     const router = useRouter()
     const { id, year, name } = router.query
     const { setFixState } = useStore()

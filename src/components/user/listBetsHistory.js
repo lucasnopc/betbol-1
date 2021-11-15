@@ -1,58 +1,40 @@
-import useSWR from 'swr'
-import axios from 'axios'
 import { format } from 'date-fns'
 import Translate from '../../utills/translate'
 import { oddBets } from '../../utills/oddBets'
-import { FcSynchronize } from 'react-icons/fc'
+import { useState } from 'react'
 
-export default function ListBetsHistory (props) {
-    const urlBetsHistoryApi = `/api/user/betsHistory?email=${props.email}`
-    const fetcher = async () => {
-        const data = await axios.get(urlBetsHistoryApi)
-        return data
-    }
-    const { data, error } = useSWR(urlBetsHistoryApi, fetcher)
-    if (error) console.log(error)
-    if (!data) {
-        return <>
-            <FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" />
-        </>
-    }
-    const historyBets = data.data.betHistory
-    const historyBetsList = historyBets.map((r, i) => {
-        const datePlayBet = format(new Date(r.date), 'dd/MM/yyyy HH:mm')
-        return (<div className="border-2 border-gray-500 p-3 bg-white my-2" key={i}>
-        <span>Aposta realizada em: {datePlayBet}</span>
-            <table className="table-auto w-full">
-            <thead>
-                <tr>
-                    <th className="text-left font-medium p-2 border-2 border-gray-200">Jogo:</th>
-                    <th className="text-left font-medium p-2 border-2 border-gray-200">Escolha:</th>
-                    <th className="text-left font-medium p-2 border-2 border-gray-200">Probabilidade</th>
-                    <th className="text-left font-medium p-2 border-2 border-gray-200">Valor Apostado</th>
-                    <th className="text-left font-medium p-2 border-2 border-gray-200">Ganho Potencial</th>
-                </tr>
-            </thead>
-        <tbody>
-            {
-                
-                r.bets.map((b, i) => {
-                    const betName = (oddBets) => {
-                        const oddBet = oddBets.find(x => x.id == b.choice.betsChoice)
-                        return oddBet
-                    }
-                    return <tr key={i}>
-                         <td className="p-2 border-2 border-gray-200">{b.fix.teams.home.name} X {b.fix.teams.away.name}</td>
-                        <td className="p-2 border-2 border-gray-200"><span className="bg-gray-200 p-1" >{Translate(betName(oddBets).name)}</span> - {Translate(b.choice.value)}</td>
-                        <td className="p-2 border-2 border-gray-200">{b.choice.odd}</td>
-                        {/* <td className="p-2 border-2 border-gray-200">R$ {b.choice.valor.value}</td> */}
-                       {/* <td className="p-2 border-2 border-gray-200">R$ {b.choice.valor.value * b.choice.odd}</td> */}
-                    </tr>
+export default function ListBetsHistory(props) {
+    const [toggle, setToggle] = useState(false)
+    const history = props.data
+    console.log(history)
+    const date = format(new Date(history.date), 'dd.MM.yyyy HH:mm')
+    return <><div onClick={() => setToggle(!toggle)} className="font-medium p-1 bg-gray-100 hover:bg-gray-200 m-1 flex" key={history._id}>
+        <span className="flex-auto"> {date} </span>
+        <span className="font-normal ml-2 flex-auto">Apostou: R$ {history.value}</span>
+        <span className="font-normal ml-2 flex-auto">{history.bets.length} Jogos</span>
+    </div>
+        <div className={`${toggle ? `block` : `hidden`}`}>
+            {history.bets.reverse().map(b => {
+                const choiceOdd = oddBets.find(f => {
+                    return f.id == b.choice.betsChoice
                 })
-            }
-        </tbody></table></div>)
-    })
-    return <>
-            {historyBetsList}
+                console.log(choiceOdd)
+                return <div className="p-1 grid grid-cols-3 bg-gray-50 border-b border-gray-400">
+                    <div className="mr-1 block">
+                        <span className="">{b.fix.teams.home.name}</span>
+                        <span className="mr-1 fl block">{b.fix.teams.away.name}</span>
+                    </div>
+                    <div className="mr-1 block">
+                    <span className="mr-1 block">{choiceOdd.name}</span>
+                    <span className="mr-1 inline-block text-right font-normal">{b.choice.odd}</span>
+                    <span className="mr-1 inline-block">{Translate(b.choice.value)}</span>
+                    </div>
+                    <div>
+                        <span className="float-right">Status</span>
+                    </div>
+                </div>
+            })}
+        </div>
     </>
+
 }

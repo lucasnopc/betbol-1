@@ -1,11 +1,11 @@
 import { CgRemove } from 'react-icons/cg'
 import { useEffect, useState } from 'react'
-import Translate from '../../../utills/translate'
-import { useStore } from '../../../context/store'
-import BtnBet from './noteBetsBtn'
-import { oddBets } from '../../../utills/oddBets'
+import Translate from '../../../../utills/translate'
+import { useStore } from '../../../../context/store'
+import { oddBets } from '../../../../utills/oddBets'
+import NoteBtn from './note-btn'
 
-export default function NoteBets(props) {
+export default function Note(props) {
     const { note, removeBetsInNote, changeVf } = useStore()
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
     const [vf, setVf] = useState([])
@@ -103,7 +103,7 @@ export default function NoteBets(props) {
                         }} type="number" className="w-10/12 focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" />
                     </form>
                 </div>
-                <div className={`block bg-white bottom-0`}><BtnBet vf={vf} user={user} retornoPotencial={retornoPotencial} /></div>
+                <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} user={user} retornoPotencial={retornoPotencial} /></div>
             </div>
         </div>
     </>

@@ -3,20 +3,16 @@ import Layout from '../components/layouts/home/layout'
 import { useEffect, useState } from 'react'
 import serverSidePropsClient from '../utills/serverSitePropsClient'
 import { useStore } from '../context/store'
-import SelectOddsBets from '../components/main/SelectOddsBets'
-import Fix from '../components/main/Fix'
 import useFetch from '../utills/useFetch'
 import FullLoading from '../components/fullloading'
-import fixInLeagues from '../utills/fixInLeagues'
 import Alive from '../components/main/Alive'
 
 export default function Home(props) {
 
   const [live, setLive] = useState([])
   const [bets, setBets] = useState(1)
-  const { setFixState, fix } = useStore()
+  const { setFixState } = useStore()
   const { data, error } = useFetch(`/api/betApi/soccer`)
-
 
   useEffect(() => {
     if (data) setLive(data.soccer.response)
@@ -43,6 +39,7 @@ export default function Home(props) {
     </>
   )
 }
+
 export async function getServerSideProps(context) {
   const ret = serverSidePropsClient(context)
   return ret
