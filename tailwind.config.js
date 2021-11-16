@@ -8,7 +8,12 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'register': "url('/register.jpg')"
-      })
+      }),
+      colors: {
+        'primary': '#f1801e',
+        'primary-ligth': '#f6a952'
+
+      }
     },
   },
   variants: {

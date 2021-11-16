@@ -16,7 +16,7 @@ export function ConfirmDialog(props) {
             Cancelar
           </Button>
           <Button
-            className=" hover:text-yellow-600"
+            className=" hover:text-primary"
             onClick={() => {
               setOpen(false);
               onConfirm();
@@ -42,7 +42,7 @@ export function AlertDialog(props) {
       <div className="p-5 text-center border-gray-300 border-b-2">{children}</div>
       <div className="flex justify-end">
           <Button
-            className=" hover:text-yellow-600"
+            className=" hover:text-primary"
             onClick={() => {
               setOpen(false);
               onConfirm();

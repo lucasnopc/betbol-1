@@ -1,5 +1,4 @@
 import { zonedTimeToUtc, utcToZonedTime, format } from "date-fns-tz"
-import isTomorrow from "date-fns/isTomorrow";
 import { fixStatus } from "../../utills/fixstatus";
 
 export default function FixDate(props) {
@@ -16,7 +15,7 @@ export default function FixDate(props) {
         }
     })
     return <>
-        <span className={`${status.classNames} text-xs block md:inline-block leading-none text-yellow-600 font-semibold p-0.5`}>{status.label}</span>
+        <span className={`${status.classNames} text-xs block md:inline-block leading-none text-primary font-semibold p-0.5`}>{status.label}</span>
         <span className="text-xs leading-none text-center pt-3 text-gray-500 font-normal">{DateDayAndMoth}</span>
         <span className="text-xs leading-none text-center text-gray-500 ml-1 font-normal">{DateHours}</span>
     </>

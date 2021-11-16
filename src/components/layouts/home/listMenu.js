@@ -100,21 +100,21 @@ export default function ListMenu(props) {
         <ul className={`${toggle ? `block` : `hidden md:block`} max-h-32 md:max-h-80 overflow-auto`}>
             <li >
                 <Link className="inline-block" href="/">
-                    <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-yellow-600 hover:text-yellow-600 cursor-pointer w-full block">
+                    <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-primary hover:text-primary cursor-pointer w-full block">
                         <span className="inline-block text-sm ml-2">Ao Vivo</span>
                     </a>
                 </Link>
             </li>
             <li >
                 <Link className="inline-block" href={`/date/${today}`}>
-                    <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-yellow-600 hover:text-yellow-600 cursor-pointer w-full block">
+                    <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-primary hover:text-primary cursor-pointer w-full block">
                         <span className="inline-block text-sm ml-2">Próximos</span>
                     </a>
                 </Link>
             </li>
             <li >
                 <Link className="inline-block" href={`/date/${tomorrow}`}>
-                    <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-yellow-600 hover:text-yellow-600 cursor-pointer w-full block">
+                    <a className="p-1 hover:bg-gray-100 border-b text-green-700 font-normal hover:border-primary hover:text-primary cursor-pointer w-full block">
                         <span className="inline-block text-sm ml-2">Amanhã</span>
                     </a>
                 </Link>

@@ -32,7 +32,7 @@ export default function register(props) {
           name="logradouro"
           type="text"
           placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
           defaultValue={getStateRegister.andress.logradouro}
         />
       </div>
@@ -44,7 +44,7 @@ export default function register(props) {
           name="bairro"
           type="text"
           placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
           defaultValue={getStateRegister.andress.bairro}
         />
       </div>
@@ -56,7 +56,7 @@ export default function register(props) {
           name="localidade"
           type="text"
           placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
           defaultValue={getStateRegister.andress.localidade}
         />
       </div>
@@ -68,7 +68,7 @@ export default function register(props) {
           name="uf"
           type="text"
           placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
           defaultValue={getStateRegister.andress.uf}
         />
       </div>
@@ -123,7 +123,7 @@ export default function register(props) {
               name="name"
               type="text"
               placeholder="Mike"
-              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.name}
             />
           </div>
@@ -134,7 +134,7 @@ export default function register(props) {
               name="lastname"
               type="text"
               placeholder="Adams Silva"
-              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.lastname}
             />
           </div>
@@ -144,7 +144,7 @@ export default function register(props) {
               mask="\+\5\5 (99) 99999-9999"
               {...register('tel', { required: true })}
               placeholder="+55 (99) 99999-9999"
-              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.tel}
             />
           </div>
@@ -154,7 +154,7 @@ export default function register(props) {
               mask="999.999.999-99"
               {...register('cpf', { required: true })}
               placeholder="123.456.789-10"
-              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.cpf}
             />
           </div>
@@ -166,7 +166,7 @@ export default function register(props) {
               {...register('cep', { required: true })}
               placeholder="12345-678"
               onChange={getAndress}
-              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.cep}
             />
           </div>
@@ -178,7 +178,7 @@ export default function register(props) {
               name="numhouse"
               type="number"
               placeholder="30"
-              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.numhouse}
             />
           </div>

@@ -30,7 +30,7 @@ export default function Header(props) {
             {!session && <>
                 <div className="z-20">
 
-                    <span className="cursor-pointer bg-yellow-500 p-1 uppercase font-medium text-white text-sm md:hidden mt-1" onClick={() => setBtnLogin(!btnLogin)}>Entrar</span>
+                    <span className="cursor-pointer bg-primary-ligth p-1 uppercase font-medium text-white text-sm md:hidden mt-1" onClick={() => setBtnLogin(!btnLogin)}>Entrar</span>
                     <div className={`${btnLogin ? 'hidden md:inline-block' : 'block absolute top-0 left-0'} mt-1 bg-white z-20 p-1`}>
                         <span className="md:hidden text-xs font-medium text-gray-400">Digite seu melhor e-mail para receber o primeiro acesso.</span>
                         <form onSubmit={handleSubmit(registerUser)} className=" md:static z-10  top-10 right-0 p-2 grid grid-cols-12">
