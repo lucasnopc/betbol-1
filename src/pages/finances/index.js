@@ -1,17 +1,12 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
-import NoteBets from '../../components/bet/football/noteBets'
 import { useEffect, useState } from 'react'
-import ListMenu from '../../components/layouts/home/listMenu'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
 import AllPays from './allpays'
 
 export default function Finances(props) {
-  const [listBetState, setListBetState] = useState([])
-  const [getValorFinal, setValorFinal] = useState(0)
-  const [getLeague, setLeague] = useState({})
-  const router = useRouter()
+
   let mercadopago = null
   let user = ``
   if(props.userString) {
@@ -24,16 +19,6 @@ export default function Finances(props) {
     });
   }, [])
 
-  // const mercadopago = window.MercadoPago(process.env.MP_PRO_PUBLIC_KEY);
-  //   useEffect(() => {
-  //     const getLeagueForCountry = async (country) => {
-  //       const urlMenuSearchLeachesForCountry = `/api/menu/searchLeaguesForCountry?query=${country}`
-  //       const da ta = await axios.get(urlMenuSearchLeachesForCountry)
-  //       const leaguesData = await data.data
-  //       setLeagues(leaguesData.leagues)
-  //     }
-  //     getLeagueForCountry(code)
-  //   }, [code])
 
   const deposit = e => {
     e.preventDefault()

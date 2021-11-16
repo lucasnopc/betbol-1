@@ -2,7 +2,7 @@ import Header from './header'
 import Footer from './footer'
 import ListMenu from './listMenu'
 import { useState } from 'react'
-import Note from './note/note'
+import Note from './note'
 
 export default function Layout(props) {
     const [listBetState, setListBetState] = useState([])

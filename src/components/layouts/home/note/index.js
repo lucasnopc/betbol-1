@@ -1,14 +1,13 @@
-import { CgRemove } from 'react-icons/cg'
 import { useEffect, useState } from 'react'
-import Translate from '../../../../utills/translate'
 import { useStore } from '../../../../context/store'
-import { oddBets } from '../../../../utills/oddBets'
 import NoteBtn from './note-btn'
+import ItemBetNote from './item-bet-note'
 
 export default function Note(props) {
-    const { note, removeBetsInNote, changeVf } = useStore()
+
+    const { note } = useStore()
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
-    const [vf, setVf] = useState([])
+    const [vf, setVf] = useState(10)
     const [retornoPotencial, setRetornoPotencial] = useState()
     useEffect(() => {
         if(note.length != 0 ) {
@@ -20,20 +19,6 @@ export default function Note(props) {
     let user = false
     if (props.userString) {
         user = JSON.parse(props.userString)
-    }
-
-    const removedItem = (indice, vf, bet) => {
-        const newVf = [...vf]
-        if (newVf.length > 0) {
-            const indexElement = newVf.findIndex((element) => {
-                return element.id === bet.fix.fixture.id
-            })
-            if (indexElement >= 0) {
-                newVf.splice(indexElement, 1)
-                setVf(newVf)
-            }
-        }
-        removeBetsInNote(indice)
     }
 
     const changeInputValue = (change) => {
@@ -76,34 +61,17 @@ export default function Note(props) {
             <div className={`${hiddenOrStaticToggle(toggleNoteBets)} w-full static max-h-60 md:max-h-full overflow-auto`}>
                 {EmptyListBetState()}
                 {note.map((bet, indice) => {
-                    const oddNumber = bet.choice.odd
-                    const nameBets =  oddBets.find(n => {
-                        return n.id == bet.choice.betsChoice
-                    })
-                    return <div key={bet.fix.fixture.id} className="relative p-2 border-b border-yellow-500 flex flex-col">
-                        <div className="absolute right-0" onClick={() => { removedItem(indice, vf, bet) }}>
-                            <span className="inline-block mr-2 font-normal uppercase text-sm text-gray-600">{Translate(bet.choice.value)}</span>
-                            <span className="inline-block mr-2 font-bold text-gray-600">{oddNumber}</span>
-                            <CgRemove className="inline-block text-xs text-gray-500 hover:text-red-600 cursor-pointer mr-2" />
-                        </div>
-                        <span className="inline-block text-sm font-bold" >
-                            <span className="block"> {bet.fix.teams['home'].name} </span> <span className="block">{bet.fix.teams['away'].name}</span>
-                        </span>
-                        <div className="">
-                            <span className=" text-gray-500 inline-block text-sm font-normal"><span className="text-blue-800">{nameBets.name}</span> </span>
-                        </div>
-                    </div>
+                    return <ItemBetNote setVf={setVf} key={bet.fix.fixture.id} bet={bet} indice={indice} vf={vf} />
 
                 })}
                 <div className="block p-1 border-t border-gray-300 bg-green-100">
-                    <form className="inline-block w-full">
                         <span className="text-sm text-green-800 pl-1 w-2/12">R$</span>
                         <input onChange={(r) => {
                             changeInputValue({ obj: r, setVf: setVf, note })
-                        }} type="number" className="w-10/12 focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" />
-                    </form>
+                        }} type="number" className="w-10/12 focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" defaultValue="10" />
                 </div>
                 <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} user={user} retornoPotencial={retornoPotencial} /></div>
+            
             </div>
         </div>
     </>

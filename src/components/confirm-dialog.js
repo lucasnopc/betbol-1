@@ -1,28 +1,54 @@
 export function ConfirmDialog(props) {
-  const { open, onClose, title, children, onConfirm } = props;
+  const { open, setOpen, title, children, onConfirm } = props;
   if (!open) {
     return <></>;
   }
   
   return (
     <div className="absolute top-0 left-0 w-screen h-screen z-40 bg-gray-400 bg-opacity-70">
-    <Dialog open={open} onClose={onClose}>
-      <div className="p-5 text-center border-gray-300 border-b-2">{children}</div>
+    <Dialog open={open} setOpen={setOpen}>
+      <div className="p-5 border-gray-300 border-b-2">{children}</div>
       <div className="flex justify-end">
           <Button
-            onClick={() => onClose()}
+            onClick={() => setOpen(false)}
             className="text-df-oran"
           >
             Cancelar
           </Button>
           <Button
-            className="text-gray-400 hover:text-red-600"
+            className=" hover:text-yellow-600"
             onClick={() => {
-              onClose();
+              setOpen(false);
               onConfirm();
             }}
           >
             Confirmar
+          </Button>
+      </div>
+    </Dialog>
+    </div>
+  );
+}
+
+export function AlertDialog(props) {
+  const { open, setOpen, title, children, onConfirm } = props;
+  if (!open) {
+    return <></>;
+  }
+  
+  return (
+    <div className="absolute top-0 left-0 w-screen h-screen z-40 bg-gray-400 bg-opacity-70">
+    <Dialog open={open} setOpen={setOpen}>
+      <div className="p-5 text-center border-gray-300 border-b-2">{children}</div>
+      <div className="flex justify-end">
+          <Button
+            className=" hover:text-yellow-600"
+            onClick={() => {
+              setOpen(false);
+              onConfirm();
+            }}
+          >
+            Ok
           </Button>
       </div>
     </Dialog>
@@ -47,14 +73,15 @@ export function IconButton(props) {
 }
 
 export function Dialog(props) {
-  const { open, onClose } = props;
+  const { open, close } = props;
   if (!open) {
     return <></>;
   }
   return (
-    <div className="fixed inset-0 z-50 overflow-auto bg-smoke-light flex">
+    <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-80 flex">
       <div className="relative bg-white w-full max-w-md m-auto flex-col flex rounded-lg">
       <div>{props.children}</div>
+      {/* <span onClick={() => {close(false)}} >Fechar</span> */}
      </div>
    </div>
  );
