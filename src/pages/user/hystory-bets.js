@@ -15,7 +15,6 @@ export default function Home(props) {
 
   if (error) return console.log(error)
   if (!data) return <FullLoading />
-  console.log(data)
   return (
     <>
       <Head>
@@ -27,7 +26,6 @@ export default function Home(props) {
       <div className="p-2">
         <h1 className="font-bold text-sm">Histórico de Apostas</h1>
         {data.betHistory.reverse().map((r) => {
-          console.log('r ', r)
               return <ListBetsHistory key={r._id} data={r}  />
             })}
     </div>

@@ -17,7 +17,6 @@ export default function Alive(props) {
             <SelectOddsBets setBets={props.setBets} bets={props.bets} />
         </div>
         {ligas.length > 0 && ligas.slice(0, 10).map(l => {
-            // console.log("l.fix ", l.fix)
             return <div key={l.liga.id}>
                 <span className="block text-sm bg-gray-600 text-white font-semibold p-0.5 overflow-auto">{l.liga.country} | {l.liga.name} <MoreFix l={l} /></span>
                 {l.fix.slice(0, 3).map((f) => {

@@ -26,7 +26,6 @@ export default function LeaguePage(props) {
     if (error) console.log(error)
     if (data) {
         fix = data.res_filter
-        console.log(fix)
     }
     return (
         <>

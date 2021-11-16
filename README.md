@@ -5,8 +5,6 @@ Nextjs + tailwindcss + mongodb
 
 # ISSUES
 ## Criando sessão de pagamento
-- Load nas apostas
-- modal de confirmação
 - fazer página de cada fix e mostrar o link quando tiver muitos odds
 - mobile histórico de apostas
 - Mandar e-mail quando fizer um pagamento e quando o pagamento for aprovado

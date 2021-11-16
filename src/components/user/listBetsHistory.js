@@ -6,7 +6,6 @@ import { useState } from 'react'
 export default function ListBetsHistory(props) {
     const [toggle, setToggle] = useState(false)
     const history = props.data
-    console.log(history)
     const date = format(new Date(history.date), 'dd.MM.yyyy HH:mm')
     return <><div onClick={() => setToggle(!toggle)} className="font-medium p-1 bg-gray-100 hover:bg-gray-200 m-1 flex" key={history._id}>
         <span className="flex-auto"> {date} </span>

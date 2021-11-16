@@ -1,5 +1,5 @@
 // Email HTML body
-export function HtmlEmailSendBet({ listBet }) {
+export function HtmlEmailSendBet(note) {
     // Some simple styling options
     const backgroundColor = '#131527'
     const textColor = '#444444'
@@ -24,7 +24,9 @@ export function HtmlEmailSendBet({ listBet }) {
       Você fez uma aposta na betbol
       </td>
       </tr>
-      
+      ${note.map(b => {
+        return ``
+      })}
         
      
       <tr>
