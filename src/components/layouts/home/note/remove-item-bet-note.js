@@ -1,6 +1,6 @@
 export default function removedItem(indice, vf, bet, setVf, removeBetsInNote) {
 
-    const newVf = [...vf]
+    const newVf = vf
     if (newVf.length > 0) {
         const indexElement = newVf.findIndex((element) => {
             return element.id === bet.fix.fixture.id
