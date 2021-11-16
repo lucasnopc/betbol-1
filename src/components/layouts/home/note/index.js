@@ -64,11 +64,11 @@ export default function Note(props) {
                     return <ItemBetNote setVf={setVf} key={bet.fix.fixture.id} bet={bet} indice={indice} vf={vf} />
 
                 })}
-                <div className="block p-1 border-t border-gray-300 bg-green-100">
-                        <span className="text-sm text-green-800 pl-1 w-2/12">R$</span>
+                <div className="block p-1 border-t border-gray-300 bg-gray-100">
+                        <span className="text-sm text-black font-semibold pl-1 w-2/12">R$</span>
                         <input onChange={(r) => {
                             changeInputValue({ obj: r, setVf: setVf, note })
-                        }} type="number" className="w-10/12 focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" defaultValue="10" />
+                        }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" defaultValue="10" />
                 </div>
                 <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} user={user} retornoPotencial={retornoPotencial} /></div>
             

@@ -51,13 +51,13 @@ export default function NoteBtn(props) {
     }
     if (!session) {
         return <div className="group relative w-full ">
-            <button className="w-full bg-green-400 cursor-not-allowed font-semibold text-md text-green-900 uppercase p-3 disabled:opacity-50" disabled>Fazer Aposta <ValorFinal /><br />
+            <button className="w-full bg-primary-ligth cursor-not-allowed font-semibold text-md text-white uppercase p-3 disabled:opacity-50" disabled>Fazer Aposta <ValorFinal /><br />
             </button>
-            <span className="absolute text-center text-green-900 w-full bottom-0 left-0 select-none cursor-not-allowed group-hover:opacity-100 opacity-0 text-xs">Faça Login para apostar</span>
+            <span className="absolute text-center text-white w-full bottom-0 left-0 select-none cursor-not-allowed group-hover:opacity-100 opacity-0 text-xs">Faça Login para apostar</span>
 
         </div>
     }
-
+console.log(props.vf)
     return <><button onClick={() => { 
         if ( props.vf > 0 &&  props.vf < user.points ) {
             if(note.length > 0) {
@@ -70,11 +70,11 @@ export default function NoteBtn(props) {
             alert('Insira um valor ')
         }
         
-        }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-green-900 uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-900">Potencial Retorno: {props.retornoPotencial}</span> </button>
+        }} className="w-full bg-primary-ligth hover:bg-primary cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>
         <ConfirmDialog open={open} setOpen={setOpen} onConfirm={() => { 
             
             startBet(user, props.vf) }}>
-            <h1 className="font-bold uppercase">Confirmar Aposta ? R${props.vf.toFixed(2)}</h1>
+            {/* <h1 className="font-bold uppercase">Confirmar Aposta ? R${props.vf.toFixed(2)}</h1> */}
             <div className="overflow-scroll max-h-64">
             {note.map((bet, indice) => {
                     return <ItemBetNote setVf={props.setVf} key={bet.fix.fixture.id} bet={bet} indice={indice} vf={props.vf} />
