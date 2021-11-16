@@ -68,7 +68,7 @@ export default function Header(props) {
 
     return <>
         {session && <>
-            <div id="logado" className="py-1 text-sm bg-gray-600 border-b text-gray-200 shadow-md flex justify-between px-5">
+            <div id="logado" className="py-1 text-sm bg-black border-b text-gray-200 shadow-md flex justify-between px-5">
                 <span className="font-medium hidden md:inline-block">{user ? user.email : ""}</span>
                 <span className="font-medium">{datetoday}</span>
                 <div id="points" className="inline-block h-full items-center">

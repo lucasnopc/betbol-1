@@ -70,7 +70,7 @@ export default function NoteBtn(props) {
             alert('Insira um valor ')
         }
         
-        }} className="w-full bg-green-500 hover:bg-green-400 cursor-pointer font-semibold text-md text-green-900 uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-900">Potencial Retorno: {props.retornoPotencial}</span> </button>
+        }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-green-900 uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-900">Potencial Retorno: {props.retornoPotencial}</span> </button>
         <ConfirmDialog open={open} setOpen={setOpen} onConfirm={() => { 
             
             startBet(user, props.vf) }}>

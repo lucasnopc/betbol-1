@@ -53,12 +53,12 @@ export default function AllPays(props) {
                 <div className="inline-block md:block"><MdOutlineSchedule className="inline-block" /> {date}</div>
                 <div className="inline-block md:block"><MdMonetizationOn className="inline-block" /> R${pay.points.toFixed(2)}</div>
                 <div className={`${status(pay.values) ? `text-green-500` : `text-red-600 md:block inline-block`}`} >STATUS: {status(pay.values) ? <MdDoneOutline className="inline-block text-green-500" /> : <MdDangerous className="inline-block text-red-600" />}</div>
-                <div> {status(pay.values) && !pay.received && <button onClick={e => receiverPoints(pay, e)} className="float-right uppercase font-semibold text-sm text-white bg-green-500 hover:bg-green-400 p-1">Resgatar Pontos</button>
+                <div> {status(pay.values) && !pay.received && <button onClick={e => receiverPoints(pay, e)} className="float-right uppercase font-semibold text-sm text-white bg-primary hover:bg-green-400 p-1">Resgatar Pontos</button>
                 }
                     {pay.received && <span className="float-right uppercase font-semibold text-sm text-white bg-gray-300 p-1 cursor-not-allowed">
                         Recebido
                     </span>}
-                    {!pay.values && <button onClick={e => finishPay(pay, e)} className="md:float-right uppercase font-semibold text-sm text-white bg-green-500 hover:bg-green-400 p-1">Finalizar Pagamento</button>}
+                    {!pay.values && <button onClick={e => finishPay(pay, e)} className="md:float-right uppercase font-semibold text-sm text-white bg-primary hover:bg-green-400 p-1">Finalizar Pagamento</button>}
                 </div>
             </div>
         })}
