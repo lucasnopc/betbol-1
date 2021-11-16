@@ -20,10 +20,10 @@ export default function ListMenu(props) {
 
     useEffect(() => {
         const getCountries = async () => {
-            const countriesLocal = JSON.parse(localStorage.getItem('betbol@countries'))
-            if (countriesLocal.length > 0) {
+            const countriesLocal = await JSON.parse(localStorage.getItem('betbol@countries'))
+            if (countriesLocal && countriesLocal.length > 0) {
                 setCountries(countriesLocal)
-            } else {
+            } else { 
                 const urlGetCountries = `/api/getCountryes`
                 const data = await axios.get(urlGetCountries)
                 const countriesData = await data.data
@@ -37,16 +37,10 @@ export default function ListMenu(props) {
     }, [countries])
 
     const options = countries.map(country => {
-        if (country.name == "World") {
-            return {
-                value: 'World',
-                label: 'Mundial'
-            }
-        }
+
         return {
             value: country.code,
             label: <span>
-                {/* <img src={country.flag} className="py-1 mr-4 inline-block w-5 h-5" /> */}
                 {country.name}</span>
         }
     })

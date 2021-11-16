@@ -7,9 +7,11 @@ import { FcSettings } from 'react-icons/fc'
 import { ImSpinner } from 'react-icons/im'
 import { format } from "date-fns"
 import { FcGoogle } from 'react-icons/fc'
-
+import Logo from './logo'
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 export default function Header(props) {
     let user = ""
+    const [enterSis, setEnterSis] = useState(false)
     const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const datetoday = `${format(new Date(), `dd.MM.yy`)} - ${tzid}`
     const [session, loading] = useSession()
@@ -28,23 +30,24 @@ export default function Header(props) {
         const [openSettings, setOpenSettings] = useState(false)
         return <>
             {!session && <>
-                <div className="z-20">
+                <div className="z-2">
+                    <div className={`${enterSis ? `block` : `hidden`} absolute bg-white w-screen p-4 h-screen left-0 top-0 z-10`}>
+                        <span className="absolute top-3 right-2 md:right-8 font-bold text-2xl" onClick={() => setEnterSis(!enterSis)}><AiOutlineCloseCircle className="text-red-500" /></span>
+                        <div className="p-3 table mx-auto"><Logo /></div>
+                        <h3 className="font-semibold text-xl text-center mt-5">ENTRAR</h3>
+                        <p className="font-medium mt-5 mb-3 text-center text-gray-900">Escolha se deseja entrar a partir de <br /> um e-mail ou de uma conta Google.</p>
+                            <form onSubmit={handleSubmit(registerUser)} className="flex">
+                                <div className="flex-auto"><input {...register('email', { required: true })} type="email" name="email" placeholder="exemplo@ex.com" className="inline-block p-1.5 focus:outline-none bg-gray-200 h-10 float-right" required /></div>
+                                <div className="flex-auto"> <button disabled={isSubmitting} type="submit" className="bg-primary hover:bg-primary-ligth p-2 font-medium inline-block text-white"><ImSpinner className={`${isSubmitting ? `inline-block` : `hidden`} animate-spin`} /> Acessar</button></div>
+                            </form>
 
-                    <span className="cursor-pointer bg-primary-ligth p-1 uppercase font-medium text-white text-sm md:hidden mt-1" onClick={() => setBtnLogin(!btnLogin)}>Entrar</span>
-                    <div className={`${btnLogin ? 'hidden md:inline-block' : 'block absolute top-0 left-0'} mt-1 bg-white z-20 p-1`}>
-                        <span className="md:hidden text-xs font-medium text-gray-400">Digite seu melhor e-mail para receber o primeiro acesso.</span>
-                        <form onSubmit={handleSubmit(registerUser)} className=" md:static z-10  top-10 right-0 p-2 grid grid-cols-12">
-                            <div className="col-start-1 col-span-8"><input {...register('email', { required: true })} type="email" name="email" placeholder="Insira seu E-mail" className="inline-block p-1.5 focus:outline-none bg-gray-200 h-10 float-right" required /></div>
-                            <div className="col-start-9 col-span-4"> <button disabled={isSubmitting} type="submit" className="btn inline-block h-10"><ImSpinner className={`${isSubmitting ? `inline-block` : `hidden`} animate-spin`} /> Acessar</button></div>
-                        </form>
+                        <div className="group cursor-pointer p-1.5 mt-10 bg-gray-200 hover:bg-gray-100 table md:transform md:-translate-y-3.5 mx-auto" onClick={() => signIn('google')}>
+                            <FcGoogle className="text-2xl inline" />
+                            <span className="font-medium text-gray-900 p-2">Entrar com uma conta Google</span>
 
+                        </div>
                     </div>
-                    <div className="group cursor-pointer p-1.5 mt-2 bg-gray-200 hover:bg-gray-100 inline-block md:transform md:-translate-y-3.5" onClick={() => signIn('google')}>
-                        <FcGoogle className="text-2xl inline" />
-                        {/* <span className=" font-medium text-gray-700 text-sm">Entrar com Google</span> */}
-                        <span className="text-xs hidden group-hover:block absolute top-0 right-10 w-20 z-10 bg-white p-2 shadow-md">Acessar com conta Google</span>
-
-                    </div>
+                    <span className="cursor-pointer bg-primary hover:bg-primary-ligth p-2 uppercase font-medium text-white text-sm block mt-1.5" onClick={() => setEnterSis(!enterSis)}>Entrar</span>
                 </div>
             </>}
             {session && <>
@@ -68,23 +71,17 @@ export default function Header(props) {
 
     return <>
         {session && <>
-            <div id="logado" className="py-1 text-sm bg-black border-b text-gray-200 shadow-md flex justify-between px-5">
+            {/* <div id="logado" className="py-1 text-sm bg-black border-b text-gray-200 shadow-md flex justify-between px-5">
                 <span className="font-medium hidden md:inline-block">{user ? user.email : ""}</span>
                 <span className="font-medium">{datetoday}</span>
                 <div id="points" className="inline-block h-full items-center">
                     <span className="bgicon-coin"></span>
                     <span className="ml-2 font-medium">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
                 </div>
-            </div>
+            </div> */}
         </>}
-        <header className="bg-white border-b border-gray-200 shadow-xl px-1 pb-1.5 flex items-center justify-between">
-            <div id="logo" className="mt-1 ml-10">
-                <Link href="/">
-                    <a>
-                        <img width="100" height="38" src="/logoblack.png" className="hover:opacity-70 cursor-pointer" />
-                    </a>
-                </Link>
-            </div>
+        <header className="pl-4 bg-white border-b border-gray-200 shadow-xl px-1 pb-1.5 flex items-center justify-between">
+            <Logo />
             <div id="profile" className="mr-10">
                 <Profile />
             </div>
