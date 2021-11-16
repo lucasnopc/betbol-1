@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
-import NoteBets from '../../components/bet/football/noteBets'
 import { useEffect, useState } from 'react'
-import ListMenu from '../../components/layouts/home/listMenu'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
 import axios from 'axios'
