@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { useForm } from "react-hook-form"
 import { useRouter } from 'next/router'
@@ -18,7 +18,6 @@ export default function Header(props) {
     const router = useRouter()
     const { register, handleSubmit, formState } = useForm();
     const { isSubmitting } = formState
-    const [btnLogin, setBtnLogin] = useState(true)
     const registerUser = async data => {
         await signIn('email', { email: data.email })
     }
@@ -68,7 +67,7 @@ export default function Header(props) {
         </>
     }
 
-
+    console.log(user)
     return <>
         {session && <>
             {/* <div id="logado" className="py-1 text-sm bg-black border-b text-gray-200 shadow-md flex justify-between px-5">
