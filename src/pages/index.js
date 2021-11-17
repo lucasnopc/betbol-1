@@ -34,7 +34,7 @@ export default function Home(props) {
       </Head>
 
       <Layout userString={props.userString}>
-        <Alive live={live} bets={bets} setBets={setBets} />
+        <Alive live={live} bets={bets} setBets={setBets} title="Futebol Ao vivo" />
       </Layout>
     </>
   )

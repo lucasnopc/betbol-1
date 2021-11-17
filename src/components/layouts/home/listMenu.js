@@ -89,7 +89,7 @@ export default function ListMenu(props) {
     return <div className="bg-white shadow-md">
         <div onClick={() => setToggle(!toggle)} className="bg-gray-50 p-1">
             <BiFootball className="inline-block" />
-            <span className="inline-block text-xs ml-2 font-bold uppercase"> Filtro de jogos</span>
+            <span className="inline-block text-xs ml-2 page-title"> Filtro de jogos</span>
         </div>
         <ul className={`${toggle ? `block` : `hidden md:block`} max-h-32 md:max-h-80 overflow-auto`}>
             <li >

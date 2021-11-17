@@ -12,8 +12,8 @@ export default function Alive(props) {
         return <></>
       }
     return <>
-        <div className="flex justify-between">
-            <h2 className="page-title inline-block">Futebol</h2>
+        <div className="flex justify-between bg-gray-100 p-1">
+            <h2 className="page-title p-2 inline-block">{props.title}</h2>
             <SelectOddsBets setBets={props.setBets} bets={props.bets} />
         </div>
         {ligas.length > 0 && ligas.slice(0, 10).map(l => {
