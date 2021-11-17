@@ -202,7 +202,7 @@ export default function register(props) {
       </Head>
       <div className="lg:flex">
         <div className="lg:w-1/2 lg:h-screen p  b-5 lg:overflow-y-scroll">
-          <div className="pt-10 bg-yellow-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
+          <div className="pt-10 bg-gray-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
             <div className="cursor-pointer flex items-center">
               <div>
                 <Link href="/">
