@@ -18,7 +18,7 @@ export default function AllPays(props) {
     const { data, error } = useFetch(url)
     if (error) return `ERROR`
     if (!data) return <div className="text-center flex items-center">
-        <FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" />
+        <FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" />
     </div>
     const payments = data.payments
 

@@ -65,7 +65,7 @@ export default function League(props) {
             response = props.live.fix
         }
         if (response.length == 0) {
-            return <div className="p-2 bg-yellow-400"><h3 className="text-gray-700 font-normal">Esta Liga não tem jogos para os pŕoximos dias!</h3></div>
+            return <div className="p-2 bg-primary"><h3 className="text-gray-700 font-normal">Esta Liga não tem jogos para os pŕoximos dias!</h3></div>
         }
         return <>
             {props.league.toggle &&

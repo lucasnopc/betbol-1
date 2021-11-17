@@ -41,7 +41,7 @@ export default function LeaguePage(props) {
                             <SelectOddsBets setBets={setBets} bets={bets} />
                         </div>
                         {!data &&
-                            <><FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></>
+                            <><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></>
                         }
                         {fix.length == 0 &&
                             <span className="p-3 bg-yellow-100 block">Não há jogos disponíeis</span>

@@ -80,7 +80,7 @@ export default function ListMenu(props) {
             })
             return <div className="mt-1">
                 <Select options={optionsLeagues} instanceId="2" placeholder="Filtrar por Liga" onChange={e => changeSelectLeague(e)} />
-                {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></div>}
+                {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
                 {message && <div className="text-xs bg-red-400 border border-red-600 p-1 mt-1 text-white font-bold">{message}</div>}
             </div>
         }
@@ -116,7 +116,7 @@ export default function ListMenu(props) {
         </ul>
         <div className={`${toggle ? `block` : `hidden md:block`} p-2`}>
             <Select options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
-            {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></div>}
+            {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
             {!loading && <SelectLeague />}
         </div>
     </div>

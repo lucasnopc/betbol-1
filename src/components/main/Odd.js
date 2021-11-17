@@ -10,7 +10,7 @@ export default function Odd(props) {
 
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     if (error) console.log(error)
-    if (!data) <p> <FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></p>
+    if (!data) <p> <FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></p>
     if (data) odd = data.odd[0]
     const bets = props.bets
     let values = []
@@ -30,7 +30,7 @@ export default function Odd(props) {
     return <>
         <div className="md:float-right flex flex-wrap md:flex-none">
             {!data &&
-                <><FcSynchronize className="text-5xl animate-spin  mx-auto text-yellow-400 p-3" /></>
+                <><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></>
             }
             {values &&
                 values.map((val, i) => {

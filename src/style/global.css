@@ -9,13 +9,13 @@ html, body, #__next {
 }
 
 .btn {
-    @apply py-2 ml-5 px-5 bg-primary-ligth text-gray-100 focus:outline-none tracking-wide font-normal hover:bg-yellow-400 shadow-lg
+    @apply py-2 ml-5 px-5 bg-primary-ligth text-gray-100 focus:outline-none tracking-wide font-normal hover:bg-primary shadow-lg
 }
 .block-title {
     @apply uppercase font-medium block px-2 py-1 border-b border-gray-300
 }
 .odds-btn {
-    @apply bg-gray-200 text-xs px-4 cursor-pointer hover:bg-yellow-400 align-middle h-full block
+    @apply bg-gray-200 text-xs px-4 cursor-pointer hover:bg-primary align-middle h-full block
 }
 .odds-btn span{
     @apply font-normal text-blue-600 align-middle block
