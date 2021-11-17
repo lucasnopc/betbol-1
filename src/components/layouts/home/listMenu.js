@@ -94,21 +94,21 @@ export default function ListMenu(props) {
         <ul className={`${toggle ? `block` : `hidden md:block`} max-h-32 md:max-h-80 overflow-auto`}>
             <li >
                 <Link className="inline-block" href="/">
-                    <a className="p-1 hover:bg-gray-100 border-b text-black font-semibold hover:border-primary hover:text-primary cursor-pointer w-full block">
+                    <a className="list-styles block">
                         <span className="inline-block text-sm ml-2 font-medium">Ao Vivo</span>
                     </a>
                 </Link>
             </li>
             <li >
                 <Link className="inline-block" href={`/date/${today}`}>
-                    <a className="p-1 hover:bg-gray-100 border-b text-black font-semibold hover:border-primary hover:text-primary cursor-pointer w-full block">
+                    <a className="list-styles block">
                         <span className="inline-block text-sm ml-2 font-medium">Próximos</span>
                     </a>
                 </Link>
             </li>
             <li >
                 <Link className="inline-block" href={`/date/${tomorrow}`}>
-                    <a className="p-1 hover:bg-gray-100 border-b text-black font-semibold hover:border-primary hover:text-primary cursor-pointer w-full block">
+                    <a className="list-styles block">
                         <span className="inline-block text-sm ml-2 font-medium">Amanhã</span>
                     </a>
                 </Link>

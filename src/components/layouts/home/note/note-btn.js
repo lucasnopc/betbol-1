@@ -70,7 +70,7 @@ console.log(props.vf)
             alert('Insira um valor ')
         }
         
-        }} className="w-full bg-primary-ligth hover:bg-primary cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>
+        }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>
         <ConfirmDialog open={open} setOpen={setOpen} onConfirm={() => { 
             
             startBet(user, props.vf) }}>

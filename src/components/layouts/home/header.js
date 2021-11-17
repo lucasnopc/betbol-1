@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { useForm } from "react-hook-form"
 import { useRouter } from 'next/router'
-import { FcSettings } from 'react-icons/fc'
+import { BiUserCircle } from 'react-icons/bi'
 import { ImSpinner } from 'react-icons/im'
 import { format } from "date-fns"
 import { FcGoogle } from 'react-icons/fc'
@@ -27,9 +27,10 @@ export default function Header(props) {
 
     const Profile = () => {
         const [openSettings, setOpenSettings] = useState(false)
+        
         return <>
             {!session && <>
-                <div className="z-2">
+                <div>
                     <div className={`${enterSis ? `block` : `hidden`} absolute bg-white w-screen p-4 h-screen left-0 top-0 z-10`}>
                         <span className="absolute top-3 right-2 md:right-8 font-bold text-2xl" onClick={() => setEnterSis(!enterSis)}><AiOutlineCloseCircle className="text-red-500" /></span>
                         <div className="p-3 table mx-auto"><Logo /></div>
@@ -52,13 +53,14 @@ export default function Header(props) {
             {session && <>
                 <div className="fex items-center">
 
-                    <div className="relative group inline-block block-bgicon-basketball opacity-50 hover:opacity-100 cursor-pointer">
-                        <FcSettings className="text-3xl ml-3" onClick={() => setOpenSettings(!openSettings)} />
-                        <div className={`${openSettings ? `block` : `hidden`} border border-gray-300 text-right absolute right-0 w-60 z-10 bg-white`} onMouseLeave={() => setOpenSettings(false)} >
-                            <div><Link href="/register"><a className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white border-b border-gray-300 block">Atualizar Dados</a></Link></div>
-                            <div><Link href="/finances"><a className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white border-b border-gray-300 block">Financeiro</a></Link></div>
-                            <div><Link href="/user/hystory-bets"><a className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white border-b border-gray-300 block">Historico Apostas</a></Link></div>
-                            <div className="p-2 hover:bg-gray-700 font-normal text-gray-900 hover:text-white" onClick={() => signOut()}>Sair</div>
+                    <div className="group inline-block cursor-pointer" onClick={() => setOpenSettings(!openSettings)}>
+                        <span className="mt-2 inline-block font-semibold group-hover:text-primary">Olá {user.user.name}</span>
+                        <BiUserCircle className="text-3xl ml-3 inline-block group-hover:text-primary" />
+                        <div className={`${openSettings ? `block` : `hidden`} absolute top-10 right-0 bg-white z-10`} onMouseLeave={() => setOpenSettings(false)} >
+                            <div><Link href="/register"><a className="list-styles block">Atualizar Dados</a></Link></div>
+                            <div><Link href="/finances"><a className="list-styles block">Financeiro</a></Link></div>
+                            <div><Link href="/user/hystory-bets"><a className="list-styles block">Historico Apostas</a></Link></div>
+                            <div className="list-styles" onClick={() => signOut()}>Sair</div>
                         </div>
                     </div>
 
@@ -66,8 +68,6 @@ export default function Header(props) {
             </>}
         </>
     }
-
-    console.log(user)
     return <>
         {session && <>
             {/* <div id="logado" className="py-1 text-sm bg-black border-b text-gray-200 shadow-md flex justify-between px-5">
@@ -81,10 +81,9 @@ export default function Header(props) {
         </>}
         <header className="pl-4 bg-white border-b border-gray-200 shadow-xl px-1 pb-1.5 flex items-center justify-between">
             <Logo />
-            <div id="profile" className="mr-10">
+            <div id="profile">
                 <Profile />
             </div>
-
         </header>
 
     </>
