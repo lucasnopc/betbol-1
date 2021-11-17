@@ -3,6 +3,7 @@ import { useStore } from '../../../../context/store'
 import NoteBtn from './note-btn'
 import ItemBetNote from './item-bet-note'
 import { GrNotes } from 'react-icons/gr'
+import { Dialog } from '../../../confirm-dialog'
 
 export default function Note(props) {
 
@@ -27,10 +28,6 @@ export default function Note(props) {
         change.setVf(value)
         retornosPotenciais(change.note, value, setRetornoPotencial)
     }
-    const hiddenOrStaticToggle = (toggleNoteBets) => {
-        if (!toggleNoteBets) return `hidden md:block`
-        return `static`
-    }
     const EmptyListBetState = () => {
         if (note.length == 0) {
             return <div className="w-full p-3">Caderneta de apostas vazia</div>
@@ -51,16 +48,14 @@ export default function Note(props) {
     }
 
     return <>
-        <div className=" bg-white w-full fixed bottom-0 left-0 md:relative max-w-sm shadow-md border-gray-200 mt-3 flex-grow">
-            <div onClick={() => setToggleNoteBets(!toggleNoteBets)} className="text-white md:text-black bg-black md:bg-white border-b border-gray-200">
-                <GrNotes className="inline-block fill-current text-white m-1" />
+        <Dialog open={toggleNoteBets} >
+            <div onClick={() => setToggleNoteBets(!toggleNoteBets)} className="text-white bg-black border-b border-gray-200">
                 <h2 className="p-2 text-xs uppercase font-bold inline-block">
                     Caderneta de apostas
-                    <span className="md:hidden absolute right-5 font-bold">{toggleNoteBets ? `-` : `+`}</span>
+                    <span className="absolute right-5 font-bold">{toggleNoteBets ? `-` : `+`}</span>
                 </h2>
             </div>
-
-            <div className={`${hiddenOrStaticToggle(toggleNoteBets)} w-full static max-h-60 md:max-h-full overflow-auto`}>
+            <div className={`${toggleNoteBets ? `block` : `hidden`} w-full static max-h-60 md:max-h-full overflow-auto`}>
                 {EmptyListBetState()}
                 {note.map((bet, indice) => {
                     return <ItemBetNote setVf={setVf} key={bet.fix.fixture.id} bet={bet} indice={indice} vf={vf} />
@@ -75,6 +70,6 @@ export default function Note(props) {
                 <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} user={user} retornoPotencial={retornoPotencial} /></div>
 
             </div>
-        </div>
+        </Dialog>
     </>
 }

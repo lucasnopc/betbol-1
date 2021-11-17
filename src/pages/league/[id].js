@@ -8,6 +8,7 @@ import useFetch from '../../utills/useFetch'
 import { useEffect, useState } from 'react'
 import { useStore } from '../../context/store'
 import { FcSynchronize } from 'react-icons/fc'
+import Alive from '../../components/main/Alive'
 
 export default function LeaguePage(props) {
 
@@ -27,6 +28,7 @@ export default function LeaguePage(props) {
     if (data) {
         fix = data.res_filter
     }
+    console.log(fix)
     return (
         <>
             <Head>
@@ -35,7 +37,9 @@ export default function LeaguePage(props) {
             </Head>
 
             <Layout userString={props.userString}>
-                    <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white p-3">
+                <Alive live={fix} bets={bets} setBets={setBets} title={name} />
+
+                {/* <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white p-3">
                         <div>
                             <h2 className="page-title inline-block">{name}</h2>
                             <SelectOddsBets setBets={setBets} bets={bets} />
@@ -49,7 +53,7 @@ export default function LeaguePage(props) {
                         {fix.length > 0 && fix.map(f => {
                             return <Fix key={f.fixture.id} fix={f} bets={bets} />
                         })}
-                    </div>
+                    </div> */}
             </Layout>
         </>
     )

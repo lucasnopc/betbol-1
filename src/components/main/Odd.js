@@ -28,19 +28,19 @@ export default function Odd(props) {
             values = oddsBets(bets, bet) ? oddsBets(bets, bet).values : []
         }
     return <>
-        <div className="md:float-right flex flex-wrap md:flex-none">
+        <div className="md:float-right flex flex-wrap md:flex-none h-full">
             {!data &&
                 <><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></>
             }
             {values &&
                 values.map((val, i) => {
-                    return <div key={val.value} className="flex-1 m-1 h-full">
+                    return <div key={val.value} className="flex-1 gap-0 h-full ">
                         <Button key={i} val={val} fixId={props.fixId} bets={bets} />
                     </div>
                 })
             }
             {!values || values.length == 0 &&
-                <span className="text-gray-500 text-xl opacity-25 bg-white shadow-sm block mt-1 p-2 cursor-not-allowed">
+                <span className="text-gray-500 text-xl opacity-25 shadow-sm block mt-1 p-2 cursor-not-allowed">
                     <ImEyeBlocked  />
                 </span>
             }

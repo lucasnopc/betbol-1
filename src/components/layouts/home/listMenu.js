@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { FcSynchronize } from 'react-icons/fc'
 import { format, isTomorrow } from 'date-fns'
+import { bestLeagues } from './bestLeagues'
 
 export default function ListMenu(props) {
     const [countries, setCountries] = useState([])
@@ -23,7 +24,7 @@ export default function ListMenu(props) {
             const countriesLocal = await JSON.parse(localStorage.getItem('betbol@countries'))
             if (countriesLocal && countriesLocal.length > 0) {
                 setCountries(countriesLocal)
-            } else { 
+            } else {
                 const urlGetCountries = `/api/getCountryes`
                 const data = await axios.get(urlGetCountries)
                 const countriesData = await data.data
@@ -86,12 +87,18 @@ export default function ListMenu(props) {
         }
         return ""
     }
-    return <div className="bg-white shadow-md">
+    return <div className="bg-white shadow-md md:h-screen">
         <div onClick={() => setToggle(!toggle)} className="bg-gray-50 p-1">
             <BiFootball className="inline-block" />
-            <span className="inline-block text-xs ml-2 page-title"> Filtro de jogos</span>
+            <span className="inline-block text-xs ml-2 page-title">Buscar Jogos</span>
         </div>
-        <ul className={`${toggle ? `block` : `hidden md:block`} max-h-32 md:max-h-80 overflow-auto`}>
+        <div className={`${toggle ? `block` : `hidden md:block`}`}>
+        {/* <div className={`p-2`}>
+            <Select options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
+            {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
+            {!loading && <SelectLeague />}
+        </div> */}
+        <ul >
             <li >
                 <Link className="inline-block" href="/">
                     <a className="list-styles block">
@@ -114,10 +121,10 @@ export default function ListMenu(props) {
                 </Link>
             </li>
         </ul>
-        <div className={`${toggle ? `block` : `hidden md:block`} p-2`}>
-            <Select options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
-            {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
-            {!loading && <SelectLeague />}
+        <ul>
+        {bestLeagues.map(l => <li><Link href="/"><a  className="list-styles block">{l.name}</a></Link></li>
+        )}
+        </ul>
         </div>
     </div>
 }

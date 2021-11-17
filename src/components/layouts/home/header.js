@@ -9,6 +9,8 @@ import { format } from "date-fns"
 import { FcGoogle } from 'react-icons/fc'
 import Logo from './logo'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
+
+
 export default function Header(props) {
     let user = ""
     const [enterSis, setEnterSis] = useState(false)
@@ -32,7 +34,7 @@ export default function Header(props) {
             {!session && <>
                 <div>
                     <div className={`${enterSis ? `block` : `hidden`} absolute bg-white w-screen p-4 h-screen left-0 top-0 z-10`}>
-                        <span className="absolute top-3 right-2 md:right-8 font-bold text-2xl" onClick={() => setEnterSis(!enterSis)}><AiOutlineCloseCircle className="text-red-500" /></span>
+                        <span className="absolute top-3 right-2 md:right-8 font-bold text-2xl cursor-pointer" onClick={() => setEnterSis(!enterSis)}><AiOutlineCloseCircle className="text-red-500" /></span>
                         <div className="p-3 table mx-auto"><Logo /></div>
                         <h3 className="font-semibold text-xl text-center mt-5">ENTRAR</h3>
                         <p className="font-medium mt-5 mb-3 text-center text-gray-900">Escolha se deseja entrar a partir de <br /> um e-mail ou de uma conta Google.</p>
@@ -47,7 +49,7 @@ export default function Header(props) {
 
                         </div>
                     </div>
-                    <span className="cursor-pointer bg-primary hover:bg-primary-ligth p-2 uppercase font-medium text-white text-sm block mt-1.5" onClick={() => setEnterSis(!enterSis)}>Entrar</span>
+                    <span className="cursor-pointer bg-primary hover:bg-primary-ligth p-2 uppercase font-medium text-white text-sm block" onClick={() => setEnterSis(!enterSis)}>Entrar</span>
                 </div>
             </>}
             {session && <>
@@ -79,7 +81,7 @@ export default function Header(props) {
                 </div>
             </div> */}
         </>}
-        <header className="pl-4 bg-white border-b border-gray-200 shadow-xl px-1 pb-1.5 flex items-center justify-between">
+        <header className="pl-2 bg-white border-b border-gray-200 md:p-3 absolute top-0 left-0 w-screen z-30 flex items-center justify-between">
             <Logo />
             <div id="profile">
                 <Profile />
