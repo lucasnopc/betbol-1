@@ -10,8 +10,8 @@ module.exports = {
         'register': "url('/register.jpg')"
       }),
       colors: {
-        'primary': '#f1801e',
-        'primary-ligth': '#f6a952'
+        'primary': '#56b50e',
+        'primary-ligth': '#81e337'
 
       }
     },
