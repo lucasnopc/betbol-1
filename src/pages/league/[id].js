@@ -44,7 +44,7 @@ export default function LeaguePage(props) {
                             <><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></>
                         }
                         {fix.length == 0 &&
-                            <span className="p-3 bg-yellow-100 block">Não há jogos disponíeis</span>
+                            <span className="p-3 bg-gray-100 block">Não há jogos disponíeis</span>
                         }
                         {fix.length > 0 && fix.map(f => {
                             return <Fix key={f.fixture.id} fix={f} bets={bets} />
