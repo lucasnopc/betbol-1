@@ -48,6 +48,7 @@ export default function Note(props) {
     }
 
     return <>
+    <div className="rounded-full absolute right-1 bottom-1 bg-primary hover:bg-primary text-white font-bold">{note.lenght}</div>
         <Dialog open={toggleNoteBets} >
             <div onClick={() => setToggleNoteBets(!toggleNoteBets)} className="text-white bg-black border-b border-gray-200">
                 <h2 className="p-2 text-xs uppercase font-bold inline-block">
@@ -55,7 +56,7 @@ export default function Note(props) {
                     <span className="absolute right-5 font-bold">{toggleNoteBets ? `-` : `+`}</span>
                 </h2>
             </div>
-            <div className={`${toggleNoteBets ? `block` : `hidden`} w-full static max-h-60 md:max-h-full overflow-auto`}>
+            <div className={`${toggleNoteBets ? `block` : `hidden`} w-full static max-h-screen md:max-h-full overflow-auto`}>
                 {EmptyListBetState()}
                 {note.map((bet, indice) => {
                     return <ItemBetNote setVf={setVf} key={bet.fix.fixture.id} bet={bet} indice={indice} vf={vf} />

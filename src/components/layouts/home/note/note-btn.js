@@ -11,7 +11,7 @@ import { useRouter } from 'next/dist/client/router'
 export default function NoteBtn(props) {
     const router = useRouter()
     const [open, setOpen] = useState(false)
-    const { note } = useStore()
+    const { note, clearNote } = useStore()
     const [session] = useSession()
     const user = props.user
 
@@ -38,6 +38,7 @@ export default function NoteBtn(props) {
                     })
                         .then(function (response) {
                             alert('Aposta Realizada com sucesso!')
+                            clearNote()
                             router.push(`/user/hystory-bets`)
                         })
                         .catch(function (error) {
@@ -57,7 +58,7 @@ export default function NoteBtn(props) {
 
         </div>
     }
-console.log(props.vf)
+
     return <><button onClick={() => { 
         if ( props.vf > 0 &&  props.vf < user.points ) {
             if(note.length > 0) {
@@ -67,7 +68,7 @@ console.log(props.vf)
 
             }
         }else {
-            alert('Insira um valor ')
+            alert('Você não tem pontos suficientes, faça um depósito. ')
         }
         
         }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>

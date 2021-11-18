@@ -17,7 +17,7 @@ export default function ListBetsHistory(props) {
                 const choiceOdd = oddBets.find(f => {
                     return f.id == b.choice.betsChoice
                 })
-                console.log(choiceOdd)
+
                 return <div className="p-1 grid grid-cols-3 bg-gray-50 border-b border-gray-400">
                     <div className="mr-1 block">
                         <span className="">{b.fix.teams.home.name}</span>

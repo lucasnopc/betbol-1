@@ -59,4 +59,28 @@ export const bestLeagues = [
         "type": "League",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/94.png"
     },
+    {
+        "id": 39,
+        "name": "Premier League",
+        "type": "League",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/39.png"
+      },
+      {
+        "id": 78,
+        "name": "Bundesliga 1",
+        "type": "League",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/78.png"
+      },
+      {
+        "id": 517,
+        "name": "Trofeo de Campeones de la Superliga",
+        "type": "Cup",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/517.png"
+      },
+      {
+        "id": 612,
+        "name": "Copa do Nordeste",
+        "type": "Cup",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/612.png"
+      }
 ]

@@ -37,7 +37,7 @@ export default function LeaguePage(props) {
             </Head>
 
             <Layout userString={props.userString}>
-                <Alive live={live} bets={bets} setBets={setBets} />
+                <Alive live={live} bets={bets} setBets={setBets} title={`Jogos de ${date}`} />
             </Layout>
         </>
     )

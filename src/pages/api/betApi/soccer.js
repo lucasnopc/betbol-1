@@ -12,7 +12,6 @@ export default async function Soccer(req, res) {
         })
         const soccer = await soccer_res.json()
         res.status(200).json({ soccer })
-            // console.log('soccer_res ', soccer)
     }else {
         res.status(400).json({'message': 'method request not exist'})
     }
