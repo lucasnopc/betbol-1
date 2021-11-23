@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useStore } from '../../../../context/store'
 import NoteBtn from './note-btn'
 import ItemBetNote from './item-bet-note'
-import { GrNotes } from 'react-icons/gr'
 import { Dialog } from '../../../confirm-dialog'
 
 export default function Note(props) {
@@ -16,6 +15,7 @@ export default function Note(props) {
             setToggleNoteBets(true)
         }
         retornosPotenciais(note, vf, setRetornoPotencial)
+        console.log('cheguei aqui', note)
     }, [note])
 
     let user = false
@@ -58,7 +58,7 @@ export default function Note(props) {
             </div>
             <div className={`${toggleNoteBets ? `block` : `hidden`} w-full static max-h-screen md:max-h-full overflow-auto`}>
                 {EmptyListBetState()}
-                {note.map((bet, indice) => {
+                {note.length != 0 && note.map((bet, indice) => {
                     return <ItemBetNote setVf={setVf} key={bet.fix.fixture.id} bet={bet} indice={indice} vf={vf} />
 
                 })}

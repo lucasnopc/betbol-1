@@ -60,7 +60,7 @@ export default function Home(props) {
             <div className="flex flex-wrap">
               {odd.values.map((val, i) => {
                 return <div key={val.value} className="flex-1 gap-0 h-full ">
-                  <Button full="true" key={i} val={val} fixId={props.fixId} bets={bets} />
+                  <Button full="true" key={i} val={val} fixId={res_fixture.response[0]} bets={bets} />
                 </div>
               })}
             </div>

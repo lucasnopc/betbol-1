@@ -5,7 +5,6 @@ import Translate from "../../utills/translate"
 export default function Button(props) {
     const [checked, setChecked] = useState(false)
     const { setGoBetsInNote, removeBetsInNote, note } = useStore()
-
     const bets = props.bets
     useEffect(() => {
         const fix = note.find(item => {
