@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { BiFootball, BiWorld } from 'react-icons/bi'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { FcSynchronize } from 'react-icons/fc'
+import { ImSpinner9 } from 'react-icons/im'
 import { format, isTomorrow } from 'date-fns'
 import { bestLeagues } from './bestLeagues'
 
@@ -82,7 +82,7 @@ export default function ListMenu(props) {
             })
             return <div className="mt-1">
                 <Select options={optionsLeagues} instanceId="2" placeholder="Filtrar por Liga" onChange={e => changeSelectLeague(e)} />
-                {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
+                {loading && <div className="text-center"><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
                 {message && <div className="text-xs bg-red-400 border border-red-600 p-1 mt-1 text-white font-bold">{message}</div>}
             </div>
         }
@@ -94,38 +94,38 @@ export default function ListMenu(props) {
             <span className="inline-block text-xs ml-2 page-title">Buscar Jogos</span>
         </div>
         <div className={`${toggle ? `block` : `hidden md:block`}`}>
-        <div className={`p-2`}>
-            <Select options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
-            {loading && <div className="text-center"><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
-            {!loading && <SelectLeague />}
-        </div>
-        <ul >
-            <li >
-                <Link className="inline-block" href="/">
-                    <a className="list-styles block pl-3">
-                        <span className="inline-block font-medium">Ao Vivo</span>
-                    </a>
-                </Link>
-            </li>
-            <li >
-                <Link className="inline-block" href={`/date/${today}`}>
-                    <a className="list-styles block pl-3">
-                        <span className="inline-block font-medium">Próximos Jogos</span>
-                    </a>
-                </Link>
-            </li>
-            <li >
-                <Link className="inline-block" href={`/date/${tomorrow}`}>
-                    <a className="list-styles block pl-3">
-                        <span className="inline-block font-medium">Jogos de Amanhã</span>
-                    </a>
-                </Link>
-            </li>
-        </ul>
-        <ul>
-        {bestLeagues.map(l => <li key={l.id}><Link href={`/league/${l.id}?year=${todayYear}&name=${l.name}`}><a className="list-styles block pl-3">{l.name}</a></Link></li>
-        )}
-        </ul>
+            <div className={`p-2`}>
+                <Select options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
+                {loading && <div className="text-center"><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
+                {!loading && <SelectLeague />}
+            </div>
+            <ul >
+                <li >
+                    <Link className="inline-block" href="/">
+                        <a className="list-styles block pl-3">
+                            <span className="inline-block font-medium">Ao Vivo</span>
+                        </a>
+                    </Link>
+                </li>
+                <li >
+                    <Link className="inline-block" href={`/date/${today}`}>
+                        <a className="list-styles block pl-3">
+                            <span className="inline-block font-medium">Próximos Jogos</span>
+                        </a>
+                    </Link>
+                </li>
+                <li >
+                    <Link className="inline-block" href={`/date/${tomorrow}`}>
+                        <a className="list-styles block pl-3">
+                            <span className="inline-block font-medium">Jogos de Amanhã</span>
+                        </a>
+                    </Link>
+                </li>
+            </ul>
+            <ul>
+                {bestLeagues.map(l => <li key={l.id}><Link href={`/league/${l.id}?year=${todayYear}&name=${l.name}`}><a className="list-styles block pl-3">{l.name}</a></Link></li>
+                )}
+            </ul>
         </div>
     </div>
 }

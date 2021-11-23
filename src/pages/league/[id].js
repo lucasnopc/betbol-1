@@ -7,7 +7,7 @@ import SelectOddsBets from '../../components/main/SelectOddsBets'
 import useFetch from '../../utills/useFetch'
 import { useEffect, useState } from 'react'
 import { useStore } from '../../context/store'
-import { FcSynchronize } from 'react-icons/fc'
+import { ImSpinner9 } from 'react-icons/im'
 import Alive from '../../components/main/Alive'
 
 export default function LeaguePage(props) {
@@ -45,7 +45,7 @@ export default function LeaguePage(props) {
                             <SelectOddsBets setBets={setBets} bets={bets} />
                         </div>
                         {!data &&
-                            <><FcSynchronize className="text-5xl animate-spin  mx-auto text-primary p-3" /></>
+                            <><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></>
                         }
                         {fix.length == 0 &&
                             <span className="p-3 bg-gray-100 block">Não há jogos disponíeis</span>

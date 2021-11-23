@@ -15,8 +15,8 @@ export default function LeaguePage(props) {
     const [bets, setBets] = useState(1)
     const { date } = router.query
     const { setFixState } = useStore()
-    const { data, error } = useFetch(`/api/betApi/soccer?date=${date}`)
-
+    const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const { data, error } = useFetch(`/api/betApi/soccer?date=${date}&tzid=${tzid}`)
     useEffect(() => {
         if (data) setLive(data.soccer.response)
 
@@ -27,7 +27,6 @@ export default function LeaguePage(props) {
 
     if (error) return console.log(error)
     if (!data) return <FullLoading />
-    
     
     return (
         <>

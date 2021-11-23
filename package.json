@@ -29,7 +29,10 @@
     "react-input-mask": "^3.0.0-alpha.2",
     "react-sdk-mercadopago": "^1.1.1",
     "react-select": "^5.2.1",
+    "react-slick": "^0.28.1",
     "react-timezone-select": "^1.1.13",
+    "react-visibility-sensor": "^5.1.1",
+    "slick-carousel": "^1.8.1",
     "swr": "^0.5.5"
   },
   "devDependencies": {

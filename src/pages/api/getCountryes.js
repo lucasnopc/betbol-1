@@ -9,8 +9,6 @@ export default async function GetCountryes(req, res) {
             method: 'GET'
         })
         const resCountries = await countries.json()
-        
-        console.log('response gountries', resCountries.response)
 
         res.status(200).json({ countries : resCountries.response })
     }

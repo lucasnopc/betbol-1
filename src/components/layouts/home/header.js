@@ -81,7 +81,7 @@ export default function Header(props) {
                 </div>
             </div> */}
         </>}
-        <header className="pl-2 bg-white border-b border-gray-200 md:p-3 absolute top-0 left-0 w-screen z-30 flex items-center justify-between">
+        <header className="pl-2 bg-primary-ligth border-b border-gray-200 md:p-3 absolute top-0 left-0 w-screen z-30 flex items-center justify-between">
             <Logo />
 
             <div id="profile">

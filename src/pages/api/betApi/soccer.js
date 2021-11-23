@@ -1,7 +1,7 @@
 export default async function Soccer(req, res) {
     
     if(req.method == "GET") {
-        const url = req.query.date ? `${process.env.APISPORT}/fixtures?date=${req.query.date}&status=NS`:`${process.env.APISPORT}/fixtures?live=all`
+        const url = req.query.date ? `${process.env.APISPORT}/fixtures?date=${req.query.date}&status=NS&timezone=${req.query.tzid}`:`${process.env.APISPORT}/fixtures?live=all`
         const soccer_res = await fetch(url, 
         {
             headers: {

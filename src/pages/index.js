@@ -5,27 +5,30 @@ import serverSidePropsClient from '../utills/serverSitePropsClient'
 import { useStore } from '../context/store'
 import useFetch from '../utills/useFetch'
 import FullLoading from '../components/fullloading'
+import Banner from '../components/banner'
 import Alive from '../components/main/Alive'
+import { format } from 'date-fns'
 
 export default function Home(props) {
 
   const [live, setLive] = useState([])
-  const [bets, setBets] = useState(1)
+  const [master, setMaster] = useState([])
   const { setFixState } = useStore()
+  const date =  format(new Date(), 'yyyy-MM-dd')
+  const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const { data, error } = useFetch(`/api/betApi/soccer`)
+  const { data: data_master, error: error_master } = useFetch(`/api/betApi/soccer?date=${date}&tzid=${tzid}`)
 
-  useEffect(() => {
-    if (data) setLive(data.soccer.response)
-
-  }, [data])
+  useEffect(() => {if (data) setLive(data.soccer.response)}, [data])
+  useEffect(() => {if (data_master) setMaster(data_master.soccer.response)}, [data_master])
 
   useEffect(() => {
     setFixState(live)
   }, [live])
 
-  if (error) return console.log(error)
-  if (!data) return <FullLoading />
-
+  if (error || error_master) return console.log(error)
+  if (!data || !data_master) return <FullLoading />
+  
   return (
     <>
       <Head>
@@ -34,7 +37,15 @@ export default function Home(props) {
       </Head>
 
       <Layout userString={props.userString}>
-        <Alive live={live} bets={bets} setBets={setBets} title="Futebol Ao vivo" />
+        {/* <Banner live={live} /> */}
+        <div className="grid gap-0 grid-cols-5">
+          <div className="col-span-5 md:col-span-3 md:col-start-1">
+            <Alive live={live}  title="Futebol Ao vivo" />
+          </div>
+          <div className="col-span-5 md:col-span-2 md:col-start-4">
+            <Alive live={master} title="Destaques" />
+          </div>
+        </div>
       </Layout>
     </>
   )
