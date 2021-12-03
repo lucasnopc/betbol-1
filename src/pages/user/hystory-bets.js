@@ -15,6 +15,7 @@ export default function Home(props) {
 
   if (error) return console.log(error)
   if (!data) return <FullLoading />
+  
   return (
     <>
       <Head>

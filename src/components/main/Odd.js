@@ -7,7 +7,6 @@ import Link from 'next/link'
 export default function Odd(props) {
     let odd = false
     const id = props.fixId.fixture.id
-
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     if (error) console.log(error)
     if (!data) <p> <ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></p>
@@ -15,7 +14,6 @@ export default function Odd(props) {
     const bets = props.bets
     let values = []
     if (odd) {
-
         const book = odd.bookmakers[0]
         const bet = book ? book.bets : null
 

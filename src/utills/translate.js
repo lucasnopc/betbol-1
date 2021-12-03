@@ -47,7 +47,7 @@ export default function Translate(p) {
         if(p == "Draw") return "Empate"
         if(p == "Over") return "Acima de"
         if(p == "Under") return "Abaixo de"
-        if(p == "Odd") return "Abaixo de"
+        if(p == "Odd") return "Ímpar"
         if(p == "Even") return "Par"
         if(p == "more") return "mais"
         if(p.match(/Over/)) return p.replace('Over', 'Acima de')

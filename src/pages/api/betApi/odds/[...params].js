@@ -18,6 +18,14 @@ export default async function odds(req, res) {
                 method: 'GET'
             })
             const odds = await odds_res.json()
+        //    console.log(odds.response)
+            // odds.response.fixture.bookmakers[0].bets.map((betItem, betIndex) => {
+            //     betItem.values.map((val, valIndex) => {
+            //         if(val.odd > 15) {
+            //             odds.response.fixture.bookmakers[0].bets[betIndex].values[valIndex].odd == 15.00
+            //         } 
+            //     })
+            // })
             res.status(200).json({odd: odds.response})
         }
     }

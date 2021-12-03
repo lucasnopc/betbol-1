@@ -32,7 +32,7 @@ export default function NoteBtn(props) {
                 value: valor
             })
                 .then(function (response) {
-                    axios.post('api/email/send', {
+                    axios.post('/api/email/send', {
                         subject: `Betbol - Aposta Realizada`,
                         html: HtmlEmailSendBet(note),
                     })
@@ -49,6 +49,7 @@ export default function NoteBtn(props) {
                 .catch(function (error) {
                     console.log(error);
                 });
+                //limpar note
     }
     if (!session) {
         return <div className="group relative w-full ">
@@ -72,8 +73,7 @@ export default function NoteBtn(props) {
         }
         
         }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>
-        <ConfirmDialog open={open} setOpen={setOpen} onConfirm={() => { 
-            
+        <ConfirmDialog open={open} setOpen={setOpen} onConfirm={() => {
             startBet(user, props.vf) }}>
             {/* <h1 className="font-bold uppercase">Confirmar Aposta ? R${props.vf.toFixed(2)}</h1> */}
             <div className="overflow-scroll max-h-64">
