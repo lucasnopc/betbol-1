@@ -42,7 +42,6 @@ export default function Note(props) {
             setRetornoPotencial(0)
         }
     }
-    console.log('note', note.length)
     return <>
     <div onClick={e => setToggleNoteBets(true)} className={`${note.length != 0 ? '' : 'hidden' } absolute bottom-1 right-1 bg-primary hover:bg-primary-ligth cursor-pointer w-10 h-10 text-center rounded-full flex items-center justify-center`}>
         <span className="font-bold text-lg text-white">{note.length}</span>

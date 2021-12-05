@@ -4,7 +4,7 @@ import SelectOddsBets from "./SelectOddsBets"
 import { bestLeagues } from '../layouts/home/bestLeagues'
 import { useState } from "react"
 
-bestLeagues
+
 export default function Alive(props) {
     const [bets, setBets] = useState(1)
     if(props.live.length == 0) {

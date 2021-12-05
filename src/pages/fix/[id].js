@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { oddBets } from '../../utills/oddBets'
 import Button from '../../components/main/Button'
 
-export default function Home(props) {
+export default function Fix(props) {
   const router = useRouter()
   const { id } = router.query
   const urlFix = `/api/betApi/fixture/${id}/`
@@ -31,8 +31,8 @@ export default function Home(props) {
   if (!data) return <FullLoading />
   const { res_fixture, odds } = data
   let oddsValues = []
-  if (odds.response[0].bookmakers[0].bets.length > 0) {
-    oddsValues = odds.response[0].bookmakers[0].bets
+  if (odds.bookmakers[0].bets.length > 0) {
+    oddsValues = odds.bookmakers[0].bets
   }
   const oddValueTranslations = []
   oddsValues.map(value => {
