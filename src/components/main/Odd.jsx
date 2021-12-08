@@ -51,7 +51,7 @@ export default function Odd(props) {
         values = oddsBets(bets, bet) ? oddsBets(bets, bet).values : []
     }
     return <>
-        <div className="md:float-right flex flex-nowrap md:flex-none h-full">
+        <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200}`}>
             {!data &&
                 <><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></>
             }

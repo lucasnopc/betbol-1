@@ -88,8 +88,8 @@ export default function ListMenu(props) {
         }
         return ""
     }
-    return <div className="bg-white shadow-md md:h-screen">
-        <div onClick={() => setToggle(!toggle)} className="bg-gray-50 p-1">
+    return <div className="bg-gray-200  shadow-md md:h-screen">
+        <div onClick={() => setToggle(!toggle)} className="p-1">
             <BiFootball className="inline-block" />
             <span className="inline-block text-xs ml-2 page-title">Buscar Jogos</span>
         </div>

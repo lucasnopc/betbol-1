@@ -21,7 +21,7 @@ export default function Fix(props) {
             <div className="col-start-7 col-span-6">
                 <VisibilitySensor onChange={onChange}>
                     <div className="h-full">
-                        {/* <span className="invisible">n</span> */}
+
                     {visibleState &&
                         <Odd leagueId={props.leagueId} chave={props.chave} bets={props.bets} fixId={fix} />
                     }

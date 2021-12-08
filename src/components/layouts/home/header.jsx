@@ -55,9 +55,9 @@ export default function Header(props) {
             {session && <>
                 <div className="inline-block fex items-center">
 
-                    <div className="group inline-block cursor-pointer" onClick={() => setOpenSettings(!openSettings)}>
-                        <span className="mt-2 inline-block font-semibold group-hover:text-primary">Olá {user.user.name}</span>
-                        <BiUserCircle className="text-3xl ml-3 inline-block group-hover:text-primary" />
+                    <div className="group inline-block cursor-pointer text-white" onClick={() => setOpenSettings(!openSettings)}>
+                        <span className="mt-2 inline-block font-semibold group-hover:text-black">Olá {user.user.name}</span>
+                        <BiUserCircle className="text-3xl ml-3 inline-block group-hover:text-black" />
                         <div className={`${openSettings ? `block` : `hidden`} absolute top-10 right-0 bg-white z-10`} onMouseLeave={() => setOpenSettings(false)} >
                             <div><Link href="/register"><a className="list-styles block">Atualizar Dados</a></Link></div>
                             <div><Link href="/finances"><a className="list-styles block">Financeiro</a></Link></div>
@@ -81,13 +81,13 @@ export default function Header(props) {
                 </div>
             </div> */}
         </>}
-        <header className="pl-2 bg-primary-ligth border-b border-gray-200 md:p-3 absolute top-0 left-0 w-screen z-30 flex items-center justify-between">
+        <header className="pl-2 bg-green-600 border-b border-gray-200 md:p-3 absolute top-0 left-0 w-screen z-30 flex items-center justify-between">
             <Logo />
 
             <div id="profile">
             {session && <><div id="points" className="inline-block h-full mr-5">
                     <span className="bgicon-coin align-middle"></span>
-                    <span className="ml-2 font-medium text-xs align-middle">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
+                    <span className="ml-2 font-medium text-xs align-middle text-white">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
                 </div>
                 </>}
                 <Profile />
