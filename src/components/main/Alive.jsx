@@ -30,7 +30,7 @@ export default function Alive(props) {
         return <></>
     }
     return <>
-        <div className="flex justify-between bg-gray-100 p-1">
+        <div className="flex justify-between p-1">
             <h2 className="page-title p-2 inline-block">{props.title}</h2>
             <SelectOddsBets setBets={setBets} bets={bets} />
         </div>

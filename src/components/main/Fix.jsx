@@ -12,10 +12,10 @@ export default function Fix(props) {
     }
     const fix = props.fix
     return <>
-        <div className={`pl-2 grid grid-cols-12 gap-0 border-b border-gray-200 hover:border-primary-ligth bg-white`}>
+        <div className={`pl-2 grid grid-cols-12 gap-0 border-b border-gray-200 hover:border-primary-ligth`}>
             <div className="col-start-1 col-span-6 text-xs">
-                <span className="mt-1.5 block"><span className="font-semibold text-primary">{fix.goals.home}</span> {fix.score.fulltime.home} {fix.teams.home.name}</span>
-                <span className="mt-0.5 block"><span className="font-semibold text-primary">{fix.goals.away}</span> {fix.score.fulltime.away} {fix.teams.away.name}</span>
+                <div className="flex justify-between"><span className="mt-1.5">{fix.teams.home.name}</span><span className="font-semibold text-primary">{fix.goals.home}</span></div>
+                <div className="flex justify-between"><span className="mt-0.5">{fix.teams.away.name}</span><span className="font-semibold text-primary">{fix.goals.away}</span></div>
                 <span className="block mt-1"><FixDate fix={fix} /></span>
             </div>
             <div className="col-start-7 col-span-6">

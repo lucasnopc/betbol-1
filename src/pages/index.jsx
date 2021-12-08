@@ -39,7 +39,7 @@ export default function Home(props) {
       <Layout userString={props.userString}>
         {/* <Banner live={live} /> */}
         <div className="grid gap-0 grid-cols-5">
-          <div className="col-span-5 md:col-span-3 md:col-start-1">
+          <div className="col-span-5 md:col-span-3 md:col-start-1 bg-gray-100">
             <Alive live={live}  title="Futebol Ao vivo" />
           </div>
           <div className="col-span-5 md:col-span-2 md:col-start-4">

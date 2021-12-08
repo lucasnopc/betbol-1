@@ -8,7 +8,7 @@ export default function Layout(props) {
     const [listBetState, setListBetState] = useState([])
     const [getValorFinal, setValorFinal] = useState(0)
 
-    return <div className="min-h-screen overflow-hidden bg-gray-100">
+    return <div className="min-h-screen overflow-hidden">
         <Header userString={props.userString} />
         <main className="bg-cover h-full mt-10 md:mt-20">
             <div className="page grid grid-cols-12">
@@ -16,7 +16,7 @@ export default function Layout(props) {
                     <ListMenu />
                 </div>
                 <div className="md:col-span-10 col-span-full bg-white h-screen scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white">
-                    <div className=" bg-gray-100">
+                    <div className="">
                         {props.children}
                     </div>
                     <Footer />
