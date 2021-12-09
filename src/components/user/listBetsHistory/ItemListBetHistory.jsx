@@ -12,7 +12,7 @@ export default function ItemListBetHistory(props) {
   if (!data) return <FullLoading />
 
   const res = data.res_fixture.response[0]
-  const calcStatus = calcStatusFix(res.score, choiceOdd)
+  const calcStatus = calcStatusFix(res, choiceOdd, b)
 
   return <div className={`$ p-1 grid grid-cols-3 border-b border-gray-400 m-2`}>
     <div className="mr-1 block align-middle items-center">
