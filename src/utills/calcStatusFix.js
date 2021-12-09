@@ -1,44 +1,40 @@
 export default function calcStatusFix(atualFix, choice, bet) {
-    // console.log('calc status fix ', atualFix, choice, bet)
+    console.log('calc status fix ', atualFix, choice, bet)
     const choiceId = choice.id
     let status
+    let winner
     switch (choiceId) {
-        case 1:
-            let winner
+        case 3:
+            const scoreSegoundTimeHome = atualFix.score.fulltime.home - atualFix.score.halftime.home
+            const scoreSegoundTimeAway = atualFix.score.fulltime.away - atualFix.score.halftime.away
+            if (scoreSegoundTimeHome > scoreSegoundTimeAway) {
+                winner = "Home"
+            } else {
+                winner = "Away"
+            }
+            if (bet.choice.value == winner) {
+                status = true
+            } else {
+                status = false
+            }
+            break
+        default:
             if (atualFix.teams.home) {
                 winner = "Home"
             }
             if (atualFix.teams.away) {
                 winner = "Away"
             }
-            console.log(winner, bet.choice.value)
+            if (!atualFix.teams.home && !atualFix.teams.away) {
+                winner = "Draw"
+            }
             if (bet.choice.value == winner) {
-                return true
-            } else return false
-            break
-        default:
-            status = false
+                status = true
+            } else {
+                status = false
+            }
             break
     }
-
-
-
-
-
-
-
-    // let choiceName
-    // if (score.fulltime.home > score.fulltime.away) {
-    //     choiceName = "Home"
-    // } else {
-    //     if (score.fulltime.home == score.fulltime.away) {
-    //         choiceName = "Empate"
-    //     } else {
-    //         choiceName = "Draw"
-    //     }
-    // }
-    // if (choiceOdd.id == 1) {
-    //     return true
-    // }
-    return false
+    // console.log(status, winner, bet.choice.value, atualFix.score.fulltime, atualFix.teams)
+    return status
 }

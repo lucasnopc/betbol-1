@@ -1,6 +1,5 @@
 
 export default function Status(props) {
-
   if ('res', props.res.fixture.status.short != 'FT') {
     return <>Espere o jogo acabar</>
   }

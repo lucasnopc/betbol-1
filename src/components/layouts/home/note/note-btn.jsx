@@ -14,7 +14,7 @@ export default function NoteBtn(props) {
     const { note, clearNote } = useStore()
     const [session] = useSession()
     const user = props.user
-
+    console.log('note ', note)
     const ValorFinal = (vf) => {
         if (vf.vf) {
             if (vf.vf.length > 0) {
@@ -25,31 +25,31 @@ export default function NoteBtn(props) {
     }
 
     const startBet = (user, valor) => {
-            axios.post('/api/betApi/toBet', {
-                points: user.points,
-                email: user.email,
-                bets: note,
-                value: valor
-            })
-                .then(function (response) {
-                    axios.post('/api/email/send', {
-                        subject: `Betbol - Aposta Realizada`,
-                        html: HtmlEmailSendBet(note),
-                    })
-                        .then(function (response) {
-                            alert('Aposta Realizada com sucesso!')
-                            clearNote()
-                            router.push(`/user/hystory-bets`)
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-
+        axios.post('/api/betApi/toBet', {
+            points: user.points,
+            email: user.email,
+            bets: note,
+            value: valor
+        })
+            .then(function (response) {
+                axios.post('/api/email/send', {
+                    subject: `Betbol - Aposta Realizada`,
+                    html: HtmlEmailSendBet(note),
                 })
-                .catch(function (error) {
-                    console.log(error);
-                });
-                //limpar note
+                    .then(function (response) {
+                        alert('Aposta Realizada com sucesso!')
+                        clearNote()
+                        router.push(`/user/hystory-bets`)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        //limpar note
     }
     if (!session) {
         return <div className="group relative w-full ">
@@ -60,28 +60,29 @@ export default function NoteBtn(props) {
         </div>
     }
 
-    return <><button onClick={() => { 
-        if ( props.vf > 0 &&  props.vf < user.points ) {
-            if(note.length > 0) {
+    return <><button onClick={() => {
+        if (props.vf > 0 && props.vf < user.points) {
+            if (note.length > 0) {
                 setOpen(true)
-            }else {
-            alert('Primeiro faça uma escolha.')
+            } else {
+                alert('Primeiro faça uma escolha.')
 
             }
-        }else {
+        } else {
             alert('Você não tem pontos suficientes, faça um depósito. ')
         }
-        
-        }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>
+
+    }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>
         <ConfirmDialog open={open} setOpen={setOpen} onConfirm={() => {
-            startBet(user, props.vf) }}>
+            startBet(user, props.vf)
+        }}>
             {/* <h1 className="font-bold uppercase">Confirmar Aposta ? R${props.vf.toFixed(2)}</h1> */}
             <div className="overflow-scroll max-h-64">
-            {note.map((bet, indice) => {
+                {note.map((bet, indice) => {
                     return <ItemBetNote setVf={props.setVf} key={bet.fix.fixture.id} bet={bet} indice={indice} vf={props.vf} />
 
                 })}
-                </div>
+            </div>
         </ConfirmDialog>
     </>
 }
