@@ -61,8 +61,8 @@ export default function Button(props) {
             {props.val.odd}
             <span className="hidden font-medium text-xs md:hidden">{Translate(props.val.value)}</span>
         </button>
-        {!full &&
+        {/* {!full &&
             <span className="text-xs hidden group-hover:block absolute -left-10 top-0 z-50 bg-white p-2 shadow-md">{Translate(props.val.value)}</span>
-        }
+        } */}
     </div>
 }
