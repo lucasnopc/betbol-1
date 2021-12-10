@@ -14,7 +14,6 @@ export default function NoteBtn(props) {
     const { note, clearNote } = useStore()
     const [session] = useSession()
     const user = props.user
-    console.log('note ', note)
     const ValorFinal = (vf) => {
         if (vf.vf) {
             if (vf.vf.length > 0) {

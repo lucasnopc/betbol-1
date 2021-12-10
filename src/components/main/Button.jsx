@@ -4,7 +4,7 @@ import Translate from "../../utills/translate"
 
 export default function Button(props) {
     const [checked, setChecked] = useState(false)
-    const { setGoBetsInNote, removeBetsInNote, note } = useStore()
+    const { setGoBetsInNote, removeBetsInNote, note, replaceBetsInNote } = useStore()
     const bets = props.bets
     useEffect(() => {
         const fix = note.find(item => {
@@ -24,7 +24,14 @@ export default function Button(props) {
         } else { setChecked(false) }
     }, [note])
 
-    const betGo = (val, fix) => {
+    const betGo = (val, fix, bets) => {
+        const bet = {
+            fix,
+            choice: {
+                ...val,
+                betsChoice: bets
+            }
+        }
         if (checked) {
             note.map((n, i) => {
                 if (n.fix.fixture.id == fix.fixture.id) {
@@ -32,33 +39,24 @@ export default function Button(props) {
                 }
             })
         } else {
-            const bet = {
-                fix,
-                choice: {
-                    ...val,
-                    betsChoice: bets
-                }
-            }
-
-            if (note.length > 0) {
-                const existequalFix = note.filter(n => {
-                    return n.fix.fixture.id == props.fixId.fixture.id
-                })
-                if (existequalFix.length > 0) {
-                } else {
-                    setGoBetsInNote(bet)
-                }
-            } else {
+            const indexNoteEquals =  note.findIndex((n, i) => {
+                return n.fix.fixture.id == fix.fixture.id
+            })
+            console.log('betGo', note[indexNoteEquals], )
+            if(indexNoteEquals < 0) {
                 setGoBetsInNote(bet)
+            }else {
+                replaceBetsInNote(bet)
             }
+          
         }
     }
     let full = false
-    if(props.full) {
+    if (props.full) {
         full = true
     }
     return <div className="group font-medium inline-block relative w-full h-full">
-        <button onClick={() => betGo(props.val, props.fixId)} className={`${checked ? `bg-primary hover:bg-primary-ligth text-white` : ` hover:bg-gray-200`} px-1.5 py-3 text-gray-700 cursor-pointer active:outline-none focus:outline-none md:w-20 min-w-full h-full text-xs font-bold`}>
+        <button onClick={() => betGo(props.val, props.fixId, bets)} className={`${checked ? `bg-primary hover:bg-primary-ligth text-white` : ` hover:bg-gray-200`} px-1.5 py-3 text-gray-700 cursor-pointer active:outline-none focus:outline-none md:w-20 min-w-full h-full text-xs font-bold`}>
             <span className="block">{full && Translate(props.val.value)}</span>
             {props.val.odd}
             <span className="hidden font-medium text-xs md:hidden">{Translate(props.val.value)}</span>
