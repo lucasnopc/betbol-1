@@ -8,11 +8,17 @@ import isAdmin from '../../../utills/isAdmin'
 import axios from 'axios'
 import { useForm } from "react-hook-form";
 import ListBetsHistory from '../../../components/user/listBetsHistory'
+import useFetch from '../../../utills/useFetch'
+import FullLoading from '../../../components/fullloading'
 
 export default function user(props) {
+    
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const router = useRouter()
     const user = JSON.parse(props.user_string)
+    const { data:dataHistory, error:errorHistory } = useFetch(`/api/user/betsHistory?email=${user.email}`)
+    if (errorHistory) return console.log(error)
+    if (!dataHistory) return <FullLoading />
     const CleanPoints = e => {
         e.preventDefault()
         const email = user.email
@@ -72,7 +78,9 @@ export default function user(props) {
                 <button onClick={CleanPoints} className="border border-red-500 p-2 bg-red-600 hover:bg-red-400 hover:shadow-md font-normal text-white rounded-md"><SiCashapp className="inline-block mr-2" />Zerar Pontos</button>
                 <div id="apostas-user" className="bg-gray-100 p-3 border border-gray-200 rounded-md">
                     <h3 className="uppercase font-normal ">Apostas do usuário</h3>
-                    <ListBetsHistory email={user.email} />
+                    {dataHistory.betHistory.reverse().map((r) => {
+              return <ListBetsHistory key={r._id} data={r}  />
+            })}
                 </div>
             </main>
         </LayoutAdmin>

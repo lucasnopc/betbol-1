@@ -2,10 +2,17 @@ import fixInLeagues from "../../utills/fixInLeagues"
 import Fix from "./Fix"
 import SelectOddsBets from "./SelectOddsBets"
 import { bestLeagues } from '../layouts/home/bestLeagues'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 export default function Alive(props) {
+    const [live, setLive] = useState(false)
+    useEffect(() => {
+        if(props.isAlive == true) {
+            setLive(true)
+        }
+    }, [])
+
     const [bets, setBets] = useState(1)
     if(props.live.length == 0) {
         return <h1 className="font-semibold text-center pt-7 text-lg">Esta categoria não possue jogos neste momento, volte mais tarde.</h1>
@@ -30,9 +37,11 @@ export default function Alive(props) {
         return <></>
     }
     return <>
-        <div className="flex justify-between p-1">
+        <div className="flex justify-between p-2 border-b border-gray-200">
             <h2 className="page-title p-2 inline-block">{props.title}</h2>
-            <SelectOddsBets setBets={setBets} bets={bets} />
+            {!live &&
+                <SelectOddsBets setBets={setBets} bets={bets} />
+            }
         </div>
         {primaryLeagues.length > 0 && primaryLeagues.map(l => {
             return <div key={l.liga.id}>

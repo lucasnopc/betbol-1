@@ -2,54 +2,68 @@ import useFetch from "../../utills/useFetch"
 import Button from "./Button"
 import { ImSpinner9 } from 'react-icons/im'
 import Link from 'next/link'
-import { useEffect } from "react"
+import { useEffect, useState } from 'react'
 
 
 export default function Odd(props) {
     const bets = props.bets
     const id = props.fixId.fixture.id
-    let odd = false
+    // const values = []
+    const [ values, setValues ] = useState([])
     let diference = undefined
-    let values = []
+    const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     useEffect(() => {
-        if (props.fixId.goals.home != null && props.fixId.goals.away != null) {
-        diference = props.fixId.goals.home - props.fixId.goals.away
-        if (diference != 0) {
-            if (diference > 0) {
-                values.map((v, i) => {
-                    const subOdd  = ((Number(v.odd) * 30 / 100) * diference).toFixed(2)
-                    if (v.value == "Home") {
-                        console.log('antes', values[i].odd)
-                        values[i].odd = Number(v.odd) - subOdd
-                        console.log('depois', values[i].odd)
+        if(data && data.odd[0]){
+                const book = data.odd[0].bookmakers[0]
+                const bet = book ? book.bets : null
+                const oddsBets = (bets, bet) => {
+                    if(bet && bets) {
+                        const values = bet ? bet.find(val => {
+                            return val.id == bets
+                        }) : null
+                        return values
                     }
-                })
-            } else {
-                values.map((v, i) => {
-                    const subOdd  = ((Number(v.odd) * 30 / 100) * diference).toFixed(2)
-                    if (v.value == "Away") {
-                        values[i].odd = Number(v.odd) - subOdd
+                    return null
+                }
+                setValues(oddsBets(bets, bet) ? oddsBets(bets, bet).values : [])
+        }
+        if (props.fixId.goals.home != null && props.fixId.goals.away != null) {
+            diference = props.fixId.goals.home - props.fixId.goals.away
+            if (diference != 0) {
+                let HomeOrAwaya = ''
+                if (diference > 0) {
+                    HomeOrAwaya = "Home"
+                } else if (diference < 0) {
+                    HomeOrAwaya = "Away"
+
+                }
+                // console.log('values', values)
+                const newValues = values
+                newValues.map((v, i) => {
+                    if (v.value == HomeOrAwaya) {
+                        switch (diference) {
+                            case 1:
+                                // console.log('diference', diference, props.fixId)
+                                newValues[i].odd = '1.25'
+                                break
+                            case 2:
+                                newValues[i].odd = '1.10'
+                                break
+                            default:
+                                newValues[i].odd = '1.025'
+                                break
+                        }
+                        console.log('newValues', newValues, values)
+
+                        setValues(newValues)
                     }
                 })
             }
         }
-    }
-    }, [odd])
-    const { data, error } = useFetch(`/api/betApi/odds/${id}`)
+    }, [data])
     if (error) console.log(error)
     if (!data) <p> <ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></p>
-    if (data) odd = data.odd[0]
-    if (odd) {
-        const book = odd.bookmakers[0]
-        const bet = book ? book.bets : null
-        const oddsBets = (bets, bet) => {
-            const values = bet ? bet.find(val => {
-                return val.id == bets
-            }) : null
-            return { ...values, bets }
-        }
-        values = oddsBets(bets, bet) ? oddsBets(bets, bet).values : []
-    }
+
     return <>
         <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200}`}>
             {!data &&

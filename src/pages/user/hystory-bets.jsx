@@ -1,11 +1,8 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
-import { useEffect, useState } from 'react'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
-import { useStore } from '../../context/store'
 import useFetch from '../../utills/useFetch'
 import FullLoading from '../../components/fullloading'
-import Alive from '../../components/main/Alive'
 import ListBetsHistory from '../../components/user/listBetsHistory'
 
 export default function Home(props) {
