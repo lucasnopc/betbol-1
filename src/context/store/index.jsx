@@ -6,7 +6,6 @@ export const StoreContext = createContext(storeInitial)
 
 export const StoreProvider = ({ children }) => {
     const [note, setNote] = useState([])
-    const [fix, setFix] = useState([])
 
 
     const setGoBetsInNote = (bet) => {
@@ -40,10 +39,6 @@ export const StoreProvider = ({ children }) => {
         setNote(newNote)
     }
 
-    const setFixState = (fix) => {
-        setFix(fix)
-    }
-
     const clearNote = () => {
         console.log('note antes ', note)
         setNote([])
@@ -52,11 +47,9 @@ export const StoreProvider = ({ children }) => {
 
     const store = {
         note,
-        fix,
         setGoBetsInNote,
         replaceBetsInNote,
         removeBetsInNote,
-        setFixState,
         changeVf,
         clearNote
     }

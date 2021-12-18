@@ -207,7 +207,7 @@ export default function register(props) {
               <div>
                 <Link href="/">
                   <a>
-                    <Image width="100" height="38" src="/logoblack.png" className="hover:opacity-70 cursor-pointer" />
+                    <Image width="100" height="38" src="/logo.png" className="hover:opacity-70 cursor-pointer" />
                   </a>
                 </Link>
               </div>

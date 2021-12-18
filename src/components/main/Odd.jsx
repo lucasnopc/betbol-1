@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react'
 export default function Odd(props) {
     const bets = props.bets
     const id = props.fixId.fixture.id
-    // const values = []
     const [ values, setValues ] = useState([])
     let diference = undefined
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
@@ -35,15 +34,15 @@ export default function Odd(props) {
                     HomeOrAwaya = "Home"
                 } else if (diference < 0) {
                     HomeOrAwaya = "Away"
-
                 }
-                // console.log('values', values)
                 const newValues = values
                 newValues.map((v, i) => {
+                    
+                    console.log('values', values, diference)
                     if (v.value == HomeOrAwaya) {
-                        switch (diference) {
+                        console.log('diference', Math.abs(diference), props.fixId)
+                        switch (Math.abs(diference)) {
                             case 1:
-                                // console.log('diference', diference, props.fixId)
                                 newValues[i].odd = '1.25'
                                 break
                             case 2:
@@ -53,11 +52,10 @@ export default function Odd(props) {
                                 newValues[i].odd = '1.025'
                                 break
                         }
-                        console.log('newValues', newValues, values)
 
-                        setValues(newValues)
                     }
                 })
+                setValues(newValues)
             }
         }
     }, [data])

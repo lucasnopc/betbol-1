@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { useStore } from '../../context/store'
 import FullLoading from '../../components/fullloading'
 import Alive from '../../components/main/Alive'
+import { FixProvider } from '../../context/fix'
 
 export default function LeaguePage(props) {
 
@@ -27,7 +28,7 @@ export default function LeaguePage(props) {
 
     if (error) return console.log(error)
     if (!data) return <FullLoading />
-    
+
     return (
         <>
             <Head>
@@ -36,7 +37,9 @@ export default function LeaguePage(props) {
             </Head>
 
             <Layout userString={props.userString}>
-                <Alive live={live} bets={bets} setBets={setBets} title={`Jogos de ${date}`} />
+                <FixProvider>
+                    <Alive live={live} bets={bets} setBets={setBets} title={`Jogos de ${date}`} />
+                </FixProvider>
             </Layout>
         </>
     )

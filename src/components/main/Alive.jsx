@@ -3,21 +3,28 @@ import Fix from "./Fix"
 import SelectOddsBets from "./SelectOddsBets"
 import { bestLeagues } from '../layouts/home/bestLeagues'
 import { useEffect, useState } from "react"
-
+import { useFix } from "../../context/fix"
 
 export default function Alive(props) {
+    const { setLiveOHighlightsState, fixList, highlights, live:alive} = useFix()
+    const [fix, setFix] = useState([])
     const [live, setLive] = useState(false)
     useEffect(() => {
         if(props.isAlive == true) {
             setLive(true)
         }
     }, [])
-
+    useEffect(() => {
+        setLiveOHighlightsState(props.live, props.isAlive)
+    }, [props.live])
+    useEffect(() => {
+        setFix(fixList(props.isAlive))
+    }, [highlights, alive])
     const [bets, setBets] = useState(1)
-    if(props.live.length == 0) {
+    if(fix.length == 0) {
         return <h1 className="font-semibold text-center pt-7 text-lg">Esta categoria não possue jogos neste momento, volte mais tarde.</h1>
     }
-    const ligas = fixInLeagues(props.live)
+    const ligas = fixInLeagues(fix)
     const primaryLeagues = ligas.filter((l, indice) => {
         for(let i = 0 ; i < bestLeagues.length ; i++) {
             if(bestLeagues[i].id == l.liga.id) {
