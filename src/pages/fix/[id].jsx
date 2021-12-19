@@ -8,7 +8,6 @@ import FullLoading from '../../components/fullloading'
 import { useRouter } from 'next/router'
 import { oddBets } from '../../utills/oddBets'
 import Button from '../../components/main/Button'
-import { FixProvider } from '../../context/fix'
 
 export default function Fix(props) {
   const router = useRouter()
@@ -53,7 +52,6 @@ export default function Fix(props) {
       </Head>
 
       <Layout userString={props.userString}>
-        <FixProvider>
         <span className="text-xs">{res_fixture.response[0].league.country} {res_fixture.response[0].league.name}</span>
         <span className="text-lg block font-bold">{res_fixture.response[0].teams.home.name} v {res_fixture.response[0].teams.away.name}</span>
         {oddValueTranslations.map(odd => {
@@ -77,4 +75,3 @@ export async function getServerSideProps(context) {
   const ret = serverSidePropsClient(context)
   return ret
 }
-</FixProvider>

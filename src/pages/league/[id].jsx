@@ -3,24 +3,21 @@ import Layout from '../../components/layouts/home/layout'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
 import useFetch from '../../utills/useFetch'
-import { useEffect, useState } from 'react'
-import { useStore } from '../../context/store'
-import FullLoading from '../../components/fullloading'
+import { useState } from 'react'
 import Alive from '../../components/main/Alive'
 import { FixProvider } from '../../context/fix'
 
 export default function LeaguePage(props) {
-
-    const [live, setLive] = useState([])
-    const router = useRouter()
     const [bets, setBets] = useState(1)
-    const { date } = router.query
-    const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const { data, error } = useFetch(`/api/betApi/soccer?date=${date}&tzid=${tzid}`)
-    useEffect(() => {if (data) setLive(data.soccer.response)}, [data])
+    const router = useRouter()
+    const { id, year, name } = router.query
+    const { data, error } = useFetch(`/api/betApi/fix-to-league?league=${id}&season=${year}`)
 
-    if (error) return console.log(error)
-    if (!data) return <FullLoading />
+    let fix = {}
+    if (error) console.log(error)
+    if (data) {
+        fix = data.res_filter
+    }
 
     return (
         <>
@@ -30,9 +27,9 @@ export default function LeaguePage(props) {
             </Head>
 
             <Layout userString={props.userString}>
-                <FixProvider>
-                    <Alive live={live} bets={bets} setBets={setBets} title={`Jogos de ${date}`} />
-                </FixProvider>
+            <FixProvider>
+                <Alive live={fix} bets={bets} setBets={setBets} title={name} />
+            </FixProvider>
             </Layout>
         </>
     )
