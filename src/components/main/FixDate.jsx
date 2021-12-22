@@ -11,21 +11,29 @@ export default function FixDate(props) {
     let interval = useRef()
 
     const srartTimer = () => {
-        const startTimestamp = new Date(props.fix.fixture.timestamp).getTime()
+        let timestamp = props.fix.fixture.timestamp
+        switch(props.fix.fixture.status.short) {
+            case '2H':
+                timestamp = props.fix.fixture.periods.second
+        }
+        const startTimestamp = new Date(timestamp).getTime()
         interval = setInterval(() => {
             const now = new Date().getTime()
-            const distance = startTimestamp - now
+            const distance = now - startTimestamp
 
             const minutes = Math.abs(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))
             const seconds = Math.abs(Math.floor((distance % (1000 * 60)) / 1000))
-
-            if (distance > 0) {
+            // console.log('distance ', distance)
+            if (distance < 0) {
                 clearInterval(interval.current)
             } else {
                 setTimeMinutes(minutes < 10 ? `0${minutes}` : minutes)
                 setTimeSeconds(seconds < 10 ? `0${seconds}` : seconds)
             }
         }, 1000)
+        return () => {
+            clearInterval(interval.current)
+        }
 
     }
     useState(() => {
