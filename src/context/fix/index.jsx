@@ -16,6 +16,10 @@ export const FixProvider = ({ children }) => {
       }
     }
 
+    const changeFix = (props) => {
+      // console.log('changeFix ', props)
+    }
+
     const fixList = (isAlive) => {
       if(isAlive) {
         return live
@@ -28,6 +32,7 @@ export const FixProvider = ({ children }) => {
       live,
       highlights,
       fixList,
+      changeFix,
       setLiveOHighlightsState,
     }
 

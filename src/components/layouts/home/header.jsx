@@ -6,9 +6,9 @@ import { useRouter } from 'next/router'
 import { BiUserCircle } from 'react-icons/bi'
 import { ImSpinner } from 'react-icons/im'
 import { format } from "date-fns"
-import { FcGoogle } from 'react-icons/fc'
 import Logo from './logo'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
+import LogInGoogle from '../../logingoogle'
 
 
 export default function Header(props) {
@@ -42,11 +42,8 @@ export default function Header(props) {
                             <div className="flex-auto"><input {...register('email', { required: true })} type="email" name="email" placeholder="exemplo@ex.com" className="inline-block p-1.5 focus:outline-none bg-gray-200 h-10 float-right" required /></div>
                             <div className="flex-auto"> <button disabled={isSubmitting} type="submit" className="bg-primary hover:bg-primary-ligth p-2 font-medium inline-block text-white"><ImSpinner className={`${isSubmitting ? `inline-block` : `hidden`} animate-spin`} /> Acessar</button></div>
                         </form>
-
-                        <div className="group cursor-pointer p-1.5 mt-10 bg-gray-200 hover:bg-gray-100 table md:transform md:-translate-y-3.5 mx-auto" onClick={() => signIn('google')}>
-                            <FcGoogle className="text-2xl inline" />
-                            <span className="font-medium text-gray-900 p-2">Entrar com uma conta Google</span>
-
+                        <div className='mx-auto table'>
+                        <LogInGoogle />
                         </div>
                     </div>
                     <span className="cursor-pointer bg-primary hover:bg-primary-ligth p-2 uppercase font-medium text-white text-sm block" onClick={() => setEnterSis(!enterSis)}>Entrar</span>

@@ -3,9 +3,10 @@ import Button from "./Button"
 import { ImSpinner9 } from 'react-icons/im'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-
+import { useFix } from "../../context/fix"
 
 export default function Odd(props) {
+    const { changeFix } = useFix()
     const bets = props.bets
     const id = props.fixId.fixture.id
     const [values, setValues] = useState([])
@@ -62,7 +63,9 @@ export default function Odd(props) {
 
     if (error) console.log(error)
     if (!data) <p> <ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></p>
-    console.log(values, data)
+    if(!values || values.length == 0 && data) {
+        changeFix(props)
+    }
     return <>
         <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200}`}>
             {!data &&

@@ -27,8 +27,8 @@ export default function Footer() {
         </div>
         <div><h4  className="font-normal">Redes Sociais</h4>
             <ol className="text-gray-500">
-                <li><Link href="/"><a>Instagram</a></Link></li>
-                <li><Link href="/"><a>Facebook</a></Link></li>
+                <li><a href="https://www.instagram.com/sports_game.club/">Instagram</a></li>
+                {/* <li><Link href="/"><a>Facebook</a></Link></li> */}
             </ol>
         </div>
     </div>
