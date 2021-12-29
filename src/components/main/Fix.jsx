@@ -4,6 +4,7 @@ import VisibilitySensor from 'react-visibility-sensor'
 import { useState } from 'react'
 
 export default function Fix(props) {
+    console.log('fix props', props)
     const [visibleState, setVisibleState] = useState(false)
     const onChange = (isVisible) => {
         if(isVisible) {
@@ -23,7 +24,7 @@ export default function Fix(props) {
                     <div className="h-full">
 
                     {visibleState &&
-                        <Odd leagueId={props.leagueId} chave={props.chave} bets={props.bets} fixId={fix} />
+                        <Odd bets={props.bets} fixId={fix} isAlive={props.isAlive} indexFix={props.indexFix} />
                     }
                     </div>
                 </VisibilitySensor>

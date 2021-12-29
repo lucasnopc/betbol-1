@@ -6,13 +6,14 @@ import { useEffect, useState } from 'react'
 import { useFix } from "../../context/fix"
 
 export default function Odd(props) {
-    const { changeFix } = useFix()
+    const { removeFix } = useFix()
     const bets = props.bets
     const id = props.fixId.fixture.id
     const [values, setValues] = useState([])
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     useEffect(() => {
         if (data && data.odd[0]) {
+            
             const book = data.odd[0].bookmakers[0]
             const bet = book ? book.bets : null
             const oddsBets = (bets, bet) => {
@@ -27,7 +28,7 @@ export default function Odd(props) {
             let newValues = oddsBets(bets, bet) ? oddsBets(bets, bet).values : []
             let diference = undefined
             let HomeOrAwaya = undefined
-
+            
             if (props.fixId.goals.home != null || props.fixId.goals.away != null) {
                 diference = props.fixId.goals.home - props.fixId.goals.away
 
@@ -57,15 +58,21 @@ export default function Odd(props) {
                     })
                 }
             }
-        setValues(newValues)
+            setValues(newValues)
+        }else {
+            console.log('>> ', data, props.indexFix)
+
         }
     }, [data])
 
+    // useEffect(()=> {
+    //     if(values.length == 0 && props.indexFix && props.isAlive) {
+    //         removeFix(props.indexFix, props.isAlive)
+    //     }
+    // }, [values])
     if (error) console.log(error)
     if (!data) <p> <ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></p>
-    if(!values || values.length == 0 && data) {
-        changeFix(props)
-    }
+    
     return <>
         <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200}`}>
             {!data &&

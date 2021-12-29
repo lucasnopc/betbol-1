@@ -54,8 +54,8 @@ export default function Alive(props) {
             return <div key={l.liga.id}>
                 {/* <span className="pl-2 block text-sm border-b-2 border-black text-black font-semibold p-0.5 overflow-auto">{l.liga.country} | {l.liga.name}</span> */}
                 <div className="block">
-                    {l.fix.map((f) => {
-                        return <Fix key={f.fixture.id} fix={f} bets={bets} />
+                    {l.fix.map((f, indexFix) => {
+                        return <Fix key={f.fixture.id} fix={f} bets={bets} isAlive={props.isAlive} indexFix={indexFix} />
                     })}
                 </div>
             </div>
@@ -67,8 +67,8 @@ export default function Alive(props) {
             return <div key={l.liga.id}>
                 {/* <span className="pl-2 block text-sm border-b-2 border-black text-black font-semibold p-0.5 overflow-auto">{l.liga.country} | {l.liga.name} <MoreFix l={l} /></span> */}
                 <div className="block">
-                    {l.fix.map((f) => {
-                        return <Fix key={f.fixture.id} fix={f} bets={bets} />
+                    {l.fix.map((f, indexFix) => {
+                        return <Fix key={f.fixture.id} fix={f} bets={bets}  isAlive={props.isAlive} indexFix={indexFix} />
                     })}
                 </div>
             </div>

@@ -9,6 +9,7 @@ import { format } from "date-fns"
 import Logo from './logo'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import LogInGoogle from '../../logingoogle'
+import SportNav from './sportsnav'
 
 
 export default function Header(props) {
@@ -68,19 +69,9 @@ export default function Header(props) {
         </>
     }
     return <>
-        {session && <>
-            {/* <div id="logado" className="py-1 text-sm bg-black border-b text-gray-200 shadow-md flex justify-between px-5">
-                <span className="font-medium hidden md:inline-block">{user ? user.email : ""}</span>
-                <span className="font-medium">{datetoday}</span>
-                <div id="points" className="inline-block h-full items-center">
-                    <span className="bgicon-coin"></span>
-                    <span className="ml-2 font-medium">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
-                </div>
-            </div> */}
-        </>}
-        <header className="pl-2 bg-green-600 border-b border-gray-200 md:p-3 absolute top-0 left-0 w-screen z-30 flex items-center justify-between">
+        <header className=" bg-green-600 border-b border-gray-200  absolute top-0 left-0 w-screen z-30 md:h-16 md:overflow-hidden">
+            <div className='pl-2 md:p-3 flex items-center justify-between'>
             <Logo />
-
             <div id="profile">
             {session && <><div id="points" className="inline-block h-full mr-5">
                     <span className="bgicon-coin align-middle"></span>
@@ -89,7 +80,8 @@ export default function Header(props) {
                 </>}
                 <Profile />
             </div>
+            </div>
+        <SportNav />
         </header>
-
     </>
 }

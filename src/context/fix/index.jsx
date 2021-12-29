@@ -16,8 +16,14 @@ export const FixProvider = ({ children }) => {
       }
     }
 
-    const changeFix = (props) => {
-      // console.log('changeFix ', props)
+    const removeFix = (indexFix, isAlive) => {
+      // if(indexFix){
+      //   const newFix = [...fix]
+      //   newNote.splice(i, 1)
+
+      //   setNote(newNote)
+      // }
+      console.log('removeFix ', indexFix, isAlive)
     }
 
     const fixList = (isAlive) => {
@@ -32,7 +38,7 @@ export const FixProvider = ({ children }) => {
       live,
       highlights,
       fixList,
-      changeFix,
+      removeFix,
       setLiveOHighlightsState,
     }
 

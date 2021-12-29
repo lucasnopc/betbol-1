@@ -39,7 +39,7 @@ export default function Home(props) {
             <Alive live={live}  title="Futebol Ao vivo" isAlive={true} />
           </div>
           <div className="col-span-5 md:col-span-2 md:col-start-4">
-            <Alive live={master} title="Destaques" />
+            <Alive live={master} title="Destaques" isAlive={false} />
           </div>
           </FixProvider>
         </div>
