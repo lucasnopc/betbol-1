@@ -12,7 +12,7 @@ export default function Profile() {
     const [enterSis, setEnterSis] = useState(false)
     const [openSettings, setOpenSettings] = useState(false)
     const { register, handleSubmit, formState } = useForm();
-    const [session, loading] = useSession()
+    const [session] = useSession()
     const { isSubmitting } = formState
 
     const registerUser = async data => {
