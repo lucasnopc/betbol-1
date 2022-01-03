@@ -22,7 +22,7 @@ export default function Profile() {
   return <>
       {!session && <>
           <div>
-              <div className={`${enterSis ? `block` : `hidden`} absolute bg-white w-screen p-4 h-screen left-0 top-0 z-10`}>
+              <div className={`${enterSis ? `block` : `hidden`} fixed bg-white w-screen p-4 h-screen left-0 top-0 z-40`}>
                   <span className="absolute top-3 right-2 md:right-8 font-bold text-2xl cursor-pointer" onClick={() => setEnterSis(!enterSis)}><AiOutlineCloseCircle className="text-red-500" /></span>
                   <div className="p-3 table mx-auto"><Logo /></div>
                   <h3 className="font-semibold text-xl text-center mt-5">ENTRAR</h3>
@@ -35,7 +35,7 @@ export default function Profile() {
                   <LogInGoogle />
                   </div>
               </div>
-              <span className="cursor-pointer bg-primary hover:bg-primary-ligth p-2 uppercase font-medium text-white text-sm block" onClick={() => setEnterSis(!enterSis)}>Entrar</span>
+              <span className="cursor-pointer bg-primary hover:bg-primary-ligth p-2 uppercase font-medium text-white text-sm block mx-1" onClick={() => setEnterSis(!enterSis)}>Entrar</span>
           </div>
       </>}
       {session && <>

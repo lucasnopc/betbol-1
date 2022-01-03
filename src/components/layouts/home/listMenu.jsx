@@ -94,7 +94,7 @@ export default function ListMenu(props) {
             <span className="inline-block text-xs ml-2 page-title">Buscar Jogos</span>
         </div>
         <div className={`${toggle ? `block` : `hidden md:block`}`}>
-            <div className={`p-2`}>
+            <div>
                 <Select options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
                 {loading && <div className="text-center"><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
                 {!loading && <SelectLeague />}
