@@ -4,42 +4,42 @@ import { FaHockeyPuck, FaVolleyballBall } from 'react-icons/fa'
 import { MdHeight, MdSportsHandball, MdSportsRugby } from 'react-icons/md'
 
 export default function SportNav() {
-  const [scrollX, setScrollX] = useState(-100)
+  const [scrollX, setScrollX] = useState(0)
 
-  return <div className='bg-white overflow-auto md:invisible'>
+  return <div className='bg-green-500 overflow-auto'>
     <div className='transition-all' style={{
       marginLeft: scrollX,
-      width: 7 * 90,
+      width: 7 * 110,
       height: 70
     }}>
-      <div className='visible pl-32 md:p-0 md:absolute md:w-screen md:top-0 md:left-0 h-16'>
+      <div className='pl-10 md:p-0 h-16'>
         <div className='md:table md:mx-auto'>
-          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2'>
-            <BiFootball className='text-3xl text-black group-hover:text-primary w-full' />
-            <span className='text-xs font-bold uppercase'>Footbal</span>
+          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2 cursor-pointer'>
+            <BiFootball className='md:text-lg text-3xl text-black group-hover:text-primary w-full md:w-min md:inline-block md:mr-1' />
+            <span className='text-xs font-bold uppercase'>Futebol</span>
           </div>
-          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2'>
-            <BiBasketball className='text-3xl text-black group-hover:text-primary w-full' />
-            <span className='text-xs font-bold uppercase'>Basketball</span>
+          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2 cursor-pointer'>
+            <BiBasketball className='md:text-lg text-3xl text-black group-hover:text-primary w-full md:w-min md:inline-block md:mr-1' />
+            <span className='text-xs font-bold uppercase'>Basquetbol</span>
           </div>
-          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2'>
-            <BiBaseball className='text-3xl text-black group-hover:text-primary w-full' />
-            <span className='text-xs font-bold uppercase'>Baseball</span>
+          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2 cursor-pointer'>
+            <BiBaseball className='md:text-lg text-3xl text-black group-hover:text-primary w-full md:w-min md:inline-block md:mr-1' />
+            <span className='text-xs font-bold uppercase'>Basebol</span>
           </div>
-          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2'>
-            <FaHockeyPuck className='text-3xl text-black group-hover:text-primary w-full' />
+          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2 cursor-pointer'>
+            <FaHockeyPuck className='md:text-lg text-3xl text-black group-hover:text-primary w-full md:w-min md:inline-block md:mr-1' />
             <span className='text-xs font-bold uppercase'>Hockey</span>
           </div>
-          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2'>
-            <FaVolleyballBall className='text-3xl text-black group-hover:text-primary w-full' />
-            <span className='text-xs font-bold uppercase'>Volleyball</span>
+          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2 cursor-pointer'>
+            <FaVolleyballBall className='md:text-lg text-3xl text-black group-hover:text-primary w-full md:w-min md:inline-block md:mr-1' />
+            <span className='text-xs font-bold uppercase'>Voley</span>
           </div>
-          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2'>
-            <MdSportsHandball className='text-3xl text-black group-hover:text-primary w-full' />
-            <span className='text-xs font-bold uppercase'>Handball</span>
+          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2 cursor-pointer'>
+            <MdSportsHandball className='md:text-lg text-3xl text-black group-hover:text-primary w-full md:w-min md:inline-block md:mr-1' />
+            <span className='text-xs font-bold uppercase'>Handbol</span>
           </div>
-          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2'>
-            <MdSportsRugby className='text-3xl text-black group-hover:text-primary w-full' />
+          <div className='inline-block text-center px-3 group hover:bg-gray-100 py-2 cursor-pointer'>
+            <MdSportsRugby className='md:text-lg text-3xl text-black group-hover:text-primary w-full md:w-min md:inline-block md:mr-1' />
             <span className='text-xs font-bold uppercase'>Rugby</span>
           </div>
         </div>

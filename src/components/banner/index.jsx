@@ -16,8 +16,8 @@ export default function Banner(props) {
                     <span className="inline-block">{i.teams.away.name}<img src={i.teams.away.logo} width="50" height="50" /></span>
                 </div>
             })} */}
-            <h3 className="text-gray-200 font-bold mt-5 text-lg md:text-3xl pl-3 text-shadow">Oferta novo cliente</h3>
-            <p className="font-bold pl-2 text-yellow-400 text-2xl md:text-5xl text-shadow">Receba Bônus de <br /> até R$ 150</p>
+            <h3 className="text-gray-200 font-bold mt-5 text-lg md:text-xl pl-3 text-shadow">Oferta novo cliente</h3>
+            <p className="font-bold pl-2 text-yellow-400 text-2xl md:text-3xl text-shadow">Receba Bônus de <br /> até R$ 150</p>
             <LogInGoogle />
         </div>
     </>
