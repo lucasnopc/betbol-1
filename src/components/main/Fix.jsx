@@ -4,7 +4,6 @@ import VisibilitySensor from 'react-visibility-sensor'
 import { useState } from 'react'
 
 export default function Fix(props) {
-    console.log('fix props', props)
     const [visibleState, setVisibleState] = useState(false)
     const onChange = (isVisible) => {
         if(isVisible) {

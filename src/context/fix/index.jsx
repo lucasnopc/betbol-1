@@ -16,14 +16,13 @@ export const FixProvider = ({ children }) => {
       }
     }
 
-    const removeFix = (indexFix, isAlive) => {
-      // if(indexFix){
-      //   const newFix = [...fix]
-      //   newNote.splice(i, 1)
-
-      //   setNote(newNote)
-      // }
-      console.log('removeFix ', indexFix, isAlive)
+    const removeFix = (idFix, isAlive) => {
+        const fix = isAlive ? live : highlights
+        const newFix = [...fix]
+        const indexFix = fix.findIndex((f) => f.fixture.id == idFix)
+        newFix.splice(indexFix, 1)
+        
+        setLiveOHighlightsState(newFix, isAlive)
     }
 
     const fixList = (isAlive) => {
