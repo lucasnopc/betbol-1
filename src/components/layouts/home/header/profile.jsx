@@ -6,9 +6,9 @@ import Link from 'next/link'
 import { ImSpinner } from "react-icons/im"
 import { AiOutlineCloseCircle } from "react-icons/ai"
 import { useForm } from "react-hook-form"
-import { useSession } from "next-auth/client"
+import { signIn, useSession } from "next-auth/client"
 
-export default function Profile() {
+export default function Profile({ user }) {
     const [enterSis, setEnterSis] = useState(false)
     const [openSettings, setOpenSettings] = useState(false)
     const { register, handleSubmit, formState } = useForm();
@@ -42,9 +42,9 @@ export default function Profile() {
           <div className="inline-block fex items-center">
 
               <div className="group inline-block cursor-pointer text-white" onClick={() => setOpenSettings(!openSettings)}>
-                  <span className="mt-2 inline-block font-semibold group-hover:text-black">Olá {user.user.name}</span>
+                  <span className="mt-2 inline-block font-semibold group-hover:text-black">Olá {user.user?.name}</span>
                   <BiUserCircle className="text-3xl ml-3 inline-block group-hover:text-black" />
-                  <div className={`${openSettings ? `block` : `hidden`} absolute top-10 right-0 bg-white z-10`} onMouseLeave={() => setOpenSettings(false)} >
+                  <div className={`${openSettings ? `block` : `hidden`} fixed top-14 right-0 bg-white z-10`} onMouseLeave={() => setOpenSettings(false)} >
                       <div><Link href="/register"><a className="list-styles block">Atualizar Dados</a></Link></div>
                       <div><Link href="/finances"><a className="list-styles block">Financeiro</a></Link></div>
                       <div><Link href="/user/hystory-bets"><a className="list-styles block">Historico Apostas</a></Link></div>

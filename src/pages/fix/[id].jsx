@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
 import { useEffect, useState } from 'react'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
-import { useStore } from '../../context/store'
 import useFetch from '../../utills/useFetch'
 import FullLoading from '../../components/fullloading'
 import { useRouter } from 'next/router'
@@ -13,9 +12,8 @@ export default function Fix(props) {
   const router = useRouter()
   const { id } = router.query
   const urlFix = `/api/betApi/fixture/${id}/`
-  const [live, setLive] = useState([])
-  const [bets, setBets] = useState(1)
-  const { setFixState } = useStore()
+  const [setLive] = useState([])
+  const [bets] = useState(1)
   const { data, error } = useFetch(urlFix)
 
   useEffect(() => {
@@ -23,9 +21,6 @@ export default function Fix(props) {
 
   }, [data])
 
-  useEffect(() => {
-    setFixState(live)
-  }, [live])
 
   if (error) return console.log(error)
   if (!data) return <FullLoading />

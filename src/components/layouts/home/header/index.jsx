@@ -27,7 +27,7 @@ export default function Header(props) {
                     <span className="ml-2 font-medium text-xs align-middle text-white">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
                 </div>
                 </>}
-                <Profile />
+                <Profile user={user} />
             </div>
             </div>
         <SportNav />
