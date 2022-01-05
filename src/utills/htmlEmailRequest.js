@@ -11,8 +11,8 @@ export function HtmlEmailRequest({ url, site, email }) {
   const backgroundColor = '#131527'
   const textColor = '#444444'
   const mainBackgroundColor = '#ffffff'
-  const buttonBackgroundColor = '#fd8200'
-  const buttonBorderColor = '#fd8200'
+  const buttonBackgroundColor = '#00e035'
+  const buttonBorderColor = '#00e035'
   const buttonTextColor = '#ffffff'
 
   // Uses tables for layout and inline CSS due to email client limitations
@@ -35,7 +35,7 @@ export function HtmlEmailRequest({ url, site, email }) {
       <td align="center" style="padding: 20px 0;">
       <table border="0" cellspacing="0" cellpadding="0">
       <tr>
-      <td align="center" style="border-radius: 5px;" bgcolor="${buttonBackgroundColor}"><a href="${url}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${buttonTextColor}; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ${buttonBorderColor}; display: inline-block; font-weight: bold;">Acessar minha conta Betbol</a></td>
+      <td align="center" style="border-radius: 5px;" bgcolor="${buttonBackgroundColor}"><a href="${url}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${buttonTextColor}; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ${buttonBorderColor}; display: inline-block; font-weight: bold;">Acessar minha conta SportGames</a></td>
           </tr>
           </table>
           </td>

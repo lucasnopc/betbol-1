@@ -29,7 +29,12 @@ export default function Odd(props) {
             if (props.fixId.goals.home != null || props.fixId.goals.away != null) {
                 let diference = undefined
                 let HomeOrAwaya = undefined
+                let homeOrAwayaWinner = undefined
                 diference = props.fixId.goals.home - props.fixId.goals.away
+                
+                if (props.fixId.teams.home.winner === true || props.fixId.teams.away.winner === true) {
+                    homeOrAwayaWinner = props.fixId.teams.home.winner ? "Home" : "Away"
+                }
 
                 if (diference && diference != 0) {
                     if (diference > 0) {
@@ -38,6 +43,8 @@ export default function Odd(props) {
                         HomeOrAwaya = "Away"
                     }
                 }
+                
+                console.log(props.fixId)
                 if (HomeOrAwaya) {
                     newValues.map((v, i) => {
                         if (v.value == HomeOrAwaya) {
@@ -57,19 +64,19 @@ export default function Odd(props) {
                     })
                 }
                 setValues(newValues)
-            }else {
+            } else {
                 setValues(newValues)
 
             }
         } else {
-            if(typeof data != 'undefined'){
-                if(data.odd.length == 0) {
-                removeFix(props.fixId.fixture.id, props.isAlive)
+            if (typeof data != 'undefined') {
+                if (data.odd.length == 0) {
+                    removeFix(props.fixId.fixture.id, props.isAlive)
 
                 }
             }
         }
-    }, [data])
+    }, [data, bets])
 
     if (!data) <p> <ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></p>
 
