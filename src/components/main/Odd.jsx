@@ -13,7 +13,6 @@ export default function Odd(props) {
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     useEffect(() => {
         if (data && data.odd[0]) {
-
             const book = data.odd[0].bookmakers[0]
             const bet = book ? book.bets : null
             const oddsBets = (bets, bet) => {
@@ -44,7 +43,6 @@ export default function Odd(props) {
                     }
                 }
                 
-                console.log(props.fixId)
                 if (HomeOrAwaya) {
                     newValues.map((v, i) => {
                         if (v.value == HomeOrAwaya) {

@@ -42,7 +42,6 @@ export default function Button(props) {
             const indexNoteEquals =  note.findIndex((n, i) => {
                 return n.fix.fixture.id == fix.fixture.id
             })
-            console.log('betGo', note[indexNoteEquals], )
             if(indexNoteEquals < 0) {
                 setGoBetsInNote(bet)
             }else {

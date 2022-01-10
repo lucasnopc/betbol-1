@@ -3,15 +3,16 @@ import { format } from 'date-fns'
 import { MdOutlineSchedule, MdMonetizationOn, MdDangerous, MdDoneOutline } from 'react-icons/md'
 import axios from 'axios'
 import { ImSpinner9 } from 'react-icons/im'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function AllPays(props) {
-    let mercadopago = null
+    const [mercadoPago, setMercadopago] = useState()
     useEffect(() => {
         let { MercadoPago } = window
-        mercadopago = new MercadoPago(`TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9`, {
-          locale: 'pt-BR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+        const instMercadopago = new MercadoPago(`TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9`, {
+          locale: 'pt-BR'
         });
+        setMercadopago(instMercadopago)
       }, [])
 
       const url = `/api/payments/getpayments`
@@ -31,9 +32,9 @@ export default function AllPays(props) {
     }
 
     const finishPay = (pay, e) => {
-        console.log('finishpay ?')
-        if (mercadopago) {
-            const checkout = mercadopago.checkout({
+        console.log('finishpay ?', mercadoPago, pay, e)
+        if (mercadoPago) {
+            const checkout = mercadoPago.checkout({
               preference: {
                 id: pay.id
               },
