@@ -7,7 +7,7 @@ import Note from './note'
 export default function Layout(props) {
     const [listBetState, setListBetState] = useState([])
     const [getValorFinal, setValorFinal] = useState(0)
-    return <div className="min-h-screen overflow-hidden">
+    return <div className="min-h-screen">
         <Header userString={props.userString} />
         <main className="bg-cover h-full mt-16 md:mt-28">
             <div className="page grid grid-cols-12">

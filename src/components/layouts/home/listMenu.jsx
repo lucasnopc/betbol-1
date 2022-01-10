@@ -88,12 +88,12 @@ export default function ListMenu(props) {
         }
         return ""
     }
-    return <div className="bg-gray-200  shadow-md md:h-screen">
+    return <div className="shadow-md md:h-screen">
         <div onClick={() => setToggle(!toggle)} className="p-1">
             <BiFootball className="inline-block" />
             <span className="inline-block text-xs ml-2 page-title">Buscar Jogos</span>
         </div>
-        <div className={`${toggle ? `block` : `hidden md:block`}`}>
+        <div className={`${toggle ? `block` : `hidden md:block`} bg-gray-200`}>
             <div>
                 <Select options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
                 {loading && <div className="text-center"><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
