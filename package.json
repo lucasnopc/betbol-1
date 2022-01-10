@@ -29,7 +29,6 @@
     "react-input-mask": "^3.0.0-alpha.2",
     "react-sdk-mercadopago": "^1.1.1",
     "react-select": "^5.2.1",
-    "react-slick": "^0.28.1",
     "react-timezone-select": "^1.1.13",
     "react-visibility-sensor": "^5.1.1",
     "sass": "^1.45.1",

@@ -10,7 +10,6 @@ import { format } from 'date-fns'
 import { FixProvider } from '../context/fix'
 
 export default function Home(props) {
-
   const [live, setLive] = useState([])
   const [master, setMaster] = useState([])
   const date =  format(new Date(), 'yyyy-MM-dd')

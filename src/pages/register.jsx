@@ -10,6 +10,8 @@ import getUser from '../utills/getUser'
 import { useRouter } from 'next/router'
 
 export default function register(props) {
+  const [popularForm, setPopularForm] = useState(false)
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const router = useRouter()
   const [getStateRegister, setStateRegister] = useState({
     name: "",
@@ -21,7 +23,13 @@ export default function register(props) {
     numhouse: "",
   })
 
-
+  useEffect(() => {
+    setPopularForm(true)
+    setValue('cep', getStateRegister.cep)
+    if (props.profile) {
+      setStateRegister(props.profile)
+    }
+  })
 
   const Andress = () => {
     if (getStateRegister.andress != "") return <>
@@ -90,16 +98,6 @@ export default function register(props) {
       setStateRegister(duplicateDataDefault)
     }
   }
-
-  const [popularForm, setPopularForm] = useState(false)
-  useEffect(() => {
-    setPopularForm(true)
-    setValue('cep', getStateRegister.cep)
-    if (props.profile) {
-      setStateRegister(props.profile)
-    }
-  })
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
   const onSubmit = async data => {
     const sendData = await axios.post('/api/register', { data })
@@ -201,13 +199,13 @@ export default function register(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="lg:flex">
-        <div className="lg:w-1/2 lg:h-screen p  b-5 lg:overflow-y-scroll">
+        <div className="lg:w-1/2 lg:h-screen p b-5 overflow-scroll">
           <div className="pt-10 bg-gray-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
             <div className="cursor-pointer flex items-center">
               <div>
                 <Link href="/">
                   <a>
-                    <Image width="100" height="38" src="/logo.png" className="hover:opacity-70 cursor-pointer" />
+                    <Image width="100" height="100" src="/logo.png" className="hover:opacity-70 cursor-pointer" />
                   </a>
                 </Link>
               </div>
