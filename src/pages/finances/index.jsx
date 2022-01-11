@@ -2,23 +2,19 @@ import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
 import { useEffect, useState } from 'react'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
-import { useRouter } from 'next/router'
 import AllPays from './allpays'
+import { useMercadopago } from 'react-sdk-mercadopago';
 
 export default function Finances(props) {
+  const stringPublicKey = String(process.env.MP_PRO_PUBLIC_KEY)
+  const mercadopago = useMercadopago.v2(stringPublicKey, {
+    locale: 'pt-BR'
+});
 
-  let mercadopago = null
   let user = ``
   if(props.userString) {
     user = JSON.parse(props.userString)
   }
-  useEffect(() => {
-    let { MercadoPago } = window
-    mercadopago = new MercadoPago(`TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9`, {
-      locale: 'pt-BR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
-    });
-  }, [])
-
 
   const deposit = e => {
     e.preventDefault()
@@ -70,7 +66,7 @@ export default function Finances(props) {
               </form>
               <div id="paym">
                 Todos pagamentos
-                <AllPays user={user} />
+                <AllPays user={user} mercadopago={mercadopago} />
               </div>
 
             </div>
