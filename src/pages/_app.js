@@ -18,7 +18,6 @@ Router.events.on('routeChangeError', () => NProgress.done())
 function MyApp({ Component, pageProps }) {
   return <>
   <Head>
-  <script src="https://sdk.mercadopago.com/js/v2"></script>
   </Head>
     <StoreProvider>
       <Provider session={pageProps.session}>

@@ -2,7 +2,7 @@
 
 html, body, #__next {
     height: 100%;
-    /* overflow: hidden; */
+    overflow: auto;
 }
 * {
     font-family: 'Montserrat', sans-serif;
