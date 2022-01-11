@@ -95,11 +95,11 @@ export default function ListMenu(props) {
         </div>
         <div className={`${toggle ? `block` : `hidden md:block`} bg-gray-200`}>
             <div>
-                <Select options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
+                <Select className="rounded-none" options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
                 {loading && <div className="text-center"><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
                 {!loading && <SelectLeague />}
             </div>
-            <ul >
+            <ul>
                 <li >
                     <Link className="inline-block" href="/">
                         <a className="list-styles block pl-3">
