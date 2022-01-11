@@ -26,7 +26,7 @@ export default function AllPays(props) {
 
     const finishPay = (pay, e) => {
         if (mercadopago) {
-            const checkout = mercadopago.checkout({
+            mercadopago.checkout({
                 preference: {
                     id: pay.id
                 },
