@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { ImSpinner } from "react-icons/im"
 import { AiOutlineCloseCircle } from "react-icons/ai"
 import { useForm } from "react-hook-form"
-import { signIn, useSession } from "next-auth/client"
+import { signIn, signOut, useSession } from "next-auth/client"
 
 export default function Profile({ user }) {
     const [enterSis, setEnterSis] = useState(false)
