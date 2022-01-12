@@ -6,7 +6,9 @@ import AllPays from './allpays'
 import { useMercadopago } from 'react-sdk-mercadopago';
 
 export default function Finances(props) {
-  const stringPublicKey = 'APP_USR-9bee11b4-7b73-4936-8610-9cfa6797e650'
+  // TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9
+  // APP_USR-9bee11b4-7b73-4936-8610-9cfa6797e650
+  const stringPublicKey = 'TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9'
   let mercadopago = undefined
   if (stringPublicKey) {
     mercadopago = useMercadopago.v2(stringPublicKey, {

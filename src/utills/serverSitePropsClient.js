@@ -2,7 +2,7 @@ import { getSession } from "next-auth/client"
 import getUser from "./getUser"
 
 export default async function serverSidePropsClient(context) {
-    const session = await getSession(context)
+  const session = await getSession(context)
   if (session) {
     const user = await getUser(session.user.email)
     const userString = JSON.stringify(user)
@@ -24,8 +24,18 @@ export default async function serverSidePropsClient(context) {
     return {
       props: { userString },
     }
-  }
-  return {
-    props: {},
+  } else {
+    if(context.req.url != '/') {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+        props: {},
+      }
+    }
+    return {
+      props: {},
+    }
   }
 }
