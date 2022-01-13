@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
-import { useEffect, useState } from 'react'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import AllPays from './allpays'
 import { useMercadopago } from 'react-sdk-mercadopago';
