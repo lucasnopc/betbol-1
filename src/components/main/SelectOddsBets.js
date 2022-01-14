@@ -1,8 +1,8 @@
 import { oddBets } from '../../utills/oddBets'
 
 export default function SelectOddsBets(props) {
-    return <div className="inline-block mt-1 float-right md:px-1">
-            <select className="overflow-auto bg-gray-200 hover:bg-gray-100 float-right border border-gray-200 p-1 outline-none cursor-pointer" onChange={(change) => {
+    return <div className="inline-block mt-1 md:float-right md:px-1">
+            <select className="overflow-auto bg-gray-200 hover:bg-gray-100 float-right border border-gray-200 p-1 outline-none cursor-pointer w-40" onChange={(change) => {
                 props.setBets(change.target.value)
             }}>
                 {oddBets.map((bet, i) => {

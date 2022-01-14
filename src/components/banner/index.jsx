@@ -1,8 +1,11 @@
 import { format } from "date-fns"
+import { useSession } from "next-auth/client";
 import LogInGoogle from "../logingoogle"
-import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Banner(props) {
+    const [session] = useSession()
+    console.log('session banner ', session)
     const date = format(new Date(), 'yyyy-MM-dd')
     const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const itens = props.live
@@ -24,7 +27,10 @@ export default function Banner(props) {
             <div className="bg-bg01 bg-black bg-cover bg-right-top">
                 <h3 className="text-gray-200 font-bold mt-5 text-lg md:text-xl pl-3 text-shadow">Oferta novo cliente</h3>
                 <p className="font-bold pl-2 text-yellow-400 text-2xl md:text-3xl text-shadow">Receba Bônus de <br /> até R$ 150</p>
-                <LogInGoogle />
+              {session &&
+                <Link href="/finances" className="text-white">Faça um depósito e começe a lucrar já</Link>
+              }  
+              {!session && <LogInGoogle />}
             </div>
         </div>
     </>
