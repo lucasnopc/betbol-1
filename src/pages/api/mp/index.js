@@ -52,5 +52,5 @@ export default async function SetPay(req, res) {
   }
   if (req.method == "DELETE") {
     console.log('delete')
-
+  }
 }
