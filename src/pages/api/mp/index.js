@@ -23,8 +23,8 @@ export default async function SetPay(req, res) {
       back_urls:
       {
         "success": `${process.env.NEXTAUTH_URL}/feedback`,
-        "failure": `${process.env.NEXTAUTH_URL}/feedback`,
-        "pending": `${process.env.NEXTAUTH_URL}/feedback`,
+        "failure": `${process.env.NEXTAUTH_URL}/finances`,
+        "pending": `${process.env.NEXTAUTH_URL}/finances`,
       }
     };
 
@@ -39,17 +39,18 @@ export default async function SetPay(req, res) {
           }, function (err, resp) {
             if(err) console.log('err, ', err)
             if (resp) {
+              console.log('cheguei aqui')
               res.status(200).json({
                 id: response.body.id,
               })
             }
           })
         }
-        // res.status(200).json({
-        //   id: response.body.id
-        // })
       }).catch(function (error) {
         console.log(`error 52 mp`, error);
       });
   }
+  if (req.method == "DELETE") {
+    console.log('delete')
+
 }

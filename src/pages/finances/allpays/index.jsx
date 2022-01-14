@@ -3,7 +3,6 @@ import { format } from 'date-fns'
 import { MdOutlineSchedule, MdMonetizationOn, MdDangerous, MdDoneOutline } from 'react-icons/md'
 import axios from 'axios'
 import { ImSpinner9 } from 'react-icons/im'
-import { useEffect, useState } from 'react'
 
 export default function AllPays(props) {
     const mercadopago = props.mercadopago
@@ -34,18 +33,14 @@ export default function AllPays(props) {
             })
         }
     }
-    // const status = (value) => {
-    //     if (value) {
-    //         if (value.status = `approved`) return true
-    //         return false
-    //     }
-    // }
-    const cancelPay = (pay, e) => {
-        console.log('cancel pay ', pay, e)
+
+    const cancelPay = async (pay) => {
+        console.log('cancel pay ', ) 
+      await axios.delete('/api/mp', {id: pay.id})
     }
+
     return <>
         {payments.reverse().map(pay => {
-            console.log('pay', pay)
             const date = format(new Date(pay.date), 'dd.MM.yy')
             return <div className="bg-gray-100 p-2 shadow-sm my-1 block md:grid md:grid-cols-3" key={pay.id}>
                 <div className="inline-block md:block"><MdOutlineSchedule className="inline-block" /> {date}</div>
@@ -56,8 +51,9 @@ export default function AllPays(props) {
                     {pay.received && <span className="float-right uppercase font-semibold text-sm text-white bg-gray-300 p-1 cursor-not-allowed">
                         Recebido
                     </span>}
-                    {!pay.values && <div className="md:float-right"><button onClick={e => cancelPay(pay, e)} className="inline-block uppercase font-semibold text-sm text-white bg-red-600 hover:bg-red-400 p-1">Cancelar</button><button onClick={e => finishPay(pay, e)} className="inline-block uppercase font-semibold text-sm text-white bg-primary hover:bg-green-400 p-1">Finalizar</button></div>}
+                    {!pay.values && <div className="md:float-right"><button onClick={e => cancelPay(pay)} className="inline-block uppercase font-semibold text-sm text-white bg-red-600 hover:bg-red-400 p-1">Cancelar</button><button onClick={e => finishPay(pay, e)} className="inline-block uppercase font-semibold text-sm text-white bg-primary hover:bg-green-400 p-1">Finalizar</button></div>}
                     {pay.values && pay.values.collection_status == 'pending' && <span className="md:float-right uppercase font-semibold text-sm text-white bg-yellow-500 p-1">Pagamento Pendente</span>}
+                    {pay.values && pay.values.collection_status == 'rejected' && <span className="md:float-right uppercase font-semibold text-sm text-white bg-red-600 p-1">Pagamento Rejeitado</span>}
                 </div>
             </div>
         })}
