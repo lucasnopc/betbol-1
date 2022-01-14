@@ -18,7 +18,7 @@ export default function Header(props) {
     }
 
     return <>
-        <header className=" bg-green-600 border-b border-gray-200  absolute top-0 left-0 w-full z-30 md:h-28 md:overflow-hidden">
+        <header className=" bg-green-600 border-b border-gray-200  absolute top-0 left-0 w-full z-30 md:h-24 md:overflow-hidden">
             <div className='md:pl-2 flex items-center justify-between'>
             <Logo />
             <div id="profile">
