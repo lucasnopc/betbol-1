@@ -9,7 +9,7 @@ export default function Layout(props) {
     const [getValorFinal, setValorFinal] = useState(0)
     return <div className="min-h-screen">
         <Header userString={props.userString} />
-        <main className="bg-cover h-full mt-16 md:mt-28">
+        <main className="bg-cover h-full mt-28 md:mt-28">
             <div className="page grid grid-cols-12">
                 <div className="col-span-full md:col-span-2  scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white">
                     <ListMenu />
