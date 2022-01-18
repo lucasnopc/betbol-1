@@ -6,7 +6,7 @@ export default function Logo() {
         <Link href="/">
             <a>
                 <span className='md:hidden'><Image width="65" height="50" src="/logo.png" className="hover:opacity-70 cursor-pointer" /></span>
-                <span className='hidden md:inline-block'><Image width="190" height="50" src="/logo2.png" className="hover:opacity-70 cursor-pointer" /></span>
+                <span className='hidden md:inline-block'><Image width="150" height="50" src="/logo2.png" className="hover:opacity-70 cursor-pointer" /></span>
             </a>
         </Link>
     </div>

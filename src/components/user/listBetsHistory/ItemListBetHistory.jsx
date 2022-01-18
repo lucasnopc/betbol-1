@@ -12,7 +12,7 @@ export default function ItemListBetHistory(props) {
   if (!data) return <FullLoading />
 
   const res = data.res_fixture.response[0]
-  const calcStatus = calcStatusFix(res, choiceOdd, b)
+  // const calcStatus = calcStatusFix(res, choiceOdd, b)
 
   return <div className={`$ p-1 grid grid-cols-3 border-b border-gray-400 m-2`}>
     <div className="mr-1 block align-middle items-center">
@@ -25,7 +25,7 @@ export default function ItemListBetHistory(props) {
       <span className="mr-1 inline-block">{Translate(b.choice.value)}</span>
     </div>
     <div>
-      <span className="float-right"><Status bet={b} res={res} calcStatus={calcStatus} /></span>
+      {/* <span className="float-right"><Status bet={b} res={res} calcStatus={calcStatus} /></span> */}
     </div>
   </div>
 }

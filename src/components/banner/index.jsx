@@ -10,7 +10,7 @@ export default function Banner(props) {
     const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const itens = props.live
     return <>
-        <div className="h-40 md:h-60 p-3 overflow-hidden">
+        <div className="h-40 p-3 overflow-hidden">
            {/* <div style={{width: 9000}}>
                 {itens.slice(0).map(i => {
                     console.log(i)

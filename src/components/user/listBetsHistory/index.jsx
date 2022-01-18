@@ -19,6 +19,7 @@ export default function ListBetsHistory(props) {
         const choiceOdd = oddBets.find(f => {
           return f.id == b.choice.betsChoice
         })
+        console.log(choiceOdd)
         return <ItemListBetHistory key={b.fix.fixture.id}  choiceOdd={choiceOdd} b={b} />
       })}
     </div>
