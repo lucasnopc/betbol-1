@@ -1,18 +1,18 @@
 
 export default function Status(props) {
-  if ('res', props.res.fixture.status.short != 'FT') {
+  if (props.res.fixture.status.short != 'FT') {
     return <>Espere o jogo acabar</>
   }
-  return <div>
+  return <>
 {props.calcStatus &&
-  <span className="bg-green-500 text-white font-bold p-2">
+  <span className="text-green-500 font-bold">
     Ganhou
   </span>
 }
 {!props.calcStatus &&
-  <span className="bg-gray-500 p-2">
-    Não foi desta vez, tente novamente.
+  <span className="text-red-500 font-bold">
+    Perdeu
   </span>
 }
-  </div>
+  </>
 }

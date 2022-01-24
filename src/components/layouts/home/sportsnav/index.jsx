@@ -7,12 +7,11 @@ export default function SportNav() {
   const [scrollX, setScrollX] = useState(0)
 
   return <div className='bg-green-500 overflow-auto'>
-    <div className='transition-all' style={{
+    <div className='transition-all h-14 md:h-8' style={{
       marginLeft: scrollX,
       width: 7 * 110,
-      height:53
     }}>
-      <div className='pl-10 md:p-0 h-16'>
+      <div className='pl-10 md:p-0'>
         <div className='md:table md:mx-auto'>
           <div className='inline-block text-center p-1 group hover:bg-gray-100 cursor-pointer'>
             <BiFootball className='md:text-lg text-2xl text-black group-hover:text-primary w-full md:w-min md:inline-block md:mr-1' />

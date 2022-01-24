@@ -13,7 +13,6 @@ export default function ItemListBetHistory(props) {
 
   const res = data.res_fixture.response[0]
   const calcStatus = calcStatusFix(res, choiceOdd, b)
-
   return <div className={`$ p-1 grid grid-cols-3 border-b border-gray-400 m-2`}>
     <div className="mr-1 block align-middle items-center">
       <span className={` ${res.teams.home.winner ? 'text-green-600' : 'text-red-600'} font-semibold`}>{res.score.fulltime.home} {b.fix.teams.home.name}</span>
@@ -25,7 +24,7 @@ export default function ItemListBetHistory(props) {
       <span className="mr-1 inline-block">{Translate(b.choice.value)}</span>
     </div>
     <div>
-      <span className="float-right"><Status bet={b} res={res} calcStatus={calcStatus} /></span>
+      <span className="float-right"><Status res={res} calcStatus={calcStatus} /></span>
     </div>
   </div>
 }

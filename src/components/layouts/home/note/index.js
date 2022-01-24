@@ -3,6 +3,7 @@ import { useStore } from '../../../../context/store'
 import NoteBtn from './note-btn'
 import ItemBetNote from './item-bet-note'
 import { Dialog } from '../../../confirm-dialog'
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Note(props) {
 
@@ -66,9 +67,10 @@ export default function Note(props) {
                         changeInputValue({ obj: r, setVf: setVf, note })
                     }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" defaultValue="10" />
                 </div>
-                <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} user={user} retornoPotencial={retornoPotencial} /></div>
+                <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} user={user} retornoPotencial={retornoPotencial} toast={toast} /></div>
 
             </div>
         </Dialog>
+        <ToastContainer />
     </>
 }

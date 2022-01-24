@@ -7,8 +7,8 @@ import { useState } from 'react'
 import ItemBetNote from './item-bet-note'
 import { useRouter } from 'next/dist/client/router'
 
-
 export default function NoteBtn(props) {
+    const toast = props.toast
     const router = useRouter()
     const [open, setOpen] = useState(false)
     const { note, clearNote } = useStore()
@@ -36,6 +36,15 @@ export default function NoteBtn(props) {
                     html: HtmlEmailSendBet(note),
                 })
                     .then(function (response) {
+                        // toast.success("Aposta Realizada com sucesso!",{
+                        //     position: "top-right",
+                        //     autoClose: 3000,
+                        //     hideProgressBar: true,
+                        //     closeOnClick: false,
+                        //     pauseOnHover: true,
+                        //     draggable: true,
+                        //     progress: undefined,
+                        //     })
                         alert('Aposta Realizada com sucesso!')
                         clearNote()
                         router.push(`/user/hystory-bets`)
@@ -64,11 +73,29 @@ export default function NoteBtn(props) {
             if (note.length > 0) {
                 setOpen(true)
             } else {
-                alert('Primeiro faça uma escolha.')
+                // toast.info("Primeiro faça uma escolha.",{
+                //     position: "top-right",
+                //     autoClose: 3000,
+                //     hideProgressBar: true,
+                //     closeOnClick: false,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //     progress: undefined,
+                //     })
+                alert('Primeiro faça uma escolha')
 
             }
         } else {
-            alert('Você não tem pontos suficientes, faça um depósito. ')
+            alert('Você não tem pontos suficientes, faça um depósito.')
+            // toast.warn("Você não tem pontos suficientes, faça um depósito.",{
+            //     position: "top-right",
+            //     autoClose: 3000,
+            //     hideProgressBar: true,
+            //     closeOnClick: false,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     })
         }
 
     }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>

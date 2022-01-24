@@ -9,6 +9,7 @@ import axios from 'axios'
 import getUser from '../utills/getUser'
 import { useRouter } from 'next/router'
 
+
 export default function register(props) {
   const [popularForm, setPopularForm] = useState(false)
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
