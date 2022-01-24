@@ -1,4 +1,5 @@
 import { connectToDatabase } from '../../../utills/conectdb';
+import shortid from 'shortid'
 
 export default async function toBet(req, res) {
     if (req.method == "POST") {
@@ -15,6 +16,7 @@ export default async function toBet(req, res) {
             .updateOne({ email }, newvalues, async function (err, resp) {
                 if(resp.result.nModified == 1) {
                     await db.collection("bets").insertOne({
+                        _id: shortid.generate(),
                         email,
                         date,
                         bets,

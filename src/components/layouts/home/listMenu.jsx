@@ -88,11 +88,15 @@ export default function ListMenu(props) {
         }
         return ""
     }
-    return <div className="shadow-md md:h-screen">
+    return <div>
         <div onClick={() => setToggle(!toggle)} className="p-1">
             <BiFootball className="inline-block" />
             <span className="inline-block text-xs ml-2 page-title">Buscar Jogos</span>
         </div>
+        <div className="shadow-md" style={{
+        height: toggle ? window.innerHeight - 50 : 0
+    }}>
+        
         <div className={`${toggle ? `block` : `hidden md:block`} bg-gray-200`}>
             <div>
                 <Select className="rounded-none" options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
@@ -127,5 +131,6 @@ export default function ListMenu(props) {
                 )}
             </ul>
         </div>
+    </div>
     </div>
 }

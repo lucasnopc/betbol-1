@@ -7,22 +7,21 @@ export default function Footer() {
         <div>
             <h4 className="font-normal">Apostas Esportivas</h4>
             <ol className="text-gray-500">
-                <li><Link href="/"><a>Futebol</a></Link></li>
-                <li><Link href="/"><a>Basquete</a></Link></li>
+                <li><Link href="/viewticket"><a>Conferir Bilhete</a></Link></li>
             </ol>
         </div>
         <div>
             <h4 className="font-normal">Sobre a BetBol</h4>
             <ol className="text-gray-500">
-                <li><Link href="/"><a>A Betbol</a></Link></li>
-                <li><Link href="/"><a>Parceiros</a></Link></li>
+                <li><Link href="/regulation"><a>Regulamento</a></Link></li>
+                <li><Link href="/about"><a>A Betbol</a></Link></li>
             </ol>
         </div>
         <div>
             <h4 className="font-normal">Suporte</h4>
             <ol className="text-gray-500">
-                <li><Link href="/"><a>Fale Conosco</a></Link></li>
-                <li><Link href="/"><a>Regras de Apostas</a></Link></li>
+                <li><Link href="/contact"><a>Fale Conosco</a></Link></li>
+                {/* <li><Link href="/"><a>Regras de Apostas</a></Link></li> */}
             </ol>
         </div>
         <div><h4  className="font-normal">Redes Sociais</h4>

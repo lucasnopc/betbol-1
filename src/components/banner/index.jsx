@@ -5,12 +5,11 @@ import Link from 'next/link'
 
 export default function Banner(props) {
     const [session] = useSession()
-    console.log('session banner ', session)
     const date = format(new Date(), 'yyyy-MM-dd')
     const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const itens = props.live
     return <>
-        <div className="h-40 p-3 overflow-hidden">
+        <div className="h-48 p-3 overflow-hidden">
            {/* <div style={{width: 9000}}>
                 {itens.slice(0).map(i => {
                     console.log(i)

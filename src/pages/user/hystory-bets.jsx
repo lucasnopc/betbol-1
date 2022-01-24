@@ -9,10 +9,8 @@ export default function Home(props) {
   const user = JSON.parse(props.userString)
   const { data, error } = useFetch(`/api/user/betsHistory?email=${user.email}`)
 
-
   if (error) return console.log(error)
   if (!data) return <FullLoading />
-  
   return (
     <>
       <Head>
