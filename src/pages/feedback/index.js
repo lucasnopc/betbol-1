@@ -28,7 +28,7 @@ export default function Feedback(props) {
   return (
     <>
       <Head>
-        <title>Betbol - Financeiro</title>
+        <title>Betbol - Feedback</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
