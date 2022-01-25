@@ -2,6 +2,7 @@ import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 import nodemailer from 'nodemailer'
 import GoogleProvider from 'next-auth/providers/google'
+import FacebookProvider from 'next-auth/providers/facebook'
 
 import { HtmlEmailRequest , textEmailRequest } from '../../../utills/htmlEmailRequest'
 
@@ -11,6 +12,10 @@ export default NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       authorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
+    }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET
     }),
     Providers.Email({
         server: process.env.EMAIL_SERVER, 

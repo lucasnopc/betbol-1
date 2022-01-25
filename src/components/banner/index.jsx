@@ -2,6 +2,7 @@ import { format } from "date-fns"
 import { useSession } from "next-auth/client";
 import LogInGoogle from "../logingoogle"
 import Link from 'next/link'
+import SignInButton from "../layouts/home/header/signIn";
 
 export default function Banner(props) {
     const [session] = useSession()
@@ -23,13 +24,14 @@ export default function Banner(props) {
             })}
 
             </div> */}
-            <div className="bg-bg01 bg-black bg-cover bg-right-top">
-                <h3 className="text-gray-200 font-bold mt-5 text-lg md:text-xl pl-3 text-shadow">Oferta novo cliente</h3>
+            <div className="bg-bg01 bg-black bg-cover bg-right-top h-full pt-2">
+                <h3 className="text-gray-200 font-bold mt-5 text-lg md:text-xl pl-2 text-shadow">Oferta novo cliente</h3>
                 <p className="font-bold pl-2 text-yellow-400 text-xl md:text-3xl text-shadow">Receba Bônus de <br /> até R$ 150</p>
               {session &&
                 <Link href="/finances"><a className="text-white font-semibold bg-black p-1">Faça um depósito já</a></Link>
               }  
-              {!session && <LogInGoogle />}
+              {!session && <SignInButton />
+}
             </div>
         </div>
     </>
