@@ -8,7 +8,7 @@ export default function AllPays(props) {
     const mercadopago = props.mercadopago
 
     const url = `/api/payments/getpayments`
-    const { data, error } = useFetch(url)
+    const { data, error } = useFetch(url)   
     if (error) return `ERROR`
     if (!data) return <div className="text-center flex items-center">
         <ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" />
@@ -35,8 +35,9 @@ export default function AllPays(props) {
     }
 
     const cancelPay = async (pay) => {
-        console.log('cancel pay ', ) 
-      await axios.delete('/api/mp', {id: pay.id})
+        const deletedPay = await axios.delete(`/api/mp?id=${pay.id}`)
+        // console.log('cancel pay ', pay, deletedPay.data) 
+        location.reload()
     }
 
     return <>

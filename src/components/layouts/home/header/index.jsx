@@ -15,7 +15,7 @@ export default function Header(props) {
             <div className='md:pl-2 flex items-center justify-between'>
             <Logo />
             <div id="profile">
-            {session && <><div id="points" className="inline-block h-full mr-5">
+            {session && <><div id="points" className="inline-block h-full mr-1">
                     <span className="bgicon-coin align-middle"></span>
                     <span className="ml-2 font-medium text-xs align-middle text-white">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
                 </div>

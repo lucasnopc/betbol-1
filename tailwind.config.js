@@ -14,8 +14,8 @@ module.exports = {
                 'bg01': "url('/bg01.png')"
             }),
             colors: {
-                'primary': '#56b50e',
-                'primary-ligth': '#81e337'
+                'primary': '#059669',
+                'primary-ligth': '#05966990'
 
             }
         },

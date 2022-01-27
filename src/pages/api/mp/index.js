@@ -39,7 +39,6 @@ export default async function SetPay(req, res) {
           }, function (err, resp) {
             if(err) console.log('err, ', err)
             if (resp) {
-              console.log('cheguei aqui')
               res.status(200).json({
                 id: response.body.id,
               })
@@ -51,6 +50,15 @@ export default async function SetPay(req, res) {
       });
   }
   if (req.method == "DELETE") {
-    console.log('delete')
+    const id = req.query.id
+    await db.collection("payment").remove({ id }, function (err, resp) {
+      if(err) console.log('err, ', err)
+      if (resp) {
+        console.log('cheguei aqui')
+        res.status(200).json({
+          id: req.query,
+        })
+      }
+    })
   }
 }
