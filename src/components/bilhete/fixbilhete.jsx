@@ -11,7 +11,7 @@ export default function FixBilhete( { m }) {
   if (!data) return <FullLoading />
   const atualfix = data.res_fixture.response[0]
   const oddb = oddBets.find(o => o.id == m.choice.betsChoice)
-  const calcStatus = calcStatusFix(atualfix, m.choice, m)
+  const calcStatus = calcStatusFix(atualfix, m)
 
   return <div className='text-sm border-t border-gray-500 flex flex-col'>
     <span><span className='font-semibold'>Jogo: </span>{m.fix.teams.home.name} x {m.fix.teams.away.name}</span>

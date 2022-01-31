@@ -39,7 +39,7 @@ export default function viewTicket(props) {
                         <input className='border border-gray-300 p-1 outline-none' type="text" placeholder='ex: 2G54lTr2' required />
                         <input type="submit" className='uppercase font-semibold border border-primary bg-primary hover:bg-primary-ligth px-2 py-1 text-white' value="Conferir" />
                     </form>}
-                    {bilhete.result && <Bilhete bilhete={bilhete} />}
+                    {bilhete.result && <Bilhete bilhete={bilhete.result} />}
                 </div>
             </Layout>
         </>

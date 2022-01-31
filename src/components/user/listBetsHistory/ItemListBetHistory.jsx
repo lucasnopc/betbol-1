@@ -13,18 +13,14 @@ export default function ItemListBetHistory(props) {
 
   const res = data.res_fixture.response[0]
   const calcStatus = calcStatusFix(res, choiceOdd, b)
-  return <div className={`$ p-1 grid grid-cols-3 border-b border-gray-400 m-2`}>
-    <div className="mr-1 block align-middle items-center">
-      <span className={` ${res.teams.home.winner ? 'text-green-600' : 'text-red-600'} font-semibold`}>{res.score.fulltime.home} {b.fix.teams.home.name}</span>
-      <span className={` ${res.teams.away.winner ? 'text-green-600' : 'text-red-600'} mr-1 fl block font-semibold`}>{res.score.fulltime.away} {b.fix.teams.away.name}</span>
+  return <div className={`$ p-1 border-b border-gray-400 m-2 relative`}>
+    <div className="mr-1 block">
+      {b.choice.value == 'Home' && <span className={` font-bold text-xs`}>{res.teams.home.name}</span>}
+      {b.choice.value == 'Away' && <span className={` font-bold text-xs`}>{res.teams.away.name}</span>}
+      {b.choice.value == 'Draw' && <span className={` font-bold text-xs`}>Empate</span>}
+    <span className="text-xs">{choiceOdd.name}</span>
     </div>
-    <div className="mr-1 block bg-yellow-100 border border-yellow-200 p-1">
-      <span className="mr-1 block text-xs">{choiceOdd.name}</span>
-      <span className="mr-1 inline-block text-right font-normal">{b.choice.odd}</span>
-      <span className="mr-1 inline-block">{Translate(b.choice.value)}</span>
-    </div>
-    <div>
-      <span className="float-right"><Status res={res} calcStatus={calcStatus} /></span>
-    </div>
+      <span className=" text-xs">Resultado <Status res={res} calcStatus={calcStatus} /></span>
+    <span className="mr-1 inline-block text-right font-normal absolute top-0 right-0">{b.choice.odd}</span>
   </div>
 }
