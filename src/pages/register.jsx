@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
+import Logo from '../components/layouts/home/logo'
 import InputMask from "react-input-mask"
 import { useForm } from "react-hook-form"
 import { useState, useEffect } from 'react'
@@ -204,11 +203,12 @@ export default function register(props) {
           <div className="pt-10 bg-gray-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
             <div className="cursor-pointer flex items-center">
               <div>
-                <Link href="/">
+                {/* <Link href="/">
                   <a>
                     <Image width="100" height="100" src="/logo.png" className="hover:opacity-70 cursor-pointer" />
                   </a>
-                </Link>
+                </Link> */}
+                <Logo theme={'dark'} />
               </div>
             </div>
           </div>

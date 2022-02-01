@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/client'
 import Logo from '../logo'
 import Profile from './profile'
+import HeaderAdmin from '../../../layoutAdmin/headeradmin'
 
 export default function Header(props) {
     let user = ""
@@ -11,7 +12,12 @@ export default function Header(props) {
     }
 
     return <>
-        <header className=" bg-green-600 border-b border-gray-200 w-full z-30 md:overflow-hidden">
+    {user.nivel == 5 &&
+        <div className=''>
+            <HeaderAdmin />
+        </div>
+    }
+        <header className="bg-green-600 border-b border-gray-200 w-full z-30 md:overflow-hidden">
             <div className='md:pl-2 flex items-center justify-between'>
             <Logo />
             <div id="profile">
