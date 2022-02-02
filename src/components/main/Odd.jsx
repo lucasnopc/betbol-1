@@ -4,6 +4,7 @@ import { ImSpinner9 } from 'react-icons/im'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useFix } from "../../context/fix"
+import Image from 'next/image'
 
 export default function Odd(props) {
     const { removeFix } = useFix()
@@ -81,7 +82,11 @@ export default function Odd(props) {
     return <>
         <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200}`}>
             {!data &&
-                <><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></>
+                <>
+                <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>
+                <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>
+                <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>
+                </>
             }
             {values && values.length <= 3 &&
                 values.map((val, i) => {

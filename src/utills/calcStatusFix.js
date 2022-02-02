@@ -1,6 +1,6 @@
-export default function calcStatusFix(atualFix, choice, bet) {
+export default function calcStatusFix(atualFix, bet) {
     // console.log('calc status fix ', atualFix, choice, bet)
-    const choiceId = choice.id
+    const choiceId = bet.choice.id
     let status
     let winner
     switch (choiceId) {

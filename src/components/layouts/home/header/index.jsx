@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/client'
 import Logo from '../logo'
 import Profile from './profile'
+import HeaderAdmin from '../../../layoutAdmin/headeradmin'
 
 export default function Header(props) {
     let user = ""
@@ -11,11 +12,16 @@ export default function Header(props) {
     }
 
     return <>
-        <header className=" bg-green-600 border-b border-gray-200 w-full z-30 md:overflow-hidden">
+    {user.nivel == 5 &&
+        <div className=''>
+            <HeaderAdmin />
+        </div>
+    }
+        <header className={`${user.nivel == 5 ? `mt-6` : ``} bg-green-600 border-b border-gray-200 w-full z-10 md:overflow-hidden`}>
             <div className='md:pl-2 flex items-center justify-between'>
             <Logo />
             <div id="profile">
-            {session && <><div id="points" className="inline-block h-full mr-5">
+            {session && <><div id="points" className="inline-block h-full mr-1">
                     <span className="bgicon-coin align-middle"></span>
                     <span className="ml-2 font-medium text-xs align-middle text-white">R$ {user ? Number(user.points).toFixed(2) : `0.00`}</span>
                 </div>

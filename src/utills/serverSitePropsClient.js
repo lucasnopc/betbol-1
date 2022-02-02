@@ -13,14 +13,15 @@ export default async function serverSidePropsClient(context) {
           permanent: false,
         },
       }
-    } if (user.nivel == 5) {
-      return {
-        redirect: {
-          destination: '/adm/dash',
-          permanent: false,
-        },
-      }
-    }
+    } 
+    // if (user.nivel == 5) {
+    //   return {
+    //     redirect: {
+    //       destination: '/adm/dash',
+    //       permanent: false,
+    //     },
+    //   }
+    // }
     return {
       props: { userString },
     }

@@ -5,12 +5,12 @@ export default function Status(props) {
   }
   return <>
 {props.calcStatus &&
-  <span className="text-green-500 font-bold">
+  <span className=" font-bold">
     Ganhou
   </span>
 }
 {!props.calcStatus &&
-  <span className="text-red-500 font-bold">
+  <span className="font-bold">
     Perdeu
   </span>
 }

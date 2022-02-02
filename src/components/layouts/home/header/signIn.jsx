@@ -22,7 +22,7 @@ export default function SignInButton () {
           <div>
               <div className={`${enterSis ? `block` : `hidden`} fixed bg-white w-screen p-4 h-screen left-0 top-0 z-40`}>
                   <span className="absolute top-3 right-2 md:right-8 font-bold text-2xl cursor-pointer" onClick={() => setEnterSis(!enterSis)}><AiOutlineCloseCircle className="text-red-500" /></span>
-                  <div className="p-3 table mx-auto"><Logo /></div>
+                  <div className="p-3 table mx-auto"><Logo theme={`dark`} /></div>
                   <h3 className="font-semibold text-xl text-center mt-5">ENTRAR</h3>
                   <p className="font-medium mt-5 mb-3 text-center text-gray-900">Escolha se deseja entrar a partir de <br /> um e-mail ou de uma conta Google.</p>
                   <form onSubmit={handleSubmit(registerUser)} className="flex">

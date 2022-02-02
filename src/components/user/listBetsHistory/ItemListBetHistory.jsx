@@ -12,19 +12,20 @@ export default function ItemListBetHistory(props) {
   if (!data) return <FullLoading />
 
   const res = data.res_fixture.response[0]
-  const calcStatus = calcStatusFix(res, choiceOdd, b)
-  return <div className={`$ p-1 grid grid-cols-3 border-b border-gray-400 m-2`}>
-    <div className="mr-1 block align-middle items-center">
-      <span className={` ${res.teams.home.winner ? 'text-green-600' : 'text-red-600'} font-semibold`}>{res.score.fulltime.home} {b.fix.teams.home.name}</span>
-      <span className={` ${res.teams.away.winner ? 'text-green-600' : 'text-red-600'} mr-1 fl block font-semibold`}>{res.score.fulltime.away} {b.fix.teams.away.name}</span>
-    </div>
-    <div className="mr-1 block bg-yellow-100 border border-yellow-200 p-1">
-      <span className="mr-1 block text-xs">{choiceOdd.name}</span>
-      <span className="mr-1 inline-block text-right font-normal">{b.choice.odd}</span>
-      <span className="mr-1 inline-block">{Translate(b.choice.value)}</span>
-    </div>
+  const calcStatus = calcStatusFix(res, b)
+  return <div className={`p-1 border-b border-gray-400 relative flex justify-between`}>
+    <div className="mr-1 block">
+      {b.choice.value == 'Home' && <span className={` font-bold text-xs mr-1`}>{res.teams.home.name}</span>}
+      {b.choice.value == 'Away' && <span className={` font-bold text-xs mr-1`}>{res.teams.away.name}</span>}
+      {b.choice.value == 'Draw' && <span className={` font-bold text-xs mr-1`}>Empate</span>}
+    <span className="text-xs">{choiceOdd.name}</span>
+      <span className=" text-xs block">Resultado <Status res={res} calcStatus={calcStatus} /></span>
     <div>
-      <span className="float-right"><Status res={res} calcStatus={calcStatus} /></span>
+    <span className={` text-xs mr-1`}>{res.teams.home.name}</span>
+    <span className={`font-bold text-xs mr-1`}>xs</span>
+    <span className={`text-xs mr-1`}>{res.teams.away.name}</span>
     </div>
+    </div>
+    <span className="mr-1 inline-block text-right font-normal">{b.choice.odd}</span>
   </div>
 }
