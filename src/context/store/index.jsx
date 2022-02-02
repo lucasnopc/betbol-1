@@ -40,9 +40,7 @@ export const StoreProvider = ({ children }) => {
     }
 
     const clearNote = () => {
-        console.log('note antes ', note)
         setNote([])
-        console.log('note depois ', note)
     }
 
     const store = {

@@ -3,20 +3,19 @@ import { oddBets } from '../../../utills/oddBets'
 import { useState } from 'react'
 import ItemListBetHistory from './ItemListBetHistory'
 
-export default function ListBetsHistory(props) {
+export default function ListBetsHistory({ data: history, status }) {
   const [toggle, setToggle] = useState(false)
-  const history = props.data
   const date = format(new Date(history.date), 'dd.MM | HH:mm')
   const cotacao = history.bets.map((b) => Number(b.choice.odd))
   const cotaSoma = cotacao.reduce((antes, atual) => antes + atual)
   return <>
-    <div onClick={() => setToggle(!toggle)} className="font-bold p-1 bg-gray-300 hover:bg-gray-200 m-1 cursor-pointer items-center flex justify-between" key={history._id}>
-      <span className="font-medium text-gray-700 text-xs m-1 text-right">{date} </span>
-      <span className="font-medium text-gray-700 text-sm my-1 text-right"><b>{history.bets.length} Selecionadas</b></span>
-      <span className="font-medium text-gray-700 text-sm my-1 text-right bg-gray-200 p-1">Perdeu</span>
+    <div onClick={() => setToggle(!toggle)} className="bg-gray-100 border-b border-gray-200 hover:bg-gray-200 cursor-pointer items-center flex justify-between" key={history._id}>
+      <span className="text-gray-600 text-xs mx-1 text-right">{date} </span>
+      <span className="text-gray-600 text-xs mx-1 text-right"><b>{history.bets.length} </b></span>
+      <span className="text-gray-600 text-xs mx-1 text-right p-1 uppercase">{ status ? status : '...' }</span>
       {/* <span className="font-medium text-gray-700 text-sm ml-2 flex-auto">{history.bets.length} Jogos</span> */}
     </div>
-    <div className={`${toggle ? `block` : `hidden`}`}>
+    <div className={`${toggle ? `block` : `hidden`} border border-gray-200`}>
       {history.bets.reverse().map(b => {
         const choiceOdd = oddBets.find(f => {
           return f.id == b.choice.betsChoice

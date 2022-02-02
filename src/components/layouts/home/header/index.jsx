@@ -17,7 +17,7 @@ export default function Header(props) {
             <HeaderAdmin />
         </div>
     }
-        <header className="bg-green-600 border-b border-gray-200 w-full z-30 md:overflow-hidden">
+        <header className={`${user.nivel == 5 ? `mt-6` : ``} bg-green-600 border-b border-gray-200 w-full z-10 md:overflow-hidden`}>
             <div className='md:pl-2 flex items-center justify-between'>
             <Logo />
             <div id="profile">

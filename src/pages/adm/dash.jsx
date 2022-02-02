@@ -65,11 +65,16 @@ export default function dash() {
     return <>
         <LayoutAdmin>
 
-            <div className="mt-10 border border-gray-100 p-2 shadow-xl rounded-md flex-auto w-lg bg-white">
+        <div className="mt-5 border border-gray-100 p-2 shadow-xl rounded-md flex-auto w-lg bg-white">
                 <div>
                     <AllTickets />
                 </div>
             </div>
+            {/* <div className="mt-5 border border-gray-100 p-2 shadow-xl rounded-md flex-auto w-lg bg-white">
+                <div>
+                    <UsersList />
+                </div>
+            </div> */}
         </LayoutAdmin>
     </>
 }
