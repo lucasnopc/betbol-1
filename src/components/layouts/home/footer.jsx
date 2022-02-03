@@ -1,33 +1,30 @@
+import { format } from 'date-fns'
 import Link from 'next/link'
 
 
 export default function Footer() {
+    const today = format(new Date(), 'yyyy-MM-dd')
     const fullYear = new Date().getFullYear()
-    return <div className="mb-20"><div className="md:grid grid-cols-4 gap-4 p-3 pt-5">
+    let tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow = format(tomorrow, 'yyyy-MM-dd')
+ 
+ return <div className="mb-20"><div className="grid grid-cols-2 gap-4 p-3 pt-5">
         <div>
-            <h4 className="font-normal">Apostas Esportivas</h4>
+            <h4 className="font-normal uppercase">Apostas Esportivas</h4>
             <ol className="text-gray-500">
-                <li><Link href="/viewticket"><a>Conferir Bilhete</a></Link></li>
+                <li><Link href="/viewticket"><a>Conferir bilhete</a></Link></li>
+                <li><Link href={`/date/${today}`}><a>Próximos jogos</a></Link></li>
+                <li><Link href={`/date/${tomorrow}`}><a>Jogos de amanha</a></Link></li>
             </ol>
         </div>
         <div>
-            <h4 className="font-normal">Sobre a BetBol</h4>
+            <h4 className="font-normal uppercase">A BetBol</h4>
             <ol className="text-gray-500">
-                <li><Link href="/regulation"><a>Regulamento</a></Link></li>
                 <li><Link href="/about"><a>A Betbol</a></Link></li>
-            </ol>
-        </div>
-        <div>
-            <h4 className="font-normal">Suporte</h4>
-            <ol className="text-gray-500">
-                <li><Link href="/contact"><a>Fale Conosco</a></Link></li>
-                {/* <li><Link href="/"><a>Regras de Apostas</a></Link></li> */}
-            </ol>
-        </div>
-        <div><h4  className="font-normal">Redes Sociais</h4>
-            <ol className="text-gray-500">
                 <li><a href="https://www.instagram.com/sports_game.club/">Instagram</a></li>
-                {/* <li><Link href="/"><a>Facebook</a></Link></li> */}
+                <li><Link href="/contact"><a>Suporte</a></Link></li>
+                <li><Link href="/regulation"><a>Regulamento</a></Link></li>
             </ol>
         </div>
     </div>
