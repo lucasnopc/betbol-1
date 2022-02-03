@@ -8,9 +8,14 @@ import ListBetsHistory from "../user/listBetsHistory";
 
 export default function ItemListTicket({ bi, statusSearch }) {
   const [status, setStatus] = useState('...')
+  const [visible, setVisible] = useState(true)
   useEffect(() => {
-    console.log("statusSearch from item", statusSearch)
-  } ,[statusSearch])
+    if(statusSearch == status || statusSearch == 'Todos') {
+      setVisible(true)
+    }else {
+      setVisible(false)
+    }
+  } ,[statusSearch, status])
   useEffect(()=> {
     bi.bets.map(bet => {
       axios.get(`/api/betApi/fixture/${bet.fix.fixture.id}`).then(res => {
@@ -47,6 +52,6 @@ return <>
   }
 </div>
       */}
-  <ListBetsHistory key={bi._id} data={bi} status={status}  />
+  {visible && <ListBetsHistory key={bi._id} data={bi} status={status}  />}
   </>
 }

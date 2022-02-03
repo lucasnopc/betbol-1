@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Logo from '../components/layouts/home/logo'
+import Logo from '../../../components/layouts/home/logo'
 import InputMask from "react-input-mask"
 import { useForm } from "react-hook-form"
 import { useState, useEffect } from 'react'
 import { getSession, } from 'next-auth/client'
 import axios from 'axios'
-import getUser from '../utills/getUser'
+import getUser from '../../../utills/getUser'
 import { useRouter } from 'next/router'
 
 

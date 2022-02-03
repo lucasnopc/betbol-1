@@ -1,4 +1,4 @@
-import useFetch from '../../../utills/useFetch'
+import useFetch from '../../../../utills/useFetch'
 import { format } from 'date-fns'
 import { MdOutlineSchedule, MdMonetizationOn, MdDangerous, MdDoneOutline } from 'react-icons/md'
 import axios from 'axios'
@@ -43,7 +43,7 @@ export default function AllPays(props) {
     return <>
         {payments.reverse().map(pay => {
             const date = format(new Date(pay.date), 'dd.MM.yy')
-            return <div className="bg-gray-100 p-2 shadow-sm my-1 block md:grid md:grid-cols-3" key={pay.id}>
+            return <div className="bg-gray-100 p-2 shadow-sm my-1 grid grid-cols-3" key={pay.id}>
                 <div className="inline-block md:block"><MdOutlineSchedule className="inline-block" /> {date}</div>
                 <div className="inline-block md:block"><MdMonetizationOn className="inline-block" /> R${pay.points.toFixed(2)}</div>
                 <div>
@@ -53,7 +53,7 @@ export default function AllPays(props) {
                         Recebido
                     </span>}
                     {!pay.values && <div className="md:float-right"><button onClick={e => cancelPay(pay)} className="inline-block uppercase font-semibold text-sm text-white bg-red-600 hover:bg-red-400 p-1">Cancelar</button><button onClick={e => finishPay(pay, e)} className="inline-block uppercase font-semibold text-sm text-white bg-primary hover:bg-green-400 p-1">Finalizar</button></div>}
-                    {pay.values && pay.values.collection_status == 'pending' && <span className="md:float-right uppercase font-semibold text-sm text-white bg-yellow-500 p-1">Pagamento Pendente</span>}
+                    {pay.values && pay.values.collection_status == 'pending' && <span className="md:float-right uppercase font-semibold text-sm text-gray-600 md:p-1">Pagamento Pendente</span>}
                     {pay.values && pay.values.collection_status == 'rejected' && <span className="md:float-right uppercase font-semibold text-sm text-white bg-red-600 p-1">Pagamento Rejeitado</span>}
                 </div>
             </div>
