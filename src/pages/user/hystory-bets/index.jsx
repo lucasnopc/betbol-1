@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import Layout from '../../components/layouts/home/layout'
-import serverSidePropsClient from '../../utills/serverSitePropsClient'
-import useFetch from '../../utills/useFetch'
-import FullLoading from '../../components/fullloading'
-import ListBetsHistory from '../../components/user/listBetsHistory'
+import serverSidePropsClient from '../../../utills/serverSitePropsClient'
+import useFetch from '../../../utills/useFetch'
+import FullLoading from '../../../components/fullloading'
+import ListBetsHistory from '../../../components/user/listBetsHistory'
+import LayoutUser from '../../../components/layouts/user'
 
 export default function Home(props) {
   const user = JSON.parse(props.userString)
@@ -18,14 +18,14 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={props.userString}>
+      <LayoutUser userString={props.userString}>
       <div className="p-2">
         <h1 className="font-bold text-sm">Histórico de Apostas</h1>
         {data.betHistory.reverse().map((r) => {
               return <ListBetsHistory key={r._id} data={r}  />
             })}
     </div>
-      </Layout>
+      </LayoutUser>
     </>
   )
 }

@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import Layout from '../../components/layouts/home/layout'
-import serverSidePropsClient from '../../utills/serverSitePropsClient'
-import AllPays from './allpays'
+import serverSidePropsClient from '../../../utills/serverSitePropsClient'
 import { useMercadopago } from 'react-sdk-mercadopago';
+import LayoutUser from '../../../components/layouts/user';
 
-export default function Finances(props) {
+export default function deposit(props) {
   let user = ``
   if (props.userString) {
     user = JSON.parse(props.userString)
@@ -48,27 +47,17 @@ export default function Finances(props) {
   return (
     <>
       <Head>
-        <title>Betbol - Financeiro</title>
+        <title>Betbol - Depśito</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={props.userString}>
+      <LayoutUser userString={props.userString}>
         <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
-          <h2 className="page-title border-b border-gray-100">Escolha o valor do depósito</h2>
-          <span className="p-2">Defina o valor do seu depósito a partir de <b>R$10,00</b></span>
-          <div className="p-2">
-            <form onSubmit={e => deposit(e)}>
-              R$ <input type="number" name="valorDeposit" step="10" className="border border-gray-300 active:outline-none outline-none text-2xl w-28 text-green-800" min="0" />
-              <input type="submit" className="inline-block cursor-pointer transform -translate-y-0.5 bg-primary-ligth hover:bg-primary p-2 text-sm font-semibold text-white ml-1" value="APLICAR" />
-            </form>
-            <div id="paym">
-              Todos pagamentos
-              <AllPays user={user} mercadopago={mercadopago} />
-            </div>
+          <h2 className="page-title border-b border-gray-100">Saques</h2>
+          <span className="p-2">Não ha saques disponíveis no momento.</span>
 
-          </div>
         </div>
-      </Layout>
+      </LayoutUser>
     </>
   )
 }

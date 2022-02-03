@@ -16,10 +16,10 @@ export default function HeaderAdmin() {
           <div className={`${toggle ? `opacity-100`:`opacity-0`} transition-opacity delay-100`}>
                 <div className={`${toggle ? `block`:`hidden`} absolute`}>
             <div className="flex flex-col">
-              <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/dash"}>Bilhetes</Link></span>
-              <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/dash"}>Financeiro</Link></span>
-              <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/user"}>Créditos</Link></span>
-              <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1" onClick={() => signout()}>Sair</span>
+              <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/tickets"}>Bilhetes</Link></span>
+              <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/fin"}>Financeiro</Link></span>
+              {/* <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/"}>Créditos</Link></span> */}
+              {/* <span className="bg-gray-900 hover:bg-gray-800 uppercase text-xs p-1" onClick={() => signout()}>Sair</span> */}
           </div>
          </div>
           </div>
