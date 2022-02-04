@@ -15,14 +15,16 @@ export default function ItemListBetHistory(props) {
   const calcStatus = calcStatusFix(res, b)
   return <div className={`p-1 border-b border-gray-400 relative flex justify-between`}>
     <div className="mr-1 block">
+      <span className=" text-xs block">Resultado <Status res={res} calcStatus={calcStatus} /></span>
       {b.choice.value == 'Home' && <span className={` font-bold text-xs mr-1`}>{res.teams.home.name}</span>}
       {b.choice.value == 'Away' && <span className={` font-bold text-xs mr-1`}>{res.teams.away.name}</span>}
       {b.choice.value == 'Draw' && <span className={` font-bold text-xs mr-1`}>Empate</span>}
-    <span className="text-xs">{choiceOdd.name}</span>
-      <span className=" text-xs block">Resultado <Status res={res} calcStatus={calcStatus} /></span>
     <div>
+    <span className="text-xs">{choiceOdd.name}</span><br />
     <span className={` text-xs mr-1`}>{res.teams.home.name}</span>
+    <span className={` text-xs mr-1`}>{res.score.fulltime.home}</span>
     <span className={`font-bold text-xs mr-1`}>xs</span>
+    <span className={` text-xs mr-1`}>{res.score.fulltime.away}</span>
     <span className={`text-xs mr-1`}>{res.teams.away.name}</span>
     </div>
     </div>
