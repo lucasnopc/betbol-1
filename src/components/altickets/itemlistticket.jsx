@@ -19,7 +19,7 @@ export default function ItemListTicket({ bi, statusSearch }) {
       axios.get(`/api/betApi/fixture/${bet.fix.fixture.id}`).then(res => {
         const fixture = res.data.res_fixture.response[0]
         if(fixture.fixture.status.short != 'FT'){
-          setStatus('Aguarde')
+          setStatus('Em Aberto')
           return
         }else {
           const calcStatus = calcStatusFix(fixture, bet)

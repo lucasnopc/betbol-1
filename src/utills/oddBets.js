@@ -1,5 +1,5 @@
 export const oddBets = [
-    {id: 1, name: 'Resultado 1 x 2'},
+    {id: 1, name: 'Resultado da partida'},
     {id: 2, name: 'Casa / Fora'},
     {id: 3, name: 'Vencedor Segundo-tempo'},
     {id: 5, name: 'Gols Acima/Abaixo'},

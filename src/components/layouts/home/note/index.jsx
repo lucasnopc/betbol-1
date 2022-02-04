@@ -6,7 +6,6 @@ import { Dialog } from '../../../confirm-dialog'
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function Note(props) {
-
     const { note } = useStore()
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
     const [vf, setVf] = useState(10)
@@ -36,9 +35,10 @@ export default function Note(props) {
         if (note.length != 0 && vf != 0) {
             const singleValue = vf / note.length
             const response = note.map((n, i) => {
-                return Number(n.choice.odd) * singleValue
+                return Number(n.choice.odd)
             }).reduce((total, n) => total + n)
-            setRetornoPotencial(response.toFixed(2))
+            console.log('response ', response)
+            setRetornoPotencial((response * vf).toFixed(2))
         } else {
             setRetornoPotencial(0)
         }
@@ -64,7 +64,7 @@ export default function Note(props) {
                 <div className="block p-1 border-t border-gray-300 bg-gray-100">
                     <span className="text-sm text-black font-semibold pl-1 w-2/12">R$</span>
                     <input onChange={(r) => {
-                        changeInputValue({ obj: r, setVf: setVf, note })
+                        changeInputValue({ obj: r, setVf, note })
                     }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" defaultValue="10" />
                 </div>
                 <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} user={user} retornoPotencial={retornoPotencial} toast={toast} /></div>
