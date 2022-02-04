@@ -34,7 +34,7 @@ export default function Home(props) {
         <div className="grid gap-0 grid-cols-5">
           <FixProvider>
           <div className="col-span-5 md:col-span-3 md:col-start-1 bg-gray-100">
-            <Banner live={master} />  
+            <Banner live={live} />  
             <Alive live={live}  title="Futebol Ao vivo" isAlive={true} />
           </div>
           <div className="col-span-5 md:col-span-2 md:col-start-4">

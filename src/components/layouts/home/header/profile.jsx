@@ -12,7 +12,7 @@ export default function Profile({ user }) {
       <SignInButton />
       {session && <>
           <div className=" flex items-center">
-              <div className="rounded-full border-2 border-gray-300 hover:border-white group inline-block cursor-pointer text-white" onClick={() => setOpenSettings(!openSettings)}>
+              <div className="w-30 h-30 rounded-full border-2 border-gray-300 hover:border-white group inline-block cursor-pointer text-white" onClick={() => setOpenSettings(!openSettings)}>
               {user.image && <img
                     className="rounded-full"
                     src={user?.image}

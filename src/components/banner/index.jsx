@@ -1,5 +1,6 @@
 import { format } from "date-fns"
 import { useSession } from "next-auth/client";
+import Image from 'next/image'
 import LogInGoogle from "../logingoogle"
 import Link from 'next/link'
 import SignInButton from "../layouts/home/header/signIn";
@@ -10,16 +11,15 @@ export default function Banner(props) {
     const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const itens = props.live
     return <>
-        <div className="h-48 p-3 overflow-hidden">
+        <div className="h-48 p-3 overflow-auto">
            {/* <div style={{width: 9000}}>
-                {itens.slice(0).map(i => {
-                    console.log(i)
+                {itens.reverse().slice(0).map(i => {
                 return <div 
                 key={i.fixture.id}
-                className="bg-gray-100 shadow-lg inline-block">
+                className="bg-gray-500 m-1 w-52 shadow-lg inline-block">
                 {i.date}
-                <span className="block">{i.teams.away.name}<Image src={i.teams.away.logo} width="50" height="50" /></span>
-                <span className="block">{i.teams.home.name}<Image src={i.teams.home.logo} width="50" height="50" /></span>
+                <span className="block text-xs">{i.teams.away.name}<Image src={i.teams.away.logo} width="50" height="50" /></span>
+                <span className="block text-xs">{i.teams.home.name}<Image src={i.teams.home.logo} width="50" height="50" /></span>
                 </div>
             })}
 
