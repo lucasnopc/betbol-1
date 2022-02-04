@@ -54,8 +54,7 @@ export default function withDraw(props) {
 
       <LayoutUser userString={props.userString}>
         <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
-          <h2 className="page-title border-b border-gray-100">Escolha o valor do depósito</h2>
-          <span className="p-2">Defina o valor do seu depósito a partir de <b>R$10,00</b></span>
+          <h2 className="page-title border-b border-gray-100">Depósito</h2>
           <div className="p-2">
             <form onSubmit={e => deposit(e)}>
               R$ <input type="number" name="valorDeposit" step="10" className="border border-gray-300 active:outline-none outline-none text-2xl w-28 text-green-800" min="0" />
