@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import { fixStatus } from "../../utills/fixstatus";
 
 export default function FixDate(props) {
-
     const [timeMinutes, setTimeMinutes] = useState('00')
     const [timeSeconds, setTimeSeconds] = useState('00')
     const [live, setLive] = useState(false)
@@ -23,7 +22,6 @@ export default function FixDate(props) {
 
             const minutes = Math.abs(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))
             const seconds = Math.abs(Math.floor((distance % (1000 * 60)) / 1000))
-            // console.log('distance ', distance)
             if (distance < 0) {
                 clearInterval(interval.current)
             } else {
@@ -45,6 +43,7 @@ export default function FixDate(props) {
             }
         }
     }, [])
+    
     const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const date = new Date(zonedTimeToUtc(props.fix.fixture.date, tzid))
     const DateDayAndMoth = format(date, `dd/MM`)
@@ -60,7 +59,7 @@ export default function FixDate(props) {
     return <>
         {live && <>
             <span className={`${status.classNames} text-xs block md:inline-block leading-none text-gray-500 font-semibold p-0.5`}>{status.label}</span>
-            <span className="text-xs leading-none text-center pt-3 text-red-500 font-bold">AO VIVO</span>
+            <span className="text-xs leading-none text-center pt-3 text-red-500 font-bold italic">AO VIVO</span>
             <span className="text-xs leading-none text-center text-gray-500 ml-1 font-normal">{timeMinutes}:{timeSeconds}</span>
         </>
         }

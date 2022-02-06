@@ -1,5 +1,5 @@
 export const oddBets = [
-    {id: 1, name: 'Resultado 1 x 2'},
+    {id: 1, name: 'Resultado da partida'},
     {id: 2, name: 'Casa / Fora'},
     {id: 3, name: 'Vencedor Segundo-tempo'},
     {id: 5, name: 'Gols Acima/Abaixo'},
@@ -17,7 +17,6 @@ export const oddBets = [
     {id: 31, name: 'Pontos Exatos - Primeiro Tempo'},
     {id: 33, name: 'Dupla Chance - Segundo Tempo'},
     {id: 34, name: 'Ambas Equipes Marcam - Primeiro Tempo'},
-    // {id: 34, name: 'Ambas Equipes Marcam - Segundo Tempo'},
     {id: 62, name: 'Pontos Exatos - Segundo Tempo'},
     {id: 43, name: 'Casa - Total de gols'},
     {id: 44, name: 'Fora - Total de gols'},

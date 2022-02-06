@@ -28,7 +28,7 @@ export default function ListBetsHistory({ data: history, status }) {
       })}
       <div className='grid grid-cols-3'>
         <div className=' text-center text-xs uppercase text-gray-700 font-semibold'>Valor<div>R$ {Number(history.value).toFixed(2)}</div></div>
-        <div className=' text-center text-xs uppercase text-gray-700 font-semibold'>Cota <div>{cotaSoma}</div></div>
+        <div className=' text-center text-xs uppercase text-gray-700 font-semibold'>Cota <div>{cotaSoma.toFixed(2)}</div></div>
         <div className=' text-center text-xs uppercase text-gray-700 font-semibold'>Ganhos<div>R$ {Number(Number(history.value) * cotaSoma).toFixed(2)}</div>
         <span className="text-gray-600 text-xs mx-1 text-right p-1 uppercase cursor-pointer">{ status == 'Ganhou' ? <span onClick={() => {payGain(history._id)}} className='text-xs font-bold uppercase text-green-400 hover:text-green-600'>Pagar</span> : '' }</span>
         </div>
