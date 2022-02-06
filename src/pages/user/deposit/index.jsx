@@ -54,7 +54,7 @@ export default function withDraw(props) {
       </Head>
 
       <LayoutUser userString={props.userString}>
-        <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
+        <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white">
           <h2 className="page-title border-b border-gray-100">Depósito</h2>
           <div className="md:grid md:grid-cols-3 md:gap-1">
             <div className=''>
@@ -67,7 +67,7 @@ export default function withDraw(props) {
                 <div className='uppercase bg-gray-200 hover:bg-gray-300 text-center py-1 text-gray-600 font-bold' onClick={() => setValueDeposit(valueDeposit + 1000)}>+1000</div>
                 <div className='uppercase bg-gray-200 hover:bg-gray-300 text-center py-1 text-gray-600 font-bold' onClick={() => setValueDeposit(0)}>Limpar</div>
               </div>
-              <button className='uppercase bg-primary text-white font-semibold w-full my-1' onClick={() => deposit(valueDeposit)}>Fazer Depósito</button>
+              <button className='rounded-md p-1 uppercase bg-primary text-white font-semibold w-full my-1' onClick={() => deposit(valueDeposit)}>Fazer Depósito</button>
             </div>
             <div className='col-span-2'>
               <div id="paym">

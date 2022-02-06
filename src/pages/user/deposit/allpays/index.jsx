@@ -42,8 +42,8 @@ export default function AllPays(props) {
         location.reload()
     }
 
-    return <>
-    <div onClick={() => setToggle(!toggle)} className='uppercase font-semibold bg-gray-200 hover:bg-gray-300 cursor-pointer text-sm p-1 rounded-t-md'>Todos pagamentos</div>
+    return <div className='mt-2'>
+    <div onClick={() => setToggle(!toggle)} className='uppercase font-semibold bg-gray-200 hover:bg-gray-300 cursor-pointer text-sm p-1 rounded-t-md'>Ver depositos</div>
        <div className={`${toggle ? `opacity-100` : `opacity-0`} delay-100 transition-opacity`}>
     <div className={`${toggle ? `block` : `hidden`}`}>
 
@@ -66,5 +66,5 @@ export default function AllPays(props) {
         })}
  </div>
     </div>
-    </>
+    </div>
 }
