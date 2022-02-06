@@ -80,7 +80,7 @@ export default function Odd(props) {
     if (!data) <p> <ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></p>
 
     return <>
-        <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200}`}>
+        <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200`}>
             {!data &&
                 <>
                 <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>

@@ -12,6 +12,18 @@ export const bestLeagues = [
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/72.png"
     },
     {
+        "id": 624,
+        "name": "Carioca - 1",
+        "type": "League",
+        "logo": "https://media.api-sports.io/football/leagues/624.png"
+    },
+    {
+        "id": 475,
+        "name": "Paulista - A1",
+        "type": "League",
+        "logo": "https://media.api-sports.io/football/leagues/475.png"
+    },
+    {
         "id": 13,
         "name": "Copa Libertadores",
         "type": "Cup",
@@ -64,7 +76,13 @@ export const bestLeagues = [
         "name": "Premier League",
         "type": "League",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/39.png"
-      },
+    },
+    {
+        "id": 179,
+        "name": "Premiership",
+        "type": "League",
+        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/179.png"
+    },
       {
         "id": 78,
         "name": "Bundesliga 1",

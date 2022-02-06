@@ -63,7 +63,7 @@ export default function Alive(props) {
 
         {ligas.length > 0 && primaryLeagues.length < 10 && <>
 
-            <span onClick={() => setMoreToggle(!moreToggle)} className="font-bold text-xs uppercase text-primary">Ver mais jogos</span>
+            <span onClick={() => setMoreToggle(!moreToggle)} className="font-bold text-xs uppercase text-primary">Ver mais</span>
             <div className={`${moreToggle ? `block` : `hidden`} md:h-96 overflow-scroll`}>
                 {ligas.reverse().map(l => {
                     return <div key={l.liga.id}>

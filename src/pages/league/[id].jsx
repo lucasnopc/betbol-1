@@ -18,7 +18,7 @@ export default function LeaguePage(props) {
     if (data) {
         fix = data.res_filter
     }
-
+console.log(fix)
     return (
         <>
             <Head>
