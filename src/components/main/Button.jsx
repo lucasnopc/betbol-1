@@ -55,7 +55,7 @@ export default function Button(props) {
         full = true
     }
     return <div className="group font-medium inline-block relative w-full h-full">
-        <button onClick={() => betGo(props.val, props.fixId, bets)} className={`${checked ? `bg-primary hover:bg-primary-ligth text-white` : ` hover:bg-gray-200`} px-1.5 py-3 text-gray-700 cursor-pointer active:outline-none focus:outline-none md:w-20 min-w-full h-full text-xs font-bold`}>
+        <button onClick={() => betGo(props.val, props.fixId, bets)} className={`${checked ? `bg-primary hover:bg-primary-ligth text-white` : ` hover:bg-gray-200 text-primary`} px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none md:w-20 min-w-full h-full text-xs font-bold`}>
             <span className="block">{full && Translate(props.val.value)}</span>
             {props.val.odd}
             <span className="hidden font-medium text-xs md:hidden">{Translate(props.val.value)}</span>
