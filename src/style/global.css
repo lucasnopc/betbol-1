@@ -3,6 +3,7 @@
 html, body, #__next {
     height: 100%;
     overflow: auto;
+    @apply scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white
 }
 * {
     font-family: 'Montserrat', sans-serif;
@@ -26,4 +27,7 @@ html, body, #__next {
 }
 .list-styles {
     @apply p-2 hover:bg-green-600 font-medium text-gray-900 hover:text-white border-b border-gray-300
+}
+.scrollgreen {
+    @apply  scrollbar scrollbar-thin scrollbar-thumb-green-600 scrollbar-track-gray-100
 }

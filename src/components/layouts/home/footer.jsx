@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import Link from 'next/link'
+import SignInButton from './header/signIn'
 
 
 export default function Footer() {
@@ -8,8 +9,8 @@ export default function Footer() {
     let tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow = format(tomorrow, 'yyyy-MM-dd')
- 
- return <div className="mb-20"><div className="grid grid-cols-2 gap-4 p-3 pt-5">
+
+    return <div className="mb-20"><div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-3 pt-5">
         <div>
             <h4 className="font-normal uppercase">Apostas Esportivas</h4>
             <ol className="text-gray-500">
@@ -19,12 +20,23 @@ export default function Footer() {
             </ol>
         </div>
         <div>
-            <h4 className="font-normal uppercase">A BetBol</h4>
+            <h4 className="font-normal uppercase">BetBol</h4>
             <ol className="text-gray-500">
                 <li><Link href="/about"><a>A Betbol</a></Link></li>
-                <li><a href="https://www.instagram.com/sports_game.club/">Instagram</a></li>
+                <li><SignInButton /></li>
+            </ol>
+        </div>        <div>
+            <h4 className="font-normal uppercase">Suporte e Regulamentos</h4>
+            <ol className="text-gray-500">
                 <li><Link href="/contact"><a>Suporte</a></Link></li>
                 <li><Link href="/regulation"><a>Regulamento</a></Link></li>
+            </ol>
+        </div>
+        <div>
+            <h4 className="font-normal uppercase">Fale Conosco</h4>
+            <ol className="text-gray-500">
+                <li><Link href="/contact"><a>Contato</a></Link></li>
+                <li><a href="https://www.instagram.com/sports_game.club/">Instagram</a></li>
             </ol>
         </div>
     </div>

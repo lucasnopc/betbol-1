@@ -31,7 +31,7 @@ export default function Banner(props) {
                     <h3 className="text-gray-200 font-bold mt-2 text-lg pl-2 text-shadow">Oferta novo cliente</h3>
                 <p className="font-bold pl-2 text-yellow-400 text-xl text-shadow">Receba Bônus de <br /> até R$ 150</p>
                         {session &&
-                            <Link href="/finances"><a className="text-white font-semibold bg-primary mt-1 p-1">Faça um depósito já</a></Link>
+                            <Link href="/user/deposit"><a className="text-white font-semibold bg-primary mt-1 p-1">Faça um depósito já</a></Link>
                         }
                         {!session && <SignInButton />}
                     </div>

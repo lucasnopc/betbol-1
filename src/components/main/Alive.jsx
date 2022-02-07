@@ -51,9 +51,9 @@ export default function Alive(props) {
 
         {primaryLeagues.length > 0 && primaryLeagues.map(l => {
             return <div key={l.liga.id}>
-                <div className="text-xs uppercase font-semibold bg-gray-300 border-b border-gray-200 text-gray-700">{l.liga.name} {l.liga.country}</div>
+                <div className=" text-xs uppercase font-semibold bg-gray-300 border-b border-gray-200 text-gray-700">{l.liga.name} {l.liga.country}</div>
 
-                <div className="block">
+                <div className="block scrollgreen">
                     {l.fix.map((f, indexFix) => {
                         return <Fix key={f.fixture.id} fix={f} bets={bets} isAlive={props.isAlive} indexFix={indexFix} />
                     })}
@@ -61,10 +61,10 @@ export default function Alive(props) {
             </div>
         })}
 
-        {ligas.length > 0 && primaryLeagues.length < 10 && <>
+        {ligas.length > 0 && <>
 
-            <span onClick={() => setMoreToggle(!moreToggle)} className="font-bold text-xs uppercase text-primary">Ver mais</span>
-            <div className={`${moreToggle ? `block` : `hidden`} md:h-96 overflow-scroll`}>
+            {primaryLeagues.length !== 0 && <span onClick={() => setMoreToggle(!moreToggle)} className="font-bold text-xs uppercase text-primary">Ver mais</span>}
+            <div className={`${moreToggle || primaryLeagues.length === 0 ? `block` : `hidden`} scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white md:h-96 overflow-scroll`}>
                 {ligas.reverse().map(l => {
                     return <div key={l.liga.id}>
                             <div className="text-xs uppercase font-semibold bg-green-100 border-b border-primary text-primary">{l.liga.name} {l.liga.country}</div>
