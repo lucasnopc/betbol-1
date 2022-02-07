@@ -21,7 +21,7 @@ export function HtmlEmailSendBet(note) {
       <table width="100%" border="0" cellspacing="20" cellpadding="0" style="background: ${mainBackgroundColor}; max-width: 600px; margin: auto; border-radius: 10px;">
       <tr>
       <td align="center" style="padding: 10px 0px 0px 0px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
-      Você fez uma aposta na SportGames
+      Você fez uma aposta na BetBol
       </td>
       </tr>
       ${note.map(b => {
