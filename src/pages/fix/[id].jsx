@@ -7,19 +7,21 @@ import FullLoading from '../../components/fullloading'
 import { useRouter } from 'next/router'
 import { oddBets } from '../../utills/oddBets'
 import Button from '../../components/main/Button'
+import useUser from '../../utills/hooks/useUser'
 
 export default function Fix(props) {
+  const user = useUser(props.userString)
   const router = useRouter()
   const { id } = router.query
   const urlFix = `/api/betApi/fixture/${id}/`
-  const [setLive] = useState([])
+  // const [live, setLive] = useState([])
   const [bets] = useState(1)
   const { data, error } = useFetch(urlFix)
 
-  useEffect(() => {
-    if (data) setLive(data)
+  // useEffect(() => {
+  //   if (data) setLive(data)
 
-  }, [data])
+  // }, [data])
 
 
   if (error) return console.log(error)
@@ -46,7 +48,7 @@ export default function Fix(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={props.userString}>
+      <Layout userString={user}>
         <span className="text-xs">{res_fixture.response[0].league.country} {res_fixture.response[0].league.name}</span>
         <span className="text-lg block font-bold">{res_fixture.response[0].teams.home.name} v {res_fixture.response[0].teams.away.name}</span>
         {oddValueTranslations.map(odd => {

@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import useUser from '../../utills/hooks/useUser'
 
 
 export default function Feedback(props) {
   const router = useRouter()
   const query = router.query
+  const user = useUser(props.userString)
 
   useEffect(() => {
     const setStatus = async (query) => {
@@ -32,7 +34,7 @@ export default function Feedback(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={props.userString}>
+      <Layout userString={user}>
           <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
             <h2 className="page-title border-b border-gray-100">Feedback page</h2>
           </div>

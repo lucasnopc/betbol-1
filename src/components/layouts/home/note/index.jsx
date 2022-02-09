@@ -14,10 +14,6 @@ export default function Note(props) {
         retornosPotenciais(note, vf, setRetornoPotencial)
     }, [note])
 
-    let user = false
-    if (props.userString) {
-        user = JSON.parse(props.userString)
-    }
 
     const changeInputValue = (change) => {
         const value = change.obj.target.value
@@ -67,7 +63,7 @@ export default function Note(props) {
                         changeInputValue({ obj: r, setVf, note })
                     }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" defaultValue="10" />
                 </div>
-                <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} user={user} retornoPotencial={retornoPotencial} toast={toast} /></div>
+                <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} retornoPotencial={retornoPotencial} toast={toast} /></div>
 
             </div>
         </Dialog>

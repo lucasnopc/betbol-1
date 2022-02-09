@@ -6,8 +6,10 @@ import useFetch from '../../utills/useFetch'
 import { useState } from 'react'
 import Alive from '../../components/main/Alive'
 import { FixProvider } from '../../context/fix'
+import useUser from '../../utills/hooks/useUser'
 
 export default function LeaguePage(props) {
+    const user = useUser(props.userString)
     const [bets, setBets] = useState(1)
     const router = useRouter()
     const { id, year, name } = router.query
@@ -18,7 +20,6 @@ export default function LeaguePage(props) {
     if (data) {
         fix = data.res_filter
     }
-console.log(fix)
     return (
         <>
             <Head>
@@ -26,7 +27,7 @@ console.log(fix)
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Layout userString={props.userString}>
+            <Layout userString={user}>
             <FixProvider>
                 <Alive live={fix} bets={bets} setBets={setBets} title={name} />
             </FixProvider>

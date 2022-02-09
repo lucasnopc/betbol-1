@@ -8,8 +8,11 @@ import Banner from '../components/banner'
 import Alive from '../components/main/Alive'
 import { format } from 'date-fns'
 import { FixProvider } from '../context/fix'
+import { useStore } from '../context/store'
+import useUser from '../utills/hooks/useUser'
 
 export default function Home(props) {
+  const user = useUser(props.userString)
   const [live, setLive] = useState([])
   const [master, setMaster] = useState([])
   const date =  format(new Date(), 'yyyy-MM-dd')
@@ -30,10 +33,10 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={props.userString}>
+      <Layout userString={user}>
         <div className="grid gap-0 grid-cols-5">
           <FixProvider>
-          <div className="col-span-5 md:col-span-3 md:col-start-1 bg-gray-100">
+          <div className="col-span-5 md:col-span-3 md:col-start-1 md:bg-gray-100">
             <Banner live={master} />  
             <Alive live={live}  title="Futebol Ao vivo" isAlive={true} />
           </div>

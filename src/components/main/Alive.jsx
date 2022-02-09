@@ -73,7 +73,6 @@ export default function Alive(props) {
             {primaryLeagues.length !== 0 && <span onClick={() => setMoreToggle(!moreToggle)} className="font-bold text-xs uppercase text-primary">Ver mais</span>}
             <div className={`${moreToggle || primaryLeagues.length === 0 ? `block` : `hidden`} scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white md:h-96 overflow-scroll`}>
                 {ligas.reverse().map(l => {
-                    console.log('liga ', )
                     return <div key={l.liga.id}>
                             <div className="text-xs font-semibold bg-gray-200 p-0.5 border-b flex items-center">   
                              {l.liga.flag && <Image src={l.liga.flag} alt={l.liga.name} width={20} height={15} /> }

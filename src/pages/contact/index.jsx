@@ -3,10 +3,13 @@ import Layout from "../../components/layouts/home/layout";
 import serverSidePropsClient from "../../utills/serverSitePropsClient";
 import { useForm } from "react-hook-form";
 import { ImSpinner } from "react-icons/im";
+import useUser from "../../utills/hooks/useUser";
 
 export default function RegulationPage(props) {
   const { register, handleSubmit, formState } = useForm();
   const { isSubmitting } = formState;
+  const user = useUser(props.userString)
+  
 
   const sendEmailContact = (data) => {
       console.log(data)
@@ -18,7 +21,7 @@ export default function RegulationPage(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={props.userString}>
+      <Layout userString={user}>
         <h1 className="font-semibold text-xl p-2">Fale Conosco</h1>
         <div className="p-2">
           <span> ganhei@betbol.io</span>

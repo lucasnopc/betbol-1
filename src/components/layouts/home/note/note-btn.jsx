@@ -8,12 +8,13 @@ import ItemBetNote from './item-bet-note'
 import { useRouter } from 'next/dist/client/router'
 
 export default function NoteBtn(props) {
+    const { user } = useStore()
+    console.log('user ',user)
     const toast = props.toast
     const router = useRouter()
     const [open, setOpen] = useState(false)
     const { note, clearNote } = useStore()
     const [session] = useSession()
-    const user = props.user
     const ValorFinal = (vf) => {
         if (vf.vf) {
             if (vf.vf.length > 0) {

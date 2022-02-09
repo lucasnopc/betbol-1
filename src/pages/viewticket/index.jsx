@@ -7,8 +7,10 @@ import Bilhete from '../../components/bilhete'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import useClipboard from "react-use-clipboard";
+import useUser from '../../utills/hooks/useUser'
 
 export default function viewTicket(props) {
+  const user = useUser(props.userString)
     const [bilhete, setBilhete] = useState({})
     const router = useRouter()
     const [isCopied, setCopied] = useClipboard(`${process.env.NEXTAUTH_URL}/viewbet?`);
@@ -28,7 +30,7 @@ export default function viewTicket(props) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Layout userString={props.userString}>
+            <Layout userString={user}>
                 <div className='p-3'>
                     <h3 className='text-xl font-bold'>Conferir Bilete</h3>
                     {!router.query.b && <form onSubmit={e => {

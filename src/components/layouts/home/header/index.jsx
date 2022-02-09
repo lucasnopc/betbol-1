@@ -4,13 +4,8 @@ import Profile from './profile'
 import HeaderAdmin from '../../../layoutAdmin/headeradmin'
 import Link from 'next/link'
 
-export default function Header(props) {
-    let user = ""
+export default function Header({userString: user}) {
     const [session] = useSession()
-   
-    if (props.userString) {
-        user = JSON.parse(props.userString)
-    }
 
     return <>
     {user.nivel == 5 &&

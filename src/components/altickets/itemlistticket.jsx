@@ -8,29 +8,40 @@ export default function ItemListTicket({ bi, statusSearch }) {
   const [status, setStatus] = useState('...')
   const [visible, setVisible] = useState(true)
   useEffect(() => {
-    if(statusSearch == status || statusSearch == 'Todos') {
+    if (statusSearch == status || statusSearch == 'Todos') {
       setVisible(true)
-    }else {
+    } else {
       setVisible(false)
     }
-  } ,[statusSearch, status])
-  useEffect(()=> {
-    bi.bets.map(bet => {
-      axios.get(`/api/betApi/fixture/${bet.fix.fixture.id}`).then(res => {
-        const fixture = res.data.res_fixture.response[0]
-        if(fixture.fixture.status.short != 'FT'){
-          setStatus('Em Aberto')
-          return
-        }else {
-          const calcStatus = calcStatusFix(fixture, bet)
-          if(!calcStatus) setStatus('Perdeu')
-          return
-        }
+  }, [statusSearch, status])
+  useEffect(() => {
+    const calcStatusTicket = async () => {
+      const listStatus = bi.bets.map(bet => {
+        axios.get(`/api/betApi/fixture/${bet.fix.fixture.id}`).then(res => {
+          const fixture = res.data.res_fixture.response[0]
+          const short = fixture.fixture.status.short
+          if (short != 'FT' && short != 'PEN' && short != 'AET') {
+            console.log('fixture.fixture.status',)
+            setStatus('Em Aberto')
+            return 'Em Aberto'
+          } else {
+            const calcStatus = calcStatusFix(fixture, bet)
+            if (!calcStatus) {
+              setStatus('Perdeu')
+              return 'Perdeu'
+            }
+          }
+        })
       })
-          setStatus('Ganhou')
+      return listStatus
+    }
+    calcStatusTicket().then(res => {
+     if(status == '...') {
+       setStatus('Ganhou')
+     }
     })
-}, [])
-return <>
-  {visible && <ListBetsHistory key={bi._id} data={bi} status={status}  />}
+  }, [])
+  return <>
+    {visible && <ListBetsHistory key={bi._id} data={bi} status={status} />}
   </>
 }

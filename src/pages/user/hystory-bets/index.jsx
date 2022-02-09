@@ -5,10 +5,12 @@ import FullLoading from '../../../components/fullloading'
 import ItemListTicket from '../../../components/altickets/itemlistticket'
 import LayoutUser from '../../../components/layouts/user'
 import { useState } from 'react'
+import useUser from '../../../utills/hooks/useUser'
 
-export default function Home(props) {
+export default function historyBets(props) {
+  const user = useUser(props.userString)
   const [statusSearch, setStatusSearch] = useState('Todos');
-  const user = JSON.parse(props.userString)
+  // const user = JSON.parse(props.userString)
   const { data, error } = useFetch(`/api/user/betsHistory?email=${user.email}`)
 
   if (error) return console.log(error)
@@ -20,7 +22,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LayoutUser userString={props.userString}>
+      <LayoutUser userString={user}>
       <div className="p-2">
         <h1 className="font-bold text-sm">Histórico de Apostas</h1>
         <div>
