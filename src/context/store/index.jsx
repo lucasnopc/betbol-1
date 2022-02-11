@@ -6,7 +6,7 @@ export const StoreContext = createContext(storeInitial)
 
 export const StoreProvider = ({ children }) => {
     const [note, setNote] = useState([])
-
+    const [user, setUser] = useState({})
 
     const setGoBetsInNote = (bet) => {
         const newNote = { ...bet }
@@ -19,7 +19,6 @@ export const StoreProvider = ({ children }) => {
                 const newNote = [...note]
                 newNote.splice(n, 1, bet)
                 setNote([...newNote])
-                console.log('replace', newNote, note)
             }
         }
     }
@@ -45,6 +44,8 @@ export const StoreProvider = ({ children }) => {
 
     const store = {
         note,
+        user,
+        setUser,
         setGoBetsInNote,
         replaceBetsInNote,
         removeBetsInNote,

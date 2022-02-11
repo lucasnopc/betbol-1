@@ -4,13 +4,11 @@ import serverSidePropsClient from '../../../utills/serverSitePropsClient'
 import AllPays from './allpays'
 import { useMercadopago } from 'react-sdk-mercadopago';
 import { useState } from 'react';
+import useUser from '../../../utills/hooks/useUser'
 
 export default function withDraw(props) {
   const [valueDeposit, setValueDeposit] = useState(10)
-  let user = ``
-  if (props.userString) {
-    user = JSON.parse(props.userString)
-  }
+  const user = useUser(props.userString)
   // TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9
   // APP_USR-9bee11b4-7b73-4936-8610-9cfa6797e650
   const mercadopago = useMercadopago.v2('TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9', {
@@ -53,7 +51,7 @@ export default function withDraw(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LayoutUser userString={props.userString}>
+      <LayoutUser userString={user}>
         <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white">
           <h2 className="page-title border-b border-gray-100">Depósito</h2>
           <div className="md:grid md:grid-cols-3 md:gap-1">

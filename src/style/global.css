@@ -3,7 +3,7 @@
 html, body, #__next {
     height: 100%;
     overflow: auto;
-    @apply scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white
+    @apply scrollbar scrollbar-thin scrollbar-thumb-primary-ligth scrollbar-track-white text-gray-800 text-sm md:text-base
 }
 * {
     font-family: 'Montserrat', sans-serif;
@@ -11,7 +11,7 @@ html, body, #__next {
 }
 
 .btn {
-    @apply py-2 ml-5 px-5 bg-primary-ligth text-gray-100 focus:outline-none tracking-wide font-normal hover:bg-primary shadow-lg
+    @apply py-2 ml-5 px-5 bg-primary text-gray-100 focus:outline-none tracking-wide font-normal hover:bg-primary-ligth shadow-lg
 }
 .block-title {
     @apply uppercase font-medium block px-2 py-1 border-b border-gray-300

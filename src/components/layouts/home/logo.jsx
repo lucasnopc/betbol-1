@@ -6,9 +6,9 @@ export default function Logo({ theme }) {
         <Link href="/">
             <a>
                 
-                {!theme && <span className=''><Image width="150" height="35" src="/logo.png" className="hover:opacity-70 cursor-pointer" /></span>}
+                {!theme && <span className=''><Image width="120" height="28" src="/logo.png" className="hover:opacity-70 cursor-pointer" /></span>}
                 {theme == 'dark' &&
-                <span className=''><Image width="150" height="35" src="/logo2.png" className="hover:opacity-70 cursor-pointer" /></span>        
+                <span className=''><Image width="120" height="28" src="/logo2.png" className="hover:opacity-70 cursor-pointer" /></span>        
                 }
             </a>
         </Link>

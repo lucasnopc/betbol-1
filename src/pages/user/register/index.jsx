@@ -30,59 +30,6 @@ export default function register(props) {
       setStateRegister(props.profile)
     }
   })
-
-  const Andress = () => {
-    if (getStateRegister.andress != "") return <>
-      <div>
-        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Logradouro</div>
-        <input
-          {...register('logradouro', { required: true })}
-          name="logradouro"
-          type="text"
-          placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
-          defaultValue={getStateRegister.andress.logradouro}
-        />
-      </div>
-
-      <div>
-        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Bairro</div>
-        <input
-          {...register('bairro', { required: true })}
-          name="bairro"
-          type="text"
-          placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
-          defaultValue={getStateRegister.andress.bairro}
-        />
-      </div>
-
-      <div>
-        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Localidade</div>
-        <input
-          {...register('localidade', { required: true })}
-          name="localidade"
-          type="text"
-          placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
-          defaultValue={getStateRegister.andress.localidade}
-        />
-      </div>
-
-      <div>
-        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Estado</div>
-        <input
-          {...register('uf', { required: true })}
-          name="uf"
-          type="text"
-          placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
-          defaultValue={getStateRegister.andress.uf}
-        />
-      </div>
-    </>
-    return ""
-  }
   const getAndress = async (data) => {
     const cep = data.target.value.replace(/\D/g, '')
     if (cep.length == 8) {
@@ -168,7 +115,53 @@ export default function register(props) {
               defaultValue={getStateRegister.cep}
             />
           </div>
-          <Andress />
+          <div>
+        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Logradouro</div>
+        <input
+          {...register('logradouro', { required: true })}
+          name="logradouro"
+          type="text"
+          placeholder="Mike"
+          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
+          defaultValue={getStateRegister.andress.logradouro}
+        />
+      </div>
+
+      <div>
+        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Bairro</div>
+        <input
+          {...register('bairro', { required: true })}
+          name="bairro"
+          type="text"
+          placeholder="Mike"
+          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
+          defaultValue={getStateRegister.andress.bairro}
+        />
+      </div>
+
+      <div>
+        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Localidade</div>
+        <input
+          {...register('localidade', { required: true })}
+          name="localidade"
+          type="text"
+          placeholder="Mike"
+          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
+          defaultValue={getStateRegister.andress.localidade}
+        />
+      </div>
+
+      <div>
+        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Estado</div>
+        <input
+          {...register('uf', { required: true })}
+          name="uf"
+          type="text"
+          placeholder="Mike"
+          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
+          defaultValue={getStateRegister.andress.uf}
+        />
+      </div>
           <div>
             <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Numero</div>
             <input

@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
+import useUser from '../../utills/hooks/useUser'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 
 export default function AboutPage(props) {
+    const user = useUser(props.userString)
 
     return (
         <>
@@ -11,7 +13,7 @@ export default function AboutPage(props) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Layout userString={props.userString}>
+            <Layout userString={user}>
                <h1>A Betbol</h1>
                <p>Somos uma casa de apostas com sede no Rio de Janeiro.</p>
                <p>Somos SPORTSGAME.CLUB e BETBOL.IO</p>

@@ -13,7 +13,7 @@ export default function ItemListBetHistory(props) {
 
   const res = data.res_fixture.response[0]
   const calcStatus = calcStatusFix(res, b)
-  return <div className={`p-1 border-b border-gray-400 relative flex justify-between`}>
+  return <div className={`${props.toggle ? `block` : `hidden`} p-1 border-b border-gray-400 relative flex justify-between`}>
     <div className="mr-1 block">
       <span className=" text-xs block">Resultado <Status res={res} calcStatus={calcStatus} /></span>
       {b.choice.value == 'Home' && <span className={` font-bold text-xs mr-1`}>{res.teams.home.name}</span>}

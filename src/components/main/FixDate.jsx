@@ -35,7 +35,8 @@ export default function FixDate(props) {
 
     }
     useState(() => {
-        if (props.fix.fixture.status.short == '2H' || props.fix.fixture.status.short == '1H') {
+        const short = props.fix.fixture.status.short
+        if (short == '2H' || short == '1H' || short == 'ET', short == 'live') {
             setLive(true)
             srartTimer()
             return () => {
@@ -59,7 +60,7 @@ export default function FixDate(props) {
     return <>
         {live && <>
             <span className={`${status.classNames} text-xs block md:inline-block leading-none text-gray-500 font-semibold p-0.5`}>{status.label}</span>
-            <span className="text-xs leading-none text-center pt-3 text-red-500 font-bold italic">AO VIVO</span>
+            <span className="text-xs leading-none text-center pt-3 text-red-500 font-normal italic">AO VIVO</span>
             <span className="text-xs leading-none text-center text-gray-500 ml-1 font-normal">{timeMinutes}:{timeSeconds}</span>
         </>
         }

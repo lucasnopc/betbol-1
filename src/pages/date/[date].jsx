@@ -8,9 +8,10 @@ import { useStore } from '../../context/store'
 import FullLoading from '../../components/fullloading'
 import Alive from '../../components/main/Alive'
 import { FixProvider } from '../../context/fix'
+import useUser from '../../utills/hooks/useUser'
 
 export default function LeaguePage(props) {
-
+    const user = useUser(props.userString)
     const [live, setLive] = useState([])
     const router = useRouter()
     const [bets, setBets] = useState(1)
@@ -29,7 +30,7 @@ export default function LeaguePage(props) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Layout userString={props.userString}>
+            <Layout userString={user}>
                 <FixProvider>
                     <Alive live={live} bets={bets} setBets={setBets} title={`Jogos de ${date}`} />
                 </FixProvider>
