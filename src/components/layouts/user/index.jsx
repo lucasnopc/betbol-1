@@ -7,7 +7,7 @@ export default function LayoutUser(props) {
         <main className="">
             <div className="page">
                 <div className="bg-white scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white">
-                    <div className="w-10/12 mx-auto">
+                    <div className="md:w-10/12 md:mx-auto">
                         {props.children}
                     </div>
                     <Footer />

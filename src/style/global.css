@@ -3,7 +3,7 @@
 html, body, #__next {
     height: 100%;
     overflow: auto;
-    @apply scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white text-gray-800
+    @apply scrollbar scrollbar-thin scrollbar-thumb-primary-ligth scrollbar-track-white text-gray-800 text-sm md:text-base
 }
 * {
     font-family: 'Montserrat', sans-serif;

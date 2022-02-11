@@ -30,9 +30,9 @@ export default function payMethods(props) {
         <div className="w-10/12 mx-auto p-2 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
           <h2 className="page-title border-b border-gray-100">Método de recebimento PIX</h2>
         <form onSubmit={handleSubmit(setPix)} className='flex flex-col'>
-         Chave Pix      <input {...register("pix", { required: true })}  defaultValue={user.payment_method ? user.payment_method.pix : ``} className='border border-gray-200 p-1 focus:border-gray-400 focus:outline-none' type="text" name="pix" />
-         Nome Completo  <input {...register("name", { required: true })} defaultValue={user.payment_method ? user.payment_method.name: ``} className='border border-gray-200 p-1 focus:border-gray-400 focus:outline-none' type="text" name="Nome" />
-         <input type="submit" value="Salvar" className='mt-2 p-1 cursor-pointer hover:bg-primary font-normal hover:text-white' />
+         Chave Pix      <input {...register("pix", { required: true })}  defaultValue={user.payment_method ? user.payment_method.pix : ``} className='border border-gray-200 p-1 focus:border-gray-400 focus:outline-none' type="text" />
+         Nome Completo  <input {...register("name", { required: true })} defaultValue={user.payment_method ? user.payment_method.name: ``} className='border border-gray-200 p-1 focus:border-gray-400 focus:outline-none' type="text" />
+                        <input type="submit" value="Salvar" className='mt-2 p-1 cursor-pointer hover:bg-primary font-normal hover:text-white' />
         </form>
         <div className='flex flex-col divide divide-gray-400'>
         {user.payment_method &&<div className='flex justify-between p-1 bg-gray-50'>

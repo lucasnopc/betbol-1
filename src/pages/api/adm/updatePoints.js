@@ -1,6 +1,4 @@
 import { connectToDatabase } from '../../../utills/conectdb';
-import isAdmin from '../../../utills/isAdmin'
-import { getSession } from 'next-auth/client'
 
 export default async function getUser(req, res) {
     if (req.method == "POST") {

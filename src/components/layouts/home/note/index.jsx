@@ -33,7 +33,6 @@ export default function Note(props) {
             const response = note.map((n, i) => {
                 return Number(n.choice.odd)
             }).reduce((total, n) => total + n)
-            console.log('response ', response)
             setRetornoPotencial((response * vf).toFixed(2))
         } else {
             setRetornoPotencial(0)

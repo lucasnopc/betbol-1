@@ -8,5 +8,7 @@ export default async (req, res) => {
           if(result) res.status(203).json({ result})
           if(error) res.status(400).json({ error })
         })
+      }else {
+        res.status(400).json({'message': 'invalid Method'})
       }
 }

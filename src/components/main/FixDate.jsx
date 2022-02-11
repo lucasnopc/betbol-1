@@ -35,7 +35,8 @@ export default function FixDate(props) {
 
     }
     useState(() => {
-        if (props.fix.fixture.status.short == '2H' || props.fix.fixture.status.short == '1H') {
+        const short = props.fix.fixture.status.short
+        if (short == '2H' || short == '1H' || short == 'ET', short == 'live') {
             setLive(true)
             srartTimer()
             return () => {

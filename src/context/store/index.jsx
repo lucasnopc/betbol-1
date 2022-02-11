@@ -19,7 +19,6 @@ export const StoreProvider = ({ children }) => {
                 const newNote = [...note]
                 newNote.splice(n, 1, bet)
                 setNote([...newNote])
-                console.log('replace', newNote, note)
             }
         }
     }

@@ -21,7 +21,6 @@ export default function ItemListTicket({ bi, statusSearch }) {
           const fixture = res.data.res_fixture.response[0]
           const short = fixture.fixture.status.short
           if (short != 'FT' && short != 'PEN' && short != 'AET') {
-            console.log('fixture.fixture.status',)
             setStatus('Em Aberto')
             return 'Em Aberto'
           } else {

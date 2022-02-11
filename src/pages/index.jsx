@@ -17,7 +17,7 @@ export default function Home(props) {
   const [master, setMaster] = useState([])
   const date =  format(new Date(), 'yyyy-MM-dd')
   const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const { data, error } = useFetch(`/api/betApi/soccer`)
+  const { data, error } = useFetch(`/api/betApi/soccer?tzid=${tzid}`)
   const { data: data_master, error: error_master } = useFetch(`/api/betApi/soccer?date=${date}&tzid=${tzid}`)
 
   useEffect(() => {if (data) setLive(data.soccer.response)}, [data])
