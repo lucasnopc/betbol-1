@@ -8,7 +8,6 @@ import Banner from '../components/banner'
 import Alive from '../components/main/Alive'
 import { format } from 'date-fns'
 import { FixProvider } from '../context/fix'
-import { useStore } from '../context/store'
 import useUser from '../utills/hooks/useUser'
 
 export default function Home(props) {
@@ -40,7 +39,7 @@ export default function Home(props) {
             <Banner live={master} />  
             <Alive live={live}  title="Futebol Ao vivo" isAlive={true} />
           </div>
-          <div className="col-span-5 md:col-span-2 md:col-start-4">
+          <div className="col-span-5 md:col-span-2 md:col-start-4 md:bg-gray-50">
             <Alive live={master} title="Destaques" isAlive={false} />
           </div>
           </FixProvider>
