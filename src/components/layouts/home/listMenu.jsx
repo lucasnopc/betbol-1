@@ -97,7 +97,7 @@ export default function ListMenu(props) {
         height: toggle ? window.innerHeight - 50 : 0
     }}>
         
-        <div className={`${toggle ? `block` : `hidden md:block`} bg-gray-200`}>
+        <div className={`${toggle ? `block` : `hidden md:block`} bg-gray-50`}>
             <div>
                 <Select className="rounded-none" options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
                 {loading && <div className="text-center"><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}

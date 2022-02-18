@@ -24,16 +24,18 @@ export default function Banner(props) {
     })
 
     return <>
-        <div className="p-3 mx-2 text-xs text-gray-700">
+        <div className=" mx-2 text-xs text-gray-700">
             <div className="h-40 scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-100 overflow-x-auto overflow-y-hidden flex transition-transform" style={{ marginLeft: scrollX }} >
                 <div>
-                    <div className="p-2 mx-1 w-64 h-36 overflow-hidden bg-bg01 bg-black bg-cover bg-right-top shadow-lg inline-block">
-                    <h3 className="text-gray-200 font-bold mt-2 text-lg pl-2 text-shadow">Oferta novo cliente</h3>
-                <p className="font-bold pl-2 text-yellow-400 text-xl text-shadow">Receba Bônus de <br /> até R$ 150</p>
-                        {session &&
-                            <Link href="/user/deposit"><a className="text-white font-semibold bg-primary mt-1 p-1">Faça um depósito já</a></Link>
-                        }
-                        {!session && <SignInButton />}
+                    <div className="p-2 mx-1 w-64 h-36 overflow-hidden bg-bg01 bg-black bg-cover bg-right-top shadow-sm inline-block">
+                        <div className="flex flex-col mt-1">
+                                <p className="font-bold pl-2 text-yellow-400 text-xl text-shadow">Receba <br />rápido <br />pelo PIX</p>
+                                {session &&
+                                    <Link href="/user/deposit"><a className="text-white font-semibold bg-primary mt-1 p-1 text-center">Depositar</a></Link>
+                                }
+                                {!session && <SignInButton />}
+                        </div>
+                        {/* <h3 className="text-gray-200 font-bold mt-2 text-lg pl-2 text-shadow">Recebimento rápido</h3> */}
                     </div>
                 </div>
                 {primaryLeagues.map(i => {

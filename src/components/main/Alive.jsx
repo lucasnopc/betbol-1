@@ -52,9 +52,9 @@ export default function Alive(props) {
 
         {primaryLeagues.length > 0 && primaryLeagues.map(l => {
             return <div key={l.liga.id}>
-              <div className="text-xs font-semibold bg-gray-200 p-0.5 border-b flex items-center">   
+              <div className="text-xs font-semibold bg-primary text-white p-2 border-b flex items-center">   
                              {l.liga.flag && <Image src={l.liga.flag} alt={l.liga.name} width={20} height={15} /> }
-                                <span className="pl-1 font-normal">
+                                <span className="pl-1 font-semibold">
                                     {l.liga.country} - {l.liga.name}
                              {/* {l.liga.logo && <Image src={l.liga.logo} alt={l.liga.name} width={20} height={15} /> } */}
 
@@ -74,9 +74,9 @@ export default function Alive(props) {
             <div className={`${moreToggle || primaryLeagues.length === 0 ? `block` : `hidden`} scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white md:h-96 overflow-scroll`}>
                 {ligas.reverse().map(l => {
                     return <div key={l.liga.id}>
-                            <div className="text-xs font-semibold bg-gray-200 p-0.5 border-b flex items-center">   
+                            <div className="text-xs font-semibold bg-primary text-white p-2 border-b flex items-center">   
                              {l.liga.flag && <Image src={l.liga.flag} alt={l.liga.name} width={20} height={15} /> }
-                                <span className="pl-1 font-normal">
+                                <span className="pl-1 font-semibold">
                                     {l.liga.country} - {l.liga.name}
                                 </span>
                              {/* {l.liga.logo && <Image src={l.liga.logo} alt={l.liga.name} width={20} height={15} /> } */}

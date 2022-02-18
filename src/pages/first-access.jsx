@@ -6,8 +6,7 @@ import serverSidePropsClient from '../utills/serverSitePropsClient'
 export default function FirstAccessRequest(props) {
   const user = useUser(props.userString)
 
-    return (
-        <>
+    return <>
             <Head>
                 <title>Verifique seu e-mail</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -22,8 +21,7 @@ export default function FirstAccessRequest(props) {
                 </Layout>
             </div>
         </>
-    )
-}
+    }
 export async function getServerSideProps(context) {
     const ret = serverSidePropsClient(context)
     return ret
