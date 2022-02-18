@@ -39,7 +39,7 @@ export default function Note(props) {
         }
     }
     return <>
-    <div onClick={e => setToggleNoteBets(true)} className={`${note.length != 0 ? '' : 'hidden' } absolute bottom-1 right-1 bg-primary hover:bg-primary-ligth cursor-pointer w-10 h-10 text-center rounded-full flex items-center justify-center`}>
+    <div onClick={e => setToggleNoteBets(true)} className={`${note.length != 0 ? '' : 'hidden' } absolute bottom-1 right-1 bg-primary hover:bg-primary-ligth cursor-pointer w-10 h-10 text-center rounded-tl-xl rounded-full shadow-xl flex items-center justify-center`}>
         <span className="font-bold text-lg text-white">{note.length}</span>
     </div>
     <div className="rounded-full absolute right-1 bottom-1 bg-primary hover:bg-primary text-white font-bold">{note.lenght}</div>
@@ -62,7 +62,7 @@ export default function Note(props) {
                         changeInputValue({ obj: r, setVf, note })
                     }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" defaultValue="10" />
                 </div>
-                <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} retornoPotencial={retornoPotencial} toast={toast} /></div>
+                <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} retornoPotencial={retornoPotencial} toast={toast} setToggleNoteBets={setToggleNoteBets} /></div>
 
             </div>
         </Dialog>

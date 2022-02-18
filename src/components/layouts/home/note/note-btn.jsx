@@ -6,10 +6,11 @@ import { ConfirmDialog } from '../../../confirm-dialog'
 import { useState } from 'react'
 import ItemBetNote from './item-bet-note'
 import { useRouter } from 'next/dist/client/router'
+import FullLoading from '../../../fullloading'
 
 export default function NoteBtn(props) {
     const { user } = useStore()
-    console.log('user ',user)
+    const [ loading , setLoading ] = useState(false)
     const toast = props.toast
     const router = useRouter()
     const [open, setOpen] = useState(false)
@@ -25,6 +26,7 @@ export default function NoteBtn(props) {
     }
 
     const startBet = (user, valor) => {
+        setLoading(true)
         axios.post('/api/betApi/toBet', {
             points: user.points,
             email: user.email,
@@ -35,19 +37,20 @@ export default function NoteBtn(props) {
                 axios.post('/api/email/send', {
                     subject: `Betbol - Aposta Realizada`,
                     html: HtmlEmailSendBet(note),
-                })
-                    .then(function (response) {
-                        // toast.success("Aposta Realizada com sucesso!",{
-                        //     position: "top-right",
-                        //     autoClose: 3000,
-                        //     hideProgressBar: true,
-                        //     closeOnClick: false,
-                        //     pauseOnHover: true,
-                        //     draggable: true,
-                        //     progress: undefined,
-                        //     })
-                        alert('Aposta Realizada com sucesso!')
+                }).then(function (response) {
+                    setLoading(false)
+                        toast.success("Aposta Realizada com sucesso!",{
+                            position: "top-right",
+                            autoClose: 3000,
+                            hideProgressBar: true,
+                            closeOnClick: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            })
+                        
                         clearNote()
+                        props.setToggleNoteBets(false)
                         router.push(`/user/hystory-bets`)
                     })
                     .catch(function (error) {
@@ -111,5 +114,6 @@ export default function NoteBtn(props) {
                 })}
             </div>
         </ConfirmDialog>
+        {loading && <FullLoading />}
     </>
 }

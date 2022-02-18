@@ -1,7 +1,8 @@
 import LayoutAdmin from '../../../components/layoutAdmin/layoutAdmin'
 import serverSidePropsAdmin from '../../../utills/serverSidePropsAdmin'
-import { useForm } from "react-hook-form";
-import { useState } from 'react';
+import { useForm } from "react-hook-form"
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function config() {
     const { register, handleSubmit } = useForm({
@@ -12,10 +13,21 @@ export default function config() {
             max_events_ticket: 20
         }
     });
-    const [data, setData] = useState({});
 
-const handlerConfig = data => {
-    console.log(data)
+const handlerConfig = async data => {
+    await axios.post(`/api/adm/config`, data).then(res => {
+        toast.success('Configuraões Atualizadas'
+                                // ,{
+                            // position: "top-right",
+                            // autoClose: 3000,
+                            // hideProgressBar: true,
+                            // closeOnClick: false,
+                            // pauseOnHover: true,
+                            // draggable: true,
+                            // progress: undefined,
+                            // }
+                            )
+    })
 }
     return <>
         <LayoutAdmin>
@@ -41,7 +53,9 @@ const handlerConfig = data => {
                     <input type="submit" className='bg-primary font-semibold p-2 text-white w-min' value="Salvar Configurações" />
                 </form>
             </div>
-        </LayoutAdmin>
+        <ToastContainer />
+            
+         </LayoutAdmin>
     </>
 }
 export async function getServerSideProps(context) {
