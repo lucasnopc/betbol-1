@@ -1,6 +1,6 @@
 import { connectToDatabase } from '../../../utills/conectdb';
 
-export default async function getUser(req, res) {
+export default async function setPoint(req, res) {
     if (req.method == "POST") {
         let { db } = await connectToDatabase()
         const email = req.body.email  || req.query.email
