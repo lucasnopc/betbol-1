@@ -3,26 +3,29 @@ import { useStore } from "../../context/store"
 import Translate from "../../utills/translate"
 
 export default function Button(props) {
-    const [checked, setChecked] = useState(false)
+    const checked = props.val.select
     const { setGoBetsInNote, removeBetsInNote, note, replaceBetsInNote } = useStore()
-    const bets = props.bets
-    useEffect(() => {
-        const fix = note.find(item => {
-            if (item.fix.fixture.id == props.fixId.fixture.id) {
-                if (item.choice.betsChoice == props.bets) {
-                    if (props.val.odd == item.choice.odd && item.choice.value == props.val.value) {
-                        return true
-                    } else {
-                    }
-                } else { }
-            } else {
-                return false
-            }
-        })
-        if (fix) {
-            setChecked(true)
-        } else { setChecked(false) }
-    }, [note])
+    // useEffect(() => {
+    //     if (note.length > 0) {
+    //         const fix = note.find(item => {
+    //             if (props.fixId.fixture.id == item.fix.fixture.id) {
+    //                 return true
+    //             } else false
+    //         })
+    //         if (fix) {
+    //             if(fix.choice.betsChoice == props.bets) {
+    //                 console.log('fix ', fix.choice, props.val)
+    //                 const condition = props.val.odd == fix.choice.odd && props.val.value == fix.choice.value
+    //                 if(condition) {setChecked(true)
+    //                 }else setChecked(false)
+    //             }
+    //         }
+    //     }
+    //     return function cleanup() {
+    //     console.log('cheanup ', props.val)
+    //     if(checked) setChecked(false)
+    //     }
+    // }, [note, props.bets])
 
     const betGo = (val, fix, bets) => {
         const bet = {
@@ -39,24 +42,19 @@ export default function Button(props) {
                 }
             })
         } else {
-            const indexNoteEquals =  note.findIndex((n, i) => {
+            const indexNoteEquals = note.findIndex((n, i) => {
                 return n.fix.fixture.id == fix.fixture.id
             })
-            if(indexNoteEquals < 0) {
+            if (indexNoteEquals < 0) {
                 setGoBetsInNote(bet)
-            }else {
+            } else {
                 replaceBetsInNote(bet)
             }
-          
         }
     }
-    let full = false
-    if (props.full) {
-        full = true
-    }
     return <div className="group font-medium inline-block relative w-full h-full">
-        <button onClick={() => betGo(props.val, props.fixId, bets)} className={`${checked ? `bg-primary hover:bg-primary-ligth text-white` : ` hover:bg-gray-200 text-primary`} px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none md:w-20 min-w-full h-full text-base font-bold`}>
-            <span className="block">{full && Translate(props.val.value)}</span>
+        <button onClick={() => betGo(props.val, props.fixId, props.bets)} className={`${checked ? `bg-primary hover:bg-primary-ligth text-white` : ` hover:bg-gray-200 text-primary`} px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none md:w-20 min-w-full h-full text-base font-bold`}>
+            {/* <span className="block">{full && Translate(props.val.value)}</span> */}
             {props.val.odd}
             <span className="hidden font-medium text-xs md:hidden">{Translate(props.val.value)}</span>
         </button>
