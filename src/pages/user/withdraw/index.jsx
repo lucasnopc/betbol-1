@@ -41,12 +41,13 @@ export default function withdraw(props) {
           </div>
           <div>{onlyPaysWithState && onlyPaysWithState.map(m => {
             const date = format(new Date(m.status.date), 'dd/MM/yyyy')
-          return <div className='p-1 bg-gray-300 border-b border-gray-200 hover:bg-gray-200 cursor-pointer items-center flex justify-between' key={m.status.date}>
-            <span className=''>{m.status.state == 'request' ? `recebimento Solicitado no dia ${date}`:``}</span>
-            <span className=''>{m.status.state == 'ok' ? `recebimento Aprovado ${date}`:``}</span>
-            <span className=''>{m.status.state == 'deny' ? `recebimento negado ${date}`:``}</span>
+              console.log('date', date)
+            return <div className='p-1 bg-gray-300 border-b border-gray-200 hover:bg-gray-200 cursor-pointer items-center flex justify-between' key={m.status.date}>
+            {m.status.state == 'request' ? <span className=''>recebimento Solicitado no dia {date}</span>:``}
+            {m.status.state == 'success' ? <span className=''>{date} recebimento Aprovado </span>:``}
+            {m.status.state == 'deny' ? <span className=''>{date} recebimento negado</span>:``}
             <span className=''>{m.status.method}</span>
-            <span className=''>{m.value}</span>
+            <span className=''>R$ {Number(m.value).toFixed(2)}</span>
             </div>})}
             {onlyPaysWithState.length == 0 && <div className='text-base font-semibold'>
               Não há recebimentos programados, primeiramente solicite o saque no <Link href="/user/hystory-bets">bilhete premiado.</Link>

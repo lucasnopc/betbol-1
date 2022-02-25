@@ -3,14 +3,15 @@ import { useRouter } from 'next/router'
 import axios from 'axios';
 import { useStore } from '../../../../context/store';
 
-export default function Rescue({ id }) {
+export default function Rescue({ id, value }) {
   const router = useRouter()
   const { user } = useStore()
 
-  const setRescue = async (method, _id) => {
-    const body = { _id, method }
+  const setRescue = async (method, _id, value) => {
+    const body = { _id, method, points: user.points + value }
     const data = await axios.post(`/api/user/rescue`, body)
     if (data.status == 200) {
+      console.log(data)
       alert("Recebimento solicitado, o procecimento pode demorar até 48 horas!")
     }
     router.push('/user/withdraw')
@@ -21,10 +22,10 @@ export default function Rescue({ id }) {
       {!user.payment_method && <span className='inline-block w-auto bg-gray-50 text-yellow-700 rounded-md shadow-sm my-3'>Não há modos de recebimento disponíveis. <Link href={'/user/withdraw/paymethods'}><a className='font-normal text-gray-800 uppercase underline'>Adicione sua chave PIX.</a></Link></span>}
       <div className='flex justify-between'>
 
-        <div onClick={() => { setRescue('bonus', id) }} className='cursor-pointer p-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-normal border border-gray-300 w-full'>
-          <p>Re-investa seus ganhos e aumente suas chances.</p>
+        <div onClick={() => { setRescue('bonus', id, value) }} className='cursor-pointer p-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-normal border border-gray-300 w-full'>
+          <p>Re-invista seus ganhos e aumente suas chances.</p>
         </div>
-        <div onClick={() => { setRescue('pix', id) }} className='cursor-pointer p-1 hover:bg-gray-200 bg-gray-100 text-gray-800 font-normal border border-gray-300 w-full'>
+        <div onClick={() => { setRescue('pix', id, value) }} className='cursor-pointer p-1 hover:bg-gray-200 bg-gray-100 text-gray-800 font-normal border border-gray-300 w-full'>
 
           {user.payment_method && <>
             <p>Solicitar transferência via PIX.</p>

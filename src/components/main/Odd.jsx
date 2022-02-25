@@ -5,12 +5,15 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useFix } from "../../context/fix"
 import Image from 'next/image'
+import { useStore } from "../../context/store"
 
 export default function Odd(props) {
+    const { note } = useStore()
     const { removeFix } = useFix()
     const bets = props.bets
     const id = props.fixId.fixture.id
     const [values, setValues] = useState([])
+    const [odds, setOdds] = useState([])
     const { data, error } = useFetch(`/api/betApi/odds/${id}`)
     useEffect(() => {
         if (data && data.odd[0]) {
@@ -26,12 +29,13 @@ export default function Odd(props) {
                 return null
             }
             let newValues = oddsBets(bets, bet) ? oddsBets(bets, bet).values : []
+
             if (props.fixId.goals.home != null || props.fixId.goals.away != null) {
                 let diference = undefined
                 let HomeOrAwaya = undefined
                 let homeOrAwayaWinner = undefined
                 diference = props.fixId.goals.home - props.fixId.goals.away
-                
+
                 if (props.fixId.teams.home.winner === true || props.fixId.teams.away.winner === true) {
                     homeOrAwayaWinner = props.fixId.teams.home.winner ? "Home" : "Away"
                 }
@@ -43,7 +47,7 @@ export default function Odd(props) {
                         HomeOrAwaya = "Away"
                     }
                 }
-                
+
                 if (HomeOrAwaya) {
                     newValues.map((v, i) => {
                         if (v.value == HomeOrAwaya) {
@@ -62,11 +66,25 @@ export default function Odd(props) {
                         }
                     })
                 }
-                setValues(newValues)
-            } else {
-                setValues(newValues)
-
             }
+        //código para mostrar o selected
+        if (newValues.length > 0 && note.length > 0) {
+            const itemNote = note.find(item => {
+                if (item.fix.fixture.id == id && item.choice.betsChoice == bets) {
+                    return true
+                }
+            })
+            if (itemNote) {
+                const oddWithSelect = newValues.map(itemValue => {
+                    if (itemValue.value == itemNote.choice.value && itemValue.odd == itemNote.choice.odd) {
+                        itemValue.select = true
+                        return itemValue
+                    } else return itemValue
+                })
+                newValues = oddWithSelect
+            }
+        }
+        setValues(newValues)
         } else {
             if (typeof data != 'undefined') {
                 if (data.odd.length == 0) {
@@ -75,17 +93,16 @@ export default function Odd(props) {
                 }
             }
         }
-    }, [data, bets])
+    }, [data, bets, note])
 
     if (!data) <p> <ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></p>
-
     return <>
         <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200 divide-x`}>
             {!data &&
                 <>
-                <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>
-                <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>
-                <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>
+                    <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>
+                    <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>
+                    <div className="px-5 py-3"><Image width="20" height="20" src="/ico.png" className="animate-spin" /></div>
                 </>
             }
             {values && values.length <= 3 &&

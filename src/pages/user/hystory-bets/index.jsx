@@ -38,14 +38,7 @@ export default function historyBets(props) {
         </span>
       </div>
       <div className=" md:h-auto overflow-auto">
-            {data &&
-          data.betHistory.reverse().map((bi) => {
-            return <ItemListTicket
-                key={bi._id}
-                bi={bi}
-                statusSearch={statusSearch}
-              />
-          })}
+            {data && data.betHistory.reverse().map((bi) => <ItemListTicket key={bi._id} bi={bi} statusSearch={statusSearch} />)}
     </div>
     </div>
       </LayoutUser>

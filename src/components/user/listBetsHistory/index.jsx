@@ -20,6 +20,7 @@ export default function ListBetsHistory({ data: history, status }) {
       <div>
         {status == 'Ganhou' && !history.status && <span className="text-primary hover:text-primary-ligth font-semibold text-xs mx-1 text-right p-1 uppercase cursor-pointer" onClick={() => setResgatar(!resgatar)}>Resgatar</span>}
         {status == 'Ganhou' && history?.status?.state == "request" && <span className="text-gray-600 font-normal text-xs mx-1 text-right p-1 uppercase cursor-pointer">resgate solicitado.</span>}
+        {status == 'Ganhou' && history?.status?.state == "success" && <span className="text-gray-600 font-normal text-xs mx-1 text-right p-1 uppercase cursor-pointer">resgate Realizado</span>}
         <span className="text-gray-600 text-xs mx-1 text-right p-1 uppercase">{status ? status : '...'}</span>
       </div>
     </div>
@@ -43,7 +44,7 @@ export default function ListBetsHistory({ data: history, status }) {
     <div className={`${resgatar ? `absolute` : `hidden`} top-0 left-0 w-full h-full p-2 bg-black bg-opacity-10 z-50 overflow-hidden`}>
       <div className='bg-white my-6 mx-10 rounded-md p-3'>
         <span onClick={() => setResgatar(false)} className="p-0.5 bg-red-600 hover:bg-red-500 text-white flex items-center justify-center font-bold rounded-full w-4 h-4 text-xs float-right cursor-pointer">x</span>
-        <Rescue id={history._id} />
+          <Rescue id={history._id} value={history.value} />
       </div>
     </div>
   </>
