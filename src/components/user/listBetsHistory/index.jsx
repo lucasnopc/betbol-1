@@ -20,6 +20,7 @@ export default function ListBetsHistory({ data: history, status }) {
       <div>
         {status == 'Ganhou' && !history.status && <span className="text-primary hover:text-primary-ligth font-semibold text-xs mx-1 text-right p-1 uppercase cursor-pointer" onClick={() => setResgatar(!resgatar)}>Resgatar</span>}
         {status == 'Ganhou' && history?.status?.state == "request" && <span className="text-gray-600 font-normal text-xs mx-1 text-right p-1 uppercase cursor-pointer">resgate solicitado.</span>}
+        {status == 'Ganhou' && history?.status?.state == "success" && <span className="text-gray-600 font-normal text-xs mx-1 text-right p-1 uppercase cursor-pointer">resgate Realizado</span>}
         <span className="text-gray-600 text-xs mx-1 text-right p-1 uppercase">{status ? status : '...'}</span>
       </div>
     </div>

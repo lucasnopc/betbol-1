@@ -11,6 +11,7 @@ export default function Rescue({ id, value }) {
     const body = { _id, method, points: user.points + value }
     const data = await axios.post(`/api/user/rescue`, body)
     if (data.status == 200) {
+      console.log(data)
       alert("Recebimento solicitado, o procecimento pode demorar até 48 horas!")
     }
     router.push('/user/withdraw')

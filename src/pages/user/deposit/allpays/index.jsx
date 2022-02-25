@@ -43,9 +43,9 @@ export default function AllPays(props) {
     }
 
     return <div className='mt-2'>
-    <div onClick={() => setToggle(!toggle)} className='uppercase font-semibold bg-gray-200 hover:bg-gray-300 cursor-pointer text-sm p-1 rounded-t-md'>Ver depositos</div>
-       <div className={`${toggle ? `opacity-100` : `opacity-0`} delay-100 transition-opacity`}>
-    <div className={`${toggle ? `block` : `hidden`}`}>
+    <div onClick={() => setToggle(!toggle)} className='uppercase font-semibold bg-gray-200 hover:bg-gray-300 cursor-pointer text-sm p-1 rounded-t-md'>Depositos</div>
+       <div className={` delay-100 transition-opacity`}>
+    <div className={``}>
 
         {payments.map(pay => {
             const date = format(new Date(pay.date), 'dd.MM.yy')
