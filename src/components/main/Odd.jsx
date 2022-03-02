@@ -76,6 +76,9 @@ export default function Odd(props) {
             })
             if (itemNote) {
                 const oddWithSelect = newValues.map(itemValue => {
+                    if(itemValue.select == true) {
+                        itemValue.select = false
+                    }
                     if (itemValue.value == itemNote.choice.value && itemValue.odd == itemNote.choice.odd) {
                         itemValue.select = true
                         return itemValue

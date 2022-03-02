@@ -1,6 +1,8 @@
 export default function calcStatusFix(atualFix, bet) {
-    let winner;
-    let status;
+  let winner;
+  let status;
+  const choiceValue = bet.choice.value
+  console.log(atualFix.goals, choiceValue)
   const betsChoice = bet.choice.betsChoice;
   const goalsHome = atualFix.goals.home;
   const goalsAway = atualFix.goals.away;
@@ -15,6 +17,8 @@ export default function calcStatusFix(atualFix, bet) {
   }
   if (winner) {
     switch (betsChoice) {
+      case 1:
+
       //     case 3:
       //         const scoreSegoundTimeHome = atualFix.score.fulltime.home - atualFix.score.halftime.home
       //         const scoreSegoundTimeAway = atualFix.score.fulltime.away - atualFix.score.halftime.away

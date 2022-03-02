@@ -25,12 +25,13 @@ export default function NoteBtn(props) {
         return ``
     }
 
-    const startBet = (user, valor) => {
+    const startBet = (user, valor, retornoPotencial) => {
         setLoading(true)
         axios.post('/api/betApi/toBet', {
             points: user.points,
             email: user.email,
             bets: note,
+            potencialReturn: retornoPotencial,
             value: valor
         })
             .then(function (response) {
@@ -77,34 +78,32 @@ export default function NoteBtn(props) {
             if (note.length > 0) {
                 setOpen(true)
             } else {
-                // toast.info("Primeiro faça uma escolha.",{
-                //     position: "top-right",
-                //     autoClose: 3000,
-                //     hideProgressBar: true,
-                //     closeOnClick: false,
-                //     pauseOnHover: true,
-                //     draggable: true,
-                //     progress: undefined,
-                //     })
-                alert('Primeiro faça uma escolha')
+                toast.info("Primeiro faça uma escolha.",{
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    })
 
             }
         } else {
-            alert('Você não tem pontos suficientes, faça um depósito.')
-            // toast.warn("Você não tem pontos suficientes, faça um depósito.",{
-            //     position: "top-right",
-            //     autoClose: 3000,
-            //     hideProgressBar: true,
-            //     closeOnClick: false,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            //     })
+            toast.warn("Você não tem pontos suficientes, faça um depósito.",{
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
         }
 
     }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>
         <ConfirmDialog open={open} setOpen={setOpen} onConfirm={() => {
-            startBet(user, props.vf)
+            startBet(user, props.vf, props.retornoPotencial)
         }}>
             {/* <h1 className="font-bold uppercase">Confirmar Aposta ? R${props.vf.toFixed(2)}</h1> */}
             <div className="overflow-scroll max-h-64">

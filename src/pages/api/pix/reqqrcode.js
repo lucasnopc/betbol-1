@@ -13,7 +13,7 @@ export default async function reqQQRCode(req, res) {
     valor: {
       original: value
     },
-    chave: "d98cc64b-64fa-401d-b488-c295d9b57958",
+    chave: "f54efa19-a7cb-427c-8e3c-63504f506ed3",
     solicitacaoPagador: "Informe o número ou identificador do pedido."
   }
 

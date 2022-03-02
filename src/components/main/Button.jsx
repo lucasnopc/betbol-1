@@ -4,6 +4,7 @@ import Translate from "../../utills/translate"
 
 export default function Button(props) {
     const checked = props.val.select
+    // console.log('button props.val', props.val)
     const { setGoBetsInNote, removeBetsInNote, note, replaceBetsInNote } = useStore()
     // useEffect(() => {
     //     if (note.length > 0) {

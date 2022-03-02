@@ -7,6 +7,7 @@ export default async function toBet(req, res) {
         const email = req.body.email
         const bets = req.body.bets
         const value = req.body.value
+        const potencialReturn = req.body.potencialReturn
         const date = new Date()
         const points = Number(req.body.points) - Number(value)
         var newvalues = { $set: { points } };
@@ -20,6 +21,7 @@ export default async function toBet(req, res) {
                         email,
                         date,
                         bets,
+                        potencialReturn,
                         value
                     }, function (err, resp) {
                         console.log('toBet.js:21 ERROR: ', err, resp)

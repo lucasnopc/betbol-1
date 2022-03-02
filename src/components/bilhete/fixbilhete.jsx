@@ -2,7 +2,6 @@ import calcStatusFix from "../../utills/calcStatusFix"
 import { oddBets } from "../../utills/oddBets"
 import useFetch from "../../utills/useFetch"
 import FullLoading from "../fullloading"
-import Status from "../user/listBetsHistory/status"
 
 export default function FixBilhete( { m }) {
   const urlFix = `/api/betApi/fixture/${m.fix.fixture.id}/`
@@ -18,6 +17,5 @@ export default function FixBilhete( { m }) {
     <span><span className='font-semibold'>Escolha: </span>{m.choice.value}</span>
     <span><span className='font-semibold'>Cotação: </span>{m.choice.odd}</span>
     <span><span className='font-semibold'>Tipo :</span>{oddb.name}</span>
-    <span><span className='font-semibold'>Status: </span><Status res={atualfix} calcStatus={calcStatus} /></span>
   </div>
 }

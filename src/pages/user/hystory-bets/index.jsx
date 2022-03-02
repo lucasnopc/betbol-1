@@ -26,12 +26,13 @@ export default function historyBets(props) {
         <h1 className="font-bold text-sm">Histórico de Apostas</h1>
         <div className='flex justify-between mb-2'> 
         <span onClick={ () => setStatusSearch('Todos')}  className={`${statusSearch == "Todos" ? `bg-gray-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Todos</span>
+        <span onClick={ () => setStatusSearch('Ao vivo')}  className={`${statusSearch == "Ao vivo" ? `bg-green-400 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Ao vivo</span>
         <span onClick={ () => setStatusSearch('Ganhou')} className={`${statusSearch == "Ganhou" ? `bg-green-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors block w-full p-2`}>Ganhos</span>
         <span onClick={ () => setStatusSearch('Perdeu')} className={`${statusSearch == "Perdeu" ? `bg-red-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Perdas</span>
       </div>
       <div className="bg-gray-100 flex justify-between px-2 border-b border-gray-200">
         <span className="text-xs font-semibold text-gray-500 uppercase">
-          Data | Hora
+          Bilhetes
         </span>
         <span className="text-xs font-semibold text-gray-500 uppercase">
           Status

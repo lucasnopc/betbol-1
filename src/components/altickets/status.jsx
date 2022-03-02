@@ -10,7 +10,6 @@ export default function Status({ticket}) {
       })
 
   }, [ticket])
-  console.log('fixAtual', fixAtual)
   // ticket.bets.map(bet => {
   //     // const fixatual = fixAtual(bet)
   //     // console.log(fixAtual)

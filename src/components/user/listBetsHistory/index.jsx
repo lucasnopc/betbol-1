@@ -10,23 +10,36 @@ export default function ListBetsHistory({ data: history, status }) {
   const date = format(new Date(history.date), 'dd.MM | HH:mm')
   const cotacao = history.bets.map((b) => Number(b.choice.odd))
   const cotaSoma = cotacao.reduce((antes, atual) => antes + atual)
-
+console.log()
   return <>
-    <div onClick={() => setToggle(!toggle)} className="p-1 bg-gray-300 border-b border-gray-200 hover:bg-gray-200 cursor-pointer items-center flex justify-between" key={history._id}>
+    <div onClick={() => setToggle(!toggle)} className="p-1 bg-gray-200 border-b border-gray-300 hover:bg-gray-200 cursor-pointer items-center flex justify-between" key={history._id}>
       <div>
-        <span className="text-gray-600 text-xs mx-1 text-right">{date} </span>
-        <span className="text-gray-600 text-xs mx-1 text-right"><b>{history.bets.length}</b></span>
+        <span className="text-gray-600 text-xs mx-1 text-right">{history._id}</span>
+        <span className="text-gray-600 text-xs mx-1 text-right">{date}</span>
+        <span className="text-gray-600 text-xs mx-1 text-right">
+          {history.bets.map(bet => {
+            switch (bet.status) {
+              case "Ao vivo":
+                return <div key={bet.fix.fixture.id} className='w-3 rounded-full h-3 mx-1 bg-blue-600 inline-block'></div>
+              case "Perdeu":
+                return <div key={bet.fix.fixture.id} className='w-3 rounded-full h-3 mx-1 bg-red-600 inline-block'></div>
+              case "Ganhou":
+                return <div key={bet.fix.fixture.id} className='w-3 rounded-full h-3 mx-1 bg-green-600 inline-block'></div>
+
+            }
+          })}
+        </span>
       </div>
       <div>
         {status == 'Ganhou' && !history.status && <span className="text-primary hover:text-primary-ligth font-semibold text-xs mx-1 text-right p-1 uppercase cursor-pointer" onClick={() => setResgatar(!resgatar)}>Resgatar</span>}
         {status == 'Ganhou' && history?.status?.state == "request" && <span className="text-gray-600 font-normal text-xs mx-1 text-right p-1 uppercase cursor-pointer">resgate solicitado.</span>}
         {status == 'Ganhou' && history?.status?.state == "success" && <span className="text-gray-600 font-normal text-xs mx-1 text-right p-1 uppercase cursor-pointer">resgate Realizado</span>}
-        <span className="text-gray-600 text-xs mx-1 text-right p-1 uppercase">{status ? status : '...'}</span>
+        <span className="text-gray-600 text-xs mx-1 text-right p-1 font-base">{history.generalStatus}</span>
       </div>
     </div>
 
     <div className={` border border-gray-200 bg-gray-50`}>
-      {history.bets.reverse().map(b => {
+      {toggle && history.bets.map(b => {
         const choiceOdd = oddBets.find(f => {
           return f.id == b.choice.betsChoice
         })
@@ -44,7 +57,7 @@ export default function ListBetsHistory({ data: history, status }) {
     <div className={`${resgatar ? `absolute` : `hidden`} top-0 left-0 w-full h-full p-2 bg-black bg-opacity-10 z-50 overflow-hidden`}>
       <div className='bg-white my-6 mx-10 rounded-md p-3'>
         <span onClick={() => setResgatar(false)} className="p-0.5 bg-red-600 hover:bg-red-500 text-white flex items-center justify-center font-bold rounded-full w-4 h-4 text-xs float-right cursor-pointer">x</span>
-          <Rescue id={history._id} value={history.value} />
+        <Rescue id={history._id} value={history.value} />
       </div>
     </div>
   </>
