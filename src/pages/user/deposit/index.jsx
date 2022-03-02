@@ -18,7 +18,7 @@ export default function withDraw(props) {
   });
 
   const deposit = async valueDeposit => {
-    const qrcode = await axios.get(`https://api-betbol.herokuapp.com`, {value: valueDeposit})
+    const qrcode = await axios.post(`/api/pix/reqqrcode?value=${valueDeposit}`)
     setQrCode(qrcode.data)
     // const orderData = {
     //   quantity: valueDeposit,
@@ -68,18 +68,18 @@ export default function withDraw(props) {
                 <div className='uppercase bg-gray-200 hover:bg-gray-300 text-center py-1 text-gray-600 font-bold' onClick={() => setValueDeposit(valueDeposit + 1000)}>+1000</div>
                 <div className='uppercase bg-gray-200 hover:bg-gray-300 text-center py-1 text-gray-600 font-bold' onClick={() => setValueDeposit(0)}>Limpar</div>
               </div>
-              <span className='block text-center rounded-md p-2 cursor-pointer uppercase bg-primary text-white font-semibold w-full my-1' onClick={() => deposit(valueDeposit)}>Fazer Depósito</span>
+              <span className='block text-center rounded-md p-2 cursor-pointer uppercase bg-primary text-white font-semibold w-full my-1' onClick={() => deposit(valueDeposit.toFixed(2))}>Fazer Depósito</span>
             </div>
             <div className=''>
               <div id="paym">
                 {/* <AllPays user={user} mercadopago={mercadopago} /> */}
               </div>
             </div>
-          {qrCode.imagemQrcode && <div id="qrcode" className='bg-black bg-opacity-70 absolute flex items-center justify-center w-full h-full top-0 left-0 z-40'>
+          {qrCode.qrcodeImage && <div id="qrcode" className='bg-black bg-opacity-70 absolute flex items-center justify-center w-full h-full top-0 left-0 z-40'>
             <div className='w-3/5 h-3/5 p-2 bg-white flex flex-col'>
              <h2 className='font-semibold text-base text-center'>Faça o pagamento de R$ {Number(valueDeposit).toFixed(2)} via Pix com o qrcode abaixo</h2>    
               <div className='flex justify-center items-center'>
-                <img src={qrCode.imagemQrcode} className="min-h-full" />
+                <img src={qrCode.qrcodeImage} className="min-h-full" />
               </div>
               <span className='text-red-600 hover:text-red-700 text-center font-semibold cursor-pointer' onClick={() => setQrCode({})}>[x] fechar</span>
             </div>
