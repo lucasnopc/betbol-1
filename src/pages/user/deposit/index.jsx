@@ -18,7 +18,7 @@ export default function withDraw(props) {
   });
 
   const deposit = async valueDeposit => {
-    const qrcode = await axios.post(`/api/pix/reqqrcode`, {value: valueDeposit})
+    const qrcode = await axios.get(`https://api-betbol.herokuapp.com`, {value: valueDeposit})
     setQrCode(qrcode.data)
     // const orderData = {
     //   quantity: valueDeposit,
