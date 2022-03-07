@@ -1,15 +1,19 @@
-// import { connectToDatabase } from '../../../../utills/conectdb';
+import { connectToDatabase } from '../../../../utills/conectdb';
 
 export default async function webhook (req, res) {
-  console.log('body ', req.body)
-  res.send('ok')
+
   // CREATE PAYMENT PIX
-  // if (req.method === 'POST') {
-  //   const { db } = await connectToDatabase();
-  //   const { pix } = req.body.data
-  //   const response = await db.collection("payments").update({ email } , set)
-  //   res.status(203).json({ message: true });
-  // } else {
-  //   res.status(400).json({ message: 'Wrong request method' });
-  // }
+  if (req.method === 'POST') {
+    const { db } = await connectToDatabase();
+    const { pix } = req.body
+
+    await db.collection("payment").insertOne({"pix": pix[0]}, (err, resp) => {
+      if(err) console.log('err ', err)
+      if(resp) {
+        res.status(203).json({ "pay": true });
+      }
+    })
+  } else {
+    res.status(400).json({ message: 'Wrong request method' });
+  }
 }
