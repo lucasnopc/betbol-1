@@ -9,7 +9,7 @@ import axios from 'axios'
 
 export default function withDraw(props) {
   const [qrCode , setQrCode] = useState({})
-  const [valueDeposit, setValueDeposit] = useState(0.1)
+  const [valueDeposit, setValueDeposit] = useState(0.10)
   const user = useUser(props.userString)
   // TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9
   // APP_USR-9bee11b4-7b73-4936-8610-9cfa6797e650
