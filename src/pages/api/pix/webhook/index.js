@@ -1,9 +1,8 @@
 // import { connectToDatabase } from '../../../../utills/conectdb';
 
-export default async (req, res) => {
-
-    console.log(req.body)
-    res.send('ok')
+export default async function webhook (req, res) {
+  console.log('body ', req.body)
+  res.send('ok')
   // CREATE PAYMENT PIX
   // if (req.method === 'POST') {
   //   const { db } = await connectToDatabase();
