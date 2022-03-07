@@ -16,23 +16,24 @@ export default function calcStatusFix(atualFix, bet) {
     winner = "Draw";
   }
   if (winner) {
+    
     switch (betsChoice) {
       case 1:
-
+      
       //     case 3:
       //         const scoreSegoundTimeHome = atualFix.score.fulltime.home - atualFix.score.halftime.home
       //         const scoreSegoundTimeAway = atualFix.score.fulltime.away - atualFix.score.halftime.away
       //         if (scoreSegoundTimeHome > scoreSegoundTimeAway) {
-      //             winner = "Home"
-      //         } else {
-      //             winner = "Away"
+        //             winner = "Home"
+        //         } else {
+          //             winner = "Away"
       //         }
       //         if (bet.choice.value == winner) {
-      //             status = true
-      //         } else {
-      //             status = false
-      //         }
-      //         break
+        //             status = true
+        //         } else {
+          //             status = false
+          //         }
+          //         break
       default:
         if (bet.choice.value == winner) {
           status = true;
