@@ -1,4 +1,4 @@
-import { connectToDatabase } from '../../utills/conectdb';
+// import { connectToDatabase } from '../../../../utills/conectdb';
 
 export default async (req, res) => {
 
