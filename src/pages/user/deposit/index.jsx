@@ -7,54 +7,20 @@ import { useMercadopago } from 'react-sdk-mercadopago'
 import { useState } from 'react';
 import useUser from '../../../utills/hooks/useUser'
 import axios from 'axios'
-import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import QrcodeComponent from './QrcodeComponent';
 
 export default function withDraw(props) {
   const [qrCode , setQrCode] = useState({})
-  const [isCopied, setCopied] = useClipboard(qrCode.qrcode);
+  const [loading, setLoading] = useState(false)
   const [valueDeposit, setValueDeposit] = useState(0.05)
-  useEffect(() => {
-    if(qrCode.qrcode) {
-      setCopied(qrCode.qrcode)
-    }
-  }, [qrCode])
   const user = useUser(props.userString)
-  // TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9
-  // APP_USR-9bee11b4-7b73-4936-8610-9cfa6797e650
-  const mercadopago = useMercadopago.v2('TEST-6f7c3cbe-bc40-43ca-ab7a-76ba61d93fb9', {
-    locale: 'pt-BR'
-  });
 
   const deposit = async valueDeposit => {
     const qrcode = await axios.post(`/api/pix/reqqrcode?value=${valueDeposit}`)
     setQrCode(qrcode.data)
-    // const orderData = {
-    //   quantity: valueDeposit,
-    //   description: `${valueDeposit} Pontos - Betbol`,
-    //   price: 1
-    // }
-
-    // fetch("/api/mp", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(orderData),
-    // })
-    //   .then(function (response) {
-    //     return response.json();
-    //   })
-    //   .then(function (preference) {
-    //     if (mercadopago) {
-    //       mercadopago.checkout({
-    //         preference: {
-    //           id: preference.id
-    //         },
-    //         autoOpen: true,
-    //       })
-    //     }
-    //   })
   }
+
   return (
     <>
       <Head>
@@ -83,17 +49,10 @@ export default function withDraw(props) {
                 {/* <AllPays user={user} mercadopago={mercadopago} /> */}
               </div>
             </div>
-          {qrCode.imagemQrcode && <div id="qrcode" className='bg-black bg-opacity-70 absolute flex items-center justify-center w-full h-full top-0 left-0 z-40'>
-            <div className='w-3/5 h-3/5 p-2 bg-white flex flex-col'>
-             <h2 className='font-semibold text-base text-center'>Faça o pagamento de R$ {Number(valueDeposit).toFixed(2)} via Pix com o qrcode abaixo</h2>    
-              <div className='flex justify-center items-center'>
-                <a href={qrCode.qrcode}><img src={qrCode.imagemQrcode} className="min-h-full" /></a>
-              </div>
-              <span className='text-red-600 hover:text-red-700 text-center font-semibold cursor-pointer' onClick={() => setQrCode({})}>[x] fechar</span>
-            </div>
-          </div>}
+          {qrCode.qrcodeResponde && <QrcodeComponent user={user} valueDeposit={valueDeposit} qrCode={qrCode.qrcodeResponde} setQrCode={setQrCode} txid={qrCode.cobResponde.txid} />}
           </div>
         </div>
+        <ToastContainer />
       </LayoutUser>
     </>
   )
