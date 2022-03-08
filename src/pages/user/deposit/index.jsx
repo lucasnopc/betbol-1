@@ -1,9 +1,6 @@
 import Head from 'next/head'
-import useClipboard from "react-use-clipboard";
 import LayoutUser from '../../../components/layouts/user'
 import serverSidePropsClient from '../../../utills/serverSitePropsClient'
-import AllPays from './allpays'
-import { useMercadopago } from 'react-sdk-mercadopago'
 import { useState } from 'react';
 import useUser from '../../../utills/hooks/useUser'
 import axios from 'axios'
@@ -46,7 +43,6 @@ console.log(qrCode)
             </div>
             <div className=''>
               <div id="paym">
-                {/* <AllPays user={user} mercadopago={mercadopago} /> */}
               </div>
             </div>
           {qrCode.qrcodeResponde && <QrcodeComponent user={user} valueDeposit={valueDeposit} qrCode={qrCode.qrcodeResponde} setQrCode={setQrCode} txid={qrCode.cobResponde.txid} />}
