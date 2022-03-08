@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import useCopyClipboard from 'react-use-clipboard';
 import useFetch from '../../../../utills/useFetch';
-import useUser from '../../../../utills/hooks/useUser'
 import axios from 'axios';
 
 export default function QrcodeComponent({ qrCode, valueDeposit, setQrCode, txid, user }) {
