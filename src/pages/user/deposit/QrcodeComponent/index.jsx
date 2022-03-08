@@ -21,7 +21,11 @@ export default function QrcodeComponent({ qrCode, valueDeposit, setQrCode, txid,
   useEffect(() => {
     const fetchConfirmationPIx = async () => {
       if (confirmationPix?.pix.endToEndId) {
-        setQrCode({})
+        const points = Number(user.points) + Number(confirmationPix.pix.valor)
+        const updatePoints = await axios.post('/api/adm/updatePoints', {
+          points: points,
+          email: user.email
+        })
         toast.success('PIX efeituado com sucesso! Atualize a página para visualizar seus novos pontos!', {
           position: "top-right",
           autoClose: 10000,
@@ -31,12 +35,7 @@ export default function QrcodeComponent({ qrCode, valueDeposit, setQrCode, txid,
           draggable: true,
           progress: undefined,
         })
-
-        const points = Number(user.points) + Number(confirmationPix.pix.valor)
-        const updatePoints = await axios.post('/api/adm/updatePoints', {
-          points: points,
-          email: user.email
-        })
+        setQrCode({})
         console.log(updatePoints)
       }
     }
