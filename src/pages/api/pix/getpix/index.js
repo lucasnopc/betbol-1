@@ -8,9 +8,10 @@ export default async function getPix(req, res) {
     if (req.method == "GET") {
         const payment = await db.collection("payment").findOne({ "pix.txid": txid })
         if (payment != null) {
-            await db.collection("payment").update({ "pix.txid": txid }, { $set: { email } })
+            const update = await db.collection("payment").updateOne({ "pix.txid": txid }, { $set: { email } })
             res.status(200).json({ pix: payment })
+        }else {
+            res.status(200).json({ message: "Sem confirmação de pagamento" })
         }
-        res.status(200).json({ message: "Sem confirmação de pagamento" })
     }
 }
