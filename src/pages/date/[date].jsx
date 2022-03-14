@@ -30,7 +30,7 @@ export default function LeaguePage(props) {
 
             <Layout userString={user}>
                 <FixProvider>
-                    {live.length > 0 && <Highlights highlights={live} title={`Jogos de ${date}`} />}
+                    {live.length > 0 && <Highlights highlights={live} title={`Jogos de ${date}`}  qtd={10} />}
                 </FixProvider>
             </Layout>
         </>

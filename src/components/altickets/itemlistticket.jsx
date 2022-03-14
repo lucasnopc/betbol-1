@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import useStatus from "../../utills/hooks/useStatus";
@@ -9,7 +8,6 @@ export default function ItemListTicket({ bi, statusSearch }) {
   const [bilhete, setBilhete] = useState({})
   const [visible, setVisible] = useState(true)
   const biWithStatus = useStatus(bi)
-  
   useEffect(() => {
   setBilhete(biWithStatus)
 }, [biWithStatus]) 

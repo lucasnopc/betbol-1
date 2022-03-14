@@ -2,17 +2,16 @@ import Button from "./Button"
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-export default function Odd(props) {
-    const bets = props.bets
-    const id = props.fixId.fixture.id
+export default function Odd({ bets, fix, odds }) {
+    const id = fix.fixture.id
     const [values, setValues] = useState([])
-    useEffect(() => setValues(props.odds?.values), [props.odds])
+    useEffect(() => setValues(odds?.values), [odds])
     return <>
         <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200 divide-x`}>
             {values && values.length <= 3 &&
                 values.map((val, i) => {
                     return <div key={val.value} className="flex-1 gap-0 h-full">
-                        <Button key={i} val={val} fix={props.fixId} bets={bets} />
+                        <Button key={i} val={val} fix={fix} bets={bets} />
                     </div>
                 })
             }

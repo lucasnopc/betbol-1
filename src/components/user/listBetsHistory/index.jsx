@@ -10,7 +10,7 @@ export default function ListBetsHistory({ data: history, status }) {
   const date = format(new Date(history.date), 'dd.MM | HH:mm')
   const cotacao = history.bets.map((b) => Number(b.choice.odd))
   const cotaSoma = cotacao.reduce((antes, atual) => antes + atual)
-console.log()
+
   return <>
     <div onClick={() => setToggle(!toggle)} className="p-1 bg-gray-200 border-b border-gray-300 hover:bg-gray-200 cursor-pointer items-center flex justify-between" key={history._id}>
       <div>
@@ -43,13 +43,14 @@ console.log()
         const choiceOdd = oddBets.find(f => {
           return f.id == b.choice.betsChoice
         })
-        return <ItemListBetHistory key={b.fix.fixture.id} toggle={toggle} choiceOdd={choiceOdd} b={b} />
+        return  <div className='relative' key={b.fix.fixture.id}>
+                  <ItemListBetHistory toggle={toggle} choiceOdd={choiceOdd} b={b} />
+                </div>
       })}
       <div className={`${toggle ? `block` : `hidden`} grid grid-cols-3 bg-gray-200`}>
         <div className=' text-center text-xs uppercase text-gray-700 font-semibold'>Valor<div>R$ {Number(history.value).toFixed(2)}</div></div>
         <div className=' text-center text-xs uppercase text-gray-700 font-semibold'>Cota <div>{cotaSoma.toFixed(2)}</div></div>
         <div className=' text-center text-xs uppercase text-gray-700 font-semibold'>Ganhos<div>R$ {Number(Number(history.value) * cotaSoma).toFixed(2)}</div>
-
         </div>
       </div>
     </div>

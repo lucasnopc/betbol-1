@@ -52,7 +52,7 @@ export default function NoteBtn(props) {
                         
                         clearNote()
                         props.setToggleNoteBets(false)
-                        router.push(`/user/hystory-bets`)
+                        router.push(`/user/hystory`)
                     })
                     .catch(function (error) {
                         console.log(error);

@@ -10,8 +10,7 @@ import AllPays from './allpays';
 
 export default function withDraw(props) {
   const [qrCode , setQrCode] = useState({})
-  const [loading, setLoading] = useState(false)
-  const [valueDeposit, setValueDeposit] = useState(0.05)
+  const [valueDeposit, setValueDeposit] = useState(10.00)
   const user = useUser(props.userString)
 
   const deposit = async valueDeposit => {

@@ -17,7 +17,7 @@ export default function Fix(props) {
             </div>
             <div className="col-start-7 col-span-6">
                 <div className="h-full">
-                    <Odd odds={odds} bets={props.bets} fixId={fix} isAlive={props.isAlive} indexFix={props.indexFix} />
+                    <Odd odds={odds} bets={props.bets} fix={fix} />
                 </div>
             </div>
         </div>

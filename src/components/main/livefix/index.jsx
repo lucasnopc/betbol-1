@@ -4,9 +4,6 @@ import FixLive from "./fixlive"
 
 export default function LiveFix({ live }) {
   const [bets, setBets] = useState(1)
-  useEffect(()=>{
-    console.log('live', live.slice(0,10))
-  },[])
   return <>
     <div className="flex justify-between p-2 border-b border-gray-200">
       <h2 className="page-title p-2 inline-block">Ao vivo</h2>

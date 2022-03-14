@@ -19,7 +19,7 @@ export default function Profile({ user }) {
                             <div><Link href="/user/register"><a className="list-styles block">Atualizar dados</a></Link></div>
                             <div><Link href="/user/deposit"><a className="list-styles block">Depósitos</a></Link></div>
                             <div><Link href="/user/withdraw"><a className="list-styles block">Saques</a></Link></div>
-                            <div><Link href="/user/hystory-bets"><a className="list-styles block">Apostas</a></Link></div>
+                            <div><Link href="/user/hystory"><a className="list-styles block">Apostas</a></Link></div>
                             <div className="list-styles" onClick={() => signOut()}>Sair</div>
                         </div>
                   </div>

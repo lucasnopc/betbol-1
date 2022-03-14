@@ -50,7 +50,7 @@ export default function withdraw(props) {
             <span className=''>R$ {Number(m.value).toFixed(2)}</span>
             </div>})}
             {onlyPaysWithState.length == 0 && <div className='text-base font-semibold'>
-              Não há recebimentos programados, primeiramente solicite o saque no <Link href="/user/hystory-bets">bilhete premiado.</Link>
+              Não há recebimentos programados, primeiramente solicite o saque no <Link href="/user/hystory">bilhete premiado.</Link>
             </div>}
           </div>
         </div>

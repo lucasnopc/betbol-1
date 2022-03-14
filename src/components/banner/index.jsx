@@ -6,23 +6,32 @@ import SignInButton from "../layouts/home/header/signIn";
 import { bestLeagues } from "../layouts/home/bestLeagues";
 import { FaFutbol } from 'react-icons/fa'
 import Odd from '../main/Odd'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import get_odd_for_fix from "../../utills/get_odds_for_fix";
 
-export default function Banner(props) {
+export default function Banner({ highlights }) {
     const [session] = useSession()
     const [scrollX, setScrollX] = useState(0)
-    const itens = props.live
-    const ligas = [...itens]
-    const primaryLeagues = ligas.filter((l, indice) => {
-        for (let i = 0; i < bestLeagues.length; i++) {
-            if (bestLeagues[i].id == l.league.id) {
-                ligas.splice(indice, 1);
-                return true
+    const [leagues, setLeagues] = useState([])
+    const [fix, setFix] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [league_indice, setLeague_indice] = useState(0)
+    const bets = 1
+    useEffect(() => {
+        get_odd_for_fix(setLoading, highlights, leagues, setLeagues, 0, 10)
+    }, [])
+
+    useEffect(() => {
+        const fixtures = []
+        for (let league of leagues) {
+            if (league.league_indice > league_indice) setLeague_indice(league.league_indice + 1)
+            for(fix of league.fix) {
+                fixtures.push(fix)
             }
         }
-        return false
-    })
-
+        setFix(fixtures)
+    }, [leagues])
+    
     return <>
         <div className=" mx-2 text-xs text-gray-700">
             <div className="h-40 scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-100 overflow-x-auto overflow-y-hidden flex transition-transform" style={{ marginLeft: scrollX }} >
@@ -38,7 +47,7 @@ export default function Banner(props) {
                         {/* <h3 className="text-gray-200 font-bold mt-2 text-lg pl-2 text-shadow">Recebimento rápido</h3> */}
                     </div>
                 </div>
-                {primaryLeagues.map(i => {
+                {fix.length > 0 && fix.map(i => {
                     const dateFix = new Date(i.fixture.date)
                     const dateFormat = format(dateFix, 'yyyy/MM/dd')
                     const TimeFormat = format(dateFix, 'hh:mm')
@@ -56,7 +65,7 @@ export default function Banner(props) {
                                 <div className="text-left flex items-center"><Image src={i.teams.home.logo} width="30" height="30" /><span className="ml-1 w-20">{i.teams.home.name.substring(0, 10)}{i.teams.home.name.length > 10 ? `...` : ``}</span></div>
                             </div>
                             <div className="text-center mt-2">Resultado da partida</div>
-                            <div className='h-10'><Odd bets={1} fixId={i} isAlive={false} /></div>
+                            <div className='h-10'><Odd odds={i.odd.bookmakers[0].bets.find((bet)=> bet.id == 1)} bets={1} fix={i} /></div>
                         </div>
                     </div>
                 }

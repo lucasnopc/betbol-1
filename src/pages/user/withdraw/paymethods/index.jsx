@@ -16,7 +16,7 @@ export default function payMethods(props) {
     const resSetPix = await axios.post(postUrl, { data })
     if(resSetPix.status == 203) {
       alert('Pix atualizado com sucesso')
-      router.push('/user/hystory-bets')
+      router.push('/user/hystory')
     }
   }
   return (
