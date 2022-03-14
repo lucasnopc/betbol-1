@@ -6,6 +6,7 @@ import useUser from '../../../utills/hooks/useUser'
 import axios from 'axios'
 import { ToastContainer } from 'react-toastify';
 import QrcodeComponent from './QrcodeComponent';
+import AllPays from './allpays';
 
 export default function withDraw(props) {
   const [qrCode , setQrCode] = useState({})
@@ -43,6 +44,7 @@ console.log(qrCode)
             </div>
             <div className=''>
               <div id="paym">
+                  <AllPays />
               </div>
             </div>
           {qrCode.qrcodeResponde && <QrcodeComponent user={user} valueDeposit={valueDeposit} qrCode={qrCode.qrcodeResponde} setQrCode={setQrCode} txid={qrCode.cobResponde.txid} />}

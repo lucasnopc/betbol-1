@@ -1,16 +1,13 @@
+import { useEffect, useState } from 'react'
 import FixDate from './FixDate'
 import Odd from './Odd'
-import VisibilitySensor from 'react-visibility-sensor'
-import { useState } from 'react'
 
 export default function Fix(props) {
-    const [visibleState, setVisibleState] = useState(false)
-    const onChange = (isVisible) => {
-        if(isVisible) {
-            setVisibleState(true)
-        }
-    }
+    const [odds, setOdds] = useState({})
     const fix = props.fix
+    useEffect(()=>{
+        setOdds(fix.odd.bookmakers[0].bets.find((bet)=> bet.id == props.bets))
+    },[props.bets])
     return <>
         <div className={`pl-2 grid grid-cols-12 gap-0 border-b border-gray-200 hover:border-primary-ligth`}>
             <div className="col-start-1 col-span-6 text-xs">
@@ -19,14 +16,9 @@ export default function Fix(props) {
                 <span className="block mt-1"><FixDate fix={fix} /></span>
             </div>
             <div className="col-start-7 col-span-6">
-                <VisibilitySensor onChange={onChange}>
-                    <div className="h-full">
-
-                    {visibleState &&
-                        <Odd bets={props.bets} fixId={fix} isAlive={props.isAlive} indexFix={props.indexFix} />
-                    }
-                    </div>
-                </VisibilitySensor>
+                <div className="h-full">
+                    <Odd odds={odds} bets={props.bets} fixId={fix} isAlive={props.isAlive} indexFix={props.indexFix} />
+                </div>
             </div>
         </div>
     </>

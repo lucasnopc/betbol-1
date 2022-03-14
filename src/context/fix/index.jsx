@@ -1,48 +1,32 @@
 import { createContext, useContext, useState } from 'react'
-
 const fixInitial = {}
 
 export const FixContext = createContext(fixInitial)
 
 export const FixProvider = ({ children }) => {
     const [live, setLive] = useState([])
-    const [highlights, setHighlights] = useState([])
+    const [fixHighlights, setFixHighlights] = useState([])
 
-    const setLiveOHighlightsState = (lv, isAlive) => {
-      if(isAlive) {
-        setLive(lv)
-      }else {
-        setHighlights(lv)
-      }
+    const setHighlightsState = (Highlights) => {
+      setFixHighlights(Highlights)
     }
 
-    const removeFix = (idFix, isAlive) => {
-        const fix = isAlive ? live : highlights
-        const newFix = [...fix]
-        const indexFix = fix.findIndex((f) => f.fixture.id == idFix)
-        newFix.splice(indexFix, 1)
-        
-        setLiveOHighlightsState(newFix, isAlive)
+    const removeFix = (idFix) => {
+        const newFix = [...fixHighlights]
+        const indexFix = fixHighlights.findIndex((f) => f.fixture.id == idFix)
+        newFix.splice(indexFix, 1)        
+        setFixHighlights(newFix)
     }
 
-    const fixList = (isAlive) => {
-      if(isAlive) {
-        return live
-      }else {
-        return highlights
-      }
-    }
-
-    const fix = {
+    const fixValue = {
       live,
-      highlights,
-      fixList,
+      fixHighlights,
       removeFix,
-      setLiveOHighlightsState,
+      setHighlightsState,
     }
 
     return <>
-        <FixContext.Provider value={fix}>
+        <FixContext.Provider value={fixValue}>
             {children}
         </FixContext.Provider>
     </>

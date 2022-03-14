@@ -3,20 +3,20 @@ import Layout from '../../components/layouts/home/layout'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
 import useFetch from '../../utills/useFetch'
-import { useState } from 'react'
-import Alive from '../../components/main/Alive'
+import { useEffect, useState } from 'react'
 import { FixProvider } from '../../context/fix'
 import useUser from '../../utills/hooks/useUser'
+import Highlights from '../../components/main/highlights'
 
 export default function LeaguePage(props) {
     const user = useUser(props.userString)
-    const [bets, setBets] = useState(1)
+    const [fix, setFix] = useState(1)
     const router = useRouter()
     const { id, year, name } = router.query
     const { data, error } = useFetch(`/api/betApi/fix-to-league?league=${id}&season=${year}`)
 
-    let fix = {}
     if (error) console.log(error)
+    useEffect(()=> setFix(data.res_filter),[])
     if (data) {
         fix = data.res_filter
     }
@@ -29,7 +29,7 @@ export default function LeaguePage(props) {
 
             <Layout userString={user}>
             <FixProvider>
-                <Alive live={fix} bets={bets} setBets={setBets} title={name} />
+          {fix.length > 0 && <Highlights highlights={fix} title={name} /> }
             </FixProvider>
             </Layout>
         </>

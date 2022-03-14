@@ -53,11 +53,11 @@ export default function Fix(props) {
         <span className="text-lg block font-bold">{res_fixture.response[0].teams.home.name} v {res_fixture.response[0].teams.away.name}</span>
         {oddValueTranslations.map(odd => {
           return <div key={odd.id}>
-            <h3 className="font-semibold border-b border-primary p-3 text-gray-800"> {odd.name}</h3>
+            <h3 className="font-semibold border-b border-primary p-1 text-white bg-primary"> {odd.name}</h3>
             <div className="flex flex-wrap">
               {odd.values.map((val, i) => {
                 return <div key={val.value} className="flex-1 gap-0 h-full ">
-                  <Button full="true" key={i} val={val} fixId={res_fixture.response[0]} bets={bets} />
+                  <Button key={i} val={val} fix={res_fixture.response[0]} bets={bets} />
                 </div>
               })}
             </div>

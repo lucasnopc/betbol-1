@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react'
 import serverSidePropsClient from '../utills/serverSitePropsClient'
 import useFetch from '../utills/useFetch'
 import FullLoading from '../components/fullloading'
-import Banner from '../components/banner'
-import Alive from '../components/main/Alive'
+import Highlights from '../components/main/highlights'
 import { format } from 'date-fns'
-import { FixProvider } from '../context/fix'
 import useUser from '../utills/hooks/useUser'
 
 export default function Home(props) {
@@ -16,7 +14,7 @@ export default function Home(props) {
   const [master, setMaster] = useState([])
   const date =  format(new Date(), 'yyyy-MM-dd')
   const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const { data, error } = useFetch(`/api/betApi/soccer?tzid=${tzid}`)
+  const { data, error } = useFetch(`/api/betApi/live?tzid=${tzid}`)
   const { data: data_master, error: error_master } = useFetch(`/api/betApi/soccer?date=${date}&tzid=${tzid}`)
 
   useEffect(() => {if (data) setLive(data.soccer.response)}, [data])
@@ -24,7 +22,7 @@ export default function Home(props) {
 
   if (error || error_master) return console.log(error)
   if (!data || !data_master) return <FullLoading />
-  
+
   return (
     <>
       <Head>
@@ -34,15 +32,15 @@ export default function Home(props) {
 
       <Layout userString={user}>
         <div className="grid gap-0 grid-cols-5">
-          <FixProvider>
-          <div className="col-span-5 md:col-span-3 md:col-start-1 md:bg-gray-100">
-            <Banner live={master} />  
-            <Alive live={live}  title="Futebol Ao vivo" isAlive={true} />
+          {/* <FixProvider> */}
+          <div className="col-span-5 md:bg-gray-100">
+            {/* <Banner live={master} />   */}
+            {/* <LiveFix live={live} /> */}
           </div>
-          <div className="col-span-5 md:col-span-2 md:col-start-4 md:bg-gray-50">
-            <Alive live={master} title="Destaques" isAlive={false} />
+          <div className="col-span-5">
+          { master.length > 0 && <Highlights highlights={master} title="Destaques" /> }
           </div>
-          </FixProvider>
+          {/* </FixProvider> */}
         </div>
       </Layout>
     </>

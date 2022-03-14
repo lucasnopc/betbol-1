@@ -1,3 +1,5 @@
+import { bestLeagues } from "../components/layouts/home/bestLeagues";
+
 export default function fixInLeagues(live) {
     const ligas = []
 
@@ -17,5 +19,15 @@ export default function fixInLeagues(live) {
         })
       }
     }
-    return ligas
+    const primaryLeagues = ligas.filter((l, indice) => {
+      for (let i = 0; i < bestLeagues.length; i++) {
+          if (bestLeagues[i].id == l.liga.id) {
+              ligas.splice(indice, 1);
+              return true
+          }
+      }
+      return false
+  })
+  
+    return [...primaryLeagues, ...ligas]
   }
