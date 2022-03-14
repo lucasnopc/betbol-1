@@ -16,10 +16,7 @@ export default function LeaguePage(props) {
     const { data, error } = useFetch(`/api/betApi/fix-to-league?league=${id}&season=${year}`)
 
     if (error) console.log(error)
-    useEffect(()=> setFix(data.res_filter),[])
-    if (data) {
-        fix = data.res_filter
-    }
+    useEffect(()=> {if(data) setFix(data.res_filter)},[data])
     return (
         <>
             <Head>
@@ -29,7 +26,10 @@ export default function LeaguePage(props) {
 
             <Layout userString={user}>
             <FixProvider>
-          {fix.length > 0 && <Highlights highlights={fix} title={name} /> }
+          {fix.length > 0 && <Highlights highlights={fix} title={name} qtd={10} /> }
+          {fix.length == 0 && <>
+         <h1 className="font-semibold text-center pt-7 text-lg">{name} não joga essa semana.</h1>  
+          </> }
             </FixProvider>
             </Layout>
         </>

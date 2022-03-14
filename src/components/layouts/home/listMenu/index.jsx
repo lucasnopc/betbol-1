@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { ImSpinner9 } from 'react-icons/im'
 import { format, isTomorrow } from 'date-fns'
-import { bestLeagues } from './bestLeagues'
+import { bestLeagues } from '../bestLeagues'
+import getCountries from './get_country'
 
 export default function ListMenu(props) {
     const [countries, setCountries] = useState([])
@@ -21,18 +22,7 @@ export default function ListMenu(props) {
     tomorrow = format(tomorrow, 'yyyy-MM-dd')
 
     useEffect(() => {
-        const getCountries = async () => {
-            const countriesLocal = await JSON.parse(localStorage.getItem('betbol@countries'))
-            if (countriesLocal && countriesLocal.length > 0) {
-                setCountries(countriesLocal)
-            } else {
-                const urlGetCountries = `/api/getCountryes`
-                const data = await axios.get(urlGetCountries)
-                const countriesData = await data.data
-                setCountries(countriesData.countries)
-            }
-        }
-        getCountries()
+        getCountries(setCountries)
     }, [])
     useEffect(() => {
         localStorage.setItem('betbol@countries', JSON.stringify(countries))
@@ -46,7 +36,6 @@ export default function ListMenu(props) {
                 {country.name}</span>
         }
     })
-    const optionsLeagues = false
 
     const changeSelectCountry = async (e) => {
         setLoading(true)
@@ -99,7 +88,7 @@ export default function ListMenu(props) {
         
         <div className={`${toggle ? `block` : `hidden md:block`} bg-gray-50`}>
             <div>
-                <Select className="rounded-none" options={options} instanceId="1" placeholder="Filtrar por país" onChange={e => changeSelectCountry(e)} />
+                <Select className="rounded-none" options={options} instanceId="1" placeholder="Buscar" onChange={e => changeSelectCountry(e)} />
                 {loading && <div className="text-center"><ImSpinner9 className="text-5xl animate-spin  mx-auto text-primary p-3" /></div>}
                 {!loading && <SelectLeague />}
             </div>

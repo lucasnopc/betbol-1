@@ -4,13 +4,13 @@ import { useEffect, useState } from "react"
 import Image from 'next/image'
 import getOdds from './getodds'
 
-export default function Highlights({ highlights, title }) {
+export default function Highlights({ highlights, title, qtd = 4 }) {
     const [bets, setBets] = useState(1)
     const [leagues, setLeagues] = useState([])
     const [loading, setLoading] = useState(false)
     const [league_indice, setLeague_indice] = useState(0)
     useEffect(() => {
-        getOdds(setLoading, highlights, leagues, setLeagues)
+        getOdds(setLoading, highlights, leagues, setLeagues, 0 , qtd)
     }, [])
     useEffect(() => {
         for(let league of leagues) {
@@ -46,7 +46,7 @@ export default function Highlights({ highlights, title }) {
             </div>
         })}
         <div className="w-full flex items-center justify-center">
-        {!loading && <span onClick={() => getOdds(setLoading, highlights, leagues, setLeagues, league_indice)} className="bg-gray-300 hover:bg-gray-200 p-2 cursor-pointer w-full uppercase font-semibold text-center">
+        {!loading && <span onClick={() => getOdds(setLoading, highlights, leagues, setLeagues, league_indice, qtd)} className="bg-gray-300 hover:bg-gray-200 p-2 cursor-pointer w-full uppercase font-semibold text-center">
                 Carregar mais
             </span>}
 

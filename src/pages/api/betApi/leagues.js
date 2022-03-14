@@ -1,7 +1,7 @@
 export default async function Leagues(req, res) {
     if (req.method == "GET") {
         const atualYear = new Date().getFullYear()
-        const leaguesQuery = await fetch(`${process.env.APISPORT}/leagues?current=true&season=${atualYear}`,
+        const leaguesQuery = await fetch(`${process.env.APISPORT}/leagues?season=${atualYear}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

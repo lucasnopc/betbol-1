@@ -15,8 +15,8 @@ export default function Layout(props) {
                 <div className="col-span-full md:col-span-2  scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white">
                     <ListMenu />
                 </div>
-                <div className="md:col-span-10 col-span-full bg-white scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white">
-                    <div className="">
+                <div className="relative min-h-screen md:col-span-10 col-span-full scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-white">
+                    <div className="h-9/12">
                         {props.children}
                     </div>
                     <Footer />
