@@ -2,10 +2,10 @@ import Head from 'next/head'
 import serverSidePropsClient from '../../../utills/serverSitePropsClient'
 import useFetch from '../../../utills/useFetch'
 import FullLoading from '../../../components/fullloading'
-import ItemListTicket from '../../../components/altickets/itemlistticket'
 import LayoutUser from '../../../components/layouts/user'
 import { useState } from 'react'
 import useUser from '../../../utills/hooks/useUser'
+import ListBetsHistory from '../../../components/user/listBetsHistory'
 
 export default function historyBets(props) {
   const user = useUser(props.userString)
@@ -26,9 +26,9 @@ export default function historyBets(props) {
         <h1 className="font-bold text-sm">Histórico de Apostas</h1>
         <div className='flex justify-between mb-2'> 
         <span onClick={ () => setStatusSearch('Todos')}  className={`${statusSearch == "Todos" ? `bg-gray-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Todos</span>
-        <span onClick={ () => setStatusSearch('Ao vivo')}  className={`${statusSearch == "Ao vivo" ? `bg-green-400 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Ao vivo</span>
-        <span onClick={ () => setStatusSearch('Ganhou')} className={`${statusSearch == "Ganhou" ? `bg-green-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors block w-full p-2`}>Ganhos</span>
-        <span onClick={ () => setStatusSearch('Perdeu')} className={`${statusSearch == "Perdeu" ? `bg-red-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Perdas</span>
+        <span onClick={ () => setStatusSearch('Aberta')}  className={`${statusSearch == "Aberta" ? `bg-blue-500 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Abertas</span>
+        <span onClick={ () => setStatusSearch('Ganhou')} className={`${statusSearch == "Ganhou" ? `bg-green-500 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors block w-full p-2`}>Ganhas</span>
+        <span onClick={ () => setStatusSearch('Perdeu')} className={`${statusSearch == "Perdeu" ? `bg-red-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Percas</span>
       </div>
       <div className="bg-gray-100 flex justify-between px-2 border-b border-gray-200">
         <span className="text-xs font-semibold text-gray-500 uppercase">
@@ -39,7 +39,10 @@ export default function historyBets(props) {
         </span>
       </div>
       <div className=" md:h-auto overflow-auto">
-            {data && data.betHistory.reverse().map((bi) => <ItemListTicket key={bi._id} bi={bi} statusSearch={statusSearch} />)}
+            {data && data.betHistory.map((bi) => {
+              return <ListBetsHistory bi={bi} key={bi._id} />
+              })}
+            
     </div>
     </div>
       </LayoutUser>

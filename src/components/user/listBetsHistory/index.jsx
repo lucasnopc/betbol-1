@@ -1,25 +1,34 @@
 import { format } from 'date-fns'
 import { oddBets } from '../../../utills/oddBets'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ItemListBetHistory from './ItemListBetHistory'
 import Rescue from '../../../pages/user/withdraw/rescue'
+import useStatus from '../../../utills/hooks/useStatus'
 
-export default function ListBetsHistory({ data: history, status }) {
+export default function ListBetsHistory({ bi }) {
+  const [history, setHistory] = useState([])
   const [toggle, setToggle] = useState(false)
   const [resgatar, setResgatar] = useState(false)
-  const date = format(new Date(history.date), 'dd.MM | HH:mm')
+  const biWithStatus = useStatus(bi)
+
+  useEffect(() => {
+    setHistory(biWithStatus)
+  }, [biWithStatus])
+  if(history.length == 0) return <></>
+  const date = format(new Date(history.date), 'dd/MM | HH:mm')
   const cotacao = history.bets.map((b) => Number(b.choice.odd))
   const cotaSoma = cotacao.reduce((antes, atual) => antes + atual)
 
+
   return <>
-    <div onClick={() => setToggle(!toggle)} className="p-1 bg-gray-200 border-b border-gray-300 hover:bg-gray-200 cursor-pointer items-center flex justify-between" key={history._id}>
+    <div onClick={() => setToggle(!toggle)} className="p-1 bg-gray-100 border-b border-t border-gray-200 hover:bg-gray-200 cursor-pointer items-center flex justify-between" key={history._id}>
       <div>
         <span className="text-gray-600 text-xs mx-1 text-right">{history._id}</span>
         <span className="text-gray-600 text-xs mx-1 text-right">{date}</span>
         <span className="text-gray-600 text-xs mx-1 text-right">
           {history.bets.map(bet => {
             switch (bet.status) {
-              case "Ao vivo":
+              case "Aguarde":
                 return <div key={bet.fix.fixture.id} className='w-3 rounded-full h-3 mx-1 bg-blue-600 inline-block'></div>
               case "Perdeu":
                 return <div key={bet.fix.fixture.id} className='w-3 rounded-full h-3 mx-1 bg-red-600 inline-block'></div>
@@ -38,7 +47,7 @@ export default function ListBetsHistory({ data: history, status }) {
       </div>
     </div>
 
-    <div className={` border border-gray-200 bg-gray-50`}>
+    <div>
       {toggle && history.bets.map(b => {
         const choiceOdd = oddBets.find(f => {
           return f.id == b.choice.betsChoice

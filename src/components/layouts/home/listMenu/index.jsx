@@ -25,13 +25,13 @@ export default function ListMenu(props) {
         <div className={`${toggle ? `block` : `hidden md:block`} bg-gray-50`}>
             <Search />
             <ul>
-                <li >
+                {/* <li>
                     <Link className="inline-block" href="/">
                         <a className="list-styles block pl-3">
                             <span className="inline-block font-medium">Ao Vivo</span>
                         </a>
                     </Link>
-                </li>
+                </li> */}
                 <li >
                     <Link className="inline-block" href={`/date/${today}`}>
                         <a className="list-styles block pl-3">

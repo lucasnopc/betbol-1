@@ -19,7 +19,7 @@ export default function AllTickets() {
       <h2 className="font-bold text-xs uppercase">Bilhetes</h2>
       <div>
         <span onClick={ () => setStatusSearch('Todos')}  className={`${statusSearch == "Todos" ? `bg-gray-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold p-0.5 cursor-pointer transition-colors`}>Todos</span>
-        <span onClick={ () => setStatusSearch('Ganhou')} className={`${statusSearch == "Ganhou" ? `bg-green-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold p-0.5 ml-1 cursor-pointer transition-colors`}>Ganhou</span>
+        <span onClick={ () => setStatusSearch('Ganhou')} className={`${statusSearch == "Ganhou" ? `bg-green-500 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold p-0.5 ml-1 cursor-pointer transition-colors`}>Ganhou</span>
         <span onClick={ () => setStatusSearch('Perdeu')} className={`${statusSearch == "Perdeu" ? `bg-red-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold p-0.5 cursor-pointer transition-colors`}>Perdeu</span>
       </div>
       <div className="bg-gray-100 flex justify-between px-2 border-b border-gray-200">
@@ -35,15 +35,7 @@ export default function AllTickets() {
       </div>
       <div className="h-36 overflow-auto">
         {data &&
-          data.bilhete.reverse().map((bi) => {
-            return (
-              <ItemListTicket
-                key={bi._id}
-                bi={bi}
-                statusSearch={statusSearch}
-              />
-            );
-          })}
+          data.bilhete.map((bi) => <ListBetsHistory bi={bi} key={bi._id} />)}
       </div>
     </div>
   );

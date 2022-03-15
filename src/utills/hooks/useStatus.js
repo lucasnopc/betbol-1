@@ -16,7 +16,7 @@ export default function useStatus(bi) {
         const fixture = await getFixture(bet)
         const short = fixture.fixture.status.short
         if (short != 'FT' && short != 'PEN' && short != 'AET') {
-          bet.status = 'Ao vivo'
+          bet.status = 'Aguarde'
         } else {
           const statusFixString = calcStatusFix(fixture, bet) ? `Ganhou` : `Perdeu` 
           bet.status = statusFixString
@@ -28,13 +28,13 @@ export default function useStatus(bi) {
       const aoVivo = false
       for(const el of betsWithStatus) {
         if(el.status == "Perdeu") percas++
-        if(el.status == "Ao vivo") aoVivo = true
+        if(el.status == "Aguarde") aoVivo = true
       }
       if(!aoVivo) {
         if(percas > 0) {newBi.generalStatus = "Perdeu"}
         if(percas == 0) {newBi.generalStatus = "Ganhou"}
       }else {
-        newBi.generalStatus = "Ao vivo"
+        newBi.generalStatus = "Aguarde"
       }
 
       newBi.bets = betsWithStatus
