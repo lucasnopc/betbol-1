@@ -3,6 +3,7 @@ import SelectOddsBets from "../SelectOddsBets"
 import { useEffect, useState } from "react"
 import Image from 'next/image'
 import get_odd_for_fix from "../../../utills/get_odds_for_fix"
+import Translate from "../../../utills/translate"
 
 export default function Highlights({ highlights, title, qtd = 4 }) {
     const [bets, setBets] = useState(1)
@@ -20,7 +21,7 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
         }
     }, [leagues])
 
-if (highlights.length == 0 || leagues.length == 0 && !loading) {
+    if (highlights.length == 0 || leagues.length == 0 && !loading) {
         return <h1 className="font-semibold text-center pt-7 text-lg">0 jogos no momento, volte mais tarde.</h1>
     }
 
@@ -31,14 +32,20 @@ if (highlights.length == 0 || leagues.length == 0 && !loading) {
             <SelectOddsBets setBets={setBets} bets={bets} />
 
         </div>
-        {leagues.length > 0 && leagues.map(l => {
+        {leagues.length > 0 && bets && leagues.map(l => {
+            const values = l.fix[0].odd.bookmakers[0].bets.find(bet => bet.id == bets)?.values
             return <div key={l.liga.id}>
-                <div className="text-xs font-semibold bg-primary text-white p-2 border-b flex items-center">
-                    {l.liga.flag && <Image src={l.liga.flag} alt={l.liga.name} width={20} height={15} />}
-                    <span className="pl-1 font-semibold">
-                        {l.liga.country} - {l.liga.name}
+                <div className="text-xs font-semibold bg-primary text-white p-2 border-b grid grid-cols-2 items-center">
+                    <div>
+                        {l.liga.flag && <Image src={l.liga.flag} alt={l.liga.name} width={20} height={15} />}
+                        <span className="pl-1 font-semibold">
+                            {l.liga.country} - {l.liga.name}
 
-                    </span>
+                        </span>
+                    </div>
+                    <div className={`grid grid-cols-${values?.length}`}>
+                        {values?.length <= 3 && values?.map(v => <div key={v.value} className="text-center">{Translate(v.value)}</div>)}
+                    </div>
                 </div>
                 <div className="block scrollgreen">
                     {l.fix && l.fix.map((f, indexFix) => {

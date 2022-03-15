@@ -7,7 +7,8 @@ import { getSession, } from 'next-auth/client'
 import axios from 'axios'
 import getUser from '../../../utills/getUser'
 import { useRouter } from 'next/router'
-
+import LayoutUser from '../../../components/layouts/user'
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function register(props) {
   const [popularForm, setPopularForm] = useState(false)
@@ -48,8 +49,16 @@ export default function register(props) {
 
   const onSubmit = async data => {
     const sendData = await axios.post('/api/register', { data })
-    if(sendData.status == 203) {
-      alert('Dados Atualizados com Sucesso')
+    if (sendData.status == 203) {
+      toast.success("Dados atualizados com sucesso!",{
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        })
       router.push('/')
     }
   }
@@ -59,7 +68,7 @@ export default function register(props) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <div className="text-sm font-semibold text-gray-700 tracking-wide">Insira seu E-mail</div>
-                  email: {props.session.user.email}
+            email: {props.session.user.email}
           </div>
           <div>
             <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Nome</div>
@@ -116,52 +125,52 @@ export default function register(props) {
             />
           </div>
           <div>
-        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Logradouro</div>
-        <input
-          {...register('logradouro', { required: true })}
-          name="logradouro"
-          type="text"
-          placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
-          defaultValue={getStateRegister.andress.logradouro}
-        />
-      </div>
+            <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Logradouro</div>
+            <input
+              {...register('logradouro', { required: true })}
+              name="logradouro"
+              type="text"
+              placeholder="Mike"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
+              defaultValue={getStateRegister.andress.logradouro}
+            />
+          </div>
 
-      <div>
-        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Bairro</div>
-        <input
-          {...register('bairro', { required: true })}
-          name="bairro"
-          type="text"
-          placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
-          defaultValue={getStateRegister.andress.bairro}
-        />
-      </div>
+          <div>
+            <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Bairro</div>
+            <input
+              {...register('bairro', { required: true })}
+              name="bairro"
+              type="text"
+              placeholder="Mike"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
+              defaultValue={getStateRegister.andress.bairro}
+            />
+          </div>
 
-      <div>
-        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Localidade</div>
-        <input
-          {...register('localidade', { required: true })}
-          name="localidade"
-          type="text"
-          placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
-          defaultValue={getStateRegister.andress.localidade}
-        />
-      </div>
+          <div>
+            <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Localidade</div>
+            <input
+              {...register('localidade', { required: true })}
+              name="localidade"
+              type="text"
+              placeholder="Mike"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
+              defaultValue={getStateRegister.andress.localidade}
+            />
+          </div>
 
-      <div>
-        <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Estado</div>
-        <input
-          {...register('uf', { required: true })}
-          name="uf"
-          type="text"
-          placeholder="Mike"
-          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
-          defaultValue={getStateRegister.andress.uf}
-        />
-      </div>
+          <div>
+            <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Estado</div>
+            <input
+              {...register('uf', { required: true })}
+              name="uf"
+              type="text"
+              placeholder="Mike"
+              className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
+              defaultValue={getStateRegister.andress.uf}
+            />
+          </div>
           <div>
             <div className="mt-2 text-sm font-semibold text-gray-700 tracking-wide">Numero</div>
             <input
@@ -191,33 +200,10 @@ export default function register(props) {
         <title>Atualize seus dados</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="lg:flex">
-        <div className="lg:w-1/2 lg:h-screen p b-5 overflow-scroll">
-          <div className="pt-10 bg-gray-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
-            <div className="cursor-pointer flex items-center">
-              <div>
-                {/* <Link href="/">
-                  <a>
-                    <Image width="100" height="100" src="/logo.png" className="hover:opacity-70 cursor-pointer" />
-                  </a>
-                </Link> */}
-                <Logo theme={'dark'} />
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 xl:px-24 xl:max-w-2xl">
-            <h2 className="text-center text-lg font-semibold text-gray-600 font-display lg:text-left xl:text-2xl">Atualizar dados</h2>
-            <div className="mt-12">
-              <FormRegister />
-            </div>
-          </div>
-        </div>
-        <div className="hidden lg:flex items-center justify-center bg-center bg-register flex-1 h-screen">
-          <div className="max-w-xs transform duration-200 hover:scale-110 cursor-pointer">
-
-          </div>
-        </div>
-      </div>
+      <LayoutUser>
+        <FormRegister />
+      </LayoutUser>
+      <ToastContainer />
     </>
   )
 }

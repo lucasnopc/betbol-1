@@ -18,7 +18,7 @@ export default async (req, res) => {
         {
           $set:
           {
-            points,
+
             user:
             {
               name, lastname, tel, cpf, cep, numhouse, logradouro, bairro, localidade, uf

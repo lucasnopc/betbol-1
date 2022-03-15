@@ -1,4 +1,19 @@
-export default function formRegister ({popularForm }) {
+import axios from "axios"
+import { useState } from "react"
+import InputMask from "react-input-mask"
+
+export default function FormRegister ({popularForm }) {
+  const [popularForm, setPopularForm] = useState(false)
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm()
+
+  const onSubmit = async data => {
+    const sendData = await axios.post('/api/register', { data })
+    if (sendData.status == 203) {
+      alert('Dados Atualizados com Sucesso')
+      router.push('/')
+    }
+  }
+
   if (popularForm) {
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
