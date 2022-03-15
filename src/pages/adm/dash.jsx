@@ -7,7 +7,6 @@ import { useState } from 'react';
 import Link from 'next/link'
 import LayoutAdmin from '../../components/layouts/admin'
 import isAdmin from '../../utills/isAdmin'
-import AllTickets from '../../components/altickets'
 
 export default function dash() {
     const [confirmOpen, setConfirmOpen] = useState(false);
@@ -67,7 +66,6 @@ export default function dash() {
 
         <div className="mt-5 border border-gray-100 p-2 shadow-xl rounded-md flex-auto w-lg bg-white">
                 <div>
-                    <AllTickets />
                 </div>
             </div>
             {/* <div className="mt-5 border border-gray-100 p-2 shadow-xl rounded-md flex-auto w-lg bg-white">
