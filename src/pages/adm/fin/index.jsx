@@ -1,4 +1,4 @@
-import LayoutAdmin from '../../../components/layoutAdmin/layoutAdmin'
+import LayoutAdmin from '../../../components/layouts/admin'
 import serverSidePropsAdmin from '../../../utills/serverSidePropsAdmin'
 
 export default function fin() {

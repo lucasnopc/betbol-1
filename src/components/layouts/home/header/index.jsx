@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/client'
 import Logo from '../logo'
 import Profile from './profile'
-import HeaderAdmin from '../../../layoutAdmin/headeradmin'
+import HeaderAdmin from '../../admin/headeradmin'
 import Link from 'next/link'
 
 export default function Header({userString: user}) {

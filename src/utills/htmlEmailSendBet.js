@@ -1,5 +1,5 @@
 // Email HTML body
-export function HtmlEmailSendBet(note) {
+export function HtmlEmailSendBet(note, url) {
     // Some simple styling options
     const backgroundColor = '#131527'
     const textColor = '#444444'
@@ -33,7 +33,7 @@ export function HtmlEmailSendBet(note) {
         <td align="center" style="padding: 20px 0;">
         <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-        <td align="center" style="border-radius: 5px;" bgcolor="${buttonBackgroundColor}"><a href="${process.env.NEXTAUTH_URL}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${buttonTextColor}; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ${buttonBorderColor}; display: inline-block; font-weight: bold;">Acessar minha conta Betbol</a></td>
+        <td align="center" style="border-radius: 5px;" bgcolor="${buttonBackgroundColor}"><a href="${url}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${buttonTextColor}; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ${buttonBorderColor}; display: inline-block; font-weight: bold;">Acessar minha conta Betbol</a></td>
             </tr>
             </table>
             </td>

@@ -4,12 +4,17 @@ import NoteBtn from './note-btn'
 import ItemBetNote from './item-bet-note'
 import { Dialog } from '../../../confirm-dialog'
 import { ToastContainer, toast } from 'react-toastify';
+import useFetch from '../../../../utills/useFetch'
+import FullLoading from '../../../fullloading'
 
 export default function Note(props) {
     const { note } = useStore()
+    const [config, setConfig] = useState({})
     const [toggleNoteBets, setToggleNoteBets] = useState(false)
     const [vf, setVf] = useState(10)
     const [retornoPotencial, setRetornoPotencial] = useState()
+    const { data, error } = useFetch('/api/adm/config')
+    useEffect(() => {if(data) setConfig(data.config[0].config)}, [data])
     useEffect(() => {
         retornosPotenciais(note, vf, setRetornoPotencial)
     }, [note])
@@ -38,6 +43,8 @@ export default function Note(props) {
             setRetornoPotencial(0)
         }
     }
+    if(config.length == 0) return <FullLoading />
+
     return <>
     <div onClick={e => setToggleNoteBets(true)} className={`${note.length != 0 ? '' : 'hidden' } absolute bottom-1 right-1 bg-primary hover:bg-primary-ligth cursor-pointer w-10 h-10 text-center rounded-tl-xl rounded-full shadow-xl flex items-center justify-center`}>
         <span className="font-bold text-lg text-white">{note.length}</span>
@@ -59,8 +66,11 @@ export default function Note(props) {
                 <div className="block p-1 border-t border-gray-300 bg-gray-100">
                     <span className="text-sm text-black font-semibold pl-1 w-2/12">R$</span>
                     <input onChange={(r) => {
+                        console.log('value', r.target.value)
+                        if(r.target.value < config.min_value) r.target.value = config.min_value
+                        if(r.target.value > config.max_value) r.target.value = config.max_value
                         changeInputValue({ obj: r, setVf, note })
-                    }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min="0" max="2000" step="10" defaultValue="10" />
+                    }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min={config.min_value} max={config.max_value} step="10" defaultValue={config.min_value} />
                 </div>
                 <div className={`block bg-white bottom-0`}><NoteBtn vf={vf} retornoPotencial={retornoPotencial} toast={toast} setToggleNoteBets={setToggleNoteBets} /></div>
 

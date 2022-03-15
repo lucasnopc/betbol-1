@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react"
 import { useStore } from "../../context/store"
-import Translate from "../../utills/translate"
+import useFetch from "../../utills/useFetch"
+import FullLoading from "../fullloading"
+import { toast } from 'react-toastify';
 
 export default function Button({ fix, val, bets }) {
     const [checked, setChecked] = useState(false)
+    const [config, setConfig] = useState({})
+    const { data, error } = useFetch('/api/adm/config')
     const { setGoBetsInNote, removeBetsInNote, note, replaceBetsInNote } = useStore()
+    useEffect(() => {if(data) setConfig(data.config[0].config)}, [data])
     useEffect(() => {
         note.map((n, i) => {
             if (n.fix.fixture.id == fix.fixture.id && n.choice.betsChoice == bets) {
@@ -15,7 +20,7 @@ export default function Button({ fix, val, bets }) {
                 }
             }
         })
-
+        
     }, [])
     useEffect(()=> {
         note.map((n, i) => {
@@ -28,6 +33,7 @@ export default function Button({ fix, val, bets }) {
             }
         })
     },[note])
+    if(!config) return <FullLoading />
     const betGo = (val, fix, bets) => {
         const bet = {
             fix,
@@ -44,18 +50,31 @@ export default function Button({ fix, val, bets }) {
                 }
             })
         } else {
-            const indexNoteEquals = note.findIndex((n, i) => n.fix.fixture.id == fix.fixture.id)
-            if (indexNoteEquals < 0) {
-                setGoBetsInNote(bet)
-            } else {
-                replaceBetsInNote(bet)
+            if(note.length <= config.max_events_ticket -1) {
+                console.log("max",config.max_events_ticket)
+                const indexNoteEquals = note.findIndex((n, i) => n.fix.fixture.id == fix.fixture.id)
+                if (indexNoteEquals < 0) {
+                    setGoBetsInNote(bet)
+                } else {
+                    replaceBetsInNote(bet)
+                }
+            }else {
+                toast.success("Limite de jogos por bilhete alcançado!",{
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    })
             }
         }
     }
-    return <div className="group font-medium inline-block relative w-full h-full">
+ return <div className="group font-medium inline-block relative w-full h-full">
         <button onClick={() => betGo(val, fix, bets)} className={`${checked ? `bg-primary hover:bg-primary-ligth text-white` : ` hover:bg-gray-200 text-primary`} px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none md:w-20 min-w-full h-full text-base font-bold`}>
             {val.odd}
             {/* <span className="hidden font-medium text-xs md:hidden">{Translate(props.val.value)}</span> */}
         </button>
-    </div>
+ </div>
 }

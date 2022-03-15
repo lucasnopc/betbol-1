@@ -25,24 +25,26 @@ export default function Banner({ highlights }) {
         const fixtures = []
         for (let league of leagues) {
             if (league.league_indice > league_indice) setLeague_indice(league.league_indice + 1)
-            for(fix of league.fix) {
+            for (fix of league.fix) {
                 fixtures.push(fix)
             }
         }
         setFix(fixtures)
     }, [leagues])
-    
+
     return <>
         <div className=" mx-2 text-xs text-gray-700">
             <div className="h-40 scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-100 overflow-x-auto overflow-y-hidden flex transition-transform" style={{ marginLeft: scrollX }} >
                 <div>
                     <div className="p-2 mx-1 w-64 h-36 overflow-hidden bg-bg01 bg-black bg-cover bg-right-top shadow-sm inline-block">
-                        <div className="flex flex-col mt-1">
-                                <p className="font-bold pl-2 text-yellow-400 text-xl text-shadow">Receba <br />rápido <br />pelo PIX</p>
+                        <div className="flex flex-col justify-center">
+                            <div>
+                                <p className="font-bold text-yellow-400 text-xl text-shadow">Receba ou deposite <br />rápidamente<br /> via PIX</p>
                                 {session &&
-                                    <Link href="/user/deposit"><a className="text-white font-semibold bg-primary mt-1 p-1 text-center">Depositar</a></Link>
+                                    <Link href="/user/deposit"><a className="text-white text-base font-semibold uppercase bg-primary mt-1 p-1 text-center">Depositar</a></Link>
                                 }
                                 {!session && <SignInButton />}
+                            </div>
                         </div>
                         {/* <h3 className="text-gray-200 font-bold mt-2 text-lg pl-2 text-shadow">Recebimento rápido</h3> */}
                     </div>
@@ -64,8 +66,8 @@ export default function Banner({ highlights }) {
                                 <div className="text-right flex items-center"><span className="w-20 mr-1">{i.teams.away.name.substring(0, 10)}</span><Image src={i.teams.away.logo} width="30" height="30" /></div>
                                 <div className="text-left flex items-center"><Image src={i.teams.home.logo} width="30" height="30" /><span className="ml-1 w-20">{i.teams.home.name.substring(0, 10)}{i.teams.home.name.length > 10 ? `...` : ``}</span></div>
                             </div>
-                            <div className="text-center mt-2">Resultado da partida</div>
-                            <div className='h-10'><Odd odds={i.odd.bookmakers[0].bets.find((bet)=> bet.id == 1)} bets={1} fix={i} /></div>
+                            <div className="text-center mt-2">Vencedor da Partida</div>
+                            <div className='h-10'><Odd odds={i.odd.bookmakers[0].bets.find((bet) => bet.id == 1)} bets={1} fix={i} /></div>
                         </div>
                     </div>
                 }

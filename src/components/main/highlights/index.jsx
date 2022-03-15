@@ -35,7 +35,7 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
         {leagues.length > 0 && bets && leagues.map(l => {
             const values = l.fix[0].odd.bookmakers[0].bets.find(bet => bet.id == bets)?.values
             return <div key={l.liga.id}>
-                <div className="text-xs font-semibold bg-primary text-white p-2 border-b grid grid-cols-2 items-center">
+                <div className="text-xs font-semibold bg-primary text-white py-2 border-b grid grid-cols-2 items-center">
                     <div>
                         {l.liga.flag && <Image src={l.liga.flag} alt={l.liga.name} width={20} height={15} />}
                         <span className="pl-1 font-semibold">
@@ -43,8 +43,10 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
 
                         </span>
                     </div>
-                    <div className={`grid grid-cols-${values?.length}`}>
-                        {values?.length <= 3 && values?.map(v => <div key={v.value} className="text-center">{Translate(v.value)}</div>)}
+                    <div>
+                        <div className="ml-3 md:float-right flex flex-nowrap md:flex-none h-full divide-green-500 divide-x">
+                            {values?.length <= 3 && values?.map(v => <div key={v.value} className="md:w-20 flex-1 gap-0 text-center">{Translate(v.value)}</div>)}
+                        </div>
                     </div>
                 </div>
                 <div className="block scrollgreen">

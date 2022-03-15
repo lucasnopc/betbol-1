@@ -1,4 +1,4 @@
-import LayoutAdmin from '../../components/layoutAdmin/layoutAdmin'
+import LayoutAdmin from '../../components/layouts/admin'
 
 export default function bets() {
     return <>

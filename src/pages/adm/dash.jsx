@@ -5,7 +5,7 @@ import { BsTrash } from 'react-icons/bs'
 import { ConfirmDialog, IconButton } from '../../components/confirm-dialog'
 import { useState } from 'react';
 import Link from 'next/link'
-import LayoutAdmin from '../../components/layoutAdmin/layoutAdmin'
+import LayoutAdmin from '../../components/layouts/admin'
 import isAdmin from '../../utills/isAdmin'
 import AllTickets from '../../components/altickets'
 

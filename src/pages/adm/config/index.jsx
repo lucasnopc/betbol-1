@@ -1,18 +1,15 @@
-import LayoutAdmin from '../../../components/layoutAdmin/layoutAdmin'
+import LayoutAdmin from '../../../components/layouts/admin'
 import serverSidePropsAdmin from '../../../utills/serverSidePropsAdmin'
 import { useForm } from "react-hook-form"
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import axios from 'axios'
+import { toast, ToastContainer } from 'react-toastify'
+import FullLoading from '../../../components/fullloading'
 
-export default function config() {
+export default function config({config}) {
     const { register, handleSubmit } = useForm({
-        defaultValues: {
-            min_value: 10,
-            max_value: 2000,
-            max_return_ticket: 50000,
-            max_events_ticket: 20
-        }
-    });
+        defaultValues: config
+    })
+    if(!config) return <FullLoading />
 
     const handlerConfig = async data => {
         await axios.post(`/api/adm/config`, data).then(res => {
@@ -59,6 +56,12 @@ export default function config() {
     </>
 }
 export async function getServerSideProps(context) {
-    const ret = serverSidePropsAdmin(context)
-    return ret
+    const config = await axios.get(`${process.env.NEXTAUTH_URL}/api/adm/config`)
+    const data = config.data.config[0].config
+    serverSidePropsAdmin(context)
+    return {
+        props:{
+            config: data
+        }
+    }
 }
