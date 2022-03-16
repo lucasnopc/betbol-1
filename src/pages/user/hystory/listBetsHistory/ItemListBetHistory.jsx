@@ -3,7 +3,9 @@ import calcStatusFix from "../../../../utills/calcStatusFix";
 import Image from 'next/image'
 
 export default function ItemListBetHistory({ choiceOdd, b, toggle }) {
-  const urlFix = `/api/betApi/fixture/${b.fix.fixture.id}/`
+  const fix = b?.fix
+  if(!fix) return <>error</>
+  const urlFix = `/api/betApi/fixture/${fix.fixture.id}/`
   const { data, error } = useFetch(urlFix)
   if (error) return console.log(error)
   if (!data) return <div className="bg-white absolute flex items-center justify-center top-0 left-0  p-2 w-full h-40 uppercase font-semibold text-center">

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import isAdmin from '../../../utills/isAdmin'
 import axios from 'axios'
 import { useForm } from "react-hook-form";
-import ListBetsHistory from '../../../components/user/listBetsHistory'
+import ListBetsHistory from '../../user/hystory/listBetsHistory'
 import useFetch from '../../../utills/useFetch'
 import FullLoading from '../../../components/fullloading'
 

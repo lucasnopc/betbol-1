@@ -4,7 +4,7 @@ import calcStatusFix from "../calcStatusFix";
 
 export default function useStatus(bi) {
   const [state, setState] = useState([])
-  const bets = bi.bets
+  const bets = bi?.bets
   useEffect(() => {
     const getFixture = async (bet) => {
       const res = await axios.get(`/api/betApi/fixture/${bet.fix.fixture.id}`)
