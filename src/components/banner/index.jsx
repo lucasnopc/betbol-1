@@ -46,7 +46,7 @@ export default function Banner({ highlights }) {
                                 {!session && <SignInButton />}
                             </div>
                         </div>
-                        {/* <h3 className="text-gray-200 font-bold mt-2 text-lg pl-2 text-shadow">Recebimento rápido</h3> */}
+                        {/* <h3 className="text-gray-200 font-bold mt-2 text-lg pl-2 text-shadow">Transferência rápido</h3> */}
                     </div>
                 </div>
                 {fix.length > 0 && fix.map(i => {

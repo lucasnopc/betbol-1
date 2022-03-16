@@ -10,13 +10,13 @@ import { format } from 'date-fns';
 
 export default function withdraw(props) {
   const user = useUser(props.userString)
-  const [ onlyPaysWithState , setOnlyPaysWithState ] = useState([])
+  const [onlyPaysWithState, setOnlyPaysWithState] = useState([])
   const { data, error } = useFetch(`/api/user/betsHistory?email=${user.email}`)
   useEffect(() => {
-    if(data) {
+    if (data) {
       const onlypaysLocal = []
-      for(var m in data.betHistory) {
-        if(data.betHistory[m].status) {
+      for (var m in data.betHistory) {
+        if (data.betHistory[m].status) {
           onlypaysLocal.push(data.betHistory[m])
         }
       }
@@ -25,7 +25,7 @@ export default function withdraw(props) {
   }, [data])
   if (error) return console.log(error)
   if (!data) return <FullLoading />
-  
+
   return (
     <>
       <Head>
@@ -37,20 +37,22 @@ export default function withdraw(props) {
         <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
           <h2 className="page-title border-b border-gray-100">Saques</h2>
           <div className='flex justify-between'>
-          <Link href="/user/withdraw/paymethods"><a className='cursor-pointer bg-primary hover:bg-primary-ligth block text-white font-semibold p-2'>Inserir chave PIX</a></Link>
+            <Link href="/user/withdraw/paymethods"><a className='cursor-pointer bg-primary hover:bg-primary-ligth block text-white font-semibold p-2'>Inserir chave PIX</a></Link>
           </div>
           <div>{onlyPaysWithState && onlyPaysWithState.map(m => {
             const date = format(new Date(m.status.date), 'dd/MM/yyyy')
-              console.log('date', date)
-            return <div className='p-1 bg-gray-300 border-b border-gray-200 hover:bg-gray-200 cursor-pointer items-center flex justify-between' key={m.status.date}>
-            {m.status.state == 'request' ? <span className=''>recebimento Solicitado no dia {date}</span>:``}
-            {m.status.state == 'success' ? <span className=''>{date} recebimento Aprovado </span>:``}
-            {m.status.state == 'deny' ? <span className=''>{date} recebimento negado</span>:``}
-            <span className=''>{m.status.method}</span>
-            <span className=''>R$ {Number(m.value).toFixed(2)}</span>
-            </div>})}
-            {onlyPaysWithState.length == 0 && <div className='text-base font-semibold'>
-              Não há recebimentos programados, primeiramente solicite o saque no <Link href="/user/hystory">bilhete premiado.</Link>
+            console.log('date', date)
+            return <div className='text-sm font-semibold uppercase my-1 p-1 bg-gray-300 border-b border-gray-200 hover:bg-gray-200 cursor-pointer items-center flex justify-between' key={m.status.date}>
+              <div>Status: {m.status.state == 'request' ? <span className=''>Transferência solicitada no dia {date}</span> : ``}
+                {m.status.state == 'success' ? <span className=''>{date} Transferência Aprovado </span> : ``}
+                {m.status.state == 'deny' ? <span className=''>{date} Transferência negado, revise sua chave pix</span> : ``}
+              </div>
+              <span className=''>Método: {m.status.method}</span>
+              <span className=''>Valor: R$ {Number(m.value).toFixed(2)}</span>
+            </div>
+          })}
+            {onlyPaysWithState.length == 0 && <div className='text-base font-semibold p-2'>
+              Não há Transferências programados, primeiramente solicite o saque no <Link href="/user/hystory">bilhete premiado.</Link>
             </div>}
           </div>
         </div>

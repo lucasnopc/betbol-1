@@ -22,13 +22,13 @@ export default function payMethods(props) {
   return (
     <>
       <Head>
-        <title>Betbol - Método de recebimento PIX</title>
+        <title>Betbol - Método de Transferência PIX</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <LayoutUser userString={user}>
         <div className="w-10/12 mx-auto p-2 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
-          <h2 className="page-title border-b border-gray-100">Método de recebimento PIX</h2>
+          <h2 className="page-title border-b border-gray-100">Método de Transferência PIX</h2>
         <form onSubmit={handleSubmit(setPix)} className='flex flex-col'>
          Chave Pix      <input {...register("pix", { required: true })}  defaultValue={user.payment_method ? user.payment_method.pix : ``} className='border border-gray-200 p-1 focus:border-gray-400 focus:outline-none' type="text" />
          Nome Completo  <input {...register("name", { required: true })} defaultValue={user.payment_method ? user.payment_method.name: ``} className='border border-gray-200 p-1 focus:border-gray-400 focus:outline-none' type="text" />
