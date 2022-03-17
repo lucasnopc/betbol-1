@@ -21,6 +21,7 @@ export default function AboutPage(props) {
         </>
     )
 }
+
 export async function getServerSideProps(context) {
     const ret = serverSidePropsClientNotRedirect(context)
     return ret

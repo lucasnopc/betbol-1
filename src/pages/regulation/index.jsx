@@ -27,6 +27,7 @@ export default function RegulationPage(props) {
                 <li className='pt-3 pl-5 lowercase first-letter:uppercase text-gray-700'>OS CLIENTES NÃO PODEM CANCELAR OU MUDAR UMA APOSTA UMA VEZ QUE TENHA SIDO EFETUADA E ACEITAÇÃO CONFIRMADA.</li>
                 <li className='pt-3 pl-5 lowercase first-letter:uppercase text-gray-700'> TODAS AS COTAÇÕES ESTÃO SUJEITAS A VARIAÇÃO E SERÁO FIXADAS NO MOMENTO EM QUE UMA APOSTA FOR FEITA. A EMPRESA NÃO É RESPONSÁVEL POR NENHUM TIPO DE ERRO HUMANO QUE NOS LEVE A ERROS OU OMISSÕES INCLUINDO ANUNCIOS, PUBLICACÃO, MERCADO DE COTAÇÕES OU RESULTADOS DIFERENTES DOS CORRETOS OU AINDA A ACEITAÇÃO DE APOSTAS QUE CONTRARIEM AS REGRAS. CADO UMA APOSTA TENHA SIDO ACEITA COM UMA COTAÇÃO INCORRETA, A EMPRESA RESERVA O DIREITO DE ANULAR ESTÁ APOSTA.</li>
                 <li className='pt-3 pl-5 lowercase first-letter:uppercase text-gray-700'>A EMPRESA NÃO PODE SER RESPONSABILIZADA POR QUALQUER ERRO DE DIGITAÇÃO HUMANO DE TERCEIROS (MERCADO DE COTAÇÃO) OU QUALQUER ERRO TANGIVEL EM RELAÇÃO A QUALQUER PRODUTO OU INFORMAÇÃO DISPONIBILIZADA. A EMPRESA RESERVA O DIREITO DE ANULAR QUALQUER APOSTA QUE TENHA ACONTECIDO SOB AS CIRCUNSTANCIA QUE EM CONSIDERE ELEITAS AO SEU JULGAMENTO QUE TAIS ERROS TENHAM ACONTECIDO.</li>
+                <li className='pt-3 pl-5 lowercase first-letter:uppercase text-gray-700'>Todos seus dados estão protegidos, para deletar sua conta e todos os seus dados vá em configurações/Deletar conta.</li>
               </ul>
             </Layout>
         </>
