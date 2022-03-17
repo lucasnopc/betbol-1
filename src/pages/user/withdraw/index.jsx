@@ -43,12 +43,12 @@ export default function withdraw(props) {
             const date = format(new Date(m.status.date), 'dd/MM/yyyy')
             console.log('date', date)
             return <div className='text-sm font-semibold uppercase my-1 p-1 bg-gray-300 border-b border-gray-200 hover:bg-gray-200 cursor-pointer items-center flex justify-between' key={m.status.date}>
-              <div>Status: {m.status.state == 'request' ? <span className=''>Transferência solicitada no dia {date}</span> : ``}
-                {m.status.state == 'success' ? <span className=''>{date} Transferência Aprovado </span> : ``}
-                {m.status.state == 'deny' ? <span className=''>{date} Transferência negado, revise sua chave pix</span> : ``}
+              <div>Status: {m.status.state == 'request' ? <span className=''>Transferência solicitada no dia {date}!</span> : ``}
+                {m.status.state == 'payment_made' ? <span className='text-primary'>{date} Transferência efeituada! </span> : ``}
+                {m.status.state == 'deny' ? <span className=''>{date} Transferência negado, revise sua chave pix!</span> : ``}
               </div>
               <span className=''>Método: {m.status.method}</span>
-              <span className=''>Valor: R$ {Number(m.value).toFixed(2)}</span>
+              <span className=''>Valor: R$ {Number(m.potencialReturn).toFixed(2)}</span>
             </div>
           })}
             {onlyPaysWithState.length == 0 && <div className='text-base font-semibold p-2'>

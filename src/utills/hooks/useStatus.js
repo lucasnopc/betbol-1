@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import calcStatusFix from "../calcStatusFix";
 
 export default function useStatus(bi) {
-  const [state, setState] = useState([])
+  const [state, setState] = useState(false)
   const bets = bi?.bets
   useEffect(() => {
     const getFixture = async (bet) => {

@@ -40,6 +40,7 @@ export default function historyBets(props) {
       </div>
       <div className=" md:h-auto overflow-auto">
             {data && data.betHistory.reverse().map((bi) => {
+              console.log('bi ', bi)
               return <ListBetsHistory bi={bi} key={bi._id} />
               })}
             

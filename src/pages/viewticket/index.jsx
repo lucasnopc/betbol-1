@@ -26,13 +26,13 @@ export default function viewTicket(props) {
     return (
         <>
             <Head>
-                <title>Betbol - Futebol</title>
+                <title>Betbol - Ver ticket</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <Layout userString={user}>
                 <div className='p-3'>
-                    <h3 className='text-xl font-bold'>Conferir Bilete</h3>
+                    <h3 className='text-xl font-bold'>Conferir Bilhete</h3>
                     {!router.query.b && <form onSubmit={e => {
                         const id = e.target[0].value
                         e.preventDefault()

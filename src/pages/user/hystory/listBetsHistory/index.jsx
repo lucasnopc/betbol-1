@@ -12,7 +12,7 @@ export default function ListBetsHistory({ bi }) {
   const biWithStatus = useStatus(bi)
   
   useEffect(() => {
-    setHistory(biWithStatus)
+    if(biWithStatus) setHistory(biWithStatus)
   }, [biWithStatus])
   
   if(history.length == 0) return <></>

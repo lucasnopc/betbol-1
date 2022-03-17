@@ -1,4 +1,4 @@
-import { signout } from "next-auth/client";
+import { signOut } from "next-auth/client";
 import { useState } from "react";
 import Hamburguer from "./hamburguer";
 import Link from "next/link";
@@ -20,15 +20,12 @@ export default function HeaderAdmin() {
               <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/fin"}>Financeiro</Link></span>
               <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/config"}>Configurações</Link></span>
               {/* <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/"}>Créditos</Link></span> */}
-              {/* <span className="bg-gray-900 hover:bg-gray-800 uppercase text-xs p-1" onClick={() => signout()}>Sair</span> */}
           </div>
          </div>
           </div>
         </div>
         <nav className="flex items-center bg-gray-800 hover:bg-gray-700 p-1">
-          <div className="cursor-pointer" onClick={() => console.log('sair')}>
-            Sair
-          </div>
+              <span onClick={() => signOut()}>Sair</span>
         </nav>
       </header>
     </>
