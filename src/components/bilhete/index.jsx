@@ -21,6 +21,7 @@ export default function Bilhete({ bilhete:bi }) {
       <span>Usuário {bilhete.email}</span>
       <span>Data {format(new Date(bilhete.date), 'yyyy-MM-dd')}</span>
       <span>Apostou R${Number(bilhete.value).toFixed(2)}</span>
+      <span>Retorno R${Number(bilhete.potencialReturn).toFixed(2)}</span>
       <div>
         {bilhete.bets.map((m, i) => {
           return <FixBilhete m={m} key={i} />
