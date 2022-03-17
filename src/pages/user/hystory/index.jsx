@@ -5,7 +5,7 @@ import FullLoading from '../../../components/fullloading'
 import LayoutUser from '../../../components/layouts/user'
 import { useState } from 'react'
 import useUser from '../../../utills/hooks/useUser'
-import ListBetsHistory from  './listBetsHistory'
+import ListBetsHistory from  '../../../components/listBetsHistory'
 
 export default function historyBets(props) {
   const user = useUser(props.userString)
@@ -40,7 +40,6 @@ export default function historyBets(props) {
       </div>
       <div className=" md:h-auto overflow-auto">
             {data && data.betHistory.reverse().map((bi) => {
-              console.log('bi ', bi)
               return <ListBetsHistory bi={bi} key={bi._id} />
               })}
             

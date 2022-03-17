@@ -3,7 +3,7 @@ import FullLoading from '../../../components/fullloading'
 import LayoutAdmin from '../../../components/layouts/admin'
 import serverSidePropsAdmin from '../../../utills/serverSidePropsAdmin'
 import useFetch from '../../../utills/useFetch'
-import RescueItem from './rescueitem'
+import RescueItem from '../../../components/rescueitem'
 
 export default function fin() {
     const [rescues, setRescues] = useState(false)
@@ -11,8 +11,7 @@ export default function fin() {
     if (!data) <FullLoading />
     useEffect(() => {
         if (data) {
-            const requests = data.rescue.filter(r => r.status.state == "request")
-            setRescues(requests)
+            setRescues(data.rescue)
 
         }
     }, [data])

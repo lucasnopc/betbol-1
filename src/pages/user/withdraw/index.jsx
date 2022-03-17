@@ -42,10 +42,16 @@ export default function withdraw(props) {
           <div>{onlyPaysWithState && onlyPaysWithState.map(m => {
             const date = format(new Date(m.status.date), 'dd/MM/yyyy')
             console.log('date', date)
-            return <div className='text-sm font-semibold uppercase my-1 p-1 bg-gray-300 border-b border-gray-200 hover:bg-gray-200 cursor-pointer items-center flex justify-between' key={m.status.date}>
-              <div>Status: {m.status.state == 'request' ? <span className=''>Transferência solicitada no dia {date}!</span> : ``}
+            return <div className='text-sm font-semibold uppercase my-1 p-1 bg-gray-200 border-b border-gray-200 items-center flex justify-between' key={m.status.date}>
+              <div className="flex flex-col">
+              <div>
+                Status: {m.status.state == 'request' ? <span className=''>Transferência solicitada no dia {date}!</span> : ``}
                 {m.status.state == 'payment_made' ? <span className='text-primary'>{date} Transferência efeituada! </span> : ``}
                 {m.status.state == 'deny' ? <span className=''>{date} Transferência negado, revise sua chave pix!</span> : ``}
+              </div>
+              <div>
+                <span className=''>Comprovante: {m.status.code}</span>
+              </div>
               </div>
               <span className=''>Método: {m.status.method}</span>
               <span className=''>Valor: R$ {Number(m.potencialReturn).toFixed(2)}</span>

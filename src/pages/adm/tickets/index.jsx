@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { useEffect, useState } from 'react'
 import useFetch from '../../../utills/useFetch'
 import FullLoading from '../../../components/fullloading'
-import TicketItem from './ticketitem'
+import TicketItem from '../../../components/ticketitem'
 
 export default function tickets() {
     const [bets, setBets] = useState([])
