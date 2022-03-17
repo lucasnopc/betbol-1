@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
 import useUser from '../../utills/hooks/useUser'
-import serverSidePropsClient from '../../utills/serverSitePropsClient'
+import serverSidePropsClientNotRedirect from '../../utills/serverSitePRopsClientNotRedirect'
 
 export default function AboutPage(props) {
     const user = useUser(props.userString)
@@ -22,6 +22,6 @@ export default function AboutPage(props) {
     )
 }
 export async function getServerSideProps(context) {
-    const ret = serverSidePropsClient(context)
+    const ret = serverSidePropsClientNotRedirect(context)
     return ret
 }

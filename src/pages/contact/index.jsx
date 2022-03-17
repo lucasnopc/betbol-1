@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Layout from "../../components/layouts/home/layout";
-import serverSidePropsClient from "../../utills/serverSitePropsClient";
+import serverSidePropsClientNotRedirect from "../../utills/serverSitePRopsClientNotRedirect";
 import { useForm } from "react-hook-form";
 import { ImSpinner } from "react-icons/im";
 import useUser from "../../utills/hooks/useUser";
@@ -10,7 +10,6 @@ export default function RegulationPage(props) {
   const { isSubmitting } = formState;
   const user = useUser(props.userString)
   
-
   const sendEmailContact = (data) => {
       console.log(data)
   };
@@ -88,6 +87,6 @@ export default function RegulationPage(props) {
   );
 }
 export async function getServerSideProps(context) {
-  const ret = serverSidePropsClient(context);
-  return ret;
+  const ret = serverSidePropsClientNotRedirect(context);
+  return ret
 }
