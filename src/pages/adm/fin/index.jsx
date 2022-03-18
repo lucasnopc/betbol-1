@@ -12,7 +12,6 @@ export default function fin() {
     useEffect(() => {
         if (data) {
             setRescues(data.rescue)
-
         }
     }, [data])
     return <>
@@ -22,7 +21,6 @@ export default function fin() {
                 {rescues && rescues.map(r => <RescueItem key={r._id} r={r} />)}
                 {rescues && rescues.length == 0 && <span className="py-2">Não há solicitações de depósitos!</span>}
             </div>
-
         </LayoutAdmin>
     </>
 }

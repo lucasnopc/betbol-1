@@ -3,8 +3,9 @@ import { useStore } from "../../context/store"
 import useFetch from "../../utills/useFetch"
 import FullLoading from "../fullloading"
 import { toast } from 'react-toastify';
+import Translate from '../../utills/translate'
 
-export default function Button({ fix, val, bets }) {
+export default function Button({ fix, val, bets, value }) {
     const [checked, setChecked] = useState(false)
     const [config, setConfig] = useState({})
     const { data, error } = useFetch('/api/adm/config')
@@ -51,7 +52,6 @@ export default function Button({ fix, val, bets }) {
             })
         } else {
             if(note.length <= config.max_events_ticket -1) {
-                console.log("max",config.max_events_ticket)
                 const indexNoteEquals = note.findIndex((n, i) => n.fix.fixture.id == fix.fixture.id)
                 if (indexNoteEquals < 0) {
                     setGoBetsInNote(bet)
@@ -71,10 +71,11 @@ export default function Button({ fix, val, bets }) {
             }
         }
     }
+    console.log('val', val)
  return <div className="group font-medium inline-block relative w-full h-full">
         <button onClick={() => betGo(val, fix, bets)} className={`${checked ? `bg-primary hover:bg-primary-ligth text-white` : ` hover:bg-gray-200 text-primary`} px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none md:w-20 min-w-full h-full text-base font-bold`}>
             {val.odd}
-            {/* <span className="hidden font-medium text-xs md:hidden">{Translate(props.val.value)}</span> */}
+           {value && <span className="block font-medium text-xs">{Translate(val.value)}</span>}
         </button>
  </div>
 }

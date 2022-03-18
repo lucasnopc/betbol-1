@@ -54,10 +54,10 @@ export default function Fix(props) {
         {oddValueTranslations.map(odd => {
           return <div key={odd.id}>
             <h3 className="font-semibold border-b border-primary p-1 text-white bg-primary"> {odd.name}</h3>
-            <div className="flex flex-wrap">
+            <div className="md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200 divide-x">
               {odd.values.map((val, i) => {
                 return <div key={val.value} className="flex-1 gap-0 h-full ">
-                  <Button key={i} val={val} fix={res_fixture.response[0]} bets={bets} />
+                  <Button key={i} val={val} value="true" fix={res_fixture.response[0]} bets={bets} />
                 </div>
               })}
             </div>

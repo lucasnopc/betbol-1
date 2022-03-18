@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import FixDate from './FixDate'
 import Odd from './Odd'
 
-export default function Fix(props) {
+export default function Fix({fix, bets}) {
     const [odds, setOdds] = useState({})
-    const fix = props.fix
     useEffect(()=>{
-        setOdds(fix.odd.bookmakers[0].bets.find((bet)=> bet.id == props.bets))
-    },[props.bets])
+        setOdds(fix.odd.bookmakers[0].bets.find((bet)=> bet.id == bets))
+    },[bets])
+    console.log(odds)
     return <>
         <div className={`pl-2 grid grid-cols-12 gap-0 border-b border-gray-200 hover:border-primary-ligth`}>
             <div className="col-start-1 col-span-6 text-xs">
@@ -17,7 +17,7 @@ export default function Fix(props) {
             </div>
             <div className="col-start-7 col-span-6">
                 <div className="h-full">
-                    <Odd odds={odds} bets={props.bets} fix={fix} />
+                    <Odd odds={odds} bets={bets} fix={fix} />
                 </div>
             </div>
         </div>
