@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { oddBets } from '../../utills/oddBets'
 import useUser from '../../utills/hooks/useUser'
 import MultipleBetsBlock from '../../components/multiplebetsblock'
+import serverSidePropsClientNotRedirect from '../../utills/serverSitePRopsClientNotRedirect'
 
 export default function Fix(props) {
   const user = useUser(props.userString)
@@ -69,6 +70,7 @@ export default function Fix(props) {
           <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[29, 30]} />
           <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[12, 20, 33]} />
           <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[10, 31, 62]} />
+          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[38, 40, 41, 42]} />
         </>}
 
       </Layout>
