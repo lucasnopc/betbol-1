@@ -1,4 +1,5 @@
 import { oddBets } from '../../utills/oddBets'
+import translateBetsName from '../../utills/translates/translate-bets-name'
 
 export default function SelectOddsBets(props) {
     return <div className="inline-block md:float-right">
@@ -6,7 +7,7 @@ export default function SelectOddsBets(props) {
                 props.setBets(change.target.value)
             }}>
                 {oddBets.map((bet, i) => {
-                    return <option className="text-gray-700 font-semibold uppercase text-xs" key={bet.id} value={bet.id}>{bet.name}</option>
+                    return <option className="text-gray-700 font-semibold uppercase text-xs" key={bet.id} value={bet.id}>{translateBetsName(bet.id)}</option>
                 })}
             </select>
         </div>

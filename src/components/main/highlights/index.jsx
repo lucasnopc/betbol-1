@@ -28,9 +28,7 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
     return <>
         <div className="flex justify-between p-2 border-b border-gray-200">
             <h2 className="page-title p-2 inline-block">{title}</h2>
-
             <SelectOddsBets setBets={setBets} bets={bets} />
-
         </div>
         {leagues.length > 0 && bets && leagues.map(l => {
             const values = l.fix[0].odd.bookmakers[0].bets.find(bet => bet.id == bets)?.values
@@ -46,6 +44,7 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
                     <div>
                         <div className="ml-3 md:float-right flex flex-nowrap md:flex-none h-full divide-green-500 divide-x">
                             {values?.length <= 3 && values?.map(v => <div key={v.value} className="md:w-20 flex-1 gap-0 text-center">{Translate(v.value)}</div>)}
+                            <div className="md:w-20 flex-1 gap-0 text-center">Mais</div>
                         </div>
                     </div>
                 </div>

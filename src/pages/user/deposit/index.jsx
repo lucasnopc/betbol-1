@@ -37,7 +37,7 @@ console.log(qrCode)
                 <div className='uppercase bg-gray-200 hover:bg-gray-300 text-center py-1 text-gray-600 font-bold' onClick={() => setValueDeposit(valueDeposit + 100)}>+100</div>
                 <div className='uppercase bg-gray-200 hover:bg-gray-300 text-center py-1 text-gray-600 font-bold' onClick={() => setValueDeposit(valueDeposit + 500)}>+500</div>
                 <div className='uppercase bg-gray-200 hover:bg-gray-300 text-center py-1 text-gray-600 font-bold' onClick={() => setValueDeposit(valueDeposit + 1000)}>+1000</div>
-                <div className='uppercase bg-gray-200 hover:bg-gray-300 text-center py-1 text-gray-600 font-bold' onClick={() => setValueDeposit(0)}>Limpar</div>
+                <div className='uppercase bg-gray-200 hover:bg-gray-300 text-center py-1 text-gray-600 font-bold' onClick={() => setValueDeposit(10)}>Limpar</div>
               </div>
               <span className='block text-center rounded-md p-2 cursor-pointer uppercase bg-primary text-white font-semibold w-full my-1' onClick={() => deposit(valueDeposit.toFixed(2))}>Fazer Depósito</span>
             </div>

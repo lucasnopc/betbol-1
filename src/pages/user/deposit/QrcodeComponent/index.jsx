@@ -10,7 +10,6 @@ export default function QrcodeComponent({ qrCode, valueDeposit, setQrCode, txid,
   const [confirmationPix, setConfirmationPix] = useState(null)
   const { data, error } = useFetch(`/api/pix/getpix?txid=${txid}&email=${user?.email}`, { refreshInterval: 1000 });
   if (error) console.log(error)
-  console.log(user)
   useEffect(() => {
     if (data?.pix) {
       setConfirmationPix(data.pix)

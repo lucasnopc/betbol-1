@@ -66,7 +66,6 @@ export default function Note(props) {
                 <div className="block p-1 border-t border-gray-300 bg-gray-100">
                     <span className="text-sm text-black font-semibold pl-1 w-2/12">R$</span>
                     <input onChange={(r) => {
-                        console.log('value', r.target.value)
                         if(r.target.value < config.min_value) r.target.value = config.min_value
                         if(r.target.value > config.max_value) r.target.value = config.max_value
                         changeInputValue({ obj: r, setVf, note })

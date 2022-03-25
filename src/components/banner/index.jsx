@@ -34,7 +34,7 @@ export default function Banner({ highlights }) {
 
     return <>
         <div className=" mx-2 text-xs text-gray-700">
-            <div className="h-40 scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-100 overflow-x-auto overflow-y-hidden flex transition-transform" style={{ marginLeft: scrollX }} >
+            <div className="h-40 scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-100 overflow-x overflow-y-hidden flex transition-transform" style={{ marginLeft: scrollX }} >
                 <div>
                     <div className="p-2 mx-1 w-64 h-36 overflow-hidden bg-bg01 bg-black bg-cover bg-right-top shadow-sm inline-block">
                         <div className="flex flex-col justify-center">
