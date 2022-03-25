@@ -105,21 +105,9 @@ export default function translateBetsName(id) {
     case 47:
       return 'Margem de vitória'
       break
-    // case 50:
-    //   return 'Linha do gol'
-    //   break
     case 53:
       return 'Fora vence os dois tempos'
       break
-    // case 57:
-    //   return 'Casa - Escanteios Acima/Abaixo'
-    //   break
-    // case 58:
-    //   return 'Fora - Escanteios Acima/Abaixo'
-    //   break
-    // case 59:
-    //   return "Gol Contra"
-    //   break
     case 60:
       return 'Fora - Acima/Abaixo'
     case 62:
