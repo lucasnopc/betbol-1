@@ -41,6 +41,6 @@ export default function Footer() {
                 </ol>
             </div>
         </div>
-        <div className="p-2 bg-white text-center font-semibold text-gray-400 text-sm pb-10 md:pb-0">© {fullYear} - Betbol.io / Todos os direitos reservados.</div>
+        <div className="p-2 bg-white text-center font-semibold text-gray-400 text-sm">© {fullYear} - Betbol.io / Todos os direitos reservados.</div>
     </div>
 }
