@@ -61,7 +61,6 @@ export default function Note(props) {
                 {EmptyListBetState()}
                 {note.length != 0 && note.map((bet, indice) => {
                     return <ItemBetNote setVf={setVf} key={bet.fix.fixture.id} bet={bet} indice={indice} vf={vf} />
-
                 })}
                 <div className="block p-1 border-t border-gray-300 bg-gray-100">
                     <span className="text-sm text-black font-semibold pl-1 w-2/12">R$</span>

@@ -20,7 +20,6 @@ export default function MultipleBetsBlock({ oddList = [], arrayIds = [], title =
       setValues(oddListOnlyArrayIds[0])
     }
   }, [])
-  console.log('values', values)
   if(!bets) return <></>
   return <div className="border border-gray-300 bg-gray-50 m-3 mr-4 shadow-lg">
     {bets && <>

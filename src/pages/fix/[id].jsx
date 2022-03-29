@@ -8,14 +8,17 @@ import { oddBets } from '../../utills/oddBets'
 import useUser from '../../utills/hooks/useUser'
 import MultipleBetsBlock from '../../components/multiplebetsblock'
 import serverSidePropsClientNotRedirect from '../../utills/serverSitePRopsClientNotRedirect'
+import { useStore } from '../../context/store'
 
 export default function Fix(props) {
+  const { note } = useStore()
   const user = useUser(props.userString)
   const router = useRouter()
   const { id } = router.query
   const [resFixture, setResFixture] = useState(false)
   const [odd, setOdd] = useState(false)
   const { data, error } = useFetch(`/api/betApi/fixture/${id}/`)
+
 
   useEffect(() => {
     if (data) {
@@ -58,19 +61,18 @@ export default function Fix(props) {
         </>}
         
         {odd && <>
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[1, 13, 3]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[2]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[8, 34, 35]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[10]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[5, 6, 26]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[14, 15]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[12, 20, 33]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[16, 17]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[21, 22, 63, 23]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[29, 30]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[12, 20, 33]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[10, 31, 62]} />
-          <MultipleBetsBlock oddList={odd} fix={resFixture} arrayIds={[38, 40, 41, 42]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[1, 13, 3]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[5, 6, 26]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[8, 34, 35]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[12, 20, 33]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[21, 22, 63, 23]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[2]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[10]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[14, 15]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[16, 17]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[29, 30]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[10, 31, 62]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[38, 40, 41, 42]} />
         </>}
 
       </Layout>

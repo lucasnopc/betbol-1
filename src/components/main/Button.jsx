@@ -11,19 +11,21 @@ export default function Button({ fix, val, bets, value }) {
     const { data, error } = useFetch('/api/adm/config')
     const { setGoBetsInNote, removeBetsInNote, note, replaceBetsInNote } = useStore()
     useEffect(() => {if(data) setConfig(data.config[0].config)}, [data])
-    useEffect(() => {
-        note.map((n, i) => {
-            if (n.fix.fixture.id == fix.fixture.id && n.choice.betsChoice == bets) {
-                if (n.choice.value == val.value && n.choice.odd == val.odd) {
-                    setChecked(true)
-                } else {
-                    if (checked) setChecked(false)
-                }
-            }
-        })
+    // useEffect(() => {
+    //     note.map((n, i) => {
+    //         if (n.fix.fixture.id == fix.fixture.id && n.choice.betsChoice == bets) {
+    //             if (n.choice.value == val.value && n.choice.odd == val.odd) {
+    //                 setChecked(true)
+    //                 console.log('todos tem que mostrar checked ', checked)
+    //             } else {
+    //                 if (checked) setChecked(false)
+    //             }
+    //         }
+    //     })
         
-    }, [])
+    // }, [])
     useEffect(()=> {
+            console.log('note mudou')
         note.map((n, i) => {
             if (n.fix.fixture.id == fix.fixture.id && n.choice.betsChoice == bets) {
                 if (n.choice.value == val.value && n.choice.odd == val.odd) {
