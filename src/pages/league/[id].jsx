@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
-import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
 import useFetch from '../../utills/useFetch'
 import { useEffect, useState } from 'react'
 import { FixProvider } from '../../context/fix'
 import useUser from '../../utills/hooks/useUser'
 import Highlights from '../../components/main/highlights'
+import serverSidePropsClientNotRedirect from '../../utills/serverSitePRopsClientNotRedirect'
 
 export default function LeaguePage(props) {
     const user = useUser(props.userString)
@@ -36,6 +36,6 @@ export default function LeaguePage(props) {
     )
 }
 export async function getServerSideProps(context) {
-    const ret = serverSidePropsClient(context)
+    const ret = serverSidePropsClientNotRedirect(context)
     return ret
 }

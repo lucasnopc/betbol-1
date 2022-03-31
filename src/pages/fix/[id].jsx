@@ -19,7 +19,6 @@ export default function Fix(props) {
   const [odd, setOdd] = useState(false)
   const { data, error } = useFetch(`/api/betApi/fixture/${id}/`)
 
-
   useEffect(() => {
     if (data) {
       const { res_fixture, odds } = data

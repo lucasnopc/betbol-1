@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
-import serverSidePropsClient from '../../utills/serverSitePropsClient'
+import serverSidePropsClientNotRedirect from '../../utills/serverSitePRopsClientNotRedirect'
 import { useRouter } from 'next/router'
 import useFetch from '../../utills/useFetch'
 import { useEffect, useState } from 'react'
@@ -16,9 +16,9 @@ export default function LeaguePage(props) {
     const { date } = router.query
     const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const { data, error } = useFetch(`/api/betApi/soccer?date=${date}&tzid=${tzid}`)
-    
-    useEffect(() => {if (data) setLive(data.soccer.response)}, [data])
-    
+
+    useEffect(() => { if (data) setLive(data.soccer.response) }, [data])
+
     if (error) return console.log(error)
     if (!data) return <FullLoading />
     return (
@@ -30,13 +30,14 @@ export default function LeaguePage(props) {
 
             <Layout userString={user}>
                 <FixProvider>
-                    {live.length > 0 && <Highlights highlights={live} title={`Jogos de ${date}`}  qtd={10} />}
+                    {live.length > 0 && <Highlights highlights={live} title={`Jogos de ${date}`} qtd={10} />}
                 </FixProvider>
             </Layout>
         </>
     )
 }
+
 export async function getServerSideProps(context) {
-    const ret = serverSidePropsClient(context)
+    const ret = serverSidePropsClientNotRedirect(context);
     return ret
 }
