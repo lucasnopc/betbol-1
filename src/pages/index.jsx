@@ -11,8 +11,6 @@ import Banner from '../components/banner'
 
 export default function Home(props) {
   const user = useUser(props.userString)
-  
-  console.log('user ', user)
   const [live, setLive] = useState([])
   const [master, setMaster] = useState([])
   const [tomorrowFix, setTomorrowFix] = useState([])

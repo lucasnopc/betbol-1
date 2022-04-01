@@ -2,16 +2,21 @@ export default function calcStatusFix(atualFix, bet) {
   const goals = atualFix.goals
   const score = atualFix.score
   const choice = bet.choice
-  const sumGoals = Number(goals.home) + Number(goals.away)
-  const sumGoalsFirstTime = Number(score.halftime.home) + Number(score.halftime.away)
-  const nVal = Number(choice.value.substring(choice.value.length - 3, choice.value.length))
-  const overOrUnderVal = choice.value.substring(0, choice.value.length - 4)
   const goals_home_2T = score.fulltime.home - score.halftime.home
   const goals_away_2T = score.fulltime.away - score.halftime.away
+  const sumGoals = Number(goals.home) + Number(goals.away)
+  const sumGoalsFirstTime = Number(score.halftime.home) + Number(score.halftime.away)
+  const sumGoalsLastTime = Number(goals_home_2T) + Number(goals_away_2T)
+  const nVal = Number(choice.value.substring(choice.value.length - 3, choice.value.length))
+  const overOrUnderVal = choice.value.substring(0, choice.value.length - 4)
+  const boll_ambas_marcam = goals.home != 0 && goals.away != 0 ? 'Yes' : 'No'
+  const boll_ambas_marcam_1T = score.halftime.home != 0 && score.halftime.away != 0 ? 'Yes' : 'No'
+  const boll_ambas_marcam_2T = goals_home_2T != 0 && goals_away_2T != 0 ? 'Yes' : 'No'
   let status = false
 
   let winner = ""
   let winner1T = ""
+  let winner2T = ""
   if (goals.home > goals.away) winner = "Home"
   if (goals.home < goals.away) winner = "Away"
   if (goals.home == goals.away) winner = "Draw"
@@ -20,55 +25,48 @@ export default function calcStatusFix(atualFix, bet) {
   if (score.halftime.home < score.halftime.away) winner1T = "Away"
   if (score.halftime.home == score.halftime.away) winner1T = "Draw"
 
+  if (goals_home_2T > goals_away_2T) winner2T = "Home"
+  if (goals_home_2T < goals_away_2T) winner2T = "Away"
+  if (goals_home_2T == goals_away_2T) winner2T = "Draw"
+
+  const valueBarSepatare = choice.value.split('/')
+  const valueDuploPointSepatare = choice.value.split(':')
+
   switch (choice.betsChoice) {
     case 1:
-      if (choice.value == winner) { status = true } else status = false
+      if (choice.value == winner) status = true
       break
     case 2:
-      if (goals.home > goals.away) winner = "Home"
-      if (goals.home < goals.away) winner = "Away"
-      if (choice.value == winner) { status = true } else status = false
+      if (choice.value == winner) status = true
       break
     case 3:
-      if (goals_home_2T > goals_away_2T) winner = "Home"
-      if (goals_home_2T < goals_away_2T) winner = "Away"
-      if (goals_home_2T == goals_away_2T) winner = "Draw"
-      if (choice.value == winner) { status = true } else status = false
+      if (choice.value == winner2T) status = true
       break
     case 5:
       switch (overOrUnderVal) {
         case "Over":
-          if (sumGoals > nVal) { status = true } else { status = false }
+          if (sumGoals > nVal) status = true
           break
         case "Under":
-          if (sumGoals < nVal) { status = true } else { status = false }
+          if (sumGoals < nVal) status = true
           break
       }
       break
     case 6:
       switch (overOrUnderVal) {
         case "Over":
-          if (sumGoalsFirstTime > nVal) { status = true } else { status = false }
+          if (sumGoalsFirstTime > nVal) status = true
           break;
         case "Under":
-          if (sumGoalsFirstTime < nVal) { status = true } else { status = false }
+          if (sumGoalsFirstTime < nVal) status = true
           break;
       }
       break
     case 8:
-      switch (choice.value) {
-        case "Yes":
-          if (goals.home > 0 && goals.away > 0) { status = true } else { status = false }
-          break
-        case "No":
-          if (goals.home == 0 && goals.away == 0) { status = true } else { status = false }
-          break
-      }
+      if (choice.value == boll_ambas_marcam) status = true
       break
     case 10:
-      const valueGoalsHome = choice.value.slice(0, -2)
-      const valuesGoalsAway = choice.value.slice(-1)
-      if (goals.home == valueGoalsHome && goals.away == valuesGoalsAway) status = true
+      if (goals.home == valueDuploPointSepatare[0] && goals.away == valueDuploPointSepatare[1]) status = true
       break
     case 12:
       switch (choice.value) {
@@ -86,20 +84,20 @@ export default function calcStatusFix(atualFix, bet) {
     case 16:
       switch (overOrUnderVal) {
         case "Over":
-          if (goals.home > nVal) { status = true } else { status = false }
+          if (goals.home > nVal) status = true
           break;
         case "Under":
-          if (goals.home < nVal) { status = true } else { status = false }
+          if (goals.home < nVal) status = true
           break;
       }
       break
     case 17:
       switch (overOrUnderVal) {
         case "Over":
-          if (goals.away > nVal) { status = true } else { status = false }
+          if (goals.away > nVal) status = true
           break;
         case "Under":
-          if (goals.away < nVal) { status = true } else { status = false }
+          if (goals.away < nVal) status = true
           break;
       }
       break
@@ -130,6 +128,112 @@ export default function calcStatusFix(atualFix, bet) {
         if (choice.value == "Odd") status = true
       }
       break
+    case 23:
+      if (goals.home % 2 == 0) {
+        if (choice.value == "Even") status = true
+      } else {
+        if (choice.value == "Odd") status = true
+      }
+      break
+    case 24:
+      if (valueBarSepatare[0] == winner && valueBarSepatare[1] == boll_ambas_marcam) status = true
+      break
+    case 25:
+      const overOrUnderValTwo = valueBarSepatare[1].substring(0, valueBarSepatare[1].length - 4)
+      switch (overOrUnderValTwo) {
+        case "Over":
+          if (sumGoals > nVal && valueBarSepatare[0] == winner) status = true
+          break;
+        case "Under":
+          if (sumGoals < nVal && valueBarSepatare[0] == winner) status = true
+          break;
+      }
+      break
+    case 26:
+      switch (overOrUnderVal) {
+        case "Over":
+          if (sumGoalsLastTime > nVal) status = true
+          break;
+        case "Under":
+          if (sumGoalsLastTime < nVal) status = true
+          break;
+      }
+      break
+    case 29:
+      switch (choice.value) {
+        case "Yes":
+          if (winner == "Home" && goals.away == 0) status = true
+          break
+        case "No":
+          if (winner == "Home" && goals.away != 0) status = true
+          break
+      }
+      break
+    case 30:
+      if (score.halftime.home == valueDuploPointSepatare[0] && score.halftime.away == valueDuploPointSepatare[1]) status = true
+      break
+    case 31:
+      if (score.halftime.home == valueDuploPointSepatare[0] && score.halftime.away == valueDuploPointSepatare[1]) status = true
+      break
+    case 33:
+      if (goals_home_2T == valueDuploPointSepatare[0] && goals_away_2T == valueDuploPointSepatare[1]) status = true
+      break
+    case 34:
+      if (choice.value == boll_ambas_marcam_1T) status = true
+      break
+    case 35:
+      if (choice.value == boll_ambas_marcam_2T) status = true
+      break
+    case 37:
+      switch (choice.value) {
+        case "Yes":
+          if (winner1T == "Home" && winner2T == "Home") status = true
+          break
+        case "No":
+          if (winner1T != "Home" || winner2T != "Home") status = true
+          break
+      }
+      break
+    case 43:
+      switch (choice.value) {
+        case "Yes":
+          if (goals.home == 1) status = true
+          break
+        case "No":
+          if (goals.home != 1) status = true
+          break
+      }
+      break
+    case 44:
+      switch (choice.value) {
+        case "Yes":
+          if (goals.away == 1) status = true
+          break
+        case "No":
+          if (goals.away != 1) status = true
+          break
+      }
+      break
+    case 53:
+      switch (choice.value) {
+        case "Yes":
+          if (winner1T == "Away" && winner2T == "Away") status = true
+          break
+        case "No":
+          if (winner1T != "Away" || winner2T != "Away") status = true
+          break
+      }
+      break
+    case 62:
+      if (goals_home_2T == valueDuploPointSepatare[0] && goals_away_2T == valueDuploPointSepatare[1]) status = true
+      break
+      case 63:
+        if (sumGoalsLastTime % 2 == 0) {
+          if (choice.value == "Even") status = true
+        } else {
+          if (choice.value == "Odd") status = true
+        }
+        break
   }
   return status;
 }

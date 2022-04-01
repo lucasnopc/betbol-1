@@ -10,10 +10,10 @@ export default function translateBetsName(id) {
       return "Vencedor 2T"
       break
     case 5:
-      return "Gols - Acima/Abaixo"
+      return "Gols no jogo - Acima/Abaixo"
       break
     case 6:
-      return "Gols - Acima/Abaixo - 1T"
+      return "Gols no jogo - Acima/Abaixo - 1T"
       break
     case 8:
       return 'Ambas equipes marcam'
@@ -55,16 +55,16 @@ export default function translateBetsName(id) {
       return 'Vencedor do encontro - ambas marcam'
       break
     case 25:
-      return 'Vencedor do Encontro\/Total de gols'
+      return 'Vencedor do Encontro\/Total de gols no jogo'
       break
     case 26:
-      return 'Gols - Acima/Abaixo - 2T'
+      return 'Gols no jogo - Acima/Abaixo - 2T'
       break
     case 29:
-      return 'Vitória a zero - Casa'
+      return 'Casa vence sem levar gol'
       break
     case 30:
-      return 'Vitória a zero - Fora'
+      return 'Fora vence sem levar gol'
       break
     case 31:
       return 'Placar Exato - 1T'
@@ -81,47 +81,47 @@ export default function translateBetsName(id) {
     case 37:
       return 'Casa vence os dois tempos'
       break
-    case 38:
-      return 'Número exato de gols'
-      break
-    case 40:
-      return 'Número exato de gols - Casa'
-      break
-    case 41:
-      return 'Número exato de gols - Fora'
-      break
-    case 42:
-      return 'Número exato de gols - 2T'
-      break
+    // case 38:
+    //   return 'Número exato de gols'
+    //   break
+    // case 40:
+    //   return 'Número exato de gols - Casa'
+    //   break
+    // case 41:
+    //   return 'Número exato de gols - Fora'
+    //   break
+    // case 42:
+    //   return 'Número exato de gols - 2T'
+    //   break
     case 43:
       return 'Marca um gol - Casa'
       break
     case 44:
       return 'Marca um gol - Fora'
       break
-    case 46:
-      return 'Número exato de gols- 1T'
-      break
-    case 47:
-      return 'Margem de vitória'
-      break
+    // case 46:
+    //   return 'Número exato de gols- 1T'
+    //   break
+    // case 47:
+    //   return 'Margem de vitória'
+    //   break
     case 53:
       return 'Fora vence os dois tempos'
       break
-    case 60:
-      return 'Fora - Acima/Abaixo'
+    // case 60:
+    //   return 'Fora - Acima/Abaixo'
     case 62:
       return 'Placar Exato - 2T'
       break
     case 63:
       return 'Ímpar/Par - 2T'
       break
-    case 75:
-      return 'Último escanteio'
-      break
-    case 76:
-      return 'Primeiro Escanteio'
-      break
+    // case 75:
+    //   return 'Último escanteio'
+    //   break
+    // case 76:
+    //   return 'Primeiro Escanteio'
+    //   break
     // case 77:
     //   return 'Total - Escanteios - 1T'
     //   break
