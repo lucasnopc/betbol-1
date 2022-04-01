@@ -10,10 +10,10 @@ export default function translateBetsName(id) {
       return "Vencedor 2T"
       break
     case 5:
-      return "Gols no jogo - Acima/Abaixo"
+      return "Gols - Acima/Abaixo"
       break
     case 6:
-      return "Gols no jogo - Acima/Abaixo - 1T"
+      return "Gols - Acima/Abaixo - 1T"
       break
     case 8:
       return 'Ambas equipes marcam'
@@ -25,13 +25,7 @@ export default function translateBetsName(id) {
       return 'Chace dupla'
       break
     case 13:
-      return "Vencedor 1T" // verifical algorítmo
-      break
-    case 14:
-      return "Primeira equipe a marcar"
-      break
-    case 15:
-      return "Última equipe a marcar"
+      return "Vencedor 1T"
       break
     case 16:
       return 'Casa - Total'
@@ -43,22 +37,22 @@ export default function translateBetsName(id) {
       return 'Dupla Chance - 1T'
       break
     case 21:
-      return 'Par/Ímpar'
+      return 'Ímpar/Par'
       break
     case 22:
-      return 'Par/Ímpar - 1T'
+      return 'Ímpar/Par - 1T'
       break
     case 23:
       return 'Casa - Ímpar/Par'
       break
     case 24:
-      return 'Vencedor do encontro - ambas marcam'
+      return 'Vencedor do encontro / ambas marcam'
       break
     case 25:
-      return 'Vencedor do Encontro\/Total de gols no jogo'
+      return 'Vencedor do Encontro\/Total de gols'
       break
     case 26:
-      return 'Gols no jogo - Acima/Abaixo - 2T'
+      return 'Gols - Acima/Abaixo - 2T'
       break
     case 29:
       return 'Casa vence sem levar gol'
@@ -81,59 +75,42 @@ export default function translateBetsName(id) {
     case 37:
       return 'Casa vence os dois tempos'
       break
-    // case 38:
-    //   return 'Número exato de gols'
-    //   break
-    // case 40:
-    //   return 'Número exato de gols - Casa'
-    //   break
-    // case 41:
-    //   return 'Número exato de gols - Fora'
-    //   break
-    // case 42:
-    //   return 'Número exato de gols - 2T'
-    //   break
+    case 38:
+      return 'Número exato de gols no jogo'
+      break
+    case 40:
+      return 'Número exato de gols no jogo - Casa'
+      break
+    case 41:
+      return 'Número exato de gols - Fora'
+      break
+    case 42:
+      return 'Número exato de gols - 2T'
+      break
     case 43:
       return 'Marca um gol - Casa'
       break
     case 44:
       return 'Marca um gol - Fora'
       break
-    // case 46:
-    //   return 'Número exato de gols- 1T'
-    //   break
+    case 46:
+      return 'Número exato de gols- 1T'
+      break
     // case 47:
     //   return 'Margem de vitória'
     //   break
     case 53:
       return 'Fora vence os dois tempos'
       break
-    // case 60:
-    //   return 'Fora - Acima/Abaixo'
+    case 60:
+      return 'Fora - Ímpar/Par'
+      break
     case 62:
       return 'Placar Exato - 2T'
       break
     case 63:
       return 'Ímpar/Par - 2T'
       break
-    // case 75:
-    //   return 'Último escanteio'
-    //   break
-    // case 76:
-    //   return 'Primeiro Escanteio'
-    //   break
-    // case 77:
-    //   return 'Total - Escanteios - 1T'
-    //   break
-    // case 80:
-    //   return 'Cartões - Acima/Abaixo'
-    //   break
-    // case 82:
-    //   return 'Total de cartões - Home'
-    //   break
-    // case 83:
-    //   return 'Total de cartões - Fora'
-    //   break
     default:
       return null
   }

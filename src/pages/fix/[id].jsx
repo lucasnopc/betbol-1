@@ -64,14 +64,19 @@ export default function Fix(props) {
           <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[5, 6, 26]} />
           <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[8, 34, 35]} />
           <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[12, 20, 33]} />
-          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[21, 22, 63, 23]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[24, 25]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[29, 30]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[21, 22, 63]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[60, 23]} />
           <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[2]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[37, 53]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[43, 44]} />
           <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[10]} />
           <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[14, 15]} />
           <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[16, 17]} />
-          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[29, 30]} />
           <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[10, 31, 62]} />
-          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[38, 40, 41, 42]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[38, 40, 41]} />
+          <MultipleBetsBlock note={note} oddList={odd} fix={resFixture} arrayIds={[42, 46]} />
         </>}
 
       </Layout>

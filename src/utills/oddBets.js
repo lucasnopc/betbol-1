@@ -32,10 +32,10 @@ export const oddBets =
 			"id": 8,
 			"name": "Both Teams Score"
 		},
-		{
-			"id": 9,
-			"name": "Handicap Result"
-		},
+		// {
+		// 	"id": 9,
+		// 	"name": "Handicap Result"
+		// },
 		{
 			"id": 10,
 			"name": "Exact Score"
@@ -52,10 +52,10 @@ export const oddBets =
 			"id": 13,
 			"name": "First Half Winner"
 		},
-		{
-			"id": 14,
-			"name": "Team To Score First"
-		},
+		// {
+		// 	"id": 14,
+		// 	"name": "Team To Score First"
+		// },
 		// {
 		// 	"id": 15,
 		// 	"name": "Team To Score Last"
@@ -224,18 +224,18 @@ export const oddBets =
 		// 	"id": 56,
 		// 	"name": "Corners Asian Handicap"
 		// },
-		{
-			"id": 57,
-			"name": "Home Corners Over\/Under"
-		},
-		{
-			"id": 58,
-			"name": "Away Corners Over\/Under"
-		},
-		{
-			"id": 59,
-			"name": "Own Goal"
-		},
+		// {
+		// 	"id": 57,
+		// 	"name": "Home Corners Over\/Under"
+		// },
+		// {
+		// 	"id": 58,
+		// 	"name": "Away Corners Over\/Under"
+		// },
+		// {
+		// 	"id": 59,
+		// 	"name": "Own Goal"
+		// },
 		{
 			"id": 60,
 			"name": "Away Odd\/Even"
@@ -264,14 +264,14 @@ export const oddBets =
 		// 	"id": 74,
 		// 	"name": "10 Over\/Under"
 		// },
-		{
-			"id": 75,
-			"name": "Last Corner"
-		},
-		{
-			"id": 76,
-			"name": "First Corner"
-		},
+		// {
+		// 	"id": 75,
+		// 	"name": "Last Corner"
+		// },
+		// {
+		// 	"id": 76,
+		// 	"name": "First Corner"
+		// },
 		// {
 		// 	"id": 77,
 		// 	"name": "Total Corners (1st Half)"

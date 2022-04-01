@@ -162,6 +162,24 @@ test("Dupla chance Draw/Away", ()=> {
   atualFixMock.goals.away = "5"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
+test("Vencedor do primeiro tempo - Draw", ()=> {
+  betMock.choice.betsChoice = 13
+  betMock.choice.value = "Draw"
+  atualFixMock.score.halftime.home = "2"
+  atualFixMock.score.halftime.away = "2"
+  atualFixMock.score.fulltime.home = "4"
+  atualFixMock.score.fulltime.away = "2"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Vencedor do primeiro tempo - Home", ()=> {
+  betMock.choice.betsChoice = 13
+  betMock.choice.value = "Home"
+  atualFixMock.score.halftime.home = "3"
+  atualFixMock.score.halftime.away = "2"
+  atualFixMock.score.fulltime.home = "4"
+  atualFixMock.score.fulltime.away = "2"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
 test("Casa total Over 3.5", ()=> {
   betMock.choice.betsChoice = 16
   betMock.choice.value = "Over 3.5"
@@ -393,6 +411,66 @@ test("Casa vence os dois tepos NO", ()=> {
   atualFixMock.score.fulltime.away = "0"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
+test("Numero exato de gols", ()=> {
+  betMock.choice.betsChoice = 38
+  betMock.choice.value = "3"
+  atualFixMock.goals.home = "2"
+  atualFixMock.goals.away = "1"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Numero exato de gols maior que 2", ()=> {
+  betMock.choice.betsChoice = 38
+  betMock.choice.value = "more 5"
+  atualFixMock.goals.home = "2"
+  atualFixMock.goals.away = "5"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Numero exato de gols - casa", ()=> {
+  betMock.choice.betsChoice = 40
+  betMock.choice.value = "3"
+  atualFixMock.goals.home = "3"
+  atualFixMock.goals.away = "1"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Numero exato de gols - casa maior que 5", ()=> {
+  betMock.choice.betsChoice = 40
+  betMock.choice.value = "more 5"
+  atualFixMock.goals.home = "6"
+  atualFixMock.goals.away = "4"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Numero exato de gols - Fora", ()=> {
+  betMock.choice.betsChoice = 41
+  betMock.choice.value = "3"
+  atualFixMock.goals.home = "3"
+  atualFixMock.goals.away = "3"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Numero exato de gols - Fora - maior que 5", ()=> {
+  betMock.choice.betsChoice = 41
+  betMock.choice.value = "more 5"
+  atualFixMock.goals.home = "3"
+  atualFixMock.goals.away = "6"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Numero exato de gols - Último Tempo", ()=> {
+  betMock.choice.betsChoice = 42
+  betMock.choice.value = "3"
+  atualFixMock.score.halftime.home = "1"
+  atualFixMock.score.halftime.away = "0"
+  atualFixMock.score.fulltime.home = "2"
+  atualFixMock.score.fulltime.away = "2"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Numero exato de gols - Último Tempo. maior que cinco", ()=> {
+  betMock.choice.betsChoice = 42
+  betMock.choice.value = "more 5"
+  atualFixMock.score.halftime.home = "1"
+  atualFixMock.score.halftime.away = "0"
+  atualFixMock.score.fulltime.home = "2"
+  atualFixMock.score.fulltime.away = "7"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
 test("Home marca um gol YES", ()=> {
   betMock.choice.betsChoice = 43
   betMock.choice.value = "Yes"
@@ -433,6 +511,13 @@ test("Fora vence os dois tepos NO", ()=> {
   atualFixMock.score.halftime.away = "1"
   atualFixMock.score.fulltime.home = "0"
   atualFixMock.score.fulltime.away = "1"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Fora - impar ou par", ()=> {
+  betMock.choice.betsChoice = 60
+  betMock.choice.value = "Odd"
+  atualFixMock.goals.home = "2"
+  atualFixMock.goals.away = "3"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
 test("Pontos Exatos 2T", ()=> {
