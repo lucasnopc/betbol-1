@@ -7,6 +7,7 @@ import { useState } from 'react'
 import ItemBetNote from './item-bet-note'
 import { useRouter } from 'next/dist/client/router'
 import FullLoading from '../../../fullloading'
+import userUpdate from '../../../../utills/userUpdate'
 
 export default function NoteBtn(props) {
     const { user } = useStore()
@@ -38,7 +39,7 @@ export default function NoteBtn(props) {
                 axios.post('/api/email/send', {
                     subject: `Betbol - Aposta Realizada`,
                     html: HtmlEmailSendBet(note, process.env.NEXTAUTH_URL),
-                }).then(function (response) {
+                }).then(async function (response) {
                     setLoading(false)
                         toast.success("Aposta Realizada com sucesso!",{
                             position: "top-right",
@@ -52,6 +53,7 @@ export default function NoteBtn(props) {
                         
                         clearNote()
                         props.setToggleNoteBets(false)
+                       await userUpdate(user.email)
                         router.push(`/user/hystory`)
                     })
                     .catch(function (error) {
