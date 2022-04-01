@@ -6,7 +6,6 @@ import Link from 'next/link'
 
 export default function Header({userString: user}) {
     const [session] = useSession()
-
     return <>
     {user?.nivel == 5 &&
         <div className=''>

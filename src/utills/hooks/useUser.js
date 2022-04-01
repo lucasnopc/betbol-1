@@ -12,7 +12,7 @@ function useUser(userString) {
   useEffect(() => {
     const getsession = async () => {
       const userLocal = localStorage.getItem('betbol@user')
-      if (userLocal && userLocal.length > 0) {
+      if (userLocal && userLocal.length > 0 && JSON.parse(userLocal).email == session.user.email) {
         setUser(JSON.parse(userLocal))
       }else {
         const user = await axios.get(`/api/adm/getusers?email=${session.user.email}`)

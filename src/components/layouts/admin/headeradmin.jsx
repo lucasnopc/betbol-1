@@ -6,7 +6,6 @@ import { AiOutlineHome } from 'react-icons/ai'
 
 export default function HeaderAdmin() {
   const [toggle, setToggle] = useState(false);
-
   return (
     <>
       <header className="text-xs bg-gray-900 bg-opacity-80 text-white font-normal fixed flex justify-between z-20 w-full top-0">
