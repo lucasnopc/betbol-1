@@ -26,12 +26,12 @@ export default function SignInButton () {
                   <h3 className="font-semibold text-xl text-center mt-5">ENTRAR</h3>
                   <p className="font-medium mt-5 mb-3 text-center text-gray-900">Escolha se deseja entrar a partir de <br /> um e-mail ou de uma conta Google.</p>
                   <form onSubmit={handleSubmit(registerUser)} className="flex">
-                      <div className="flex-auto"><input {...register('email', { required: true })} type="email" name="email" placeholder="exemplo@ex.com" className="inline-block p-1.5 focus:outline-none bg-gray-200 h-10 float-right" required /></div>
+                      <div className="flex-auto"><input {...register('email', { required: true })} type="email" name="email" placeholder="exemplo@hotmail.com" className="inline-block p-1.5 focus:outline-none bg-gray-200 h-10 float-right" required /></div>
                       <div className="flex-auto"> <button disabled={isSubmitting} type="submit" className="bg-primary hover:bg-primary-ligth p-2 font-medium inline-block text-white"><ImSpinner className={`${isSubmitting ? `inline-block` : `hidden`} animate-spin`} /> Acessar</button></div>
                   </form>
                   <div className='mx-auto table'>
                   <LogInGoogle />
-                  <LogInFacebook />
+                  {/* <LogInFacebook /> */}
 
                   </div>
               </div>
