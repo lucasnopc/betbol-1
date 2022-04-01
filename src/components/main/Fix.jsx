@@ -9,8 +9,14 @@ export default function Fix({fix, bets}) {
         setOdds(fix.odd.bookmakers[0].bets.find((bet)=> bet.id == bets))
     },[bets])
     useEffect(() =>{
-        const newNVals = nVals 
-        for(let i of fix.odd.bookmakers[0].bets) {
+        const newNVals = nVals
+        let top_betslenth 
+        for(let book of fix.odd.bookmakers) {
+            if(top_betslenth) {
+               if(book.bets.length > top_betslenth.bets.length) top_betslenth = book
+            }else { top_betslenth = book }
+        }
+        for(let i of top_betslenth.bets) {
             newNVals = newNVals + i.values.length
         }
         setNVal(newNVals)

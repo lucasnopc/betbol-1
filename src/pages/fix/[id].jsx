@@ -24,8 +24,18 @@ export default function Fix(props) {
       const { res_fixture, odds } = data
       setResFixture(res_fixture.response[0])
       let oddsValues = []
-      if (odds.bookmakers[0].bets.length > 0) {
-        oddsValues = odds.bookmakers[0].bets
+
+      let top_betslenth 
+        for(let book of odds.bookmakers) {
+            if(top_betslenth) {
+               if(book.bets.length > top_betslenth.bets.length) top_betslenth = book
+            }else { top_betslenth = book }
+        }
+
+
+      if (top_betslenth.bets.length > 0) {
+        console.log('top_betslenth ', top_betslenth)
+        oddsValues = top_betslenth.bets
 
         const oddValueTranslations = []
         for (let value of oddsValues) {
@@ -55,8 +65,8 @@ export default function Fix(props) {
       <Layout userString={user}>
         
         {resFixture && <>
-          <span className="text-xs w-56 h-96">{resFixture.league.country} {resFixture.league.name}</span>
-          <span className="text-lg block font-bold">{resFixture.teams.home.name} v {resFixture.teams.away.name}</span>
+          <span className="ml-3 text-xs w-56 h-96">{resFixture.league.country} {resFixture.league.name}</span>
+          <span className="ml-3 text-lg block font-bold">{resFixture.teams.home.name} v {resFixture.teams.away.name}</span>
         </>}
         
         {odd && <>

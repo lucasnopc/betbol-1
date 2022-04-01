@@ -184,10 +184,10 @@ export const oddBets =
 			"id": 46,
 			"name": "Exact Goals Number - First Half"
 		},
-		{
-			"id": 47,
-			"name": "Winning Margin"
-		},
+		// {
+		// 	"id": 47,
+		// 	"name": "Winning Margin"
+		// },
 		// {
 		// 	"id": 48,
 		// 	"name": "To Score In Both Halves By Teams"

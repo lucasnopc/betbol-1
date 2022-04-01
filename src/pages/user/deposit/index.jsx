@@ -17,7 +17,6 @@ export default function withDraw(props) {
     const qrcode = await axios.post(`/api/pix/reqqrcode?value=${valueDeposit}`)
     setQrCode(qrcode.data)
   }
-console.log(qrCode)
   return (
     <>
       <Head>
