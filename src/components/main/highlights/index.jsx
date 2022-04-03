@@ -14,7 +14,7 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
     useEffect(() => {
         get_odd_for_fix(setLoading, highlights, leagues, setLeagues, 0, qtd)
     }, [])
-
+    useEffect(() => console.log(bets), [bets])
     useEffect(() => {
         for (let league of leagues) {
             if (league.league_indice > league_indice) setLeague_indice(league.league_indice + 1)
@@ -24,7 +24,6 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
     if (highlights.length == 0 || leagues.length == 0 && !loading) {
         return <h1 className="font-semibold text-center pt-7 text-lg">0 jogos no momento, volte mais tarde.</h1>
     }
-
     return <>
         <div className="flex justify-between p-2 border-b border-gray-200">
             <h2 className="page-title p-2 inline-block">{title}</h2>

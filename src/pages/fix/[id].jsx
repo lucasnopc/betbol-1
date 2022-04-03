@@ -33,9 +33,8 @@ export default function Fix(props) {
         }
 
 
-      if (top_betslenth.bets.length > 0) {
-        console.log('top_betslenth ', top_betslenth)
-        oddsValues = top_betslenth.bets
+      if (odds.bookmakers[8].bets.length > 0) {
+        oddsValues = odds.bookmakers[6].bets
 
         const oddValueTranslations = []
         for (let value of oddsValues) {
