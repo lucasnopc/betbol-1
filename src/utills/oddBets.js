@@ -32,10 +32,10 @@ export const oddBets =
 			"id": 8,
 			"name": "Both Teams Score"
 		},
-		// {
-		// 	"id": 9,
-		// 	"name": "Handicap Result"
-		// },
+		{
+			"id": 9,
+			"name": "Handicap Result"
+		},
 		{
 			"id": 10,
 			"name": "Exact Score"
@@ -68,10 +68,10 @@ export const oddBets =
 			"id": 17,
 			"name": "Total - Away"
 		},
-		// {
-		// 	"id": 18,
-		// 	"name": "Handicap Result - First Half"
-		// },
+		{
+			"id": 18,
+			"name": "Handicap Result - First Half"
+		},
 		// {
 		// 	"id": 19,
 		// 	"name": "Asian Handicap First Half"
@@ -104,14 +104,14 @@ export const oddBets =
 			"id": 26,
 			"name": "Goals Over\/Under - Second Half"
 		},
-		// {
-		// 	"id": 27,
-		// 	"name": "Clean Sheet - Home"
-		// },
-		// {
-		// 	"id": 28,
-		// 	"name": "Clean Sheet - Away"
-		// },
+		{
+			"id": 27,
+			"name": "Clean Sheet - Home"
+		},
+		{
+			"id": 28,
+			"name": "Clean Sheet - Away"
+		},
 		{
 			"id": 29,
 			"name": "Win to Nil - Home"
@@ -184,10 +184,10 @@ export const oddBets =
 			"id": 46,
 			"name": "Exact Goals Number - First Half"
 		},
-		// {
-		// 	"id": 47,
-		// 	"name": "Winning Margin"
-		// },
+		{
+			"id": 47,
+			"name": "Winning Margin"
+		},
 		// {
 		// 	"id": 48,
 		// 	"name": "To Score In Both Halves By Teams"

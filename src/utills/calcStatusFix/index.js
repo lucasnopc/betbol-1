@@ -32,6 +32,7 @@ export default function calcStatusFix(atualFix, bet) {
 
   const valueBarSepatare = choice.value.split('/')
   const valueDuploPointSepatare = choice.value.split(':')
+  const valueSpacetSepatare = choice.value.split(' ')
 
   switch (choice.betsChoice) {
     case 1:
@@ -65,6 +66,28 @@ export default function calcStatusFix(atualFix, bet) {
       break
     case 8:
       if (choice.value == boll_ambas_marcam) status = true
+      break
+    case 9:
+      if(typeof Number(valueSpacetSepatare[1]) == 'number') {
+        // console.log('valueSpacetSepatare[1]',valueSpacetSepatare,  Number(valueSpacetSepatare[1]))
+        switch(valueSpacetSepatare[0]) {
+          case "Home":
+            goals.home = Number(goals.home) + Number(valueSpacetSepatare[1])
+            console.log('bateu ', goals.home)
+            break
+          case "Draw":
+            break
+          case "Away":
+            goals.away = Number(goals.away) + Number(valueSpacetSepatare[1])
+            break
+        }
+        
+        if (goals.home > goals.away) winner = "Home"
+        if (goals.home < goals.away) winner = "Away"
+        if (goals.home == goals.away) winner = "Draw"
+
+      if (valueSpacetSepatare[0] == winner) status = true
+      }
       break
     case 10:
       if (goals.home == valueDuploPointSepatare[0] && goals.away == valueDuploPointSepatare[1]) status = true
@@ -103,6 +126,27 @@ export default function calcStatusFix(atualFix, bet) {
         case "Under":
           if (goals.away < nVal) status = true
           break;
+      }
+      break
+    case 18:
+      if(typeof Number(valueSpacetSepatare[1]) == 'number') {
+        // console.log('valueSpacetSepatare[1]',valueSpacetSepatare,  Number(valueSpacetSepatare[1]))
+        switch(valueSpacetSepatare[0]) {
+          case "Home":
+            score.halftime.home = Number(score.halftime.home) + Number(valueSpacetSepatare[1])
+            break
+            case "Draw":
+              break
+              case "Away":
+                score.halftime.away = Number(score.halftime.away) + Number(valueSpacetSepatare[1])
+                break
+              }
+              
+        if (score.halftime.home > score.halftime.away) winner = "Home"
+        if (score.halftime.home < score.halftime.away) winner = "Away"
+        if (score.halftime.home == score.halftime.away) winner = "Draw"
+
+      if (valueSpacetSepatare[0] == winner) status = true
       }
       break
     case 20:
@@ -163,6 +207,10 @@ export default function calcStatusFix(atualFix, bet) {
           break;
       }
       break
+    // case 27:
+    //   break
+    // case 28:
+    //   break
     case 29:
       switch (choice.value) {
         case "Yes":
@@ -202,7 +250,7 @@ export default function calcStatusFix(atualFix, bet) {
       if (choice.value == sumGoals || choice.value.includes('more') && sumGoals >= value_moere_x) status = true
       break
       case 40:
-      console.log("more ", choice.value.includes('more'), value_moere_x, goals.home)
+      // console.log("more ", choice.value.includes('more'), value_moere_x, goals.home)
       if (choice.value == goals.home || choice.value.includes('more') && goals.home >= value_moere_x) status = true
       break
     case 41:

@@ -42,9 +42,12 @@ export default function Translate(p) {
         //odds
         if(p == "Yes") return "Sim"
         if(p == "No") return "Não"
-        if(p == "Home") return "Casa"
-        if(p == "Away") return "Fora"
-        if(p == "Draw") return "Empate"
+        // if(p == "Home") return "Casa"
+        // if(p == "Away") return "Fora"
+        // if(p == "Draw") return "Empate"
+        if(p.match(/Home/)) return p.replace('Home', 'Casa')
+        if(p.match(/Away/)) return p.replace('Away', 'Fora')
+        if(p.match(/Draw/)) return p.replace('Draw', 'Empate')
         if(p == "Over") return "Acima de"
         if(p == "Under") return "Abaixo de"
         if(p == "Odd") return "Ímpar"

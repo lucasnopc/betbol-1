@@ -6,21 +6,26 @@ export default function Fix({fix, bets}) {
     const [odds, setOdds] = useState({})
     const [ nVals, setNVal ] = useState(0)
     useEffect(()=>{
-        setOdds(fix.odd.bookmakers[6].bets.find((bet)=> bet.id == bets))
-        console.log('books ', fix.odd.bookmakers)
-    },[bets])
-    useEffect(() =>{
-        const newNVals = nVals
-        // let top_betslenth 
-        // for(let book of fix.odd.bookmakers) {
-        //     if(top_betslenth) {
-        //        if(book.bets.length > top_betslenth.bets.length) top_betslenth = book
-        //     }else { top_betslenth = book }
-        // }
-        for(let i of fix.odd.bookmakers[6].bets) {
-            newNVals = newNVals + i.values.length
+        if(fix.odd.bookmakers[6]){
+            setOdds(fix.odd.bookmakers[6].bets.find((bet)=> bet.id == bets))
         }
-        setNVal(newNVals)
+    },[bets])
+    useEffect(() =>{console.log(odds)}, [odds])
+    useEffect(() =>{
+        if(fix.odd.bookmakers[6]) {
+            const newNVals = nVals
+            // let top_betslenth 
+            // for(let book of fix.odd.bookmakers) {
+                //     if(top_betslenth) {
+                    //        if(book.bets.length > top_betslenth.bets.length) top_betslenth = book
+                    //     }else { top_betslenth = book }
+                    // }
+                    
+                    for(let i of fix.odd.bookmakers[6].bets) {
+                        newNVals = newNVals + i.values.length
+                    }
+                    setNVal(newNVals)
+                }
     }, [])
     return <>
         <div className={`pl-2 grid grid-cols-12 gap-0 border-b border-gray-200 hover:border-primary-ligth`}>

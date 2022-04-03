@@ -18,6 +18,9 @@ export default function translateBetsName(id) {
     case 8:
       return 'Ambas equipes marcam'
       break
+    case 9:
+      return 'Handicap Resultado' //fazer algorítimo
+      break
     case 10:
       return 'Placar Exato'
       break
@@ -32,6 +35,9 @@ export default function translateBetsName(id) {
       break
     case 17:
       return 'Fora - Total'
+      break
+    case 18:
+      return 'Handicap Resultado - 1T' //fazer algorítimo
       break
     case 20:
       return 'Dupla Chance - 1T'
@@ -53,6 +59,12 @@ export default function translateBetsName(id) {
       break
     case 26:
       return 'Gols - Acima/Abaixo - 2T'
+      break
+    case 27:
+      return 'Casa não leva gol' //fazer algorítimo
+      break
+    case 28:
+      return 'Fora não leva gol' //fazer algorítimo
       break
     case 29:
       return 'Casa vence sem levar gol'
@@ -96,9 +108,9 @@ export default function translateBetsName(id) {
     case 46:
       return 'Número exato de gols- 1T'
       break
-    // case 47:
-    //   return 'Margem de vitória'
-    //   break
+    case 47:
+      return 'Margem de vitória' // Fazer Algorítimo - ainda não consegui testar
+      break
     case 53:
       return 'Fora vence os dois tempos'
       break

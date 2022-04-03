@@ -134,6 +134,20 @@ test("Ambas equipes não marcam", ()=> {
   atualFixMock.goals.away = "0"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
+test("handcamp test", ()=> {
+  betMock.choice.betsChoice = 9
+  betMock.choice.value = "Home -1"
+  atualFixMock.goals.home = "3"
+  atualFixMock.goals.away = "1"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("handcamp test", ()=> {
+  betMock.choice.betsChoice = 9
+  betMock.choice.value = "Away +1"
+  atualFixMock.goals.home = "3"
+  atualFixMock.goals.away = "3"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
 test("Pontos Exatos", ()=> {
   betMock.choice.betsChoice = 10
   betMock.choice.value = "4:2"
@@ -206,6 +220,20 @@ test("Away total Under 1.5", ()=> {
   betMock.choice.value = "Under 1.5"
   atualFixMock.goals.home = "1"
   atualFixMock.goals.away = "1"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("handcamp test", ()=> {
+  betMock.choice.betsChoice = 18
+  betMock.choice.value = "Home -1"
+  atualFixMock.score.halftime.home = "3"
+  atualFixMock.score.halftime.away = "1"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("handcamp test", ()=> {
+  betMock.choice.betsChoice = 18
+  betMock.choice.value = "Away +1"
+  atualFixMock.score.halftime.home = "3"
+  atualFixMock.score.halftime.away = "3"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
 test("Dupla chance 1T Home/Draw", ()=> {
