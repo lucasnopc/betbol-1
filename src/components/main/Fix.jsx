@@ -2,30 +2,34 @@ import { useEffect, useState } from 'react'
 import FixDate from './FixDate'
 import Odd from './Odd'
 
-export default function Fix({fix, bets}) {
+export default function Fix({ fix, bets }) {
     const [odds, setOdds] = useState({})
-    const [ nVals, setNVal ] = useState(0)
-    useEffect(()=>{
-        if(fix.odd.bookmakers[6]){
-            setOdds(fix.odd.bookmakers[6].bets.find((bet)=> bet.id == bets))
+    const [nVals, setNVal] = useState(0)
+    useEffect(() => {
+        if (fix.odd.bookmakers[6]) {
+            setOdds(fix.odd.bookmakers[6].bets.find((bet) => bet.id == bets))
         }
-    },[bets])
-    useEffect(() =>{console.log(odds)}, [odds])
-    useEffect(() =>{
-        if(fix.odd.bookmakers[6]) {
+    }, [bets])
+    // useEffect(() => { console.log('odds', odds) }, [odds])
+    useEffect(() => {
+        if (fix.odd) {
             const newNVals = nVals
-            // let top_betslenth 
-            // for(let book of fix.odd.bookmakers) {
-                //     if(top_betslenth) {
-                    //        if(book.bets.length > top_betslenth.bets.length) top_betslenth = book
-                    //     }else { top_betslenth = book }
-                    // }
-                    
-                    for(let i of fix.odd.bookmakers[6].bets) {
-                        newNVals = newNVals + i.values.length
-                    }
-                    setNVal(newNVals)
+            let top_betslenth 
+            for(let book of fix.odd.bookmakers) {
+                if(top_betslenth) {
+                   if(book.bets.length > top_betslenth.bets.length) top_betslenth = book
+                }else { top_betslenth = book }
+            }
+            console.log('top_betslenth ', top_betslenth)
+            const book = fix.odd.bookmakers.find(b => b.id == 6)
+            if (book) {
+                console.log('book ', book)
+                for (let i of top_betslenth.bets) {
+                    newNVals = newNVals + i.values.length
                 }
+                setNVal(newNVals)
+            }
+        }
     }, [])
     return <>
         <div className={`pl-2 grid grid-cols-12 gap-0 border-b border-gray-200 hover:border-primary-ligth`}>
@@ -36,7 +40,7 @@ export default function Fix({fix, bets}) {
             </div>
             <div className="col-start-7 col-span-6">
                 <div className="h-full">
-                    <Odd odds={odds} bets={bets} fix={fix} nVals={nVals}/>
+                    <Odd odds={odds} bets={bets} fix={fix} nVals={nVals} />
                 </div>
             </div>
         </div>

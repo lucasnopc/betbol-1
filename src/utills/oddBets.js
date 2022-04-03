@@ -52,14 +52,14 @@ export const oddBets =
 			"id": 13,
 			"name": "First Half Winner"
 		},
-		// {
-		// 	"id": 14,
-		// 	"name": "Team To Score First"
-		// },
-		// {
-		// 	"id": 15,
-		// 	"name": "Team To Score Last"
-		// },
+		{
+			"id": 14,
+			"name": "Team To Score First"
+		},
+		{
+			"id": 15,
+			"name": "Team To Score Last"
+		},
 		{
 			"id": 16,
 			"name": "Total - Home"
@@ -124,10 +124,10 @@ export const oddBets =
 			"id": 31,
 			"name": "Correct Score - First Half"
 		},
-		// {
-		// 	"id": 32,
-		// 	"name": "Win Both Halves"
-		// },
+		{
+			"id": 32,
+			"name": "Win Both Halves"
+		},
 		{
 			"id": 33,
 			"name": "Double Chance - Second Half"
@@ -140,10 +140,10 @@ export const oddBets =
 			"id": 35,
 			"name": "Both Teams To Score - Second Half"
 		},
-		// {
-		// 	"id": 36,
-		// 	"name": "Win To Nil"
-		// },
+		{
+			"id": 36,
+			"name": "Win To Nil"
+		},
 		{
 			"id": 37,
 			"name": "Home win both halves"
@@ -152,10 +152,10 @@ export const oddBets =
 			"id": 38,
 			"name": "Exact Goals Number"
 		},
-		// {
-		// 	"id": 39,
-		// 	"name": "To Win Either Half"
-		// },
+		{
+			"id": 39,
+			"name": "To Win Either Half"
+		},
 		{
 			"id": 40,
 			"name": "Home Team Exact Goals Number"
@@ -176,10 +176,10 @@ export const oddBets =
 			"id": 44,
 			"name": "Away Team Score a Goal"
 		},
-		// {
-		// 	"id": 45,
-		// 	"name": "Corners Over Under"
-		// },
+		{
+			"id": 45,
+			"name": "Corners Over Under"
+		},
 		{
 			"id": 46,
 			"name": "Exact Goals Number - First Half"
@@ -200,38 +200,38 @@ export const oddBets =
 		// 	"id": 50,
 		// 	"name": "Goal Line"
 		// },
-		// {
-		// 	"id": 51,
-		// 	"name": "Halftime Result\/Total Goals"
-		// },
-		// {
-		// 	"id": 52,
-		// 	"name": "Halftime Result\/Both Teams Score"
-		// },
+		{
+			"id": 51,
+			"name": "Halftime Result\/Total Goals"
+		},
+		{
+			"id": 52,
+			"name": "Halftime Result\/Both Teams Score"
+		},
 		{
 			"id": 53,
 			"name": "Away win both halves"
 		},
-		// {
-		// 	"id": 54,
-		// 	"name": "First 10 min Winner"
-		// },
-		// {
-		// 	"id": 55,
-		// 	"name": "Corners 1x2"
-		// },
+		{
+			"id": 54,
+			"name": "First 10 min Winner"
+		},
+		{
+			"id": 55,
+			"name": "Corners 1x2"
+		},
 		// {
 		// 	"id": 56,
 		// 	"name": "Corners Asian Handicap"
 		// },
-		// {
-		// 	"id": 57,
-		// 	"name": "Home Corners Over\/Under"
-		// },
-		// {
-		// 	"id": 58,
-		// 	"name": "Away Corners Over\/Under"
-		// },
+		{
+			"id": 57,
+			"name": "Home Corners Over\/Under"
+		},
+		{
+			"id": 58,
+			"name": "Away Corners Over\/Under"
+		},
 		// {
 		// 	"id": 59,
 		// 	"name": "Own Goal"
@@ -256,10 +256,10 @@ export const oddBets =
 		// 	"id": 72,
 		// 	"name": "Goal Line (1st Half)"
 		// },
-		// {
-		// 	"id": 73,
-		// 	"name": "Both Teams to Score 1st Half - 2nd Half"
-		// },
+		{
+			"id": 73,
+			"name": "Both Teams to Score 1st Half - 2nd Half"
+		},
 		// {
 		// 	"id": 74,
 		// 	"name": "10 Over\/Under"
@@ -328,18 +328,18 @@ export const oddBets =
 		// 	"id": 91,
 		// 	"name": "Total Goals (3 way)"
 		// },
-		// {
-		// 	"id": 92,
-		// 	"name": "Anytime Goal Scorer"
-		// },
-		// {
-		// 	"id": 93,
-		// 	"name": "First Goal Scorer"
-		// },
-		// {
-		// 	"id": 94,
-		// 	"name": "Last Goal Scorer"
-		// },
+		{
+			"id": 92,
+			"name": "Anytime Goal Scorer"
+		},
+		{
+			"id": 93,
+			"name": "First Goal Scorer"
+		},
+		{
+			"id": 94,
+			"name": "Last Goal Scorer"
+		},
 		// {
 		// 	"id": 95,
 		// 	"name": "To Score Two or More Goals"

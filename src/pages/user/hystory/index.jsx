@@ -11,7 +11,6 @@ export default function historyBets(props) {
   const user = useUser(props.userString)
   const [statusSearch, setStatusSearch] = useState('Todos');
   const { data, error } = useFetch(`/api/user/betsHistory?email=${user.email}`)
-
   if (error) return console.log(error)
   if (!data) return <FullLoading />
   return (
@@ -41,8 +40,7 @@ export default function historyBets(props) {
       <div className=" md:h-auto overflow-auto">
             {data && data.betHistory.reverse().map((bi) => {
               return <ListBetsHistory bi={bi} key={bi._id} />
-              })}
-            
+              })}            
     </div>
     </div>
       </LayoutUser>

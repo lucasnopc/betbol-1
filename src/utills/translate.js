@@ -45,9 +45,6 @@ export default function Translate(p) {
         // if(p == "Home") return "Casa"
         // if(p == "Away") return "Fora"
         // if(p == "Draw") return "Empate"
-        if(p.match(/Home/)) return p.replace('Home', 'Casa')
-        if(p.match(/Away/)) return p.replace('Away', 'Fora')
-        if(p.match(/Draw/)) return p.replace('Draw', 'Empate')
         if(p == "Over") return "Acima de"
         if(p == "Under") return "Abaixo de"
         if(p == "Odd") return "Ímpar"
@@ -61,6 +58,12 @@ export default function Translate(p) {
         if(p == "Away/No") return "Fora/Não"
         if(p.match(/Over/)) return p.replace('Over', 'Acima de')
         if(p.match(/Under/)) return p.replace('Under', 'Abaixo de')
+        if(p.match(/by/)) return p.replace('by', ' por ')
+        if(p.match(/Yes/)) return p.replace('Yes', ' Sim ')
+        if(p.match(/No/)) return p.replace('No', ' Não ')
+        if(p.match(/Home/)) return p.replace('Home', 'Casa')
+        if(p.match(/Away/)) return p.replace('Away', 'Fora')
+        if(p.match(/Draw/)) return p.replace('Draw', 'Empate')
     }      
     return p     
 }

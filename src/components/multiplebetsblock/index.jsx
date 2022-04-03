@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import translateBetsName from "../../utills/translates/translate-bets-name"
 import Button from "../main/Button"
 
-export default function MultipleBetsBlock({ oddList = [], arrayIds = [], title = "", fix }) {
+export default function MultipleBetsBlock({ oddList = [], arrayIds = [], title = null, fix }) {
   const [bets, setBets] = useState(false)
   const [values, setValues] = useState(false)
   const [number_max_list_odds, set_number_max_list_odds] = useState(5)
@@ -23,9 +23,9 @@ export default function MultipleBetsBlock({ oddList = [], arrayIds = [], title =
   if(!bets) return <></>
   return <div className="border border-gray-300 bg-gray-50 m-3 mr-4 shadow-lg">
     {bets && <>
-      {bets.length > 1 && <h1 className="font-semibold text-center p-1 uppercase">{translateBetsName(bets[0].id)}</h1>}
+      <h1 className="border-b border-gray-200 font-semibold text-center p-1 uppercase">{title && bets.length < 1 ? title : translateBetsName(bets[0].id)}</h1>
       <div className="flex justify-between divide-x divide-gray-300">
-        {bets.map((b, i) => {
+        {bets.length > 1 && bets.map((b, i) => {
           return <div key={b.id} onClick={() => {
             setValues(b) 
             set_number_max_list_odds(5)

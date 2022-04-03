@@ -14,7 +14,7 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
     useEffect(() => {
         get_odd_for_fix(setLoading, highlights, leagues, setLeagues, 0, qtd)
     }, [])
-    useEffect(() => console.log(bets), [bets])
+    // useEffect(() => console.log(bets), [bets])
     useEffect(() => {
         for (let league of leagues) {
             if (league.league_indice > league_indice) setLeague_indice(league.league_indice + 1)

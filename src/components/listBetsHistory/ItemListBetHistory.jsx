@@ -13,6 +13,7 @@ export default function ItemListBetHistory({ choiceOdd, b, toggle }) {
   </div>
 
   const res = data.res_fixture.response[0]
+  console.log('res fixture', res)
   const calcStatus = calcStatusFix(res, b)
   return <div className={`${toggle ? `block` : `hidden`} p-1 border-b border-gray-400 relative flex justify-between`}>
     <div className="mr-1 block">
