@@ -50,6 +50,12 @@ export default function Translate(p) {
         if(p == "Odd") return "Ímpar"
         if(p == "Even") return "Par"
         if(p == "more") return "mais"
+        if(p == "Home/Yes") return "Casa/Sim"
+        if(p == "Draw/Yes") return "Empate/Sim"
+        if(p == "Away/Yes") return "Fora/Sim"
+        if(p == "Home/No") return "Casa/Não"
+        if(p == "Draw/No") return "Empate/Não"
+        if(p == "Away/No") return "Fora/Não"
         if(p.match(/Over/)) return p.replace('Over', 'Acima de')
         if(p.match(/Under/)) return p.replace('Under', 'Abaixo de')
     }      
