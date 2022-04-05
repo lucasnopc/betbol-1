@@ -12,7 +12,10 @@ export default function MultipleBetsBlock({ oddList = [], arrayIds = [], title =
     for (let odd of oddList) {
       if(odd.id == 5 || odd.id == 6 ||odd.id == 26 ||odd.id == 17 ||odd.id == 16 ){
           const oddsFilter = odd.values.filter(oddf => {
+            if(oddf.value != "Under 0.5" && (oddf.value.split(" ")[0] == "Under" && oddf.value.split(" ")[1] > 4) == false){
+              // console.log('odd values ', odd.values ,oddf.value)  
             return Number(oddf.value.split(" ")[1]) < 5
+            }
           })
           odd.values = oddsFilter
       }
