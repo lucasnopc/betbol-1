@@ -10,7 +10,7 @@ export default function MultipleBetsBlock({ oddList = [], arrayIds = [], title =
   useEffect(() => {
     const oddListOnlyArrayIds = []
     for (let odd of oddList) {
-      if(odd.id == 5 || odd.id == 6 ||odd.id == 26){
+      if(odd.id == 5 || odd.id == 6 ||odd.id == 26 ||odd.id == 17 ||odd.id == 16 ){
           const oddsFilter = odd.values.filter(oddf => {
             return Number(oddf.value.split(" ")[1]) < 5
           })
