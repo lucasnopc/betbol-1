@@ -20,10 +20,8 @@ export default function Fix({ fix, bets }) {
                    if(book.bets.length > top_betslenth.bets.length) top_betslenth = book
                 }else { top_betslenth = book }
             }
-            console.log('top_betslenth ', top_betslenth)
             const book = fix.odd.bookmakers.find(b => b.id == 6)
             if (book) {
-                console.log('book ', book)
                 for (let i of top_betslenth.bets) {
                     newNVals = newNVals + i.values.length
                 }

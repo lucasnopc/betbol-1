@@ -82,7 +82,7 @@ export default function translateBetsName(id) {
       return 'Placar Exato - 1T'
       break
     case 32:
-      return 'Vence os dois tempos' // fazer algorítimo
+      return 'Vence ambos os tempos' // fazer algorítimo
       break
     case 33:
       return 'Dupla Chance - 2T'
@@ -97,7 +97,7 @@ export default function translateBetsName(id) {
       return 'Vence sem levar gol' // fazer algorítmo
       break
     case 37:
-      return 'Casa vence os dois tempos'
+      return 'Casa vence ambos os tempos'
       break
     case 38:
       return 'Número exato de gols no jogo'
@@ -139,7 +139,7 @@ export default function translateBetsName(id) {
         return 'Resultado do 1T / Ambas equipes marcam' // fazer algorítimo
       break
     case 53:
-      return 'Fora vence os dois tempos'
+      return 'Fora vence ambos os tempos'
       break
     case 54:
         return 'Vencedor nos primeiros 10 minutos' //fazer algorítimo
@@ -147,12 +147,12 @@ export default function translateBetsName(id) {
     case 55:
       return 'Escanteio 1x2' //fazer algorítimo
       break
-    case 57:
-      return 'Escanteios - Casa - Acima/Abaixo' // fazer alorítmo
-    break
-    case 58:
-      return 'Escanteios - Fora - Acima/Abaixo' // fazer algorítmo
-    break
+    // case 57:
+    //   return 'Escanteios - Casa - Acima/Abaixo' // fazer alorítmo
+    // break
+    // case 58:
+    //   return 'Escanteios - Fora - Acima/Abaixo' // fazer algorítmo
+    // break
     case 60:
       return 'Fora - Ímpar/Par'
       break

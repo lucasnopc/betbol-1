@@ -48,8 +48,7 @@ export default function ListMenu(props) {
                 </li>
             </ul>
             <ul>
-                {bestLeagues.map(l => <li key={l.id}><Link href={`/league/${l.id}?year=${todayYear}&name=${l.name}`}><a className="list-styles block pl-3">{l.name}</a></Link></li>
-                )}
+                {bestLeagues.map(l => <li key={l.id}><Link href={`/league/${l.id}?year=${todayYear}&name=${l.name}`}><a className="list-styles block pl-3">{l.name}</a></Link></li>)}
             </ul>
         </div>
     </div>

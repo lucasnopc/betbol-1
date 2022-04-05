@@ -6,18 +6,6 @@ export const bestLeagues = [
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/1.png"
     },
     {
-        "id": 2,
-        "name": "UEFA Champions League",
-        "type": "Cup",
-        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/2.png"
-    },
-    {
-        "id": 3,
-        "name": "UEFA Europa League",
-        "type": "Cup",
-        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/3.png"
-    },
-    {
         "id": 4,
         "name": "Euro Championship",
         "type": "Cup",
@@ -142,12 +130,6 @@ export const bestLeagues = [
         "name": "Carioca - 2",
         "type": "League",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/625.png"
-    },
-    {
-        "id": 475,
-        "name": "Paulista - A1",
-        "type": "League",
-        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/475.png"
     },
     {
         "id": 477,

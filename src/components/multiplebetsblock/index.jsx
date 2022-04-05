@@ -6,6 +6,7 @@ export default function MultipleBetsBlock({ oddList = [], arrayIds = [], title =
   const [bets, setBets] = useState(false)
   const [values, setValues] = useState(false)
   const [number_max_list_odds, set_number_max_list_odds] = useState(5)
+  useEffect(() => console.log('values ', values), [values])
   useEffect(() => {
     const oddListOnlyArrayIds = []
     for (let odd of oddList) {
@@ -20,6 +21,10 @@ export default function MultipleBetsBlock({ oddList = [], arrayIds = [], title =
       setValues(oddListOnlyArrayIds[0])
     }
   }, [])
+
+  useEffect(() => {
+    // console.log('bets values ', bets)
+  }, [bets, values])
   if(!bets) return <></>
   return <div className="border border-gray-300 bg-gray-50 m-3 mr-4 shadow-lg">
     {bets && <>

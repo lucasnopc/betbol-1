@@ -4,12 +4,14 @@ import useFetch from "../../utills/useFetch"
 import FullLoading from "../fullloading"
 import { toast } from 'react-toastify';
 import Translate from '../../utills/translate'
+import translateBets from "../../utills/translates/translateBets";
 
 export default function Button({ fix, val, bets, value }) {
     const [checked, setChecked] = useState(false)
     const [config, setConfig] = useState({})
     const { data, error } = useFetch('/api/adm/config')
     const { setGoBetsInNote, removeBetsInNote, note, replaceBetsInNote } = useStore()
+    
     useEffect(() => {if(data) setConfig(data.config[0].config)}, [data])
  
     useEffect(()=> {
@@ -62,9 +64,10 @@ export default function Button({ fix, val, bets, value }) {
         }
     }
     if(val.odd > 20) val.odd = 20
+
  return <div className={` page group font-semibold uppercase inline-block w-full h-full`}>
         <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between': ''} ${checked ? `bg-primary hover:bg-primary-ligth text-white` : ` hover:bg-gray-200 text-primary`} px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none md:w-20 min-w-full h-full text-base font-bold`}>
-           {value && <span className="block font-semibold text-xs">{Translate(val.value)}</span>}
+           {value && <span className="block font-semibold text-xs">{translateBets(val.value, bets)}</span>}
             <span className="block font-semibold" >{val.odd}</span>
         </button>
  </div>

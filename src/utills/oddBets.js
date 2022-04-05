@@ -224,14 +224,14 @@ export const oddBets =
 		// 	"id": 56,
 		// 	"name": "Corners Asian Handicap"
 		// },
-		{
-			"id": 57,
-			"name": "Home Corners Over\/Under"
-		},
-		{
-			"id": 58,
-			"name": "Away Corners Over\/Under"
-		},
+		// {
+		// 	"id": 57,
+		// 	"name": "Home Corners Over\/Under"
+		// },
+		// {
+		// 	"id": 58,
+		// 	"name": "Away Corners Over\/Under"
+		// },
 		// {
 		// 	"id": 59,
 		// 	"name": "Own Goal"
