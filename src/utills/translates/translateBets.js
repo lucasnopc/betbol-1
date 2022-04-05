@@ -188,9 +188,7 @@ export default function translateBets(val, bets) {
       if (val.match(/by/)) return valorMore(val).replace('by', 'por')
       break
     case 49:
-      return 'Total de gols / Ambas equipes marcam' // fazer algorítmo
       return `${oveUnder(valueBarSepatare[0].split(' ')[0])}/${yesNo(valueBarSepatare[1])}`
-
       break
     case 51:
       return 'Resultado do 1T / Total de gols' // fazer algorítimo
