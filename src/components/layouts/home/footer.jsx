@@ -10,7 +10,7 @@ export default function Footer() {
     tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow = format(tomorrow, 'yyyy-MM-dd')
 
-    return <div className="absolute bottom-0 w-full">
+    return <div className=" bottom-0 w-full">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-3 pt-5">
             <div>
                 <h4 className="font-normal uppercase">Apostas Esportivas</h4>

@@ -1,4 +1,4 @@
-export default function translateBetsName(id) {
+export default function translateBetsName(id: number):string {
   switch (id) {
     case 1:
       return "Vencedor da partida"
@@ -147,12 +147,6 @@ export default function translateBetsName(id) {
     case 55:
       return 'Escanteio 1x2' //fazer algorítimo
       break
-    // case 57:
-    //   return 'Escanteios - Casa - Acima/Abaixo' // fazer alorítmo
-    // break
-    // case 58:
-    //   return 'Escanteios - Fora - Acima/Abaixo' // fazer algorítmo
-    // break
     case 60:
       return 'Fora - Ímpar/Par'
       break
@@ -165,7 +159,5 @@ export default function translateBetsName(id) {
     case 73:
         return "Ambas equipes marcam 1T 2T"
       break
-    default:
-      return null
   }
 }

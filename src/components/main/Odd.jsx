@@ -15,9 +15,7 @@ export default function Odd({ bets, fix, odds, nVals = null }) {
                     </div>
                 })}
                 {nVals && <div className="md:w-20 flex-1 gap-0 h-full">
-                    <div className="hover:bg-gray-200 text-blue-600 px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none flex items-center justify-center min-w-full h-full text-base font-bold">
-                    <Link href={`/fix/${id}`} ><a className="font-semibold pr-1">+{nVals}</a></Link>
-                    </div>
+                    <Link href={`/fix/${id}`} ><a className=" pr-1 hover:bg-gray-200 text-blue-600 px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none flex items-center justify-center min-w-full h-full text-base font-bold">+{nVals}</a></Link>
                 </div>}
             </>
             }

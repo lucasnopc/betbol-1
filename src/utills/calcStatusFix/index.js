@@ -108,6 +108,9 @@ export default function calcStatusFix(atualFix, bet) {
     case 13:
       if(choice.value == winner1T) status = true
       break
+    case 14:
+      return true
+      break
     case 16:
       switch (overOrUnderVal) {
         case "Over":

@@ -194,6 +194,10 @@ test("Vencedor do primeiro tempo - Home", ()=> {
   atualFixMock.score.fulltime.away = "2"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
+test("Primeiro time a marcar", () => {
+  betMock.choice.betsChoice = 14
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
 test("Casa total Over 3.5", ()=> {
   betMock.choice.betsChoice = 16
   betMock.choice.value = "Over 3.5"

@@ -1,7 +1,7 @@
 export const bestLeagues = [
     {
         "id": 1,
-        "name": "World Cup",
+        "name": "Copa do Mundo",
         "type": "Cup",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/1.png"
     },
@@ -19,7 +19,7 @@ export const bestLeagues = [
     },
     {
         "id": 8,
-        "name": "World Cup - Women",
+        "name": "Copa do Mundo - Femenino",
         "type": "Cup",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/8.png"
     },
@@ -31,37 +31,31 @@ export const bestLeagues = [
     },
     {
         "id": 15,
-        "name": "FIFA Club World Cup",
+        "name": "FIFA Club Copa do Mundo",
         "type": "League",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/15.png"
     },
     {
         "id": 20,
-        "name": "CAF Confederation Cup",
+        "name": "CAF Copa das confederações",
         "type": "Cup",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/20.png"
     },
     {
         "id": 21,
-        "name": "Confederations Cup",
+        "name": "Copa das confederações",
         "type": "Cup",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/21.png"
     },
     {
-        "id": 38,
-        "name": "UEFA U21 Championship",
-        "type": "Cup",
-        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/38.png"
-    },
-    {
         "id": 34,
-        "name": "World Cup - Qualification South America",
+        "name": "Copa do Mundo - Qualification South America",
         "type": "Cup",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/34.png"
     },
     {
         "id": 490,
-        "name": "World Cup - U20",
+        "name": "Copa do Mundo - U20",
         "type": "Cup",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/490.png"
     },
@@ -85,7 +79,7 @@ export const bestLeagues = [
     },
     {
         "id": 74,
-        "name": "Brasileiro Women",
+        "name": "Brasileiro Femenino",
         "type": "League",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/74.png"
     },
@@ -226,12 +220,6 @@ export const bestLeagues = [
         "name": "Copa Sul-Americana",
         "type": "Cup",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/11.png"
-    },
-    {
-        "id": 3,
-        "name": "UEFA Europa League",
-        "type": "Cup",
-        "logo": "https:\/\/media.api-sports.io\/football\/leagues\/3.png"
     },
     {
         "id": 140,
