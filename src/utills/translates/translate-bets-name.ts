@@ -19,7 +19,7 @@ export default function translateBetsName(id: number):string {
       return 'Ambas equipes marcam'
       break
     case 9:
-      return 'Handicap Resultado' //fazer algorítimo
+      return 'Handicap Resultado'
       break
     case 10:
       return 'Placar Exato'
@@ -31,10 +31,10 @@ export default function translateBetsName(id: number):string {
       return "Vencedor 1T"
       break
     case 14:
-      return "Primeiro time a marcar" // fazer algorítimo
+      return "Primeiro time a marcar"
       break
     case 15:
-      return "Último time a marcar" // fazer algorítimo
+      return "Último time a marcar"
       break
     case 16:
       return 'Casa - Total'
@@ -67,10 +67,10 @@ export default function translateBetsName(id: number):string {
       return 'Gols - Acima/Abaixo - 2T'
       break
     case 27:
-      return 'Casa não leva gol' //fazer algorítimo
+      return 'Casa não leva gol' 
       break
     case 28:
-      return 'Fora não leva gol' //fazer algorítimo
+      return 'Fora não leva gol' 
       break
     case 29:
       return 'Casa vence sem levar gol'
@@ -81,9 +81,9 @@ export default function translateBetsName(id: number):string {
     case 31:
       return 'Placar Exato - 1T'
       break
-    case 32:
-      return 'Vence ambos os tempos' // fazer algorítimo
-      break
+    // case 32:
+    //   return 'Vence ambos os tempos' // fazer algorítimo
+    //   break
     case 33:
       return 'Dupla Chance - 2T'
       break
@@ -93,9 +93,9 @@ export default function translateBetsName(id: number):string {
     case 35:
       return 'Ambas Equipes Marcam - 2T'
       break
-    case 36:
-      return 'Vence sem levar gol' // fazer algorítmo
-      break
+    // case 36:
+    //   return 'Vence sem levar gol' // fazer algorítmo
+    //   break
     case 37:
       return 'Casa vence ambos os tempos'
       break
@@ -121,14 +121,14 @@ export default function translateBetsName(id: number):string {
       return 'Marca um gol - Fora'
       break
     case 45:
-      return 'Escanteios - Acima/Abaixo' // fazer algorítmo
+      return 'Escanteios - Acima/Abaixo' 
       break
     case 46:
       return 'Número exato de gols- 1T'
       break
-    case 47:
-      return 'Margem de vitória' // Fazer Algorítimo - ainda não consegui testar
-      break
+    // case 47:
+    //   return 'Margem de vitória' // Fazer Algorítimo - ainda não consegui testar
+    //   break
     case 49:
       return 'Total de gols / Ambas equipes marcam' // fazer algorítmo
       break
@@ -145,7 +145,7 @@ export default function translateBetsName(id: number):string {
         return 'Vencedor nos primeiros 10 minutos' //fazer algorítimo
       break
     case 55:
-      return 'Escanteio 1x2' //fazer algorítimo
+      return 'Escanteio 1x2'
       break
     case 60:
       return 'Fora - Ímpar/Par'

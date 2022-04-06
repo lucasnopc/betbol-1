@@ -1,5 +1,51 @@
 import calcStatusFix from './index'
 let atualFixMock = {
+  "events":[
+    {
+        "time": {
+            "elapsed": 19,
+            "extra": null
+        },
+        "team": {
+            "id": 217,
+            "name": "SC Braga",
+            "logo": "https://media.api-sports.io/football/teams/217.png"
+        },
+        "player": {
+            "id": 155,
+            "name": "Abel Ruiz"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Goal",
+        "detail": "Normal Goal",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 90,
+            "extra": null
+        },
+        "team": {
+            "id": 91,
+            "name": "Monaco",
+            "logo": "https://media.api-sports.io/football/teams/91.png"
+        },
+        "player": {
+            "id": 21998,
+            "name": "A. Disasi"
+        },
+        "assist": {
+            "id": 109,
+            "name": "A. Golovin"
+        },
+        "type": "Goal",
+        "detail": "Normal Goal",
+        "comments": null
+    }
+],
   "goals": {
       "home": 0,
       "away": 0
@@ -21,7 +67,170 @@ let atualFixMock = {
           "home": null,
           "away": null
       }
-  }
+  },
+  "teams": {
+    "home": {
+        "id": 91,
+        "name": "Monaco",
+        "logo": "https://media.api-sports.io/football/teams/91.png",
+        "winner": null
+    },
+    "away": {
+        "id": 217,
+        "name": "SC Braga",
+        "logo": "https://media.api-sports.io/football/teams/217.png",
+        "winner": null
+    }
+},
+  "statistics":
+  [
+    {
+        "team": {
+            "id": 3707,
+            "name": "Oriente Petrolero",
+            "logo": "https://media.api-sports.io/football/teams/3707.png"
+        },
+        "statistics": [
+            {
+                "type": "Shots on Goal",
+                "value": 6
+            },
+            {
+                "type": "Shots off Goal",
+                "value": 5
+            },
+            {
+                "type": "Total Shots",
+                "value": 14
+            },
+            {
+                "type": "Blocked Shots",
+                "value": 3
+            },
+            {
+                "type": "Shots insidebox",
+                "value": 9
+            },
+            {
+                "type": "Shots outsidebox",
+                "value": 5
+            },
+            {
+                "type": "Fouls",
+                "value": 19
+            },
+            {
+                "type": "Corner Kicks",
+                "value": 2
+            },
+            {
+                "type": "Offsides",
+                "value": null
+            },
+            {
+                "type": "Ball Possession",
+                "value": "37%"
+            },
+            {
+                "type": "Yellow Cards",
+                "value": 2
+            },
+            {
+                "type": "Red Cards",
+                "value": null
+            },
+            {
+                "type": "Goalkeeper Saves",
+                "value": 2
+            },
+            {
+                "type": "Total passes",
+                "value": 284
+            },
+            {
+                "type": "Passes accurate",
+                "value": 190
+            },
+            {
+                "type": "Passes %",
+                "value": "67%"
+            }
+        ]
+    },
+    {
+        "team": {
+            "id": 3709,
+            "name": "Royal Pari",
+            "logo": "https://media.api-sports.io/football/teams/3709.png"
+        },
+        "statistics": [
+            {
+                "type": "Shots on Goal",
+                "value": 3
+            },
+            {
+                "type": "Shots off Goal",
+                "value": 6
+            },
+            {
+                "type": "Total Shots",
+                "value": 13
+            },
+            {
+                "type": "Blocked Shots",
+                "value": 4
+            },
+            {
+                "type": "Shots insidebox",
+                "value": 8
+            },
+            {
+                "type": "Shots outsidebox",
+                "value": 5
+            },
+            {
+                "type": "Fouls",
+                "value": 13
+            },
+            {
+                "type": "Corner Kicks",
+                "value": 3
+            },
+            {
+                "type": "Offsides",
+                "value": null
+            },
+            {
+                "type": "Ball Possession",
+                "value": "63%"
+            },
+            {
+                "type": "Yellow Cards",
+                "value": 3
+            },
+            {
+                "type": "Red Cards",
+                "value": null
+            },
+            {
+                "type": "Goalkeeper Saves",
+                "value": 3
+            },
+            {
+                "type": "Total passes",
+                "value": 479
+            },
+            {
+                "type": "Passes accurate",
+                "value": 384
+            },
+            {
+                "type": "Passes %",
+                "value": "80%"
+            }
+        ]
+    }
+]
 }
 let betMock = {
   "choice": {
@@ -196,6 +405,12 @@ test("Vencedor do primeiro tempo - Home", ()=> {
 })
 test("Primeiro time a marcar", () => {
   betMock.choice.betsChoice = 14
+  betMock.choice.value = "Away"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Último time a marcar", () => {
+  betMock.choice.betsChoice = 15
+  betMock.choice.value = "Home"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
 test("Casa total Over 3.5", ()=> {
@@ -345,6 +560,20 @@ test("casa vence sem levar gol YES", () => {
   betMock.choice.value = "Yes"
   atualFixMock.goals.home = "3"
   atualFixMock.goals.away = "0"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("casa não leva gol YES", () => {
+  betMock.choice.betsChoice = 27
+  betMock.choice.value = "Yes"
+  atualFixMock.goals.home = "3"
+  atualFixMock.goals.away = "0"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("fora não leva gol YES", () => {
+  betMock.choice.betsChoice = 28
+  betMock.choice.value = "Yes"
+  atualFixMock.goals.home = "0"
+  atualFixMock.goals.away = "3"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
 test("casa vence sem levar gol No", () => {
@@ -527,6 +756,11 @@ test("Home marca um gol NO", ()=> {
   atualFixMock.goals.away = "2"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
+test("Escanteio acima/abaixo", ()=> {
+  betMock.choice.betsChoice = 45
+  betMock.choice.value = "Over 4"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
 test("Fora vence os dois tepos YES", ()=> {
   betMock.choice.betsChoice = 53
   betMock.choice.value = "Yes"
@@ -543,6 +777,11 @@ test("Fora vence os dois tepos NO", ()=> {
   atualFixMock.score.halftime.away = "1"
   atualFixMock.score.fulltime.home = "0"
   atualFixMock.score.fulltime.away = "1"
+  expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
+})
+test("Escanteios 1 x 2", ()=> {
+  betMock.choice.betsChoice = 55
+  betMock.choice.value = "Away"
   expect(calcStatusFix(atualFixMock, betMock)).toBe(true)
 })
 test("Fora - impar ou par", ()=> {

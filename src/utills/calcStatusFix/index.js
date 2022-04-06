@@ -34,6 +34,54 @@ export default function calcStatusFix(atualFix, bet) {
   const valueDuploPointSepatare = choice.value.split(':')
   const valueSpacetSepatare = choice.value.split(' ')
 
+  const goalsTime = atualFix.events.filter(g => g.type == "Goal")
+  let timeFirstGoal
+  for (let goal of goalsTime) {
+    if (timeFirstGoal) {
+      if (goal.time.elapsed < timeFirstGoal.time.elapsed) {
+        timeFirstGoal = goal
+      }
+    } else {
+      timeFirstGoal = goal
+    }
+  }
+  let timeFirstGoalPosition
+  switch (timeFirstGoal.team.id) {
+    case atualFix.teams.home.id:
+      timeFirstGoalPosition = "Home"
+      break
+    case atualFix.teams.away.id:
+      timeFirstGoalPosition = "Away"
+      break
+  }
+
+  let timeLastGoal
+  for (let goal of goalsTime) {
+    if (timeLastGoal) {
+      if (goal.time.elapsed > timeLastGoal.time.elapsed) {
+        timeLastGoal = goal
+      }
+    } else {
+      timeLastGoal = goal
+    }
+  }
+  let timeLastGoalPosition
+  switch (timeLastGoal.team.id) {
+    case atualFix.teams.home.id:
+      timeLastGoalPosition = "Home"
+      break
+    case atualFix.teams.away.id:
+      timeLastGoalPosition = "Away"
+      break
+  }
+
+  const cornerhome = atualFix.statistics[0].statistics.find(st => st.type == "Corner Kicks")
+  const corneraway = atualFix.statistics[1].statistics.find(st => st.type == "Corner Kicks")
+  const cornerTotal = cornerhome.value + corneraway.value
+  let cornerWinner
+  if (cornerhome.value > corneraway.value) cornerWinner = "Home"
+  if (cornerhome.value == corneraway.value) cornerWinner = "Draw"
+  if (cornerhome.value < corneraway.value) cornerWinner = "Away"
   switch (choice.betsChoice) {
     case 1:
       if (choice.value == winner) status = true
@@ -68,12 +116,11 @@ export default function calcStatusFix(atualFix, bet) {
       if (choice.value == boll_ambas_marcam) status = true
       break
     case 9:
-      if(typeof Number(valueSpacetSepatare[1]) == 'number') {
+      if (typeof Number(valueSpacetSepatare[1]) == 'number') {
         // console.log('valueSpacetSepatare[1]',valueSpacetSepatare,  Number(valueSpacetSepatare[1]))
-        switch(valueSpacetSepatare[0]) {
+        switch (valueSpacetSepatare[0]) {
           case "Home":
             goals.home = Number(goals.home) + Number(valueSpacetSepatare[1])
-            console.log('bateu ', goals.home)
             break
           case "Draw":
             break
@@ -81,12 +128,12 @@ export default function calcStatusFix(atualFix, bet) {
             goals.away = Number(goals.away) + Number(valueSpacetSepatare[1])
             break
         }
-        
+
         if (goals.home > goals.away) winner = "Home"
         if (goals.home < goals.away) winner = "Away"
         if (goals.home == goals.away) winner = "Draw"
 
-      if (valueSpacetSepatare[0] == winner) status = true
+        if (valueSpacetSepatare[0] == winner) status = true
       }
       break
     case 10:
@@ -106,10 +153,13 @@ export default function calcStatusFix(atualFix, bet) {
       }
       break
     case 13:
-      if(choice.value == winner1T) status = true
+      if (choice.value == winner1T) status = true
       break
     case 14:
-      return true
+      if (choice.value == timeFirstGoalPosition) status = true
+      break
+    case 15:
+      if (choice.value == timeLastGoalPosition) status = true
       break
     case 16:
       switch (overOrUnderVal) {
@@ -132,24 +182,24 @@ export default function calcStatusFix(atualFix, bet) {
       }
       break
     case 18:
-      if(typeof Number(valueSpacetSepatare[1]) == 'number') {
+      if (typeof Number(valueSpacetSepatare[1]) == 'number') {
         // console.log('valueSpacetSepatare[1]',valueSpacetSepatare,  Number(valueSpacetSepatare[1]))
-        switch(valueSpacetSepatare[0]) {
+        switch (valueSpacetSepatare[0]) {
           case "Home":
             score.halftime.home = Number(score.halftime.home) + Number(valueSpacetSepatare[1])
             break
-            case "Draw":
-              break
-              case "Away":
-                score.halftime.away = Number(score.halftime.away) + Number(valueSpacetSepatare[1])
-                break
-              }
-              
+          case "Draw":
+            break
+          case "Away":
+            score.halftime.away = Number(score.halftime.away) + Number(valueSpacetSepatare[1])
+            break
+        }
+
         if (score.halftime.home > score.halftime.away) winner = "Home"
         if (score.halftime.home < score.halftime.away) winner = "Away"
         if (score.halftime.home == score.halftime.away) winner = "Draw"
 
-      if (valueSpacetSepatare[0] == winner) status = true
+        if (valueSpacetSepatare[0] == winner) status = true
       }
       break
     case 20:
@@ -210,10 +260,28 @@ export default function calcStatusFix(atualFix, bet) {
           break;
       }
       break
-    // case 27:
-    //   break
-    // case 28:
-    //   break
+    case 27:
+      // casa não levar gol
+      switch (choice.value) {
+        case "Yes":
+          if (goals.away == 0) status = true
+          break
+        case "No":
+          if (goals.away != 0) status = true
+          break
+      }
+      break
+    case 28:
+      // fora não leva gol
+      switch (choice.value) {
+        case "Yes":
+          if (goals.home == 0) status = true
+          break
+        case "No":
+          if (goals.home != 0) status = true
+          break
+      }
+      break
     case 29:
       switch (choice.value) {
         case "Yes":
@@ -252,7 +320,7 @@ export default function calcStatusFix(atualFix, bet) {
     case 38:
       if (choice.value == sumGoals || choice.value.includes('more') && sumGoals >= value_moere_x) status = true
       break
-      case 40:
+    case 40:
       // console.log("more ", choice.value.includes('more'), value_moere_x, goals.home)
       if (choice.value == goals.home || choice.value.includes('more') && goals.home >= value_moere_x) status = true
       break
@@ -283,6 +351,17 @@ export default function calcStatusFix(atualFix, bet) {
           break
       }
       break
+    case 45:
+      // Escanteio acima;abaixo
+      switch (valueSpacetSepatare[0]) {
+        case "Over":
+          if (Number(valueSpacetSepatare[1]) < cornerTotal) status = true
+          break;
+        case "Under":
+          if (Number(valueSpacetSepatare[1]) > cornerTotal) status = true
+          break;
+      }
+      break
     case 46:
       if (choice.value == sumGoalsFirstTime || choice.value.includes('more') && sumGoalsFirstTime >= value_moere_x) status = true
       break
@@ -295,14 +374,17 @@ export default function calcStatusFix(atualFix, bet) {
           if (winner1T != "Away" || winner2T != "Away") status = true
           break
       }
-    break
+      break
+    case 55:
+      if (choice.value == cornerWinner) status = true
+      break
     case 60:
       if (goals.away % 2 == 0) {
         if (choice.value == "Even") status = true
       } else {
         if (choice.value == "Odd") status = true
       }
-    break
+      break
     case 62:
       if (goals_home_2T == valueDuploPointSepatare[0] && goals_away_2T == valueDuploPointSepatare[1]) status = true
       break

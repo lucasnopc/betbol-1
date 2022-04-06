@@ -124,10 +124,10 @@ export const oddBets =
 			"id": 31,
 			"name": "Correct Score - First Half"
 		},
-		{
-			"id": 32,
-			"name": "Win Both Halves"
-		},
+		// {
+		// 	"id": 32,
+		// 	"name": "Win Both Halves"
+		// },
 		{
 			"id": 33,
 			"name": "Double Chance - Second Half"
@@ -140,10 +140,10 @@ export const oddBets =
 			"id": 35,
 			"name": "Both Teams To Score - Second Half"
 		},
-		{
-			"id": 36,
-			"name": "Win To Nil"
-		},
+		// {
+		// 	"id": 36,
+		// 	"name": "Win To Nil"
+		// },
 		{
 			"id": 37,
 			"name": "Home win both halves"
@@ -184,10 +184,10 @@ export const oddBets =
 			"id": 46,
 			"name": "Exact Goals Number - First Half"
 		},
-		{
-			"id": 47,
-			"name": "Winning Margin"
-		},
+		// {
+		// 	"id": 47,
+		// 	"name": "Winning Margin"
+		// },
 		// {
 		// 	"id": 48,
 		// 	"name": "To Score In Both Halves By Teams"
