@@ -49,7 +49,7 @@ export default function Banner({ highlights }) {
                         {/* <h3 className="text-gray-200 font-bold mt-2 text-lg pl-2 text-shadow">Transferência rápido</h3> */}
                     </div>
                 </div>
-                {fix.length > 0 && fix.map(i => {
+                {fix.length > 0 && fix.slice(0,5).map(i => {
                     const dateFix = new Date(i.fixture.date)
                     const dateFormat = format(dateFix, 'yyyy/MM/dd')
                     const TimeFormat = format(dateFix, 'hh:mm')

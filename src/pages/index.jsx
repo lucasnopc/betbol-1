@@ -9,8 +9,8 @@ import { format } from 'date-fns'
 import useUser from '../utills/hooks/useUser'
 import Banner from '../components/banner'
 
-export default function Home(props) {
-  const user = useUser(props.userString)
+export default function Home() {
+  const user = useUser("")
   const [live, setLive] = useState([])
   const [master, setMaster] = useState([])
   const [tomorrowFix, setTomorrowFix] = useState([])
@@ -52,9 +52,4 @@ export default function Home(props) {
       </Layout>
     </>
   )
-}
-
-export async function getServerSideProps(context) {
-  const ret = serverSidePropsClient(context)
-  return ret
 }
