@@ -8,7 +8,6 @@ import translateBetsName from "../../../../utills/translates/translate-bets-name
 export default function ItemBetNote(props) {
     const { removeBetsInNote } = useStore()
     const bet = props.bet
-    console.log('bet', translateBetsName(Number(bet.choice.betsChoice)), typeof bet.choice.betsChoice)
     return <div className="relative p-2 border-t border-primary-ligth flex flex-col">
     <div className="absolute right-0" onClick={() => { removedItem(props.indice, props.vf, bet, props.setVf, removeBetsInNote) }}>
         <span className="inline-block mr-2 font-normal uppercase text-sm text-gray-600">{Translate(bet.choice.value)}</span>

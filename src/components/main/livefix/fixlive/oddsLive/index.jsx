@@ -15,7 +15,7 @@ export default function OddsLive(props) {
     const [values, setValues] = useState([])
     const [odds, setOdds] = useState([])
     const { data, error } = useFetch(`/api/betApi/live/oddslive?id=${id}`)
-    if(data) console.log('data odds', data)
+
     useEffect(() => {
         if (data && data.odd[0]) {
             const book = data.odd[0].odds[0]
