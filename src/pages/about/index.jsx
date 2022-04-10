@@ -9,14 +9,14 @@ export default function AboutPage(props) {
     return (
         <>
             <Head>
-                <title>Betbol - A Betbol</title>
+                <title>{process.env.NEXT_PUBLIC_APP_NAME} - A {process.env.NEXT_PUBLIC_APP_NAME}</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <Layout userString={user}>
-               <h1>A Betbol</h1>
+               <h1>A {process.env.NEXT_PUBLIC_APP_NAME}</h1>
                <p>Somos uma casa de apostas com sede no Rio de Janeiro.</p>
-               <p>Somos SPORTSGAME.CLUB e BETBOL.IO</p>
+               <p>Somos SPORTSGAME.CLUB e SPORTSGAME.ONLINE</p>
             </Layout>
         </>
     )

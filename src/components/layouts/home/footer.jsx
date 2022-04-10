@@ -9,7 +9,7 @@ export default function Footer() {
     let tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow = format(tomorrow, 'yyyy-MM-dd')
-
+    const appname = process.env.NEXT_PUBLIC_APP_NAME
     return <div className=" bottom-0 w-full">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-3 pt-5">
             <div>
@@ -21,9 +21,9 @@ export default function Footer() {
                 </ol>
             </div>
             <div>
-                <h4 className="font-normal uppercase">BetBol</h4>
+                <h4 className="font-normal uppercase">{appname}</h4>
                 <ol className="text-gray-500">
-                    <li><Link href="/about"><a>A Betbol</a></Link></li>
+                    <li><Link href="/about"><a>A {appname}</a></Link></li>
                     <li><SignInButton /></li>
                 </ol>
             </div>        <div>
@@ -41,6 +41,6 @@ export default function Footer() {
                 </ol>
             </div>
         </div>
-        <div className="p-2 bg-white text-center font-semibold text-gray-400 text-sm">© {fullYear} - Betbol.io / Todos os direitos reservados.</div>
+        <div className="p-2 bg-white text-center font-semibold text-gray-400 text-sm">© {fullYear} - {appname} / Todos os direitos reservados.</div>
     </div>
 }

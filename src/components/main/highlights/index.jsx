@@ -32,9 +32,9 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
         {leagues.length > 0 && bets && leagues.map(l => {
             const values = l.fix[0].odd.bookmakers[0].bets.find(bet => bet.id == bets)?.values
             return <div key={l.liga.id}>
-                <div className="text-xs font-semibold bg-primary text-white py-2 border-b grid grid-cols-2 items-center">
-                    <div>
-                        {l.liga.flag && <Image src={l.liga.flag} alt={l.liga.name} width={20} height={15} />}
+                <div className="text-xs font-semibold bg-primary text-white py-2 border-b grid grid-cols-2">
+                    <div className="flex ml-1">
+                        {l.liga.flag && <div className="rounded-full overflow-hidden w-4 h-4 bg-black"><img className="w-6 h-6 -mt-1 -ml-1 max-w-none" src={l.liga.flag} alt={l.liga.name} /></div>}
                         <span className="pl-1 font-semibold">
                             {l.liga.country} - {l.liga.name}
 

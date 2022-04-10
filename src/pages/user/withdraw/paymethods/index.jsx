@@ -32,7 +32,7 @@ export default function payMethods(props) {
   return (
     <>
       <Head>
-        <title>Betbol - Método de Transferência PIX</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME} - Método de Transferência PIX</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

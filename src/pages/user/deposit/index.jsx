@@ -20,7 +20,7 @@ export default function withDraw(props) {
   return (
     <>
       <Head>
-        <title>Betbol - Financeiro</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME} - Financeiro</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

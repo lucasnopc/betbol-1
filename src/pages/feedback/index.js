@@ -30,7 +30,7 @@ export default function Feedback(props) {
   return (
     <>
       <Head>
-        <title>Betbol - Feedback</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME} - Feedback</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

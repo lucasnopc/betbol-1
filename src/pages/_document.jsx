@@ -4,10 +4,10 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <meta name='application-name' content='Betbol' />
+        <meta name='application-name' content={process.env.NEXT_PUBLIC_APP_NAME} />
         <meta name='apple-mobile-web-app-capable' content='yes' />
         <meta name='apple-mobile-web-app-status-bar-style' content='default' />
-        <meta name='apple-mobile-web-app-title' content='Betbol' />
+        <meta name='apple-mobile-web-app-title' content={process.env.NEXT_PUBLIC_APP_NAME} />
         <meta name='description' content='Apostas esportivas' />
         <meta name='format-detection' content='telephone=no' />
         <meta name='mobile-web-app-capable' content='yes' />
@@ -30,14 +30,14 @@ export default function Document() {
 
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:url' content='https://betbol.io' />
-        <meta name='twitter:title' content='Betbol' />
-        <meta name='twitter:description' content='Betbol - Apostas esportivas' />
+        <meta name='twitter:title' content={process.env.NEXT_PUBLIC_APP_NAME} />
+        <meta name='twitter:description' content={`${process.env.NEXT_PUBLIC_APP_NAME} - Apostas esportivas`} />
         <meta name='twitter:image' content='https://www.betbol.io/ico192.png' />
         <meta name='twitter:creator' content='@betbol' />
         <meta property='og:type' content='website' />
-        <meta property='og:title' content='Betbol' />
-        <meta property='og:description' content='Betbol - Apostas esportivas' />
-        <meta property='og:site_name' content='Betbol' />
+        <meta property='og:title' content={process.envNEXT_PUBLIC_APP_NAME} />
+        <meta property='og:description' content={`${process.env.NEXT_PUBLIC_APP_NAME} - Apostas esportivas`} />
+        <meta property='og:site_name' content={process.env.NEXT_PUBLIC_APP_NAME} />
         <meta property='og:url' content='https://betbol.io' />
         <meta property='og:image' content='https://www.betbol.io/ico192.png' />
       </Head>

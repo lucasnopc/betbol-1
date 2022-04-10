@@ -37,7 +37,7 @@ export default function NoteBtn(props) {
         })
             .then(function (response) {
                 axios.post('/api/email/send', {
-                    subject: `Betbol - Aposta Realizada`,
+                    subject: `${process.env.NEXT_PUBLIC_APP_NAME} - Aposta Realizada`,
                     html: HtmlEmailSendBet(note, process.env.NEXTAUTH_URL),
                 }).then(async function (response) {
                     setLoading(false)

@@ -16,15 +16,15 @@ export default function RegulationPage(props) {
   return (
     <>
       <Head>
-        <title>Betbol - Contato</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME} - Contato</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Layout userString={user}>
         <h1 className="font-semibold text-xl p-2">Fale Conosco</h1>
         <div className="p-2">
-          <span> ganhei@betbol.io</span>
-          <span> suport@betbol.io</span>
+          <span> ganhei@sportsgame.online</span>
+          <span> suport@sportsgame.online</span>
         </div>
         <form onSubmit={handleSubmit(sendEmailContact)} className="">
           <div className="">

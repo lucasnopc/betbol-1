@@ -29,7 +29,7 @@ export default function withdraw(props) {
   return (
     <>
       <Head>
-        <title>Betbol - Saque</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME} - Saque</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

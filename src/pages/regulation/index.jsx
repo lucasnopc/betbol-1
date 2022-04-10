@@ -9,7 +9,7 @@ export default function RegulationPage(props) {
     return (
         <>
             <Head>
-                <title>Betbol - Regulamento</title>
+                <title>{process.env.NEXT_PUBLIC_APP_NAME} - Regulamento</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 

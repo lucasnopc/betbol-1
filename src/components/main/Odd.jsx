@@ -7,7 +7,7 @@ export default function Odd({ bets, fix, odds, nVals = null }) {
     const [values, setValues] = useState([])
     useEffect(() => setValues(odds?.values), [odds])
     return <>
-        <div className={`md:float-right flex flex-nowrap md:flex-none h-full border-l border-gray-200 divide-x`}>
+        <div className={`flex flex-nowrap md:flex-none h-full border-l border-gray-200 divide-x-4 py-1 divide-white`}>
             {values && values.length <= 3 && <>
                 {values.map((val, i) => {
                     return <div key={val.value} className="flex-1 gap-0 h-full">
@@ -15,7 +15,7 @@ export default function Odd({ bets, fix, odds, nVals = null }) {
                     </div>
                 })}
                 {nVals && <div className="md:w-20 flex-1 gap-0 h-full">
-                    <Link href={`/fix/${id}`} ><a className=" pr-1 hover:bg-gray-200 text-blue-600 px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none flex items-center justify-center min-w-full h-full text-base font-bold">+{nVals}</a></Link>
+                    <Link href={`/fix/${id}`} ><a className=" pr-1 hover:bg-gray-200 rounded-lg text-blue-600 px-1.5 py-3 cursor-pointer active:outline-none focus:outline-none flex items-center justify-center min-w-full h-full text-base font-bold">+{nVals}</a></Link>
                 </div>}
             </>
             }

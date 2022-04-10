@@ -27,7 +27,7 @@ export default function CodePage(props) {
   return (
     <>
       <Head>
-        <title>Betbol - {code}</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME} - {code}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

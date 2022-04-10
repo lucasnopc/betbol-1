@@ -26,7 +26,7 @@ export default function viewTicket(props) {
     return (
         <>
             <Head>
-                <title>Betbol - Ver ticket</title>
+                <title>{process.env.NEXT_PUBLIC_APP_NAME} - Ver ticket</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 

@@ -57,7 +57,7 @@ export default function Fix(props) {
   return (
     <>
       <Head>
-        <title>Betbol - Futebol</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME} - Futebol</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

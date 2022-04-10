@@ -30,7 +30,7 @@ export default NextAuth({
                   .sendMail({
                     to: email,
                     from,
-                    subject: `Faça login na Betbol`,
+                    subject: `Faça login na ${process.env.NEXT_PUBLIC_APP_NAME}`,
                     text: textEmailRequest({ url, site, email }),
                     html: HtmlEmailRequest({ url, site, email })
                   }, (error) => {
