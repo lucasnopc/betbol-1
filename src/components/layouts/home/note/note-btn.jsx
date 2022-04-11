@@ -76,11 +76,10 @@ export default function NoteBtn(props) {
     }
 
     return <><button onClick={() => {
-        if (props.vf > 0 && props.vf < user.points) {
-            if (note.length > 0) {
-                setOpen(true)
-            } else {
-                toast.info("Primeiro faça uma escolha.",{
+        if (props.vf < user.points) {
+            let vf
+            if (props.vf < props.config.min_value) {
+                toast.warn(`O valor mínimo para uma aposta é de ${props.config.min_value}, por favor aumente sua aposta.`,{
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: true,
@@ -89,7 +88,21 @@ export default function NoteBtn(props) {
                     draggable: true,
                     progress: undefined,
                     })
-
+            }else {
+                if (note.length > 0) {
+                    setOpen(true)
+                } else {
+                    toast.info("Primeiro faça uma escolha.",{
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        })
+    
+                }
             }
         } else {
             toast.warn("Você não tem pontos suficientes, faça um depósito.",{
@@ -105,7 +118,7 @@ export default function NoteBtn(props) {
 
     }} className="w-full bg-primary hover:bg-primary-ligth cursor-pointer font-semibold text-md text-white uppercase p-3">Fazer Aposta <ValorFinal vf={props.vf} /><span className="text-xs font-bold block text-gray-100">Potencial Retorno: {props.retornoPotencial}</span> </button>
         <ConfirmDialog open={open} setOpen={setOpen} onConfirm={() => {
-            startBet(user, props.vf, props.retornoPotencial)
+                startBet(user, props.vf, props.retornoPotencial)
         }}>
             {/* <h1 className="font-bold uppercase">Confirmar Aposta ? R${props.vf.toFixed(2)}</h1> */}
             <div className="overflow-scroll max-h-64">

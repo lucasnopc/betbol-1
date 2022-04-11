@@ -41,9 +41,9 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
                         </span>
                     </div>
                     <div>
-                        <div className="ml-3 flex flex-nowrap md:flex-none h-full divide-green-500 divide-x">
-                            {values?.length <= 3 && values?.map(v => <div key={v.value} className="md:w-20 flex-1 gap-0 text-center">{Translate(v.value)}</div>)}
-                            <div className="md:w-20 flex-1 gap-0 text-center">Mais</div>
+                        <div className="text-right h-full divide-green-500 divide-x">
+                            {values?.length <= 3 && values?.map(v => <div key={v.value} className="px-3 inline-block text-center">{Translate(v.value)}</div>)}
+                            <div className="px-3 text-center inline-block">Mais</div>
                         </div>
                     </div>
                 </div>

@@ -49,7 +49,7 @@ export default function MultipleBetsBlock({ oddList = [], arrayIds = [], title =
       </div>
       <div>
         {values && <>
-          <div className="flex flex-col divide-y flex-wrap">
+          <div className="flex flex-col divide-y divide-white flex-wrap">
             {values.values.slice(0, number_max_list_odds).map((val, i) => {
               return <div key={val.value + val.odd} className="gap-0 h-full">
                 <Button val={val} fix={fix} bets={values.id} value={true} />

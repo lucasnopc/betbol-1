@@ -2,20 +2,20 @@ import Button from "./Button"
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-export default function Odd({ bets, fix, odds, nVals = null }) {
+export default function Odd({ bets, fix, odds, nVals = null, orientation = "right" }) {
     const id = fix.fixture.id
     const [values, setValues] = useState([])
     useEffect(() => setValues(odds?.values), [odds])
     return <>
-        <div className={`flex flex-nowrap md:flex-none h-full border-l border-gray-200 divide-x-4 py-1 divide-white`}>
+        <div className={`text-${orientation} h-full border-l border-gray-200 divide-x-4 py-1 mr-2 divide-white `}>
             {values && values.length <= 3 && <>
                 {values.map((val, i) => {
-                    return <div key={val.value} className="flex-1 gap-0 h-full">
+                    return <div key={val.value} className="inline-block">
                         <Button key={i} val={val} fix={fix} bets={bets} />
                     </div>
                 })}
-                {nVals && <div className="md:w-20 flex-1 gap-0 h-full">
-                    <Link href={`/fix/${id}`} ><a className=" pr-1 hover:bg-gray-200 rounded-lg text-blue-600 cursor-pointer active:outline-none focus:outline-none flex items-center justify-center min-w-full h-full text-base font-bold">+{nVals}</a></Link>
+                {nVals && <div className="inline-block">
+                    <Link href={`/fix/${id}`} ><a className=" rounded-lg w-12 h-12 pr-1 text-blue-600 cursor-pointer active:outline-none focus:outline-none flex items-center justify-center min-w-full bg-gray-200 hover:bg-gray-300 text-base font-bold">+{nVals}</a></Link>
                 </div>}
             </>
             }

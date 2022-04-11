@@ -15,9 +15,10 @@ export default function Button({ fix, val, bets, value }) {
     useEffect(() => {if(data) setConfig(data.config[0].config)}, [data])
  
     useEffect(()=> {
-
+        // console.log("note buttom", note)
         note.map((n, i) => {
             if (n.fix.fixture.id == fix.fixture.id && n.choice.betsChoice == bets) {
+                console.log('n & fix ', n, fix)
                 if (n.choice.value == val.value && n.choice.odd == val.odd) {
                     setChecked(true)
                 } else {
@@ -66,7 +67,7 @@ export default function Button({ fix, val, bets, value }) {
     if(val.odd > 20) val.odd = 20
 
  return <div className={` page group font-semibold uppercase inline-block w-full h-full`}>
-        <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between': ''} ${checked ? `bg-primary hover:bg-primary-ligth text-white` : `bg-gray-200 hover:bg-gray-300 text-black`} ${value ? `px-1.5 py-3`: `rounded-lg`} cursor-pointer active:outline-none focus:outline-none min-w-full h-full text-base font-bold`}>
+        <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between px-1.5 py-3 w-full': 'rounded-lg w-12 h-12'} ${checked ? `bg-primary hover:bg-primary-ligth text-white` : `bg-gray-200 hover:bg-gray-300 text-black`} cursor-pointer active:outline-none focus:outline-none h-full text-base font-bold`}>
            {value && <span className="block font-semibold text-xs">{translateBets(val.value, bets)}</span>}
             <span className="block font-semibold" >{val.odd}</span>
         </button>
