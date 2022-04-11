@@ -13,7 +13,7 @@ export const bestLeagues = [
     },
     {
         "id": 5,
-        "name": "UEFA Nations League",
+        "name": "Liga das Nações",
         "type": "Cup",
         "logo": "https:\/\/media.api-sports.io\/football\/leagues\/5.png"
     },

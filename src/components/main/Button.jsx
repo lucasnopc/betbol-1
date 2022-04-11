@@ -68,7 +68,7 @@ export default function Button({ fix, val, bets, value }) {
  return <div className={` page group  uppercase inline-block w-full h-full`}>
         <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between px-1.5 py-3 w-full': 'rounded-lg w-12 h-12'} ${checked ? `bg-primary hover:bg-primary-ligth text-white` : `bg-gray-200 hover:bg-gray-300 text-black`} cursor-pointer active:outline-none focus:outline-none h-full text-base font-bold`}>
            {value && <span className="block  text-xs">{translateBets(val.value, bets)}</span>}
-            <span className="block " >{val.odd}</span>
+            <span className="block font-normal" >{val.odd}</span>
         </button>
  </div>
 }
