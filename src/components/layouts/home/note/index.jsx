@@ -6,6 +6,7 @@ import { Dialog } from '../../../confirm-dialog'
 import { ToastContainer, toast } from 'react-toastify';
 import useFetch from '../../../../utills/useFetch'
 import FullLoading from '../../../fullloading'
+import retornoPotencialCalc from '../../../../utills/retornoPotencial'
 
 export default function Note(props) {
     const { note } = useStore()
@@ -16,14 +17,14 @@ export default function Note(props) {
     const { data, error } = useFetch('/api/adm/config')
     useEffect(() => {if(data) setConfig(data.config[0].config)}, [data])
     useEffect(() => {
-        retornosPotenciais(note, vf, setRetornoPotencial)
+        setRetornoPotencial(retornoPotencialCalc(change.note, value, config))
     }, [note])
 
 
     const changeInputValue = (change) => {
         const value = change.obj.target.value
         change.setVf(value)
-        retornosPotenciais(change.note, value, setRetornoPotencial)
+        setRetornoPotencial(retornoPotencialCalc(change.note, value, config))
     }
     const EmptyListBetState = () => {
         if (note.length == 0) {
@@ -32,17 +33,6 @@ export default function Note(props) {
         return <></>
     }
 
-    const retornosPotenciais = (note, vf, setRetornoPotencial) => {
-        if (note.length != 0 && vf != 0) {
-            const singleValue = vf / note.length
-            const response = note.map((n, i) => {
-                return Number(n.choice.odd)
-            }).reduce((total, n) => total + n)
-            setRetornoPotencial((response * vf).toFixed(2))
-        } else {
-            setRetornoPotencial(0)
-        }
-    }
     if(config.length == 0) return <FullLoading />
 
     return <>

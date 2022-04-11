@@ -7,7 +7,7 @@ export default function Odd({ bets, fix, odds, nVals = null }) {
     const [values, setValues] = useState([])
     useEffect(() => setValues(odds?.values), [odds])
     return <>
-        <div className={`flex flex-nowrap md:flex-none h-full border-l border-gray-200 divide-x-4 py-1 divide-white`}>
+        <div className={`flex flex-nowrap md:flex-none h-full border-l border-gray-200 divide-x divide-white`}>
             {values && values.length <= 3 && <>
                 {values.map((val, i) => {
                     return <div key={val.value} className="flex-1 gap-0 h-full">

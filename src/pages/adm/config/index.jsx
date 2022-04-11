@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import FullLoading from '../../../components/fullloading'
 
 export default function config({config}) {
+    console.log(config)
     const { register, handleSubmit } = useForm({
         defaultValues: config
     })
