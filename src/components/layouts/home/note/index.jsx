@@ -17,7 +17,7 @@ export default function Note(props) {
     const { data, error } = useFetch('/api/adm/config')
     useEffect(() => {if(data) setConfig(data.config[0].config)}, [data])
     useEffect(() => {
-        setRetornoPotencial(retornoPotencialCalc(change.note, value, config))
+        setRetornoPotencial(retornoPotencialCalc(note, value, config))
     }, [note])
 
 
@@ -33,6 +33,17 @@ export default function Note(props) {
         return <></>
     }
 
+    const retornosPotenciais = (note, vf, setRetornoPotencial) => {
+        if (note.length != 0 && vf != 0) {
+            const singleValue = vf / note.length
+            const response = note.map((n, i) => {
+                return Number(n.choice.odd)
+            }).reduce((total, n) => total + n)
+            setRetornoPotencial((response * vf).toFixed(2))
+        } else {
+            setRetornoPotencial(0)
+        }
+    }
     if(config.length == 0) return <FullLoading />
 
     return <>
