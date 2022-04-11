@@ -17,7 +17,9 @@ export default function Note(props) {
     const { data, error } = useFetch('/api/adm/config')
     useEffect(() => {if(data) setConfig(data.config[0].config)}, [data])
     useEffect(() => {
-        setRetornoPotencial(retornoPotencialCalc(note, value, config))
+        retornosPotenciais(note, vf, setRetornoPotencial)
+        setRetornoPotencial(retornoPotencialCalc(note, vf, config))
+
     }, [note])
 
 
