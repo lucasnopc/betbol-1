@@ -15,7 +15,10 @@ module.exports = {
             }),
             colors: {
                 'primary': '#059669',
-                'primary-ligth': '#05966990'
+                'primary-ligth': '#05966990',
+                'blue': {
+                    900:'#09002c'
+                }
 
             }
         },
