@@ -7,7 +7,7 @@ export default function Odd({ bets, fix, odds, nVals = null, orientation = "righ
     const [values, setValues] = useState([])
     useEffect(() => setValues(odds?.values), [odds])
     return <>
-        <div className={`text-${orientation} h-full border-l border-gray-200 divide-x-2 py-1 mr-2 divide-white `}>
+        <div className={`text-${orientation} h-full border-gray-200 divide-x-2 py-1 mr-2 divide-white`}>
             {values && values.length <= 3 && <>
                 {values.map((val, i) => {
                     return <div key={val.value} className="inline-block">

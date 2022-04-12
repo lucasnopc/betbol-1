@@ -57,7 +57,7 @@ export default function Banner({ highlights }) {
                     if (isTomorrow(dateFix)) dateText = "Amanhã"
                     if (isToday(dateFix)) dateText = "Hoje"
                     return <div key={i.fixture.id}>
-                        <div className="p-2 mx-1 w-64 h-36 overflow-hidden bg-white shadow-lg inline-block">
+                        <div className="p-2 mx-1 w-64 h-40 overflow-hidden bg-white shadow-lg inline-block">
                             <div className="mb-3">
                                 <span><FaFutbol className="inline-block" /> {i.league.name}</span>
                                 <span className="float-right">{dateText ? dateText : dateFormat} / {TimeFormat}</span>
