@@ -7,12 +7,8 @@ import Link from 'next/link'
 export default function Header({userString: user}) {
     const [session] = useSession()
     return <>
-    {user?.nivel == 5 &&
-        <div className=''>
-            <HeaderAdmin />
-        </div>
-    }
-        <header className={`${user?.nivel == 5 ? `mt-6` : ``} bg-green-600 border-b border-green-500 w-full z-10 md:overflow-hidden`}>
+        <header className={`${user?.nivel == 5 ? `mt-6` : ``} bg-green-600 border-b border-green-500 w-full basis-auto z-10`}>
+    {user?.nivel == 5 &&<HeaderAdmin />}
             <div className='md:pl-2 flex items-center justify-between'>
             <Logo />
             <div id="profile" className='flex items-center px-2'>

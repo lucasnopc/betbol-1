@@ -4158,15 +4158,6 @@ export const soccerfake =[
                 "elapsed": 84
             }
         },
-        "league": {
-            "id": 11,
-            "name": "CONMEBOL Sudamericana",
-            "country": "World",
-            "logo": "https://media.api-sports.io/football/leagues/11.png",
-            "flag": null,
-            "season": 2021,
-            "round": "Group Stage - 1"
-        },
         "teams": {
             "home": {
                 "id": 456,
@@ -4530,7 +4521,7 @@ export const soccerfake =[
                 {
                     "league": {
                         "id": 11,
-                        "name": "CONMEBOL Sudamericana",
+                        "name": "Sudamericana",
                         "country": "World",
                         "logo": "https://media.api-sports.io/football/leagues/11.png",
                         "flag": null,

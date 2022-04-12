@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Image from 'next/image'
 import get_odd_for_fix from "../../../utills/get_odds_for_fix"
 import Translate from "../../../utills/translate"
+import { BiWorld } from 'react-icons/bi'
 
 export default function Highlights({ highlights, title, qtd = 4 }) {
     const [bets, setBets] = useState(1)
@@ -30,11 +31,13 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
             <SelectOddsBets setBets={setBets} bets={bets} />
         </div>
         {leagues.length > 0 && bets && leagues.map(l => {
+            console.log('l.liga.flag ', l.liga.flag)
             const values = l.fix[0].odd.bookmakers[0].bets.find(bet => bet.id == bets)?.values
             return <div key={l.liga.id}>
                 <div className="text-xs font-semibold bg-primary text-white py-1 border-b grid grid-cols-2">
                     <div className="flex ml-1">
                         {l.liga.flag && <div className="rounded-full overflow-hidden w-4 h-4 bg-black"><img className="w-6 h-6 -mt-1 -ml-1 max-w-none" src={l.liga.flag} alt={l.liga.name} /></div>}
+                        {!l.liga.flag && <BiWorld className="text-lg" />}
                         <span className="pl-1 font-semibold">
                             {l.liga.country} - {l.liga.name}
 
