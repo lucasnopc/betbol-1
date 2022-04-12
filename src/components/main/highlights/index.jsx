@@ -31,7 +31,6 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
             <SelectOddsBets setBets={setBets} bets={bets} />
         </div>
         {leagues.length > 0 && bets && leagues.map(l => {
-            console.log('l.liga.flag ', l.liga.flag)
             const values = l.fix[0].odd.bookmakers[0].bets.find(bet => bet.id == bets)?.values
             return <div key={l.liga.id}>
                 <div className="text-xs font-semibold bg-primary text-white py-1 border-b grid grid-cols-2">

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 export default function Odd({ bets, fix, odds, nVals = null, orientation = "right", squadWidth }) {
+
     const id = fix.fixture.id
     const [values, setValues] = useState([])
     useEffect(() => setValues(odds?.values), [odds])

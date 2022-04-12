@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import Translate from '../../utills/translate'
 import translateBets from "../../utills/translates/translateBets";
 
-export default function Button({ fix, val, bets, value, squadWidth = 14 }) {
+export default function Button({ fix, val, bets, value, squadWidth}) {
     console.log('squadWidth ', squadWidth)
     const [checked, setChecked] = useState(false)
     const [config, setConfig] = useState({})
@@ -66,8 +66,8 @@ export default function Button({ fix, val, bets, value, squadWidth = 14 }) {
     }
     if(val.odd > 20) val.odd = 20
 
- return <div className={` page group  uppercase inline-block w-full h-full`}>
-        <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between px-1.5 py-3 w-full': `rounded-lg w-${squadWidth} h-${squadWidth}`} ${checked ? `bg-primary hover:bg-primary-ligth text-white` : `bg-white border border-gray-300 hover:bg-gray-300 text-black`} cursor-pointer active:outline-none focus:outline-none h-full text-base font-bold`}>
+ return <div className={` page group  uppercase inline-block`}>
+        <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between px-1.5 py-3 w-full': `rounded-lg w-${squadWidth} h-${squadWidth}`} ${checked ? `bg-primary hover:bg-primary-ligth text-white` : `bg-white border border-gray-300 hover:bg-gray-300 text-black`} cursor-pointer active:outline-none focus:outline-none text-base font-bold`}>
            {value && <span className="block  text-sm text-gray-900">{translateBets(val.value, bets)}</span>}
             <span className="block font-medium text-sm text-gray-900" >{val.odd}</span>
         </button>
