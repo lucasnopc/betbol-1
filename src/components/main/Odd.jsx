@@ -2,7 +2,7 @@ import Button from "./Button"
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-export default function Odd({ bets, fix, odds, nVals = null, orientation = "right" }) {
+export default function Odd({ bets, fix, odds, nVals = null, orientation = "right", squadWidth }) {
     const id = fix.fixture.id
     const [values, setValues] = useState([])
     useEffect(() => setValues(odds?.values), [odds])
@@ -11,7 +11,7 @@ export default function Odd({ bets, fix, odds, nVals = null, orientation = "righ
             {values && values.length <= 3 && <>
                 {values.map((val, i) => {
                     return <div key={val.value} className="inline-block">
-                        <Button key={i} val={val} fix={fix} bets={bets} />
+                        <Button key={i} val={val} fix={fix} bets={bets} squadWidth={squadWidth} />
                     </div>
                 })}
                 {nVals && <div className="inline-block">

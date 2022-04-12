@@ -63,7 +63,7 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
             </span>}
 
             {loading && <span className="bg-gray-200 p-2 w-full uppercase font-semibold text-center">
-                <Image width="20" height="20" src="/ico.png" className="animate-spin" />
+                <Image width="20" height="20" src="/ico64.png" className="animate-spin p-1" />
             </span>}
         </div>
     </>

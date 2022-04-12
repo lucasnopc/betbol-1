@@ -67,7 +67,7 @@ export default function Banner({ highlights }) {
                                 <div className="text-left flex items-center"><Image src={i.teams.home.logo} width="30" height="30" /><span className="ml-1 w-20">{i.teams.home.name.substring(0, 10)}{i.teams.home.name.length > 10 ? `...` : ``}</span></div>
                             </div>
                             <div className="text-center mt-2">Vencedor da Partida</div>
-                            <div className='h-10'><Odd odds={i.odd.bookmakers[0].bets.find((bet) => bet.id == 1)} bets={1} fix={i} orientation="center" /></div>
+                            <div className='h-10'><Odd odds={i.odd.bookmakers[0].bets.find((bet) => bet.id == 1)} bets={1} fix={i} orientation="center" squadWidth={12} /></div>
                         </div>
                     </div>
                 }

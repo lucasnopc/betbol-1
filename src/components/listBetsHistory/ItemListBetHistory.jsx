@@ -9,7 +9,7 @@ export default function ItemListBetHistory({ choiceOdd, b, toggle }) {
   const { data, error } = useFetch(urlFix)
   if (error) return console.log(error)
   if (!data) return <div className="bg-white absolute flex items-center justify-center top-0 left-0  p-2 w-full h-40 uppercase font-semibold text-center">
-    <Image width="20" height="20" src="/ico.png" className="animate-spin" />
+    <Image width="20" height="20" src="/ico64.png" className="animate-spin" />
   </div>
 
   const res = data.res_fixture.response[0]
