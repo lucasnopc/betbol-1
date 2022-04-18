@@ -61,7 +61,7 @@ export default function Fix(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={user}>
+      <Layout>
         
         {resFixture && <>
           <span className="ml-3 text-xs w-56 h-96">{resFixture.league.country} {resFixture.league.name}</span>

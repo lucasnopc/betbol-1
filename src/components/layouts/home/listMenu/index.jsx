@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 import { bestLeagues } from '../bestLeagues'
 import Search from './search'
 
-export default function ListMenu(props) {
+export default function ListMenu() {
     const [toggle, setToggle] = useState(false)
     const today = format(new Date(), 'yyyy-MM-dd')
     const todayYear = new Date().getFullYear()
@@ -13,7 +13,7 @@ export default function ListMenu(props) {
     tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow = format(tomorrow, 'yyyy-MM-dd')
     
-    return <div>
+    return <div className="bg-white">
         <div onClick={() => setToggle(!toggle)} className="p-1">
             <BiFootball className="inline-block" />
             <span className="inline-block text-xs ml-2 page-title">Buscar Jogos</span>

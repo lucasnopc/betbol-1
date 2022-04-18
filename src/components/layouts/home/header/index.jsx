@@ -3,9 +3,12 @@ import Logo from '../logo'
 import Profile from './profile'
 import HeaderAdmin from '../../admin/headeradmin'
 import Link from 'next/link'
+import { useStore } from '../../../../context/store'
 
-export default function Header({userString: user}) {
+export default function Header() {
     const [session] = useSession()
+    const { user } = useStore()
+
     return <>
         <header className={`${user?.nivel == 5 ? `mt-6` : ``} bg-green-600 border-b border-green-500 w-full basis-auto z-10`}>
     {user?.nivel == 5 &&<HeaderAdmin />}

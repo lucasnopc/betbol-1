@@ -10,7 +10,7 @@ export default async (req, res) => {
     const email = session.user.email
     const { db } = await connectToDatabase();
     const { name, lastname, tel, cpf, cep, numhouse, logradouro, bairro, localidade, uf } = req.body.data
-    const points = 3
+    const points = 10
     const response = await db
       .collection("users")
       .update(
@@ -18,7 +18,7 @@ export default async (req, res) => {
         {
           $set:
           {
-
+            points: {$sum: 0},
             user:
             {
               name, lastname, tel, cpf, cep, numhouse, logradouro, bairro, localidade, uf

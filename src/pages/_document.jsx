@@ -29,17 +29,17 @@ export default function Document() {
         {/* <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' /> */}
 
         <meta name='twitter:card' content='summary' />
-        <meta name='twitter:url' content='https://betbol.io' />
+        <meta name='twitter:url' content='https://sportsgame.online' />
         <meta name='twitter:title' content={process.env.NEXT_PUBLIC_APP_NAME} />
         <meta name='twitter:description' content={`${process.env.NEXT_PUBLIC_APP_NAME} - Apostas esportivas`} />
-        <meta name='twitter:image' content='https://www.betbol.io/ico192.png' />
+        <meta name='twitter:image' content='https://www.sportsgame.online/ico192.png' />
         <meta name='twitter:creator' content='@betbol' />
         <meta property='og:type' content='website' />
         <meta property='og:title' content={process.envNEXT_PUBLIC_APP_NAME} />
         <meta property='og:description' content={`${process.env.NEXT_PUBLIC_APP_NAME} - Apostas esportivas`} />
         <meta property='og:site_name' content={process.env.NEXT_PUBLIC_APP_NAME} />
-        <meta property='og:url' content='https://betbol.io' />
-        <meta property='og:image' content='https://www.betbol.io/ico192.png' />
+        <meta property='og:url' content='https://sportsgame.online' />
+        <meta property='og:image' content='https://www.sportsgame.online/ico192.png' />
       </Head>
       <body>
         <Main />

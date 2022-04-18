@@ -31,7 +31,7 @@ export default function CodePage(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={user}>
+      <Layout>
           <div className="mx-3 mt-3 md:col-span-7 col-span-full">
             <h2 className="page-title">{name}</h2>
             {leagues.map((lea) => {

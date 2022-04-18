@@ -13,7 +13,7 @@ export default function RegulationPage(props) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Layout userString={user}>
+            <Layout>
                <h1 className='font-semibold text-xl p-2'>Regulamento</h1>
                <p className='font-semibold p-2'>NÃO PAGAREMOS JOGOS: JÁ REALIZADOS E QUE POR FALHA, CONTINUEM NO SISTEMA, POR ERRO DE HORA OU POR JOGOS ANTECIPADOS. NO CASO DE CASADINHAS, SERÃO CALCULADOS OS VALORES, E O JOGO NÃO REALIZADO SERÁ DEVOLVIDO O VALOR PAGO, SENDO PAGOS APENAS OS JOGOS REALIZADOS COM SUCESSO.</p>
               <ul>

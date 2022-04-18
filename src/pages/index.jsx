@@ -8,9 +8,10 @@ import Highlights from '../components/main/highlights'
 import { format } from 'date-fns'
 import useUser from '../utills/hooks/useUser'
 import Banner from '../components/banner'
+import { useStore } from '../context/store'
 
 export default function Home() {
-  const user = useUser("")
+  useUser()
   const [live, setLive] = useState([])
   const [master, setMaster] = useState([])
   const [tomorrowFix, setTomorrowFix] = useState([])
@@ -29,7 +30,7 @@ export default function Home() {
 
   if (error || error_master) return console.log(error)
   if (!data || !data_master) return <FullLoading />
-
+  console.log('master ', master)
   return (
     <>
       <Head>
@@ -37,7 +38,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={user}>
+      <Layout>
         <div className="grid gap-0 grid-cols-5">
           {/* <FixProvider> */}
           <div className="col-span-5 md:bg-gray-100">

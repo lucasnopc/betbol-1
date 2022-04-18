@@ -21,7 +21,7 @@ export function HtmlEmailRequest({ url, site, email }) {
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
     <td align="center" style="padding: 10px 0px 20px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
-    <img src="https://betbol.io/logo.png" />
+    <img src="https://sportsgame.online/logo.png" />
     </td>
     </tr>
     </table>
@@ -35,7 +35,7 @@ export function HtmlEmailRequest({ url, site, email }) {
       <td align="center" style="padding: 20px 0;">
       <table border="0" cellspacing="0" cellpadding="0">
       <tr>
-      <td align="center" style="border-radius: 5px;" bgcolor="${buttonBackgroundColor}"><a href="${url}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${buttonTextColor}; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ${buttonBorderColor}; display: inline-block; font-weight: bold;">Acessar minha conta BetBol</a></td>
+      <td align="center" style="border-radius: 5px;" bgcolor="${buttonBackgroundColor}"><a href="${url}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${buttonTextColor}; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ${buttonBorderColor}; display: inline-block; font-weight: bold;">Acessar minha conta Sportsgame</a></td>
           </tr>
           </table>
           </td>
@@ -51,5 +51,5 @@ export function HtmlEmailRequest({ url, site, email }) {
 }
 
 export function textEmailRequest({ url, site }) {
-  `Acesse seu painel Betbol ${site}\n${url}\n\n`
+  `Acesse seu painel Sportsgame ${site}\n${url}\n\n`
 }

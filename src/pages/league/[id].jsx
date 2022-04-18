@@ -24,7 +24,7 @@ export default function LeaguePage(props) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Layout userString={user}>
+            <Layout>
             <FixProvider>
           {fix.length > 0 && <Highlights highlights={fix} title={name} qtd={10} /> }
           {fix.length == 0 && <>

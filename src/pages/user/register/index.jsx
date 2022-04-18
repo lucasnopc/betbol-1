@@ -130,7 +130,7 @@ export default function register(props) {
               {...register('logradouro', { required: true })}
               name="logradouro"
               type="text"
-              placeholder="Mike"
+              placeholder="Endereço"
               className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.andress.logradouro}
             />
@@ -142,7 +142,7 @@ export default function register(props) {
               {...register('bairro', { required: true })}
               name="bairro"
               type="text"
-              placeholder="Mike"
+              placeholder="Bairro"
               className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.andress.bairro}
             />
@@ -154,7 +154,7 @@ export default function register(props) {
               {...register('localidade', { required: true })}
               name="localidade"
               type="text"
-              placeholder="Mike"
+              placeholder="Cidade"
               className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.andress.localidade}
             />
@@ -166,7 +166,7 @@ export default function register(props) {
               {...register('uf', { required: true })}
               name="uf"
               type="text"
-              placeholder="Mike"
+              placeholder="Estado"
               className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-primary-ligth"
               defaultValue={getStateRegister.andress.uf}
             />

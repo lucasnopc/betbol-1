@@ -8,7 +8,7 @@ import useFetch from '../../../../utills/useFetch'
 import FullLoading from '../../../fullloading'
 import retornoPotencialCalc from '../../../../utills/retornoPotencial'
 
-export default function Note(props) {
+export default function Note() {
     const { note } = useStore()
     const [config, setConfig] = useState({})
     const [toggleNoteBets, setToggleNoteBets] = useState(false)

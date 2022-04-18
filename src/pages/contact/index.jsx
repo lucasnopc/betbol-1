@@ -20,7 +20,7 @@ export default function RegulationPage(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout userString={user}>
+      <Layout>
         <h1 className="font-semibold text-xl p-2">Fale Conosco</h1>
         <div className="p-2">
           <span> ganhei@sportsgame.online</span>

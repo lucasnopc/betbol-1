@@ -14,14 +14,14 @@ export function HtmlEmailSendBet(note, url) {
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
       <td align="center" style="padding: 10px 0px 20px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
-      <img src="https://betbol.io/logo.png" />
+      <img src="https://sportsgame.online/logo.png" />
       </td>
       </tr>
       </table>
       <table width="100%" border="0" cellspacing="20" cellpadding="0" style="background: ${mainBackgroundColor}; max-width: 600px; margin: auto; border-radius: 10px;">
       <tr>
       <td align="center" style="padding: 10px 0px 0px 0px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
-      Você fez uma aposta na BetBol
+      Você fez uma aposta na Sportsgame
       </td>
       </tr>
       ${note.map(b => {
@@ -33,7 +33,7 @@ export function HtmlEmailSendBet(note, url) {
         <td align="center" style="padding: 20px 0;">
         <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-        <td align="center" style="border-radius: 5px;" bgcolor="${buttonBackgroundColor}"><a href="${url}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${buttonTextColor}; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ${buttonBorderColor}; display: inline-block; font-weight: bold;">Acessar minha conta Betbol</a></td>
+        <td align="center" style="border-radius: 5px;" bgcolor="${buttonBackgroundColor}"><a href="${url}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${buttonTextColor}; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ${buttonBorderColor}; display: inline-block; font-weight: bold;">Acessar minha conta Sportsgame</a></td>
             </tr>
             </table>
             </td>
@@ -49,5 +49,5 @@ export function HtmlEmailSendBet(note, url) {
   }
   
   export function TextEmailSendBet({ url, site }) {
-    `Acesse seu painel Betbol ${site}\n${url}\n\n`
+    `Acesse seu painel Sportsgame ${site}\n${url}\n\n`
   }
