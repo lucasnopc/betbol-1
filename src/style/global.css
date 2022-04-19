@@ -31,3 +31,9 @@ html, body, #__next {
 .scrollgreen {
     @apply  scrollbar scrollbar-thin scrollbar-thumb-green-600 scrollbar-track-gray-100
 }
+.input-all {
+    @apply border border-gray-200 p-2 outline-none text-lg text-gray-800 font-semibold
+}     
+.input-button {
+    @apply hover:bg-gray-50
+}

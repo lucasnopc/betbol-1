@@ -15,10 +15,10 @@ export default function HeaderAdmin() {
           <div className={`${toggle ? `opacity-100`:`opacity-0`} transition-opacity delay-100`}>
                 <div className={`${toggle ? `block`:`hidden`} absolute`}>
             <div className="flex flex-col">
-              <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/tickets"}>Bilhetes</Link></span>
-              <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/fin"}>Financeiro</Link></span>
-              <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/config"}>Configurações</Link></span>
-              {/* <span className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1"><Link href={"/adm/"}>Créditos</Link></span> */}
+              <Link href={"/adm/tickets"}><a className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1">Bilhetes</a></Link>
+              <Link href={"/adm/fin"}><a className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1">Financeiro</a></Link>
+              <Link href={"/adm/config"}><a className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1">Configurações</a></Link>
+              <Link href={"/adm/cambista"}><a className="bg-gray-900 hover:bg-gray-800 uppercase font-semibold text-xs p-1">Cambistas</a></Link>
           </div>
          </div>
           </div>
