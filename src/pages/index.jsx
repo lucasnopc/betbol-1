@@ -30,7 +30,6 @@ export default function Home() {
 
   if (error || error_master) return console.log(error)
   if (!data || !data_master) return <FullLoading />
-  console.log('master ', master)
   return (
     <>
       <Head>

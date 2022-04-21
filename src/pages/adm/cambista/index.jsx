@@ -92,7 +92,7 @@ export default function Cambista() {
                 </div>
                 <div id="list-cambista" className="p-2 border border-gray-200">
                     {data.data.map(d => {
-                        return <div className="p-2 border-2 border-gray-50 hover:bg-gray-100 flex justify-between" key={d.id}>
+                        return <div key={d._id} className="p-2 border-2 border-gray-50 hover:bg-gray-100 flex justify-between" key={d.id}>
                             <span className="">{d.name}</span>
                             <div className="flex gap-2">
 

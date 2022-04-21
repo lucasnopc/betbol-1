@@ -12,7 +12,7 @@ export default function HeaderAdmin(user) {
     <>
       <header className="text-xs bg-gray-900 bg-opacity-80 text-white font-normal fixed flex justify-between z-20 w-full top-0">
         <Link href="/"><span className="group hover:bg-gray-700 bg-gray-800 cursor-pointer items-center flex px-1"><AiOutlineHome className="transition-transform group-hover:-rotate-12" /> <span className="ml-1">Home</span></span></Link>
-        <div className="hover:bg-gray-700 bg-gray-800 cursor-pointer">
+        {nivel >= 5 && <div className="hover:bg-gray-700 bg-gray-800 cursor-pointer">
           <Hamburguer toggle={toggle} setToggle={setToggle} title="Administrador" />
           <div className={`${toggle ? `opacity-100` : `opacity-0`} transition-opacity delay-100`}>
             <div className={`${toggle ? `block` : `hidden`} absolute`}>
@@ -24,9 +24,9 @@ export default function HeaderAdmin(user) {
               </div>
             </div>
           </div>
-        </div>
+        </div>}
         {nivel >= 3 && <div className=" hover:bg-gray-700 bg-gray-800 cursor-pointer">
-        <Hamburguer toggle={toggleCambista} setToggle={setToggleCambista} title="Camista" />
+        <Hamburguer toggle={toggleCambista} setToggle={setToggleCambista} title="Cambista" />
           <div className={`${toggleCambista ? `opacity-100` : `opacity-0`} transition-opacity delay-100`}>
             <div className={`${toggleCambista ? `block` : `hidden`} absolute`}>
               <div className="flex flex-col">
