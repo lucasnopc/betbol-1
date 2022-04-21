@@ -7,7 +7,6 @@ import Translate from '../../utills/translate'
 import translateBets from "../../utills/translates/translateBets";
 
 export default function Button({ fix, val, bets, value, squadWidth}) {
-    console.log('squadWidth ', squadWidth)
     const [checked, setChecked] = useState(false)
     const [config, setConfig] = useState({})
     const { data, error } = useFetch('/api/adm/config')

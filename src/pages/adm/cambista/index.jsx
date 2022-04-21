@@ -6,6 +6,7 @@ import FullLoading from '../../../components/fullloading'
 import LayoutAdmin from '../../../components/layouts/admin'
 import serverSidePropsAdmin from '../../../utills/serverSidePropsAdmin'
 import useFetch from '../../../utills/useFetch'
+import Link from 'next/link'
 
 export default function Cambista() {
     const { data, error } = useFetch('/api/adm/cambista/get-all')
@@ -93,12 +94,16 @@ export default function Cambista() {
                     {data.data.map(d => {
                         return <div className="p-2 border-2 border-gray-50 hover:bg-gray-100 flex justify-between" key={d.id}>
                             <span className="">{d.name}</span>
-                            <span className="">{d.nivel == 3 && <>
-                                <button onClick={() => setToggleConfirmDelete(true)} className="bg-red-600 font-semibold p-2 text-white rounded-md hover:bg-red-500" >Remover permissão de cambista</button>
-                                <ConfirmDialog open={toggleConfirmDelete} setOpen={setToggleConfirmDelete} onConfirm={() => { removeCambistaPermission(d.email) }}>
-                                    <h1 className="font-bold uppercase">Remover permissẽos de cambista para o email: {email} ?</h1>
-                                </ConfirmDialog>
-                            </>}</span>
+                            <div className="flex gap-2">
+
+                                <span className="">{d.nivel == 3 && <>
+                                    <button onClick={() => setToggleConfirmDelete(true)} className="bg-red-600 font-semibold p-2 text-white rounded-md hover:bg-red-500" >Remover permissão de cambista</button>
+                                    <ConfirmDialog open={toggleConfirmDelete} setOpen={setToggleConfirmDelete} onConfirm={() => { removeCambistaPermission(d.email) }}>
+                                        <h1 className="font-bold uppercase">Remover permissẽos de cambista para o email: {email} ?</h1>
+                                    </ConfirmDialog>
+                                </>}</span>
+                                <Link href="/adm/cambista/relatorio"><a className="bg-yellow-600 font-semibold p-2 text-white rounded-md hover:bg-yellow-500">Relatório</a></Link>
+                            </div>
                         </div>
                     })}
                 </div>
@@ -112,6 +117,6 @@ export default function Cambista() {
     </>
 }
 export async function getServerSideProps(context) {
-    const ret = serverSidePropsAdmin(context)
+    const ret = serverSidePropsAdmin(context , 3)
     return ret
 }

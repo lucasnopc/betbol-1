@@ -11,7 +11,7 @@ export default function Header() {
 
     return <>
         <header className={`${user?.nivel == 5 ? `mt-6` : ``} bg-green-600 border-b border-green-500 w-full basis-auto z-10`}>
-    {user?.nivel == 5 &&<HeaderAdmin />}
+    {user?.nivel >= 3 &&<HeaderAdmin user={user} />}
             <div className='md:pl-2 flex items-center justify-between'>
             <Logo />
             <div id="profile" className='flex items-center px-2'>
