@@ -6,7 +6,7 @@ import { MdHeight, MdSportsHandball, MdSportsRugby } from 'react-icons/md'
 export default function SportNav() {
   const [scrollX, setScrollX] = useState(0)
 
-  return <div className='bg-green-500 overflow-auto'>
+  return <div className='bg-primary overflow-auto'>
     <div className='transition-all h-14 md:h-8' style={{
       marginLeft: scrollX,
       width: 7 * 110,

@@ -35,8 +35,8 @@ export default function SignInButton () {
 
                   </div>
               </div>
-              <span className="cursor-pointer p-1 uppercase font-semibold transition-colors hover:text-black text-primary bg-white text-sm block-inline mx-1" onClick={() => setEnterSis(!enterSis)}>Entrar</span>
-              <span className="cursor-pointer p-1 uppercase font-semibold transition-colors hover:text-black text-primary bg-white text-sm block-inline mx-1" onClick={() => setEnterSis(!enterSis)}>Cadastrar</span>
+              <span className="cursor-pointer p-1 uppercase font-semibold transition-colors hover:text-secundary-dark text-primary bg-white text-sm block-inline mx-1" onClick={() => setEnterSis(!enterSis)}>Entrar</span>
+              <span className="cursor-pointer p-1 uppercase font-semibold transition-colors hover:text-secundary-dark text-primary bg-white text-sm block-inline mx-1" onClick={() => setEnterSis(!enterSis)}>Cadastrar</span>
           </div>
       </>}
   </>

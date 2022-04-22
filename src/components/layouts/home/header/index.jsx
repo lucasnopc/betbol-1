@@ -10,7 +10,7 @@ export default function Header() {
     const { user } = useStore()
 
     return <>
-        <header className={`${user?.nivel == 5 ? `mt-6` : ``} bg-green-600 border-b border-green-500 w-full basis-auto z-10`}>
+        <header className={`${user?.nivel == 5 ? `mt-6` : ``} bg-gradient-to-br from-secundary to-secundary-dark border-b border-secundary-dark w-full basis-auto z-10`}>
     {user?.nivel >= 3 &&<HeaderAdmin user={user} />}
             <div className='md:pl-2 flex items-center justify-between'>
             <Logo />

@@ -26,10 +26,10 @@ html, body, #__next {
     @apply p-1 uppercase text-xs font-bold
 }
 .list-styles {
-    @apply p-2 hover:bg-green-600 font-medium text-gray-900 hover:text-white border-b border-gray-300
+    @apply p-2 hover:bg-gray-200 font-medium text-gray-900 border-b border-gray-300
 }
 .scrollgreen {
-    @apply  scrollbar scrollbar-thin scrollbar-thumb-green-600 scrollbar-track-gray-100
+    @apply  scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-100
 }
 .input-all {
     @apply border border-gray-200 p-2 outline-none text-lg text-gray-800 font-semibold

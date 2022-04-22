@@ -16,7 +16,7 @@ export default function Odd({ bets, fix, odds, nVals = null, orientation = "righ
                     </div>
                 })}
                 {nVals && <div className="inline-block">
-                    <Link href={`/fix/${id}`} ><a className=" rounded-lg w-12 h-12 pr-1 text-blue-600 cursor-pointer active:outline-none focus:outline-none flex items-center justify-center min-w-full bg-gray-200 hover:bg-gray-300 text-base font-normal text-xs">+{nVals}</a></Link>
+                    <Link href={`/fix/${id}`} ><a className=" rounded-lg w-12 h-12 pr-1 text-primary cursor-pointer active:outline-none focus:outline-none flex items-center justify-center min-w-full bg-gray-200 hover:bg-gray-300 text-xs font-normal">+{nVals}</a></Link>
                 </div>}
             </>
             }

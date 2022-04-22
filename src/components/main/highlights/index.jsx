@@ -33,7 +33,7 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
         {leagues.length > 0 && bets && leagues.map(l => {
             const values = l.fix[0].odd.bookmakers[0].bets.find(bet => bet.id == bets)?.values
             return <div key={l.liga.id}>
-                <div className="text-xs font-semibold bg-primary text-white py-1 border-b grid grid-cols-2">
+                <div className="text-xs font-semibold bg-gradient-to-tl from-primary to-primary-dark text-white py-1 border-b grid grid-cols-2">
                     <div className="flex ml-1">
                         {l.liga.flag && <div className="rounded-full overflow-hidden w-4 h-4 bg-black"><img className="w-6 h-6 -mt-1 -ml-1 max-w-none" src={l.liga.flag} alt={l.liga.name} /></div>}
                         {!l.liga.flag && <BiWorld className="text-lg" />}
@@ -43,9 +43,9 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
                         </span>
                     </div>
                     <div>
-                        <div className="text-right h-full divide-green-500 divide-x">
-                            {values?.length <= 3 && values?.map(v => <div key={v.value} className="px-2 inline-block text-center">{Translate(v.value)}</div>)}
-                            <div className="px-3 text-center inline-block">Mais</div>
+                        <div className="text-right h-full divide-primary divide-x">
+                            {values?.length <= 3 && values?.map(v => <div key={v.value} className="font-medium px-2 inline-block text-center">{Translate(v.value)}</div>)}
+                            <div className="px-3 font-medium text-center inline-block">Mais</div>
                         </div>
                     </div>
                 </div>
