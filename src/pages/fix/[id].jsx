@@ -12,7 +12,6 @@ import { useStore } from '../../context/store'
 
 export default function Fix(props) {
   const { note } = useStore()
-  const user = useUser(props.userString)
   const router = useRouter()
   const { id } = router.query
   const [resFixture, setResFixture] = useState(false)

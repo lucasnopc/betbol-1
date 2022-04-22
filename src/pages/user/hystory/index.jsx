@@ -4,11 +4,11 @@ import useFetch from '../../../utills/useFetch'
 import FullLoading from '../../../components/fullloading'
 import LayoutUser from '../../../components/layouts/user'
 import { useState } from 'react'
-import useUser from '../../../utills/hooks/useUser'
 import ListBetsHistory from  '../../../components/listBetsHistory'
+import { useStore } from '../../../context/store'
 
 export default function historyBets(props) {
-  const user = useUser(props.userString)
+  const { user } = useStore()
   const [statusSearch, setStatusSearch] = useState('Todos');
   const { data, error } = useFetch(`/api/user/betsHistory?email=${user.email}`)
   if (error) return console.log(error)
@@ -20,7 +20,7 @@ export default function historyBets(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LayoutUser userString={user}>
+      <LayoutUser>
       <div className="p-1">
         <h1 className="font-bold text-sm">Histórico de Apostas</h1>
         <div className='flex justify-between mb-2'> 

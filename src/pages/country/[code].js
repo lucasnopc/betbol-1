@@ -6,13 +6,13 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
-import useUser from '../../utills/hooks/useUser'
+import { useStore } from '../../context/store'
 
 export default function CodePage(props) {
   const router = useRouter()
   const [leagues, setLeagues] = useState([])
   const { code, name } = router.query
-  const user = useUser(props.userString)
+  const { user } = useStore()
 
 
   useEffect(() => {

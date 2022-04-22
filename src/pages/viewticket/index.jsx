@@ -7,10 +7,8 @@ import Bilhete from '../../components/bilhete'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import useClipboard from "react-use-clipboard";
-import useUser from '../../utills/hooks/useUser'
 
 export default function viewTicket(props) {
-  const user = useUser(props.userString)
     const [bilhete, setBilhete] = useState({})
     const router = useRouter()
     const [isCopied, setCopied] = useClipboard(`${process.env.NEXTAUTH_URL}/viewbet?`);

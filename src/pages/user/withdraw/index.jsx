@@ -2,14 +2,14 @@ import Head from 'next/head'
 import serverSidePropsClient from '../../../utills/serverSitePropsClient'
 import LayoutUser from '../../../components/layouts/user';
 import Link from 'next/link'
-import useUser from '../../../utills/hooks/useUser';
 import useFetch from '../../../utills/useFetch';
 import FullLoading from '../../../components/fullloading';
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
+import { useStore } from '../../../context/store';
 
 export default function withdraw(props) {
-  const user = useUser(props.userString)
+  const { user } = useStore()
   const [onlyPaysWithState, setOnlyPaysWithState] = useState([])
   const { data, error } = useFetch(`/api/user/betsHistory?email=${user.email}`)
   useEffect(() => {

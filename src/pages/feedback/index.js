@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 import serverSidePropsClient from '../../utills/serverSitePropsClient'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import useUser from '../../utills/hooks/useUser'
+import { useStore } from '../../context/store'
 
 
 export default function Feedback(props) {
   const router = useRouter()
   const query = router.query
-  const user = useUser(props.userString)
+  const { user } = useStore()
 
   useEffect(() => {
     const setStatus = async (query) => {

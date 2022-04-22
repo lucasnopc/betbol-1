@@ -3,12 +3,12 @@ import Layout from "../../components/layouts/home/layout";
 import serverSidePropsClientNotRedirect from "../../utills/serverSitePRopsClientNotRedirect";
 import { useForm } from "react-hook-form";
 import { ImSpinner } from "react-icons/im";
-import useUser from "../../utills/hooks/useUser";
+import { useStore } from "../../context/store";
 
 export default function RegulationPage(props) {
   const { register, handleSubmit, formState } = useForm();
   const { isSubmitting } = formState;
-  const user = useUser(props.userString)
+  const { user } = useStore()
   
   const sendEmailContact = (data) => {
       console.log(data)

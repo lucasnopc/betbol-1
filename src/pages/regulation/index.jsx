@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
-import useUser from '../../utills/hooks/useUser'
+import { useStore } from '../../context/store'
 import serverSidePropsClientNotRedirect from '../../utills/serverSitePRopsClientNotRedirect'
 
 export default function RegulationPage(props) {
-    const user = useUser(props.userString)
+    const { user } = useStore()
 
     return (
         <>

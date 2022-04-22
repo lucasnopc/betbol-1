@@ -2,14 +2,13 @@ import { format, isToday, isTomorrow } from "date-fns"
 import { useSession } from "next-auth/client";
 import Image from 'next/image'
 import Link from 'next/link'
-import SignInButton from "../layouts/home/header/signIn";
-import { bestLeagues } from "../layouts/home/bestLeagues";
+import SignInButton from "../../layouts/home/header/signIn";
 import { FaFutbol } from 'react-icons/fa'
-import Odd from '../main/Odd'
+import Odd from '../../main/Odd'
 import { useEffect, useState } from "react";
-import get_odd_for_fix from "../../utills/get_odds_for_fix";
+import get_odd_for_fix from "../../../utills/get_odds_for_fix";
 
-export default function Banner({ highlights }) {
+export default function BannerDinamic({ highlights }) {
     const [session] = useSession()
     const [scrollX, setScrollX] = useState(0)
     const [leagues, setLeagues] = useState([])

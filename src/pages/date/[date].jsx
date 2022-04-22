@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react'
 import FullLoading from '../../components/fullloading'
 import Highlights from '../../components/main/highlights/'
 import { FixProvider } from '../../context/fix'
-import useUser from '../../utills/hooks/useUser'
+import { useStore } from '../../context/store'
 
 export default function LeaguePage(props) {
-    const user = useUser(props.userString)
+    const { user } = useStore()
     const [live, setLive] = useState([])
     const router = useRouter()
     const { date } = router.query

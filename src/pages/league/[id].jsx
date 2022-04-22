@@ -4,12 +4,12 @@ import { useRouter } from 'next/router'
 import useFetch from '../../utills/useFetch'
 import { useEffect, useState } from 'react'
 import { FixProvider } from '../../context/fix'
-import useUser from '../../utills/hooks/useUser'
 import Highlights from '../../components/main/highlights'
 import serverSidePropsClientNotRedirect from '../../utills/serverSitePRopsClientNotRedirect'
+import { useStore } from '../../context/store'
 
 export default function LeaguePage(props) {
-    const user = useUser(props.userString)
+    const { user } = useStore()
     const [fix, setFix] = useState(1)
     const router = useRouter()
     const { id, year, name } = router.query

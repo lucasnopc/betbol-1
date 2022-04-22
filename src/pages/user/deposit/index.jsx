@@ -2,16 +2,16 @@ import Head from 'next/head'
 import LayoutUser from '../../../components/layouts/user'
 import serverSidePropsClient from '../../../utills/serverSitePropsClient'
 import { useState } from 'react';
-import useUser from '../../../utills/hooks/useUser'
 import axios from 'axios'
 import { ToastContainer } from 'react-toastify';
 import QrcodeComponent from './QrcodeComponent';
 import AllPays from './allpays';
+import { useStore } from '../../../context/store';
 
 export default function withDraw(props) {
   const [qrCode , setQrCode] = useState({})
   const [valueDeposit, setValueDeposit] = useState(10.00)
-  const user = useUser(props.userString)
+  const { user } = useStore()
 
   const deposit = async valueDeposit => {
     const qrcode = await axios.post(`/api/pix/reqqrcode?value=${valueDeposit}`)
@@ -24,7 +24,7 @@ export default function withDraw(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LayoutUser userString={user}>
+      <LayoutUser>
         <div className="mx-3 mt-3 md:col-span-7 col-span-full bg-white">
           <h2 className="page-title border-b border-gray-100">Depósito</h2>
           <div className="">

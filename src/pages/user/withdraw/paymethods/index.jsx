@@ -4,11 +4,11 @@ import LayoutUser from '../../../../components/layouts/user'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import useUser from '../../../../utills/hooks/useUser'
 import { ToastContainer, toast } from 'react-toastify';
+import { useStore } from '../../../../context/store'
 
 export default function payMethods(props) {
-  const user = useUser(props.userString)
+  const { user } = useStore()
   const router = useRouter()
   const { register, handleSubmit } = useForm()
 
@@ -36,7 +36,7 @@ export default function payMethods(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LayoutUser userString={user}>
+      <LayoutUser>
         <div className="w-10/12 mx-auto p-2 mt-3 md:col-span-7 col-span-full bg-white shadow-md">
           <h2 className="page-title border-b border-gray-100">Método de Transferência PIX</h2>
         <form onSubmit={handleSubmit(setPix)} className='flex flex-col'>
