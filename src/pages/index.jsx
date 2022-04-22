@@ -37,8 +37,8 @@ export default function Home() {
       </Head>
 
       <Layout>
-        <div className="grid gap-0 grid-cols-5">
-          <div>
+        <div className="flex flex-col">
+          <div className="w-full">
             <BannerPromo />
           </div>
           <div className="col-span-5 md:bg-gray-100">

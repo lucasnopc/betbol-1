@@ -2,6 +2,7 @@ import { Carousel } from 'antd';
 
 const contentStyle = {
   height: '160px',
+  width: '100%',
   color: '#fff',
   lineHeight: '160px',
   textAlign: 'center',

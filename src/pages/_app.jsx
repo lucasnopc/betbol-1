@@ -9,6 +9,7 @@ import '../style/global.css'
 import '../style/nprogress.css'
 import 'tailwindcss/tailwind.css'
 import 'react-toastify/dist/ReactToastify.css'
+import 'antd/dist/antd.css';
 
 Router.events.on('routeChangeStart', (url) => {
   NProgress.start()
