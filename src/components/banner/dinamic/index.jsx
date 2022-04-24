@@ -34,19 +34,6 @@ export default function BannerDinamic({ highlights }) {
     return <>
         <div className=" mx-2 text-xs text-gray-700">
             <div className="h-40 scrollbar scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-100 overflow-x overflow-y-hidden flex transition-transform" style={{ marginLeft: scrollX }} >
-                <div>
-                    {/* <div className="p-2 mx-1 w-64 h-36 overflow-hidden bg-bg01 bg-black bg-cover bg-right-top shadow-sm inline-block">
-                        <div className="flex flex-col justify-center">
-                            <div>
-                                <p className="font-bold text-yellow-400 text-xl text-shadow">Receba ou deposite <br />rápidamente<br /> via PIX</p>
-                                {session &&
-                                    <Link href="/user/deposit"><a className="text-white text-base font-semibold uppercase bg-primary mt-1 p-1 text-center">Depositar</a></Link>
-                                }
-                                {!session && <SignInButton />}
-                            </div>
-                        </div>
-                    </div> */}
-                </div>
                 {fix.length > 0 && fix.slice(0,5).map(i => {
                     const dateFix = new Date(i.fixture.date)
                     const dateFormat = format(dateFix, 'yyyy/MM/dd')
