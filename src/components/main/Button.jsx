@@ -65,9 +65,9 @@ export default function Button({ fix, val, bets, value, squadWidth}) {
     if(val.odd > 20) val.odd = 20
 
  return <div className={`${value ? 'w-full': ''} page group  uppercase inline-block`}>
-        <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between px-1.5 py-3 w-full': `rounded-lg w-${squadWidth} h-${squadWidth}`} ${checked ? `bg-primary hover:bg-primary-ligth text-secundary hover:text-secundary-dark` : `bg-white border border-gray-300 hover:bg-gray-300 text-black`} cursor-pointer active:outline-none focus:outline-none text-base font-bold`}>
+        <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between px-1.5 py-3 w-full': `rounded-lg w-${squadWidth} h-${squadWidth}`} ${checked ? `bg-primary font-semibold hover:bg-primary-ligth text-secundary hover:text-secundary-dark` : `bg-white border border-gray-300 hover:bg-gray-300 text-black`} cursor-pointer active:outline-none focus:outline-none font-bold`}>
            {value && <span className="block  text-sm">{translateBets(val.value, bets)}</span>}
-            <span className="block font-medium text-sm" >{val.odd}</span>
+            <span className="block text-sm" >{val.odd}</span>
         </button>
  </div>
 }

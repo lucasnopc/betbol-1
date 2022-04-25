@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import useFetch from '../../../../utills/useFetch'
 import FullLoading from '../../../fullloading'
 import retornoPotencialCalc from '../../../../utills/retornoPotencial'
+import { CgRemove } from 'react-icons/cg'
 
 export default function Note() {
     const { note } = useStore()
@@ -20,7 +21,6 @@ export default function Note() {
         setRetornoPotencial(retornoPotencialCalc(note, vf, config))
 
     }, [note])
-
 
     const changeInputValue = (change) => {
         const value = change.obj.target.value
@@ -45,7 +45,7 @@ export default function Note() {
             <div onClick={() => setToggleNoteBets(!toggleNoteBets)} className="text-white bg-black border-b border-gray-200">
                 <h2 className="p-2 text-xs uppercase font-bold inline-block">
                     Caderneta de apostas
-                    <span className="absolute right-5 font-bold">{toggleNoteBets ? `-` : `+`}</span>
+                    <span className="absolute right-5 font-bold text-white text-2xl"><CgRemove /></span>
                 </h2>
             </div>
             <div className={`${toggleNoteBets ? `block` : `hidden`} w-full static max-h-screen md:max-h-full overflow-auto`}>

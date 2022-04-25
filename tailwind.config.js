@@ -11,7 +11,8 @@ module.exports = {
         extend: {
             backgroundImage: theme => ({
                 'register': "url('/register.jpg')",
-                'bg01': "url('/bg01.png')"
+                'bg01': "url('/bg01.png')",
+                'bg02': "url('/bg02.png')"
             }),
             colors: {
                 'primary': '#059669',

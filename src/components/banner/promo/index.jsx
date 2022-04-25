@@ -13,10 +13,10 @@ export default function BannerPromo() {
 
   return <Carousel autoplay>
     <div>
-      <h3 className="bg-black h-44 text-secundary flex items-center text-shadow-lg text-4xl p-2 bg-bg01 font-bold bg-cover">Aposte com <br />nossos cambistas</h3>
+      <h3 className="bg-black h-44 text-secundary flex items-center text-shadow-lg text-4xl p-2 bg-bg01 font-bold bg-cover"></h3>
     </div>
     <div>
-      <h3 className="bg-black bg-center h-44 text-secundary flex items-center justify-center text-center text-shadow-lg text-4xl p-2 bg-register font-bold bg-cover">Receba seus lucros rapidamente via pix</h3>
+      <h3 className="bg-black bg-center h-44 text-black flex items-center justify-center text-center text-shadow-lg text-4xl p-2 bg-bg02 font-bold bg-cover"></h3>
     </div>
   </Carousel>
 }

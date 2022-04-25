@@ -13,7 +13,7 @@ export default function viewTicket(props) {
     const router = useRouter()
     const [isCopied, setCopied] = useClipboard(`${process.env.NEXTAUTH_URL}/viewbet?`);
     const handlerGetBilhete = async (id) => {
-        const data = await axios(`http://localhost:3000/api/sis/bilhete?id=${id}`)
+        const data = await axios(`/api/sis/bilhete?id=${id}`)
         const bilheteData = await data.data
         if (bilheteData.result) setBilhete(bilheteData)
     }
@@ -45,6 +45,7 @@ export default function viewTicket(props) {
         </>
     )
 }
+
 export async function getServerSideProps(context) {
     const ret = serverSidePropsClient(context)
     return ret

@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Logo from '../../../components/layouts/home/logo'
 import InputMask from "react-input-mask"
 import { useForm } from "react-hook-form"
 import { useState, useEffect } from 'react'
