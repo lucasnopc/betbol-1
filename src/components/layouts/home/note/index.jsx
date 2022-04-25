@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useStore } from '../../../../context/store'
+import WithoutAccountButtom from './without-account-buttom'
 import NoteBtn from './note-btn'
 import ItemBetNote from './item-bet-note'
 import { Dialog } from '../../../confirm-dialog'
@@ -8,6 +9,7 @@ import useFetch from '../../../../utills/useFetch'
 import FullLoading from '../../../fullloading'
 import retornoPotencialCalc from '../../../../utills/retornoPotencial'
 import { CgRemove } from 'react-icons/cg'
+import { useSession } from "next-auth/client"
 
 export default function Note() {
     const { note } = useStore()
@@ -16,17 +18,17 @@ export default function Note() {
     const [vf, setVf] = useState(10)
     const [retornoPotencial, setRetornoPotencial] = useState()
     const { data, error } = useFetch('/api/adm/config')
+    const [session] = useSession()
+    
     useEffect(() => { if (data) setConfig(data.config[0].config) }, [data])
-    useEffect(() => {
-        setRetornoPotencial(retornoPotencialCalc(note, vf, config))
-
-    }, [note])
+    useEffect(() => setRetornoPotencial(retornoPotencialCalc(note, vf, config)), [note])
 
     const changeInputValue = (change) => {
         const value = change.obj.target.value
         change.setVf(value)
         setRetornoPotencial(retornoPotencialCalc(change.note, value, config))
     }
+
     const EmptyListBetState = () => {
         if (note.length == 0) {
             return <div className="w-full p-3">Caderneta de apostas vazia</div>
@@ -43,7 +45,7 @@ export default function Note() {
         <div className="rounded-full absolute right-1 bottom-1 bg-primary hover:bg-primary text-white font-bold">{note.lenght}</div>
         <Dialog open={toggleNoteBets} >
             <div onClick={() => setToggleNoteBets(!toggleNoteBets)} className="text-white bg-black border-b border-gray-200">
-                <h2 className="p-2 text-xs uppercase font-bold inline-block">
+                <h2 className="p-2 text-xs text-white uppercase font-bold inline-block">
                     Caderneta de apostas
                     <span className="absolute right-5 font-bold text-white text-2xl"><CgRemove /></span>
                 </h2>
@@ -63,7 +65,8 @@ export default function Note() {
                         changeInputValue({ obj: r, setVf, note })
                     }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min={config.min_value} max={config.max_value} step="10" defaultValue={config.min_value} />
                 </div>
-                <div className={`block bg-white bottom-0`}><NoteBtn config={config} vf={vf} retornoPotencial={retornoPotencial} toast={toast} setToggleNoteBets={setToggleNoteBets} /></div>
+                {session && <div className={`block bg-white bottom-0`}><NoteBtn config={config} vf={vf} retornoPotencial={retornoPotencial} toast={toast} setToggleNoteBets={setToggleNoteBets} /></div>}
+                {!session && <div className={`block bg-white bottom-0`}><WithoutAccountButtom config={config} vf={vf} retornoPotencial={retornoPotencial} toast={toast} setToggleNoteBets={setToggleNoteBets} /></div>}
 
             </div>
         </Dialog>
