@@ -15,7 +15,7 @@ export default function useStatus(bi) {
       const betsWithStatus = await Promise.all(bets.map(async bet => {
         const fixture = await getFixture(bet)
         const short = fixture.fixture.status.short
-        if (short != 'FT' && short != 'PEN' && short != 'AET') {
+        if (short != 'FT' && short != 'PEN' && short != 'AET' && short == 'NS') {
           bet.status = 'Aguarde'
         } else {
           const statusFixString = calcStatusFix(fixture, bet) ? `Ganhou` : `Perdeu` 

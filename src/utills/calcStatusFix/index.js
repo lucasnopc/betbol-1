@@ -35,29 +35,30 @@ export default function calcStatusFix(atualFix, bet) {
   const valueSpacetSepatare = choice.value.split(' ')
 
   const goalsTime = atualFix.events.filter(g => g.type == "Goal")
+  let timeLastGoal
   let timeFirstGoal
-  for (let goal of goalsTime) {
-    if (timeFirstGoal) {
-      if (goal.time.elapsed < timeFirstGoal.time.elapsed) {
+  let timeFirstGoalPosition
+  let timeLastGoalPosition
+  if(goalsTime.length > 0) {
+    for (let goal of goalsTime) {
+      if (timeFirstGoal) {
+        if (goal.time.elapsed < timeFirstGoal.time.elapsed) {
+          timeFirstGoal = goal
+        }
+      } else {
         timeFirstGoal = goal
       }
-    } else {
-      timeFirstGoal = goal
     }
-  }
-  let timeFirstGoalPosition
-  switch (timeFirstGoal.team.id) {
-    case atualFix.teams.home.id:
-      timeFirstGoalPosition = "Home"
-      break
+    switch (timeFirstGoal.team.id) {
+      case atualFix.teams.home.id:
+        timeFirstGoalPosition = "Home"
+        break
     case atualFix.teams.away.id:
       timeFirstGoalPosition = "Away"
       break
-  }
-
-  let timeLastGoal
-  for (let goal of goalsTime) {
-    if (timeLastGoal) {
+    } 
+    for (let goal of goalsTime) {
+      if (timeLastGoal) {
       if (goal.time.elapsed > timeLastGoal.time.elapsed) {
         timeLastGoal = goal
       }
@@ -65,7 +66,6 @@ export default function calcStatusFix(atualFix, bet) {
       timeLastGoal = goal
     }
   }
-  let timeLastGoalPosition
   switch (timeLastGoal.team.id) {
     case atualFix.teams.home.id:
       timeLastGoalPosition = "Home"
@@ -73,15 +73,19 @@ export default function calcStatusFix(atualFix, bet) {
     case atualFix.teams.away.id:
       timeLastGoalPosition = "Away"
       break
+    }
   }
-
+  let cornerWinner
+  let cornerTotal
+if(atualFix.statistics.length > 0){
   const cornerhome = atualFix.statistics[0].statistics.find(st => st.type == "Corner Kicks")
   const corneraway = atualFix.statistics[1].statistics.find(st => st.type == "Corner Kicks")
-  const cornerTotal = cornerhome.value + corneraway.value
-  let cornerWinner
+  cornerTotal = cornerhome.value + corneraway.value
+
   if (cornerhome.value > corneraway.value) cornerWinner = "Home"
   if (cornerhome.value == corneraway.value) cornerWinner = "Draw"
   if (cornerhome.value < corneraway.value) cornerWinner = "Away"
+}
   switch (choice.betsChoice) {
     case 1:
       if (choice.value == winner) status = true

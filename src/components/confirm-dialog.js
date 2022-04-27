@@ -1,5 +1,5 @@
 export function ConfirmDialog(props) {
-  const { open, setOpen, title, children, onConfirm } = props;
+  const { open, setOpen, title, children, onConfirm, confirmText = "Confirmar" } = props;
   if (!open) {
     return <></>;
   }
@@ -22,7 +22,7 @@ export function ConfirmDialog(props) {
               onConfirm();
             }}
           >
-            Confirmar
+            {confirmText}
           </Button>
       </div>
     </Dialog>

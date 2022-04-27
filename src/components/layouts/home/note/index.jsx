@@ -19,7 +19,7 @@ export default function Note() {
     const [retornoPotencial, setRetornoPotencial] = useState()
     const { data, error } = useFetch('/api/adm/config')
     const [session] = useSession()
-    
+
     useEffect(() => { if (data) setConfig(data.config[0].config) }, [data])
     useEffect(() => setRetornoPotencial(retornoPotencialCalc(note, vf, config)), [note])
 
@@ -45,7 +45,7 @@ export default function Note() {
         <div className="rounded-full absolute right-1 bottom-1 bg-primary hover:bg-primary text-white font-bold">{note.lenght}</div>
         <Dialog open={toggleNoteBets} >
             <div onClick={() => setToggleNoteBets(!toggleNoteBets)} className="text-white bg-black border-b border-gray-200">
-                <h2 className="p-2 text-xs text-white uppercase font-bold inline-block">
+                <h2 className="p-2 text-xs text-white  uppercase font-bold inline-block">
                     Caderneta de apostas
                     <span className="absolute right-5 font-bold text-white text-2xl"><CgRemove /></span>
                 </h2>
@@ -55,19 +55,20 @@ export default function Note() {
                 {note.length != 0 && note.map((bet, indice) => {
                     return <ItemBetNote setVf={setVf} key={bet.fix.fixture.id} bet={bet} indice={indice} vf={vf} />
                 })}
-                <div className="block p-1 border-t border-gray-300 bg-gray-100">
-                    <span className="text-sm text-black font-semibold pl-1 w-2/12">R$</span>
-                    <input onChange={(r) => {
-                        if (r.target.value.length >= 2) {
-                            if (r.target.value < config.min_value) r.target.value = config.min_value
-                            if (r.target.value > config.max_value) r.target.value = config.max_value
-                        }
-                        changeInputValue({ obj: r, setVf, note })
-                    }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min={config.min_value} max={config.max_value} step="10" defaultValue={config.min_value} />
-                </div>
-                {session && <div className={`block bg-white bottom-0`}><NoteBtn config={config} vf={vf} retornoPotencial={retornoPotencial} toast={toast} setToggleNoteBets={setToggleNoteBets} /></div>}
-                {!session && <div className={`block bg-white bottom-0`}><WithoutAccountButtom config={config} vf={vf} retornoPotencial={retornoPotencial} toast={toast} setToggleNoteBets={setToggleNoteBets} /></div>}
-
+                <form onSubmit={e => e.preventDefault()}>
+                    <div className="block p-1 border-t border-gray-300 bg-gray-100">
+                        <span className="text-sm text-black font-semibold pl-1 w-2/12">R$</span>
+                        <input onChange={(r) => {
+                            if (r.target.value.length >= 2) {
+                                if (r.target.value < config.min_value) r.target.value = config.min_value
+                                if (r.target.value > config.max_value) r.target.value = config.max_value
+                            }
+                            changeInputValue({ obj: r, setVf, note })
+                        }} type="number" className="w-10/12 font-semibold focus:outline-none float-right bg-transparent" min={config.min_value} max={config.max_value} step="10" defaultValue={config.min_value} />
+                    </div>
+                    {session &&  <div className={`block bg-white bottom-0`}><NoteBtn config={config} vf={vf} retornoPotencial={retornoPotencial} toast={toast} setToggleNoteBets={setToggleNoteBets} /></div>}
+                    {!session && <div className={`block bg-white bottom-0`}><WithoutAccountButtom config={config} vf={vf} retornoPotencial={retornoPotencial} toast={toast} setToggleNoteBets={setToggleNoteBets} /></div>}
+                </form>
             </div>
         </Dialog>
         <ToastContainer />

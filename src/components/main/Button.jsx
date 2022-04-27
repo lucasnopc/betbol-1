@@ -14,7 +14,7 @@ export default function Button({ fix, val, bets, value, squadWidth}) {
     useEffect(() => {if(data) setConfig(data.config[0].config)}, [data])
  
     useEffect(()=> {
-        // console.log("note buttom", note)
+
         note.map((n, i) => {
             if (n.fix.fixture.id == fix.fixture.id && n.choice.betsChoice == bets) {
                 if (n.choice.value == val.value && n.choice.odd == val.odd) {
@@ -65,7 +65,7 @@ export default function Button({ fix, val, bets, value, squadWidth}) {
     if(val.odd > 20) val.odd = 20
 
  return <div className={`${value ? 'w-full': ''} page group  uppercase inline-block`}>
-        <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between px-1.5 py-3 w-full': `rounded-lg w-${squadWidth} h-${squadWidth}`} ${checked ? `bg-primary hover:bg-opacity-90 text-secundary` : `bg-white border border-gray-300 hover:bg-gray-300 text-black`} cursor-pointer active:outline-none focus:outline-none`}>
+        <button onClick={() => betGo(val, fix, bets)} className={`${value ? 'flex flex-row justify-between px-1.5 py-3 w-full': `rounded-lg w-${squadWidth}`} ${checked ? `bg-primary hover:bg-opacity-90 text-secundary` : `bg-white border border-gray-300 hover:bg-gray-300 text-black`} h-${squadWidth} cursor-pointer active:outline-none focus:outline-none`}>
            {value && <span className="block  text-sm">{translateBets(val.value, bets)}</span>}
             <span className="block text-lg font-semibold ">{val.odd}</span>
         </button>

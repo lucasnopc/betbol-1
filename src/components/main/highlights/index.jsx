@@ -15,7 +15,7 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
     useEffect(() => {
         get_odd_for_fix(setLoading, highlights, leagues, setLeagues, 0, qtd)
     }, [])
-    // useEffect(() => console.log(bets), [bets])
+
     useEffect(() => {
         for (let league of leagues) {
             if (league.league_indice > league_indice) setLeague_indice(league.league_indice + 1)
@@ -35,10 +35,10 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
             return <div key={l.liga.id}>
                 <div className="text-lg font-semibold bg-gradient-to-tl from-primary to-primary-dark text-white py-1 border-b flex">
                     <div className="flex w-1/3 ml-1 items-center">
-                       <div id="bandeira"> {l.liga.flag && <div className="rounded-full overflow-hidden w-4 h-4 bg-black"><img className="w-6 h-6 -mt-1 -ml-1 max-w-none" src={l.liga.flag} alt={l.liga.name} /></div>}
-                        {!l.liga.flag && <BiWorld className="text-lg" />}</div>
+                        <div id="bandeira"> {l.liga.flag && <div className="rounded-full overflow-hidden w-4 h-4 bg-black"><img className="w-6 h-6 -mt-1 -ml-1 max-w-none" src={l.liga.flag} alt={l.liga.name} /></div>}
+                            {!l.liga.flag && <BiWorld className="text-lg" />}</div>
                         <span className="pl-1 font-semibold ">
-                        {l.liga.name}
+                            {l.liga.name}
 
                         </span>
                     </div>

@@ -4,7 +4,7 @@ import { useStore } from '../../../../context/store'
 import { ConfirmDialog } from '../../../confirm-dialog'
 import { useState } from 'react'
 import ItemBetNote from './item-bet-note'
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/router'
 import FullLoading from '../../../fullloading'
 import userUpdate from '../../../../utills/userUpdate'
 
@@ -15,6 +15,7 @@ export default function NoteBtn(props) {
     const router = useRouter()
     const [open, setOpen] = useState(false)
     const { note, clearNote } = useStore()
+    
     const ValorFinal = (vf) => {
         if (vf.vf) {
             if (vf.vf.length > 0) {
@@ -67,7 +68,6 @@ export default function NoteBtn(props) {
 
     return <><button onClick={() => {
         if (props.vf < user.points) {
-            let vf
             if (props.vf < props.config.min_value) {
                 toast.warn(`O valor mínimo para uma aposta é de ${props.config.min_value}, por favor aumente sua aposta.`,{
                     position: "top-right",

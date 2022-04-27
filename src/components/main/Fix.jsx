@@ -48,7 +48,7 @@ export default function Fix({ fix, bets }) {
             </div>
             <div className="col-start-5 col-span-8 md:col-start-7 md:col-span-6">
                 <div className="h-full">
-                    <Odd odds={odds} bets={bets} fix={fix} nVals={nVals} squadWidth={12} />
+                    <Odd odds={odds} bets={bets} fix={fix} nVals={nVals} squadWidth={16} />
                 </div>
             </div>
         </div>
