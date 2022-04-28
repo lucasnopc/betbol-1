@@ -16,7 +16,7 @@ export default function useStatus(bi) {
         const fixture = await getFixture(bet)
         const short = fixture.fixture.status.short
         if (short != 'FT' && short != 'PEN' && short != 'AET' && short == 'NS') {
-          bet.status = 'Aguarde'
+          bet.status = 'Resultado indisponível'
         } else {
           const statusFixString = calcStatusFix(fixture, bet) ? `Ganhou` : `Perdeu` 
           bet.status = statusFixString

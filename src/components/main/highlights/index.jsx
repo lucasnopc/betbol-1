@@ -5,6 +5,7 @@ import Image from 'next/image'
 import get_odd_for_fix from "../../../utills/get_odds_for_fix"
 import Translate from "../../../utills/translate"
 import { BiWorld } from 'react-icons/bi'
+import resumeLeagueName from "../../../utills/resumeLeagueName"
 
 export default function Highlights({ highlights, title, qtd = 4 }) {
     const [bets, setBets] = useState(1)
@@ -34,12 +35,11 @@ export default function Highlights({ highlights, title, qtd = 4 }) {
             const values = l.fix[0].odd.bookmakers[0].bets.find(bet => bet.id == bets)?.values
             return <div key={l.liga.id}>
                 <div className="text-lg font-semibold bg-gradient-to-tl from-primary to-primary-dark text-white py-1 border-b flex">
-                    <div className="flex w-1/3 ml-1 items-center">
+                    <div className="flex w-5/12 ml-1 items-center">
                         <div id="bandeira"> {l.liga.flag && <div className="rounded-full overflow-hidden w-4 h-4 bg-black"><img className="w-6 h-6 -mt-1 -ml-1 max-w-none" src={l.liga.flag} alt={l.liga.name} /></div>}
                             {!l.liga.flag && <BiWorld className="text-lg" />}</div>
                         <span className="pl-1 font-semibold ">
-                            {l.liga.name}
-
+                            {resumeLeagueName(l.liga.name)}
                         </span>
                     </div>
                     <div className="grow w-full">
