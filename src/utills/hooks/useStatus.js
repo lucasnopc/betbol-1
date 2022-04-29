@@ -29,6 +29,7 @@ export default function useStatus(bi) {
       for(const el of betsWithStatus) {
         if(el.status == "Perdeu") percas++
         if(el.status == "Aguarde") aoVivo = true
+        if(el.status == "Resultado indisponível") aoVivo = true
       }
       if(!aoVivo) {
         if(percas > 0) {newBi.generalStatus = "Perdeu"}

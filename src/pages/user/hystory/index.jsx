@@ -3,13 +3,16 @@ import serverSidePropsClient from '../../../utills/serverSitePropsClient'
 import useFetch from '../../../utills/useFetch'
 import FullLoading from '../../../components/fullloading'
 import LayoutUser from '../../../components/layouts/user'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ListBetsHistory from  '../../../components/listBetsHistory'
 import { useStore } from '../../../context/store'
 
 export default function historyBets(props) {
   const { user } = useStore()
   const [statusSearch, setStatusSearch] = useState('Todos');
+  useEffect(()=>{
+    console.log('user ', user)
+  }, [user])
   const { data, error } = useFetch(`/api/user/betsHistory?email=${user.email}`)
   if (error) return console.log(error)
   if (!data) return <FullLoading />
@@ -46,9 +49,4 @@ export default function historyBets(props) {
       </LayoutUser>
     </>
   )
-}
-
-export async function getServerSideProps(context) {
-  const ret = serverSidePropsClient(context)
-  return ret
 }

@@ -4,11 +4,12 @@ import Profile from './profile'
 import HeaderAdmin from '../../admin/headeradmin'
 import Link from 'next/link'
 import { useStore } from '../../../../context/store'
+import useUser from '../../../../utills/hooks/useUser'
 
 export default function Header() {
     const [session] = useSession()
     const { user } = useStore()
-
+    useUser()
     return <>
         <header className={`${user?.nivel == 5 ? `mt-6` : ``} bg-gradient-to-br from-secundary to-secundary-dark border-b border-secundary-dark w-full basis-auto z-10`}>
     {user?.nivel >= 3 &&<HeaderAdmin user={user} />}

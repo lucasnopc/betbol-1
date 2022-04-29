@@ -10,7 +10,7 @@ import BannerDinamic from '../components/banner/dinamic'
 import BannerPromo from '../components/banner/promo'
 
 export default function Home() {
-  useUser()
+
   const [live, setLive] = useState([])
   const [master, setMaster] = useState([])
   const [tomorrowFix, setTomorrowFix] = useState([])
