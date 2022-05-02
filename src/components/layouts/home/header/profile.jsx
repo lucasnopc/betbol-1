@@ -6,7 +6,6 @@ import SignInButton from "./signIn"
 export default function Profile({ user }) {
     const [openSettings, setOpenSettings] = useState(false)
     const [session] = useSession()
-    console.log("user ", user)
   return <>
       <SignInButton />
       {session && <>

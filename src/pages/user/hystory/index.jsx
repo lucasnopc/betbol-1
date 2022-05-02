@@ -1,21 +1,65 @@
 import Head from 'next/head'
-import serverSidePropsClient from '../../../utills/serverSitePropsClient'
 import useFetch from '../../../utills/useFetch'
 import FullLoading from '../../../components/fullloading'
 import LayoutUser from '../../../components/layouts/user'
 import { useEffect, useState } from 'react'
 import ListBetsHistory from  '../../../components/listBetsHistory'
 import { useStore } from '../../../context/store'
-
+import { DatePicker } from 'antd';
+import locale from 'antd/lib/date-picker/locale/pt_BR'
+const { RangePicker } = DatePicker;
+import { format, compareAsc, compareDesc } from 'date-fns'
 export default function historyBets(props) {
+  
   const { user } = useStore()
-  const [statusSearch, setStatusSearch] = useState('Todos');
-  useEffect(()=>{
-    console.log('user ', user)
-  }, [user])
+  const [history, setHistory] = useState([]);
+  const [dates, setDates] = useState([]);
+  const [hackValue, setHackValue] = useState()
+  const [value, setValue] = useState()
+  const today = new Date()
+  const disabledDate = current => {
+    if (!dates || dates.length === 0) {
+      return false;
+    }
+    const tooLate = dates[0] && current.diff(dates[0], 'days') > 7;
+    const tooEarly = dates[1] && dates[1].diff(current, 'days') > 7;
+    return tooEarly || tooLate;
+  }
+
+  const onOpenChange = open => {
+    if (open) {
+      setHackValue([]);
+      setDates([]);
+    } else {
+      setHackValue(undefined);
+    }
+  }
+  
   const { data, error } = useFetch(`/api/user/betsHistory?email=${user.email}`)
+  
   if (error) return console.log(error)
-  if (!data) return <FullLoading />
+  
+  useEffect(()=>{
+    if(data && value) {
+      if(data.betHistory.length > 0, value.length > 0) {
+        const onlyChoiceDate = data.betHistory.reverse().filter(i => {
+          const date = new Date(i.date)
+          const firstChoiceDate = new Date(value[0]._d)
+          const lastChoiceDate = new Date(value[1]._d)
+          const desc = compareDesc(date, firstChoiceDate)
+          const asc = compareAsc(date, lastChoiceDate)
+          
+          if(desc == -1 && asc == -1) {
+            return true
+          }
+        })
+      }
+      setHistory(onlyChoiceDate)
+    } 
+  },[data, value])
+  
+  if (!data) return <FullLoading message='Buscando apostas...' />
+  
   return (
     <>
       <Head>
@@ -27,10 +71,14 @@ export default function historyBets(props) {
       <div className="p-1">
         <h1 className="font-bold text-sm">Histórico de Apostas</h1>
         <div className='flex justify-between mb-2'> 
-        {/* <span onClick={ () => setStatusSearch('Todos')}  className={`${statusSearch == "Todos" ? `bg-gray-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Todos</span>
-        <span onClick={ () => setStatusSearch('Aberta')}  className={`${statusSearch == "Aberta" ? `bg-blue-500 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Abertas</span>
-        <span onClick={ () => setStatusSearch('Ganhou')} className={`${statusSearch == "Ganhou" ? `bg-green-500 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors block w-full p-2`}>Ganhas</span>
-        <span onClick={ () => setStatusSearch('Perdeu')} className={`${statusSearch == "Perdeu" ? `bg-red-600 text-white` : `bg-gray-200 hover:bg-gray-300`} uppercase text-xs font-semibold cursor-pointer transition-colors   block w-full p-2`}>Percas</span> */}
+        <RangePicker
+              locale={locale}
+              value={hackValue || value}
+              disabledDate={disabledDate}
+              onCalendarChange={val => setDates(val)}
+              onChange={val => setValue(val)}
+              onOpenChange={onOpenChange}
+              />
       </div>
       <div className="bg-gray-100 flex justify-between px-2 border-b border-gray-200">
         <span className="text-xs font-semibold text-gray-500 uppercase">
@@ -41,8 +89,9 @@ export default function historyBets(props) {
         </span>
       </div>
       <div className=" md:h-auto overflow-auto">
-            {data && data.betHistory.reverse().map((bi) => {
+            {history.map((bi) => {
               return <ListBetsHistory bi={bi} key={bi._id} />
+              // return <>{bi.date}</>
               })}            
     </div>
     </div>
