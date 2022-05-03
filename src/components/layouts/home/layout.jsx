@@ -1,15 +1,11 @@
 import Header from './header'
 import Footer from './footer'
 import ListMenu from './listMenu'
-import { useState } from 'react'
 import Note from './note'
 import { ToastContainer } from 'react-toastify'
-import { useStore } from '../../../context/store'
 
 export default function Layout({children, clear=false}) {
-    const [listBetState, setListBetState] = useState([])
-    const [getValorFinal, setValorFinal] = useState(0)
-    const { user } = useStore()
+
     return <div className="flex flex-col h-screen">
         <Header />
         <main className="grow basis-auto">

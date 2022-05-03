@@ -24,7 +24,6 @@ export default function Header() {
                 {user && <Profile user={user} />}
             </div>
             </div>
-        {/* <SportNav /> */}
         </header>
     </>
 }

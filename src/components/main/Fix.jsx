@@ -6,6 +6,7 @@ import Link from 'next/link'
 export default function Fix({ fix, bets }) {
     const [odds, setOdds] = useState({})
     const [nVals, setNVal] = useState(0)
+
     useEffect(() => {
         let top_betslenth
         for (let book of fix.odd.bookmakers) {
@@ -17,7 +18,7 @@ export default function Fix({ fix, bets }) {
             setOdds(top_betslenth.bets.find((bet) => bet.id == bets))
         }
     }, [bets])
-    // useEffect(() => { console.log('odds', odds) }, [odds])
+
     useEffect(() => {
         if (fix.odd) {
             const newNVals = nVals
