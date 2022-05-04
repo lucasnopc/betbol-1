@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {  useState } from 'react'
 import LayoutAdmin from '../../../../components/layouts/admin'
 import serverSidePropsAdmin from '../../../../utills/serverSidePropsAdmin'
@@ -6,9 +7,10 @@ export default function Cambista() {
   const [idTicket ,setIdTicket] = useState()
   const handlersearchTicket = (e) => {
       e.preventDefault()
-
+      console.log(idTicket)
+      axios.post('/api/')
   }
-    
+
   return <>
         <LayoutAdmin>
             <div className="mt-5 border border-gray-100 p-2 shadow-xl rounded-md flex-auto w-lg bg-white">

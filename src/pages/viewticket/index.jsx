@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../components/layouts/home/layout'
-import serverSidePropsClient from '../../utills/serverSitePropsClient'
+import serverSidePropsClientNotRedirect from '../../utills/serverSitePRopsClientNotRedirect'
 import axios from 'axios'
 import { useState } from 'react'
 import Bilhete from '../../components/bilhete'
@@ -46,6 +46,6 @@ export default function viewTicket(props) {
 }
 
 export async function getServerSideProps(context) {
-    const ret = serverSidePropsClient(context)
+    const ret = serverSidePropsClientNotRedirect(context)
     return ret
 }

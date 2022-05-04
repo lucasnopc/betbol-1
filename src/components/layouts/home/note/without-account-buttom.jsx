@@ -7,8 +7,8 @@ import axios from "axios"
 import { useRouter } from 'next/router'
 
 export default function WithoutAccountButtom({ setToggleNoteBets, toast, vf, setVf, retornoPotencial }) {
-  const [cliente, setCliente] = useState()
   const [open, setOpen] = useState(false)
+  const [cliente, setCliente] = useState()
   const { note, clearNote } = useStore()
   const [loading, setLoading] = useState(false)
   const router = useRouter()
@@ -38,6 +38,7 @@ export default function WithoutAccountButtom({ setToggleNoteBets, toast, vf, set
           setToggleNoteBets(false)
           setLoading(false)
           router.push(`/viewticket?b=${response.data.ops[0]._id}`)
+          console.log('e ai ?', response.data.ops[0]._id)
         }
       })
       .catch(function (error) {
