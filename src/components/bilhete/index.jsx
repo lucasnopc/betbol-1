@@ -13,7 +13,7 @@ export default function Bilhete({ bilhete:bi }) {
       setBilhete(biWithStatus)}
   }, [biWithStatus])
 
-  if(!bilhete) return <FullLoading />
+  if(!bilhete) return <FullLoading message="Buscando bilhete..." />
 
   return <>
     <div className='flex text-lg flex-col rounded-b-md shadow-lg text-gray-600 bg-yellow-200 p-2'>

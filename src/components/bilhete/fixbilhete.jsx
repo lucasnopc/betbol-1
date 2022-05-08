@@ -7,7 +7,7 @@ export default function FixBilhete( { m }) {
   const urlFix = `/api/betApi/fixture/${m.fix.fixture.id}/`
   const { data, error } = useFetch(urlFix)
   if (error) return console.log(error)
-  if (!data) return <FullLoading />
+  if (!data) return <FullLoading message="verificando resultado..." />
   const atualfix = data.res_fixture.response[0]
   const oddb = oddBets.find(o => o.id == m.choice.betsChoice)
   const calcStatus = calcStatusFix(atualfix, m)
