@@ -10,7 +10,7 @@ import { useStore } from '../../../context/store';
 
 export default function withDraw(props) {
   const [qrCode , setQrCode] = useState({})
-  const [valueDeposit, setValueDeposit] = useState(0.10)
+  const [valueDeposit, setValueDeposit] = useState(10.00)
   const { user } = useStore()
 
   const deposit = async valueDeposit => {
