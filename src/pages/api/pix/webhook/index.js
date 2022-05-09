@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { connectToDatabase } from '../../../../utills/conectdb';
 
 export default async function webhook (req, res) {

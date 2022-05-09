@@ -19,7 +19,8 @@ export default function QrcodeComponent({ qrCode, valueDeposit, setQrCode, txid,
   useEffect(() => {
     const fetchConfirmationPIx = async () => {
       if (confirmationPix?.pix.endToEndId) {
-        const points = Number(user.points) + Number(confirmationPix.pix.valor)
+        const userPoints = user.points ? user.points : 0
+        const points = Number(userPoints) + Number(confirmationPix.pix.valor)
         const updatePoints = await axios.post('/api/adm/updatePoints', {
           points: points,
           email: user.email
